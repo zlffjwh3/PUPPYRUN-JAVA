@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import user.model.service.UserService;
+import user.model.vo.User;
 
 @WebServlet("/user/login")
 public class LoginServlet extends HttpServlet {
@@ -17,7 +21,22 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String  userId = request.getParameter("userId");
+		String userPw = request.getParameter("userPw");
+		
+		User user = new UserService().selectOneUser(userId, userPw);
+		
+		if(user != null && user.getUserId() != null && user.getUserPw() != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", user.getUserId());
+			
+			// 성공
+			response.sendRedirect("/WEB-INF/views/login.jsp");
+		} else {
+			// 실패
+			response.sendRedirect("/WEB-INF/views/loginError.html");
+		}
+		
 	}
 
 }
