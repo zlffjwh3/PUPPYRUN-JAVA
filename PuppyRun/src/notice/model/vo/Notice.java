@@ -5,10 +5,10 @@ import java.sql.Date;
 public class Notice {
 	private int noticeNo; 
 	private String noticeTitle;
-	private int noticeContent;
-	private String noticeView;
+	private String noticeContent;
+	private int noticeView;
 	private Date noticeDate;
-	private String noticePhoto;
+	private int noticePhoto;
 	
 	public Notice() {}
 	
@@ -25,16 +25,16 @@ public class Notice {
 	public void setNoticeTitle(String noticeTitle) {
 		this.noticeTitle = noticeTitle;
 	}
-	public int getNoticeContent() {
+	public String getNoticeContent() {
 		return noticeContent;
 	}
-	public void setNoticeContent(int noticeContent) {
+	public void setNoticeContent(String noticeContent) {
 		this.noticeContent = noticeContent;
 	}
-	public String getNoticeView() {
+	public int getNoticeView() {
 		return noticeView;
 	}
-	public void setNoticeView(String noticeView) {
+	public void setNoticeView(int noticeView) {
 		this.noticeView = noticeView;
 	}
 	public Date getNoticeDate() {
@@ -43,10 +43,10 @@ public class Notice {
 	public void setNoticeDate(Date noticeDate) {
 		this.noticeDate = noticeDate;
 	}
-	public String getNoticePhoto() {
+	public int getNoticePhoto() {
 		return noticePhoto;
 	}
-	public void setNoticePhoto(String noticePhoto) {
+	public void setNoticePhoto(int noticePhoto) {
 		this.noticePhoto = noticePhoto;
 	}
 

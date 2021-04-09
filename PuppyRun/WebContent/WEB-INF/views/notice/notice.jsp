@@ -18,16 +18,16 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
-        <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="/assets/css/notice.css">
-        <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
-        <link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
-        <link rel="icon" href="/assets/img/Favicon/favicon.ico">
+        <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
+        <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="./assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/slider.js"></script>
-        <script src="/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <title>퍼피런 - 공지사항</title>
     </head>
     <body>
@@ -82,7 +82,7 @@
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
             </div>
-            <!-- 메인 -->
+            <!-- 메인 ---------------------------------------------------------------------------------------------------------->
             <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
@@ -90,73 +90,51 @@
                         <p>퍼피런 관리자의 아름다운 공지사항</p>
                     </div>
                     <div id="nbb-bottom">
-                        <!-- 게시물 3개씩 묶어두는 박스 -->
-                        <div class="line-box">
-                            <!-- 게시물 1개 -->
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021.04.05</dt>
-                                    <dd>공지1 </dd>
-                                </dl>
-                                <!-- 게시물 끝 -->
-                            </div>
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                    <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021-04-06</dt>
-                                    <dd>[공지사항]퍼피런 이야기 소식dsadadaaddad</dd>
-                                </dl>
-                            </div>
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                    <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021-04-06</dt>
-                                    <dd>공지2 </dd>
-                                </dl>
-                            </div>
-                        </div>
-                        <!-- 묶어두는 박스 끝 -->
-                        <div class="line-box">
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021.04.05</dt>
-                                    <dd>공지1 </dd>
-                                </dl>
-                            </div>
-                        </div>
+                        <%
+                        int n = 0;
+                        for(int i=0; i<3; i++) {
+                        %>
+                        	<!-- 게시물 3개씩 묶어두는 박스 -->
+                    		<div class="line-box">
+                        <%	
+                        	for(int j=0; j<3; j++) {
+                        		if(n < nList.size()) {
+                        %>			
+                        			<a href="#">
+                        				<div class="nbb-content">
+			                       		<span class="nbb-photo">
+			                            	<img src="/assets/img/Margarita Yazhina.jpg">
+			                            			<!-- 사진 어떻게 가져와?..ㅜ -->
+			                            </span>
+			                            <dl class="nbb-info">
+			                                <dt><%= nList.get(n).getNoticeDate() %></dt>
+			                                <dd><%= nList.get(n).getNoticeTitle() %></dd>
+			                            </dl>
+		                            </div>
+                        			</a>
+                        <%		
+                        		}
+                       			n++;
+                       		}
+                        %>
+                       		</div>
+                        <%
+                       	}
+                        %>
                     </div>
-                    
                     <!-- 글쓰기 버튼 -->
                     <div id="post-wrap">
-                            <a href="/html/notice-write.html" class="link-post">글쓰기</a>
+                    	<form action="/notice/write" method="post">
+                    		<input type="submit" value="글쓰기" class="link-post">
+                    	</form>
                     </div>
                     <!-- 여기에 페이징 번호 -->
                     <div class="pagin-box">
-                        <a href="#" id="page-prev">이전</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">7</a>
-                        <a href="#">8</a>
-                        <a href="#">9</a>
-                        <a href="#">10</a>
-                        <a href="#" id="page-next">다음</a>
+                        <%= pageNavi %>
                     </div>
                 </div>
             </div>
+            <!-- 메인 ---------------------------------------------------------------------------------------------------------->
             <footer>
                 <!-- 푸터 -->
                 <div id="footer">
