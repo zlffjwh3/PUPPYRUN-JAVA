@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -6,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/assets/css/reset.css">
         <link rel="stylesheet" href="/assets/css/login.css">
-        <title>로그인</title>
+        <title>ë¡ê·¸ì¸</title>
     </head>
     <body>
         <div id="wrap">
@@ -17,23 +19,23 @@
                 <div id="content">
                     <form action="/user/login" method="post">
                         <div id="id-area">
-                            <input type="text" name="userId" id="userId" placeholder="아이디">
+                            <input type="text" name="userId" id="userId" placeholder="ìì´ë">
                         </div>
                         <div id="pw-area">
-                            <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호">
+                            <input type="password" name="userPwd" id="userPwd" placeholder="ë¹ë°ë²í¸">
                         </div>
                         <div id="login-check-box">
                             <input type="checkbox" name="loginCheck" id="loginCheck">
-                            <label for="loginCheck">로그인 상태 유지</label>
+                            <label for="loginCheck">ë¡ê·¸ì¸ ìí ì ì§</label>
                         </div>
                         <div id="login-btn">
-                            <input type="submit" value="로그인">
+                            <input type="submit" value="ë¡ê·¸ì¸">
                         </div>
                     </form>
                 </div>
                 <div id="join-find-id-pwd">
-                    <a href="/html/id-pw-inquiry.html">아이디 · 비밀번호 찾기</a>
-                    <a href="#">회원가입</a>
+                    <a href="/html/id-pw-inquiry.html">ìì´ë Â· ë¹ë°ë²í¸ ì°¾ê¸°</a>
+                    <a href="#">íìê°ì</a>
                 </div>
             </div>
             <div id="pwd-container"></div>
