@@ -7,15 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/calendar/stamp")
-public class PetDiaryStampServlet extends HttpServlet {
+@WebServlet("/goal/stamp")
+public class GoalStampServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public PetDiaryStampServlet() {
+    public GoalStampServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 목표달성 몇개 했는지 / 스탬프 보여주기
+		
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

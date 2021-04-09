@@ -25,7 +25,7 @@ public class GoalDAO {
 		return 0;
 	}
 	
-	// 오늘 전체 기록 불러오는 메소드
+	// 전체 기록 불러오는 메소드
 	public ArrayList<Goal> goalList(Connection conn, String goalId) {
 		return null;
 	}
