@@ -1,0 +1,90 @@
+package community.model.vo;
+
+import java.sql.Date;
+import java.util.ArrayList;
+
+public class Community {
+	private int comNo;
+	private int comId;
+	private int tagNo;
+	private String comTitle;
+	private String comContent;
+	private int comview;
+	private Date comDate;
+	private int comPhoto;
+	private int likeCount;
+	private ArrayList<Comment> comment;
+	
+	public Community() {}
+	
+	// getter/setter
+	public int getComNo() {
+		return comNo;
+	}
+	public void setComNo(int comNo) {
+		this.comNo = comNo;
+	}
+	public int getComId() {
+		return comId;
+	}
+	public void setComId(int comId) {
+		this.comId = comId;
+	}
+	public int getTagNo() {
+		return tagNo;
+	}
+	public void setTagNo(int tagNo) {
+		this.tagNo = tagNo;
+	}
+	public String getComTitle() {
+		return comTitle;
+	}
+	public void setComTitle(String comTitle) {
+		this.comTitle = comTitle;
+	}
+	public String getComContent() {
+		return comContent;
+	}
+	public void setComContent(String comContent) {
+		this.comContent = comContent;
+	}
+	public int getComview() {
+		return comview;
+	}
+	public void setComview(int comview) {
+		this.comview = comview;
+	}
+	public Date getComDate() {
+		return comDate;
+	}
+	public void setComDate(Date comDate) {
+		this.comDate = comDate;
+	}
+	public int getComPhoto() {
+		return comPhoto;
+	}
+	public void setComPhoto(int comPhoto) {
+		this.comPhoto = comPhoto;
+	}
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+
+	public ArrayList<Comment> getComment() {
+		return comment;
+	}
+	public void setComment(ArrayList<Comment> comment) {
+		this.comment = comment;
+	}
+
+	@Override
+	public String toString() {
+		return "Community [comNo=" + comNo + ", comId=" + comId + ", tagNo=" + tagNo + ", comTitle=" + comTitle
+				+ ", comContent=" + comContent + ", comview=" + comview + ", comDate=" + comDate + ", comPhoto="
+				+ comPhoto + ", likeCount=" + likeCount + ", comment=" + comment + "]";
+	}
+}
