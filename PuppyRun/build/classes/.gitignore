@@ -1,7 +1,6 @@
-/common/
-/community/
-/matching/
-/notice/
-/petdiary/
-/photo/
-/user/
+/Community.ucls
+/Matching.ucls
+/Notice.ucls
+/PetDiary.ucls
+/Photo.ucls
+/User.ucls
