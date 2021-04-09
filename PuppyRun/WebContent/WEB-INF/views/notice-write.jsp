@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -10,14 +13,15 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="/assets/css/notice.css">
-        <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> -->
+        <link rel="stylesheet" type="text/css" href="/assets/css/notice-write.css">
+
+        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css"> -->
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
         <script src="./assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/slider.js"></script>
         <script src="/assets/js/scroll.js"></script>
         <title>퍼피런 - 공지사항</title>
     </head>
@@ -60,7 +64,7 @@
                             <a href="#">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">퍼피런이야기</a>
+                            <a href="/notice.html">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">반려견계산기</a>
@@ -69,82 +73,44 @@
                 </div>
             </nav>
             <!-- 스크롤 메뉴 -->
-            <div class="scroll-wrap">
+            <!-- <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
-            </div>
+            </div> -->
             <!-- 메인 -->
             <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
-                        <h3>퍼피런 이야기</h3>
-                        <p>퍼피런 관리자의 아름다운 공지사항</p>
+                        <h3>퍼피런 이야기 글 작성</h3>
                     </div>
-                    <div id="nbb-bottom">
-                        <!-- 게시물 3개씩 묶어두는 박스 -->
-                        <div class="line-box">
-                            <!-- 게시물 1개 -->
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021.04.05</dt>
-                                    <dd>공지1 </dd>
-                                </dl>
-                                <!-- 게시물 끝 -->
-                            </div>
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                    <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021-04-06</dt>
-                                    <dd>[공지사항]퍼피런 이야기 소식dsadadaaddad</dd>
-                                </dl>
-                            </div>
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                    <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021-04-06</dt>
-                                    <dd>공지2 </dd>
-                                </dl>
-                            </div>
+                    <!-- 작업해야할 부분 -->
+                    <div id="write-wrap">
+                        <div id="write-box">
+                            <form action="" method="">
+                                <div id="title">
+                                    <p class="write-p-tag">제 목</p>  
+                                    <div class="input-box">
+                                        <input type="text" id="title-input" name="title" maxlength="50">
+                                    </div>
+                                </div>
+                                <div id="file">
+                                    <p class="write-p-tag">첨부 파일</p>
+                                    <div class="input-box">
+                                        <input type="file" id="file-input" name="file">
+                                    </div>
+                                </div>
+                                <div id="content">
+                                    <p class="write-p-tag">내 용</p>
+                                    <div class="input-box" id="textarea-box">
+                                        <textarea id="content" name="content"></textarea>
+                                    </div>
+                                </div>
+                                <div id="btn-box">
+                                    <input type="submit" id="submit-input" value="등록">
+                                    <a href="/notice.html"><p>취소</p></a>
+                                </div>
+                            </form>
                         </div>
-                        <!-- 묶어두는 박스 끝 -->
-                        <div class="line-box">
-                            <div class="nbb-content">
-                                <span class="nbb-photo">
-                                <img src="/assets/img/Margarita Yazhina.jpg">
-                                </span>
-                                <dl class="nbb-info">
-                                    <dt>2021.04.05</dt>
-                                    <dd>공지1 </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 글쓰기 버튼 -->
-                    <div id="post-wrap">
-                            <a href="/html/notice-write.html" class="link-post">글쓰기</a>
-                    </div>
-                    <!-- 여기에 페이징 번호 -->
-                    <div class="pagin-box">
-                        <a href="#" id="page-prev">이전</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">7</a>
-                        <a href="#">8</a>
-                        <a href="#">9</a>
-                        <a href="#">10</a>
-                        <a href="#" id="page-next">다음</a>
                     </div>
                 </div>
             </div>
