@@ -1,0 +1,63 @@
+
+#banner {
+    width: 800px;
+    height: 400px;
+    margin: auto;
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+}
+.image {
+    width: 800px;
+    height: 400px;
+    position: absolute;
+}
+.image img {
+    width: 800px;
+    height: 400px;
+    float: left;
+}
+
+.control {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -50px;
+}
+.control li {
+    float: left;
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    list-style: none;
+    margin-left: 10px;
+    cursor: pointer;
+    background: white;
+    transition: 0.8s;
+}
+
+.btn {
+    position: absolute;
+    bottom: 45%;
+    left: 75%;
+    width: 800px;
+    height: 50px;
+    margin-left: -600px;
+}
+
+.btn .xi-angle-left-thin {
+    float: left;
+    cursor: pointer;
+    font-size: 50px;
+    color: white;
+}
+.btn .xi-angle-right-thin {
+    float: right;
+    cursor: pointer;
+    font-size: 50px;
+    color: white;
+}
+
+.control li.on {
+    width: 50px;
+}

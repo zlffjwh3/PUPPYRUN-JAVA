@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+/* font-family: 'Noto Sans KR', sans-serif; */
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin : 0px;
+    padding : 0px;
+    box-sizing: border-box;
+}
+
+a { 
+    text-decoration:none ;
+} 
+
+a:link {
+    text-decoration: none;
+  
+}
+
+a:visited {
+    text-decoration: none;
+   
+}
+
+
+#nbb-top {
+    margin : 100px 0 50px 0;
+    text-align: center;
+}
+
+#nbb-top h3 {
+    font-size : 30px;
+    color : #FBB41D;
+    padding-bottom : 6px;
+}
+
+#nbb-top p {
+    font-size : 14px;
+    font-weight: 400;
+    color : #868686;
+}
+
+#nbb-bottom {
+    width : 100%;
+    margin-bottom : 50px;
+    border-bottom : 1px solid #ffedc6;
+}
+
+#nbb-bottom .line-box .nbb-content {
+    width : 320px;
+    height : 300px;
+    cursor: pointer;
+    margin : 40px 40px 30px 30px;
+    transition: 0.4s;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#nbb-bottom .line-box .nbb-content .nbb-photo {
+    width : 320px;
+    height : 220px;
+    float : left;
+    cursor: pointer;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+#nbb-bottom .line-box .nbb-content .nbb-photo img {
+    width : 100%;
+    border-radius: 30px;
+    transition: 0.4s;
+}
+
+#nbb-bottom .line-box .nbb-content:hover .nbb-photo img {
+    filter: brightness(70%); 
+}
+
+#nbb-bottom .line-box .nbb-content .nbb-info {
+    padding-top : 230px;
+    text-align: center;
+}
+
+#nbb-bottom .line-box .nbb-content .nbb-info dt{
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size : 13px;
+    color : #868686;
+}
+
+#nbb-bottom .line-box .nbb-content .nbb-info dd{
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size : 16px;
+    font-weight: 500;
+    color : #535353;
+}
+
+.pagin-box {
+    text-align: center;
+}
+
+.pagin-box a {
+    padding : 2px 8px;
+    border: 1px solid rgb(218, 218, 218);
+}
+
+.pagin-box a:visited {
+    color : #FBB41D;
+}
+
+#post-wrap {
+    text-align: right;
+}
+
+.link-post {
+    width : 100px;
+    height : 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color:#FBB41D;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+#post-wrap > a {
+    color : white;
+}

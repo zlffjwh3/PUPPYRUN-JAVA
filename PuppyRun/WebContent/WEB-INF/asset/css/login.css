@@ -1,0 +1,144 @@
+/* <!-- https://fonts.google.com/icons?icon.query=user --> */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background-color: #FFF9EB;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+#wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* 박스 크기 조절 (아래 패딩 조절)*/
+    border-radius: 30px;
+    padding:50px 100px 100px 100px;
+    transform: translate(-50%, -50%);
+    background-color:white;
+
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    margin-bottom : 20px;
+}
+
+#header > a > img {
+    width: 300px;
+    /* margin: 0 40%; */
+}
+
+#content {
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    
+}
+
+#content > form input[type=text] {
+    
+}
+
+#content > form input[type=checkbox] {
+    /* 네이버는 이미지를 넣고 클릭할때마다 벨류값과 클래스값, 이미지가 변경됨 */
+    /* background-image: ;  */
+}
+
+
+
+/* 아이디박스 */
+#id-area {
+    background-color: white;
+    border: 1px solid #C9C9C9;
+    width: 300px;
+    height: 35px;
+    border-radius: 32px;
+    margin: 10px 0 10px 0;
+    padding: 3px 3px 3px 3px;
+}
+
+#id-area > #userId {
+    width: 270px;
+    height: 35px;
+    border : none;
+    outline: none;
+    margin: 0 15px;
+}
+
+/* 비밀번호박스 */
+#pw-area {
+    background-color: white;
+    border: 1px solid #C9C9C9;
+    width: 300px;
+    height: 35px;
+    border-radius: 32px;
+    margin: 0 0 10px 0;
+    padding: 3px 3px 3px 3px;
+}
+
+#pw-area > #userPwd {
+    width: 270px;
+    height: 35px;
+    border : none;
+    outline: none;
+    margin: 0 10px;
+}
+
+/* 로그인체크 */
+#login-check-box {
+    font-size: 12px;
+}
+
+/* 로그인박스 */
+#content > form input[type=submit] {
+    border: none;
+    color: white;
+    width: inherit;
+    background-color: #FEB415;
+    width: 300px;
+    height: 45px;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0px 2px 3px  #C9C9C9;
+    margin: 30px 0 10px 0;
+}
+
+
+#login-btn {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* 아이디비밀번호 회원가입 */
+#join-find-id-pwd {
+    color: #727272;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top : 20px;
+}
+
+#join-find-id-pwd > a {
+    font-size : 13px;
+    text-decoration-line: none;
+    color: #727272;
+    display: block;
+    text-align: center;
+    padding : 0 15px;
+}
+
+#join-find-id-pwd > a:not(:nth-last-child(1)) {
+    border-right : 1px solid #727272;;
+}

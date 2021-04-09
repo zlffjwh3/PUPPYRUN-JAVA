@@ -1,0 +1,185 @@
+/*  */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+a {
+    text-decoration-line: none;
+}
+
+/* 로고 + 헤더 */
+
+body {
+    background-color: #FFF9EB;
+}
+
+#wrap {
+    /* width: 100%; */
+    /* height: 1050px; */
+    /* margin: 0 auto; */
+    /* margin-top : 60px; */
+    
+    background-color: #FFF9EB;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* 박스 크기 조절 (아래 패딩 조절)*/
+    /* padding:50px 100px 100px 100px; */
+    transform: translate(-50%, -50%);
+    border-radius: 100px;
+    background-color: #FFF9EB;
+}
+#header {
+    width: 160px;
+    margin: 0px auto;
+    margin-bottom : 30px;
+}
+
+#header > a {
+    width: inherit;
+}
+
+#header > a > img {
+    width: inherit;
+}
+
+
+
+/* 로그인폼 탭 */
+#utilTab {
+    /* display: flex; */
+    width: 600px;
+    margin: 0 auto;
+    padding-bottom : 10px;
+}
+
+#utilTab a {
+    display: block;
+    /* width: inherit;
+    height: inherit; */
+    height : 60px;
+    text-align: center;
+    line-height: 60px;
+    color: white;
+    background: #FEB415;
+    font-weight: 500;
+}
+
+
+.tab-none{
+    display : none;
+
+}
+
+/* #utilTab a:hover {
+    background-color: #F0A300;
+} */
+
+#find-id {
+    width: 300px;
+    height: 60px;
+    float: left;
+}
+
+#find-id > a {
+    border-radius: 20px 0 0 0;
+    background-color : rgb(240,163,0);
+}
+
+#find-pwd {
+    width: 300px;
+    height: 60px;
+    float: left;
+}
+
+#find-pwd > a {
+    border-radius: 0 20px 0 0;
+}
+
+
+/* 아이디 찾기 폼 */
+
+#email-form, #pwd-form {
+    display: flex; 
+    justify-content: center;
+    width: 600px;
+}
+
+/* 로그인폼 몸통 */
+#email-group, #pwd-group {
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
+    border-radius: 0 0 50px 50px;
+}
+
+#pwd-group {
+    display: none;
+}
+
+#email-group > h2, #pwd-group > h2 {
+    padding: 100px 0 15px 0;
+}
+
+#email-group > p, #pwd-group > p {
+    width: 430px;
+    height: 1px;
+    background-color: #DFDFDF;
+    margin: 15px auto;
+}
+#email-group > span, #pwd-group > span {
+    color : #AEAEAE;
+}
+
+/* 아이디박스, 비밀번호박스 */
+#e-username-area, #e-useremail-area,
+#p-username-area, #p-userid-area, #p-useremail-area {
+    background-color: white;
+    border: 1px solid #C9C9C9;
+    width: 300px;
+    height: 30px;
+    border-radius: 32px;
+    margin: 10px 0 10px 0;
+    padding: 3px 3px 3px 3px;
+    
+}
+
+#e-username-area,
+#p-username-area {
+    margin-top: 30px;
+}
+
+#e-username-area > #e-user-name, #e-useremail-area > #e-user-email,
+#p-username-area > #p-user-name, #p-userid-area > #p-user-id, #p-useremail-area > #p-user-email
+ {
+    border : none;
+    outline: none;
+    width: 280px;
+    height : 30px;
+    margin: 0 10px;
+}
+
+
+#email-submit > input[type=submit],
+#pwd-submit > input[type=submit] {
+    border: none;
+    color: white;
+    width: inherit;
+    background-color: #FEB415;
+    width: 300px;
+    height: 40px;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0px 2px 3px  #C9C9C9;
+    margin: 30px 0 50px 0;
+    font-size : 17px;
+}
+
+/* 비밀번호 찾기 */
