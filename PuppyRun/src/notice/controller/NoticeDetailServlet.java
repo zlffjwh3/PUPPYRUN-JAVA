@@ -7,34 +7,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class NoticeDetailServlet
- */
+import notice.model.service.NoticeService;
+import notice.model.vo.Notice;
+
 @WebServlet("/notice/detail")
 public class NoticeDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public NoticeDetailServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+
+		int result = new NoticeService().addReadCount(noticeNo); // 조회수 추가
+		if(result > 0) {
+			Notice notice = new NoticeService().selectOneNotice(noticeNo); // 데이터 가져오기
+			
+			if(notice != null) {
+				request.setAttribute("notice", notice);
+				request.getRequestDispatcher("/WEB-INF/views/notice/noticeDetail.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
+			}
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
+		}
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

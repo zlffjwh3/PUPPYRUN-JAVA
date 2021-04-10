@@ -6,7 +6,7 @@ public class Photo {
 	private int photoNo;
 	private String photoName;
 	private String photoPath;
-	private int photoSize;
+	private long photoSize;
 	private String photoId;
 	private Timestamp uploadTime;
 	private char boardType;
@@ -31,10 +31,10 @@ public class Photo {
 	public void setPhotoPath(String photoPath) {
 		this.photoPath = photoPath;
 	}
-	public int getPhotoSize() {
+	public long getPhotoSize() {
 		return photoSize;
 	}
-	public void setPhotoSize(int photoSize) {
+	public void setPhotoSize(long photoSize) {
 		this.photoSize = photoSize;
 	}
 	public String getPhotoId() {

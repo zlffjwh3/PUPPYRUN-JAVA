@@ -17,7 +17,7 @@ public class NoticeDAO {
 	public ArrayList<Notice> selectAllNotice(Connection conn, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_VIEW, NOTICE_DATE, PHOTO_NO FROM NOTICE) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_VIEW, NOTICE_DATE, NOTICE_PHOTO FROM NOTICE) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Notice> nList = null;
 		
 		int recordCountPage = 9;
@@ -41,7 +41,7 @@ public class NoticeDAO {
 					notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
 					notice.setNoticeView(rset.getInt("NOTICE_VIEW"));
 					notice.setNoticeDate(rset.getDate("NOTICE_DATE"));
-					notice.setNoticePhoto(rset.getInt("PHOTO_NO"));
+//					notice.setNoticePhoto(rset.getInt("PHOTO_NO")); 사진 어떻게 가져오냥
 					
 					nList.add(notice);
 				}
@@ -134,26 +134,113 @@ public class NoticeDAO {
 	
 	// 공지사항 조회
 	public Notice selectOneNotice(Connection conn, int noticeNo) {
-		return null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Notice notice = null;
+		String query = "SELECT * FROM NOTICE WHERE NOTICE_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				notice = new Notice();
+				notice.setNoticeNo(noticeNo);
+				notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				notice.setNoticeView(rset.getInt("NOTICE_VIEW"));
+				notice.setNoticeDate(rset.getDate("NOTICE_DATE"));
+				notice.setNoticePhoto(rset.getString("NOTICE_PHOTO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return notice;
 	}
 	
 	// 공지사항 조회 - 조회수 추가
 	public int addReadCount(Connection conn, int noticeNo) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE NOTICE SET NOTICE_VIEW = NOTICE_VIEW + 1 WHERE NOTICE_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	// 공지사항 추가
 	public int insertNotice(Connection conn, Notice notice) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO NOTICE VALUES(SEQ_NOTICENO.NEXTVAL, ?, ?, 0, SYSDATE, ?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, notice.getNoticeTitle());
+			pstmt.setString(2, notice.getNoticeContent());
+			pstmt.setString(3, notice.getNoticePhoto());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	// 공지사항 수정
 	public int updateNotice(Connection conn, Notice notice) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE NOTICE SET NOTICE_TITLE=?, NOTICE_CONTENT=?, NOTICE_PHOTO=? WHERE NOTICE_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, notice.getNoticeTitle());
+			pstmt.setString(2, notice.getNoticeContent());
+			pstmt.setString(3, notice.getNoticePhoto());
+			pstmt.setInt(4, notice.getNoticeNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	// 공지사항 삭제
 	public int deleteNotice(Connection conn, int noticeNo) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM NOTICE WHERE NOTICE_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 }

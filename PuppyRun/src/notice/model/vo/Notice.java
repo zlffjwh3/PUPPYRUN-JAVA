@@ -8,7 +8,7 @@ public class Notice {
 	private String noticeContent;
 	private int noticeView;
 	private Date noticeDate;
-	private int noticePhoto;
+	private String noticePhoto;
 	
 	public Notice() {}
 	
@@ -43,10 +43,10 @@ public class Notice {
 	public void setNoticeDate(Date noticeDate) {
 		this.noticeDate = noticeDate;
 	}
-	public int getNoticePhoto() {
+	public String getNoticePhoto() {
 		return noticePhoto;
 	}
-	public void setNoticePhoto(int noticePhoto) {
+	public void setNoticePhoto(String noticePhoto) {
 		this.noticePhoto = noticePhoto;
 	}
 

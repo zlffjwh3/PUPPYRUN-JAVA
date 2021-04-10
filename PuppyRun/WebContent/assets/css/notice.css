@@ -122,14 +122,12 @@ a:visited {
     width : 100px;
     height : 40px;
     text-align: center;
-    /* line-height: 40px; */
+    line-height: 40px;
     background-color:#FBB41D;
-    color : white;
     border-radius: 30px;
-    border : none;
-    /*display: inline-block;*/
+    display: inline-block;
 }
 
-/* #post-wrap input {
+#post-wrap > a {
     color : white;
-} */
+}

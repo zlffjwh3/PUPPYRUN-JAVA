@@ -1,12 +1,10 @@
 <%@page import="notice.model.vo.Notice"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
-	String pageNavi = (String)request.getAttribute("pageNavi");
+	Notice notice = (Notice)request.getAttribute("notice");
 %>
-
+   
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -19,7 +17,7 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-write.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
@@ -82,53 +80,41 @@
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
             </div>
-            <!-- 메인 ---------------------------------------------------------------------------------------------------------->
+           <!-- 메인 ---------------------------------------------------------------------------------------------------------->
             <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
-                        <h3>퍼피런 이야기</h3>
-                        <p>퍼피런 관리자의 아름다운 공지사항</p>
+                        <h3>퍼피런 이야기 글 작성</h3>
                     </div>
-                    <div id="nbb-bottom">
-                        <%
-                        int n = 0;
-                        for(int i=0; i<3; i++) {
-                        %>
-                        	<!-- 게시물 3개씩 묶어두는 박스 -->
-                    		<div class="line-box">
-                        <%	
-                        	for(int j=0; j<3; j++) {
-                        		if(n < nList.size()) {
-                        %>			
-                        			<a href="/notice/detail?noticeNo=<%= nList.get(n).getNoticeNo() %>">
-                        				<div class="nbb-content">
-			                       		<span class="nbb-photo">
-			                            	<img src="/assets/img/Margarita Yazhina.jpg">
-			                            			<!-- 사진 어떻게 가져와?..ㅜ -->
-			                            </span>
-			                            <dl class="nbb-info">
-			                                <dt><%= nList.get(n).getNoticeDate() %></dt>
-			                                <dd><%= nList.get(n).getNoticeTitle() %></dd>
-			                            </dl>
-		                            </div>
-                        			</a>
-                        <%		
-                        		}
-                       			n++;
-                       		}
-                        %>
-                       		</div>
-                        <%
-                       	}
-                        %>
-                    </div>
-                    <!-- 글쓰기 버튼 -->
-                    <div id="post-wrap">
-                            <a href="/notice/write" class="link-post">글쓰기</a>
-                    </div>
-                    <!-- 여기에 페이징 번호 -->
-                    <div class="pagin-box">
-                        <%= pageNavi %>
+                    <!-- 작업해야할 부분 -->
+                    <div id="write-wrap">
+                        <div id="write-box">
+                            <form action="/notice/update" method="post" enctype="multipart/form-data">
+                            	<input type="hidden" name="noticeNo" value="<%= notice.getNoticeNo() %>">
+                                <div id="title">
+                                    <p class="write-p-tag">제 목</p>  
+                                    <div class="input-box">
+                                        <input type="text" id="title-input" name="title" maxlength="50" value="<%= notice.getNoticeTitle() %>">
+                                    </div>
+                                </div>
+                                <div id="file">
+                                    <p class="write-p-tag">첨부 파일</p>
+                                    <div class="input-box">
+                                        <input type="file" id="file-input" name="upFile" value="<%= notice.getNoticePhoto() %>">
+                                    </div>
+                                </div>
+                                <div id="content">
+                                    <p class="write-p-tag">내 용</p>
+                                    <div class="input-box" id="textarea-box">
+                                        <textarea id="content" name="content"><%= notice.getNoticeContent() %></textarea>
+                                    </div>
+                                </div>
+                                <div id="btn-box">
+                                    <input type="submit" id="submit-input" value="수정">
+                                    <a href="/notice/detail?noticeNo=<%= notice.getNoticeNo() %>"><p>취소</p></a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
