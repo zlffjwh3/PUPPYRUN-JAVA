@@ -1,6 +1,7 @@
 package user.model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -83,18 +84,58 @@ public class UserDAO {
 	}
 	
 	public int insertUser(Connection conn, User user) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?,?,?,SYSDATE)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, user.getUserId());
+			pstmt.setString(2, user.getUserPw());
+			pstmt.setString(3, user.getUserNick());
+			pstmt.setString(4, user.getUserName());
+			pstmt.setString(5, user.getPhone());
+			pstmt.setString(6, user.getEmail());
+			pstmt.setDate(7, user.getUserBirth());
+			pstmt.setString(8, user.getUserAddr());
+			pstmt.setString(9, String.valueOf(user.getDogCheck()));
+			pstmt.setString(10, String.valueOf(user.getAdminCheck()));
+			pstmt.setInt(11, user.getUserPhoto());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	public int deleteUser(Connection conn, String userId) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM USERTBL WHERE USER_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 	
-	public int updateUser(Connection conn, User user) {
-		return 0;
-	}
+//	public int updateUser(Connection conn, User user) {
+//		 PreparedStatement pstmt = null;
+//	      int result = 0;
+//	      String query = "UPDATE MEMBER SET MEMBER_PWD=?, EMAIL=?, PHONE=?, ADDRESS=?, HOBBY=? WHERE MEMBER_ID=?";
+//		return 0;
+//	}
 	
-	public User findUser(Connection conn, String userId) {
-		return null;
-	}
+//	public User findUser(Connection conn, String userId) {
+//		return null;
+//	}
 }

@@ -26,15 +26,15 @@ public class LoginServlet extends HttpServlet {
 		
 		User user = new UserService().selectOneUser(userId, userPw);
 		
-		if(user != null && user.getUserId() != null && user.getUserPw() != null) {
+		if(user != null && userId.equals(user.getUserId()) && userPw.equals(user.getUserPw())) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", user.getUserId());
 			
 			// 성공
-			response.sendRedirect("/WEB-INF/views/login.jsp");
+			response.sendRedirect("/index.html");
 		} else {
 			// 실패
-			response.sendRedirect("/WEB-INF/views/loginError.html");
+			response.sendRedirect("/WEB-INF/views/user/loginError.html");
 		}
 		
 	}
