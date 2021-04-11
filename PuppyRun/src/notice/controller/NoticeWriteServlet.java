@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -36,62 +35,55 @@ public class NoticeWriteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		// 관리자인지 확인 ? - db에는 자동으로 admin으로 저장
-//		HttpSession session = request.getSession();
-//		if(session != null && (session.getAttribute("userId") != null)) {
+		// 사진파일 저장 (실제 upload 폴더 경로에 저장)
+		String uploadFilePath = request.getServletContext().getRealPath("upload"); // 업로드 되긴 하는데 경로 따로 정해야 할듯
+		int uploadFileSizeLimit = 5*1024*1024; // 5MB
+		String encType = "UTF-8";
+		MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());
+		
+		String noticeTitle = multi.getParameter("title");
+		String noticeContent = multi.getParameter("content");
+		
+		Notice notice = new Notice();
+		notice.setNoticeTitle(noticeTitle);
+		notice.setNoticeContent(noticeContent);
+		
+		// 파일 업로드시
+		int photoResult = 0;
+		if(multi.getFilesystemName("upFile") != null) {
+			String noticePhoto = multi.getFilesystemName("upFile");
+			notice.setNoticePhoto(noticePhoto);
 			
-			// 사진파일 저장 (실제 upload 폴더 경로에 저장)
-			String uploadFilePath = request.getServletContext().getRealPath("upload"); // 업로드 되긴 하는데 경로 따로 정해야 할듯
-			int uploadFileSizeLimit = 5*1024*1024; // 5MB
-			String encType = "UTF-8";
-			MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());
+			// Photo DB에 저장
+			File uploadFile = multi.getFile("upFile");
 			
-			String noticeTitle = multi.getParameter("title");
-			String noticeContent = multi.getParameter("content");
+			String photoName = multi.getFilesystemName("upFile");
+			String photoPath = uploadFile.getPath();
+			long photoSize = uploadFile.length();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS"); // 날짜데이터를 내가 원하는 형태로 바꿔줌
+			Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
 			
-			Notice notice = new Notice();
-			notice.setNoticeTitle(noticeTitle);
-			notice.setNoticeContent(noticeContent);
+			Photo photo = new Photo();
+			photo.setPhotoName(photoName);
+			photo.setPhotoPath(photoPath);
+			photo.setPhotoSize(photoSize);
+			photo.setPhotoId("admin");
+			photo.setUploadTime(uploadTime);
+			photo.setBoardType('N');
 			
-			// 파일 업로드시
-			int photoResult = 0;
-			if(multi.getFilesystemName("upFile") != null) {
-				String noticePhoto = multi.getFilesystemName("upFile");
-				notice.setNoticePhoto(noticePhoto);
-				
-				// Photo DB에 저장
-				File uploadFile = multi.getFile("upFile");
-				
-				String photoName = multi.getFilesystemName("upFile");
-				String photoPath = uploadFile.getPath();
-				long photoSize = uploadFile.length();
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS"); // 날짜데이터를 내가 원하는 형태로 바꿔줌
-				Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
-				
-				Photo photo = new Photo();
-				photo.setPhotoName(photoName);
-				photo.setPhotoPath(photoPath);
-				photo.setPhotoSize(photoSize);
-				photo.setPhotoId("admin");
-				photo.setUploadTime(uploadTime);
-				photo.setBoardType('N');
-				
-				photoResult = new PhotoService().registerPhotoInfo(photo); // Photo DB에 저장
-				
-			}
-			int noticeResult = new NoticeService().insertNotice(notice); // Notice DB에 저장
+			photoResult = new PhotoService().registerPhotoInfo(photo); // Photo DB에 저장
 			
-			
-			// 결과 확인 ---------------------------------------------------------------------------------------------------
-			if(noticeResult > 0 && multi.getFilesystemName("upFile") != null && photoResult > 0) {
-				// 등록 완료창 떠야 하나?!
-				response.sendRedirect("/notice/list");
-			} else {
-				request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
-			}
-//		} else {
-//			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
-//		}
+		}
+		int noticeResult = new NoticeService().insertNotice(notice); // Notice DB에 저장
+		
+		
+		// 결과 확인 ---------------------------------------------------------------------------------------------------
+		if(noticeResult > 0 && multi.getFilesystemName("upFile") != null && photoResult > 0) {
+			// 등록 완료창 떠야 하나?!
+			response.sendRedirect("/notice/list");
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
+		}
 	}
 
 }

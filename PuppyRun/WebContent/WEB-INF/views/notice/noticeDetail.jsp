@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String userId = (String)session.getAttribute("userId");
 	Notice notice = (Notice)request.getAttribute("notice");
 %>
 
@@ -49,7 +50,19 @@
                             <a href="#">
                                 <i class="xi-face xi-2x"></i>
                             </a>
-                            <a href="#" id="login-content">로그인</a>
+                            <a href="#" id="login-content">
+                            <%
+                            if(userId.equals(null)) {
+                            %>
+                            	로그인
+                            <%
+                            } else {
+                            %>
+                            <%=  %>
+                            <%
+                            }                           
+                            %>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -114,7 +127,10 @@
                             <div class="bl">
                                 <a href="/notice/list"><span>글 목록</span></a>
                             </div>
-                            <div class="br">
+                            <%
+                            if(userId.equals("admin")) {
+                          	%>
+                          	<div class="br">
                                 <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>
                                <%--  <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>"><span>삭제</span></a> --%>
                                 <button id="btn-confirm">삭제</button>
@@ -128,8 +144,11 @@
 									})
 								}
                                 </script>
-                                <a href="/notice/write"><span>글쓰기</span></a>
-                            </div>
+                           	<a href="/notice/write"><span>글쓰기</span></a>
+                           	</div>
+                            <%
+                            }
+                            %>
                         </div>
                     </div>
                 </div>
