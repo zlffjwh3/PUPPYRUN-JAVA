@@ -45,7 +45,7 @@
                             <a href="#">
                                 <i class="xi-face xi-2x"></i>
                             </a>
-                            <a href="/log" id="login-content">로그인</a>
+                            <a href="/login.jsp" id="login-content">로그인</a>
                         </div>
                     </div>
                 </div>
