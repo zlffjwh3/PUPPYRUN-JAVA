@@ -1,6 +1,9 @@
+<%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%
+	User user = (User)session.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -30,21 +33,26 @@
             <header>
                 <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft"></div>
+                    <div id="tleft">
+                    <div id="search">
+                            <form action="">
+                                <input class="search-input" id="" type="text" placeholder="search">
+                            </form>
+                        </div>
+                    </div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
                         <a href="#" id="logo"></a>
                     </div>
                     <div id="tright">
-                        <div id="search">
-                            <form action="">
-                                <input class="search-input" id="" type="text" placeholder="search">
-                            </form>
-                        </div>
+                        
                         <div id="login">
                             <a href="#">
                                 <i class="xi-face xi-2x"></i>
                             </a>
+                            <% if(user != null) { %>
+                            <a id="login-content"><%= user.getUserNick() %> 님 환영합니다.</a>
+                            <% } %>
                             <a href="/login.jsp" id="login-content">로그인</a>
                         </div>
                     </div>
