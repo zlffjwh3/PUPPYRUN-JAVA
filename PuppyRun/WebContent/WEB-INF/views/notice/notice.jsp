@@ -1,9 +1,10 @@
+<%@page import="user.model.vo.User"%>
 <%@page import="notice.model.vo.Notice"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userId = (String)session.getAttribute("userId");
+	User user = (User)session.getAttribute("user");
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	String pageNavi = (String)request.getAttribute("pageNavi");
 %>
@@ -48,10 +49,23 @@
                             </form>
                         </div>
                         <div id="login">
-                            <a href="#">
+                        	<%
+                        	if(user == null) {
+                        	%>
+                            	<a href="/user/login">
                                 <i class="xi-face xi-2x"></i>
-                            </a>
-                            <a href="#" id="login-content">로그인</a>
+                           		</a>
+                            	<a href="/user/login" id="login-content">로그인</a>
+                            <%
+                            } else {
+                            %>
+                            	<a href="/user/myInfo">
+                                <img src="#"> <!-- 사진어케 가져와 -->
+                           		</a>
+                            	<a href="#" id="login-content"><%= user.getUserNick() %></a>
+                            <%
+                            }                        
+                            %>
                         </div>
                     </div>
                 </div>
@@ -124,7 +138,7 @@
                         %>
                     </div>
                     <%
-                    if(userId.equals("admin")) {
+                    if(user.getAdminCheck() == 'Y') {
                     %>
                     	<!-- 글쓰기 버튼 -->
                         <div id="post-wrap">

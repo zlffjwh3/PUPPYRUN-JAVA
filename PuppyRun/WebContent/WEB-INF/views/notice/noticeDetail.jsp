@@ -1,8 +1,9 @@
+<%@page import="user.model.vo.User"%>
 <%@page import="notice.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userId = (String)session.getAttribute("userId");
+	User user = (User)session.getAttribute("user");
 	Notice notice = (Notice)request.getAttribute("notice");
 %>
 
@@ -47,22 +48,23 @@
                             </form>
                         </div>
                         <div id="login">
-                            <a href="#">
+                        	<%
+                        	if(user == null) {
+                        	%>
+                            	<a href="/user/login">
                                 <i class="xi-face xi-2x"></i>
-                            </a>
-                            <a href="#" id="login-content">
-                            <%
-                            if(userId.equals(null)) {
-                            %>
-                            	로그인
+                           		</a>
+                            	<a href="/user/login" id="login-content">로그인</a>
                             <%
                             } else {
                             %>
-                            <%=  %>
+                            	<a href="/user/myInfo">
+                                <img src="#"> <!-- 사진어케 가져와 -->
+                           		</a>
+                            	<a href="#" id="login-content"><%= user.getUserNick() %></a>
                             <%
-                            }                           
+                            }                        
                             %>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -128,23 +130,12 @@
                                 <a href="/notice/list"><span>글 목록</span></a>
                             </div>
                             <%
-                            if(userId.equals("admin")) {
+                            if(user.getAdminCheck() == 'Y') {
                           	%>
                           	<div class="br">
                                 <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>
-                               <%--  <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>"><span>삭제</span></a> --%>
-                                <button id="btn-confirm">삭제</button>
-                                <script>
-                                window.onload = function() {
-									document.getElementById("btn-confirm").addEventListener("click", function() {
-										var result = window.confirm("정말 삭제하시겠습니까?");
-										if(result == true) {
-											<%%>
-										}
-									})
-								}
-                                </script>
-                           	<a href="/notice/write"><span>글쓰기</span></a>
+                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
+                           		<a href="/notice/write"><span>글쓰기</span></a>
                            	</div>
                             <%
                             }
