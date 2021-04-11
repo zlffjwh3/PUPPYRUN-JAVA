@@ -91,7 +91,7 @@ public class UserDAO {
 		String query = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?,SYSDATE)";
 		
 		try {
-			if(dogCheck == 'N') {
+			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, user.getUserId());
 			pstmt.setString(2, user.getUserPw());
@@ -102,9 +102,6 @@ public class UserDAO {
 			pstmt.setString(7, user.getUserAddr());
 			pstmt.setDate(8, user.getUserBirth());
 			pstmt.setString(9, String.valueOf(user.getDogCheck()));
-			} else {
-				pstmt.setString(10, dog.getDogName());
-			}
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
