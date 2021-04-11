@@ -83,12 +83,15 @@ public class UserDAO {
 		return list;
 	}
 	
+	// 회원가입 (강아지 없음에 클릭 시 )
 	public int insertUser(Connection conn, User user) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?,?,?,SYSDATE)";
+		char dogCheck = 0;
+		String query = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?,SYSDATE)";
 		
 		try {
+			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, user.getUserId());
 			pstmt.setString(2, user.getUserPw());
@@ -96,11 +99,9 @@ public class UserDAO {
 			pstmt.setString(4, user.getUserName());
 			pstmt.setString(5, user.getPhone());
 			pstmt.setString(6, user.getEmail());
-			pstmt.setDate(7, user.getUserBirth());
-			pstmt.setString(8, user.getUserAddr());
+			pstmt.setString(7, user.getUserAddr());
+			pstmt.setDate(8, user.getUserBirth());
 			pstmt.setString(9, String.valueOf(user.getDogCheck()));
-			pstmt.setString(10, String.valueOf(user.getAdminCheck()));
-			pstmt.setInt(11, user.getUserPhoto());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -111,6 +112,7 @@ public class UserDAO {
 		return result;
 	}
 	
+ 	
 	public int deleteUser(Connection conn, String userId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -131,11 +133,26 @@ public class UserDAO {
 //	public int updateUser(Connection conn, User user) {
 //		 PreparedStatement pstmt = null;
 //	      int result = 0;
-//	      String query = "UPDATE MEMBER SET MEMBER_PWD=?, EMAIL=?, PHONE=?, ADDRESS=?, HOBBY=? WHERE MEMBER_ID=?";
-//		return 0;
+//	      String query = "UPDATE USERTBL SET USER_PW=?, USER_NICK=?, PHONE=?, EMAIL=?, DOG_CHECK=?, DOG_NAME=?, DOG_BREED=?, DOG_GENDER=?, DOG_AGE=?, DOG_WEIGHT=?  WHERE USER_ID=?";
+//	      
+//	      try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, user.getUserPw());
+//			pstmt.setString(2, user.getUserNick());
+//			pstmt.setString(3, user.getPhone());
+//			pstmt.setString(4, user.getEmail());
+//			pstmt.setString(5, user.getUserPw());
+//			pstmt.setString(6, String.valueOf(user.getDogCheck()));
+//			pstmt.setString(7, user.getDogName());
+//			
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	      return 0;
 //	}
 	
-//	public User findUser(Connection conn, String userId) {
-//		return null;
-//	}
+	public User findUser(Connection conn, String userId) {
+		return null;
+	}
 }
