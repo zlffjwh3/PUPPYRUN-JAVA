@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -9,17 +12,17 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
-        <link rel="stylesheet" type="text/css" href="/asset/css/index.css">
-        <link rel="stylesheet" type="text/css" href="/asset/css/slider.css">
-        <link rel="stylesheet" type="text/css" href="/asset/css/scroll.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/slider.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
-        <link rel="shortcut icon" href="./asset/img/Favicon/favicon.ico">
-        <link rel="icon" href="./asset/img/Favicon/favicon.ico">
+        <link rel="shortcut icon" href="./assets/img/Favicon/favicon.ico">
+        <link rel="icon" href="./assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="/asset/js/jquery-3.4.1.min.js"></script>
-        <script src="/asset/js/slider.js"></script>
-        <script src="/asset/js/weather.js"></script>
-        <script src="/asset/js/scroll.js"></script>
+        <script src="assets/js/jquery-3.4.1.min.js"></script>
+        <script src="/assets/js/slider.js"></script>
+        <script src="assets/js/weather.js"></script>
+        <script src="assets/js/scroll.js"></script>
         <title>퍼피런 - 친구와 산책 나가요</title>
     </head>
     <body>
@@ -61,7 +64,7 @@
                             <a href="#">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href=>퍼피런이야기</a>
+                            <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">반려견계산기</a>
@@ -81,9 +84,9 @@
                     <div id="mContent-Box1">
                         <div id="banner">
                             <div class="image">
-                                <img src="/asset/img/slide01.jpg" alt="메인베너2">
-                                <img src="/asset/img/slide02.jpg" alt="메인베너2">
-                                <img src="/asset/img/slide03.jpg" alt="메인베너2">
+                                <img src="./assets/img/slide01.jpg" alt="메인베너2">
+                                <img src="./assets/img/slide02.jpg" alt="메인베너2">
+                                <img src="./assets/img/slide03.jpg" alt="메인베너2">
                             </div>
                             <ul class="control">
                                 <li></li>
@@ -213,7 +216,7 @@
                 <!-- 푸터 -->
                 <div id="footer">
                     <div id="footer-right-box">
-                        <img src="/asset/img/main_logo.png" alt="하단로고">
+                        <img src="/assets/img/main_logo.png" alt="하단로고">
                     </div>
                     <div id="footer-left-box"> 
                         <ul>
