@@ -1,9 +1,10 @@
+<%@page import="user.model.vo.User"%>
 <%@page import="notice.model.vo.Notice"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userId = (String)session.getAttribute("userId");
+	User user = (User)session.getAttribute("user");
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	String pageNavi = (String)request.getAttribute("pageNavi");
 %>
@@ -124,7 +125,7 @@
                         %>
                     </div>
                     <%
-                    if(userId.equals("admin")) {
+                    if(user.getUserId().equals("admin")) {
                     %>
                     	<!-- 글쓰기 버튼 -->
                         <div id="post-wrap">
