@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-/user/
-=======
-/Community.ucls
-/Matching.ucls
-/Notice.ucls
-/PetDiary.ucls
-/Photo.ucls
-/User.ucls
+/common/
+/community/
+/matching/
 /notice/
 /petdiary/
->>>>>>> branch 'main' of https://github.com/Dog-Rice-Team/PUPPYRUN-JAVA.git
 /photo/
+/user/

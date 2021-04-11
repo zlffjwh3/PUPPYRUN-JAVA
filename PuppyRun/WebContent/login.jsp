@@ -18,12 +18,12 @@
                     <a href="/index.html"><img src="/assets/img/main_logo.png" alt=""></a>
                 </div>
                 <div id="content">
-                    <form action="" method="">
+                    <form action="/user/login" method="post">
                         <div id="id-area">
                             <input type="text" name="userId" id="userId" placeholder="아이디">
                         </div>
                         <div id="pw-area">
-                            <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호">
+                            <input type="password" name="userPw" id="userPwd" placeholder="비밀번호">
                         </div>
                         <div id="login-check-box">
                             <input type="checkbox" name="loginCheck" id="loginCheck">
