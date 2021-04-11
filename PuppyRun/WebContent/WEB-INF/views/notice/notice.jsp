@@ -37,17 +37,18 @@
             <header>
                 <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft"></div>
+                    <div id="tleft">
+                    	<div id="search">
+                            <form action="">
+                                <input class="search-input" id="" type="text" placeholder="search">
+                            </form>
+                        </div>
+                    </div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
                         <a href="/index.html" id="logo"></a>
                     </div>
                     <div id="tright">
-                        <div id="search">
-                            <form action="">
-                                <input class="search-input" id="" type="text" placeholder="search">
-                            </form>
-                        </div>
                         <div id="login">
                         	<%
                         	if(user == null) {
@@ -62,7 +63,7 @@
                             	<a href="/user/myInfo">
                                 <img src="#"> <!-- 사진어케 가져와 -->
                            		</a>
-                            	<a href="#" id="login-content"><%= user.getUserNick() %></a>
+                            	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
                             <%
                             }                        
                             %>
