@@ -26,7 +26,7 @@
                             <input type="password" name="userPw" id="userPwd" placeholder="비밀번호">
                         </div>
                         <div id="login-check-box">
-                            <input type="checkbox" name="loginCheck" id="loginCheck">
+                            <input type="checkbox" name="loginCheck" id="loginCheck" checked>
                             <label for="loginCheck">로그인 상태 유지</label>
                         </div>
                         <div id="login-btn">
