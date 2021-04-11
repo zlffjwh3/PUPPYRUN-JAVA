@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String userId = (String)session.getAttribute("userId");
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	String pageNavi = (String)request.getAttribute("pageNavi");
 %>
@@ -87,7 +88,7 @@
                 <div id="Box1">
                     <div id="nbb-top">
                         <h3>퍼피런 이야기</h3>
-                        <p>퍼피런 관리자의 아름다운 공지사항</p>
+                        <p>퍼피런 공지사항 & 퍼피런만의 강아지 정보</p>
                     </div>
                     <div id="nbb-bottom">
                         <%
@@ -122,10 +123,17 @@
                        	}
                         %>
                     </div>
-                    <!-- 글쓰기 버튼 -->
-                    <div id="post-wrap">
-                            <a href="/notice/write" class="link-post">글쓰기</a>
-                    </div>
+                    <%
+                    if(userId.equals("admin")) {
+                    %>
+                    	<!-- 글쓰기 버튼 -->
+                        <div id="post-wrap">
+                                <a href="/notice/write" class="link-post">글쓰기</a>
+                        </div>
+                    <%
+                    }
+                    %>
+                    
                     <!-- 여기에 페이징 번호 -->
                     <div class="pagin-box">
                         <%= pageNavi %>

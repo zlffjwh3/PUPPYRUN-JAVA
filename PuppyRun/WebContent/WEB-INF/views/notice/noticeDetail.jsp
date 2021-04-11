@@ -116,7 +116,18 @@
                             </div>
                             <div class="br">
                                 <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>
-                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>"><span>삭제</span></a>
+                               <%--  <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>"><span>삭제</span></a> --%>
+                                <button id="btn-confirm">삭제</button>
+                                <script>
+                                window.onload = function() {
+									document.getElementById("btn-confirm").addEventListener("click", function() {
+										var result = window.confirm("정말 삭제하시겠습니까?");
+										if(result == true) {
+											<%%>
+										}
+									})
+								}
+                                </script>
                                 <a href="/notice/write"><span>글쓰기</span></a>
                             </div>
                         </div>
