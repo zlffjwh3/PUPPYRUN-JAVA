@@ -10,7 +10,7 @@ public class User {
 	private String userName;
 	private String phone;
 	private String email;
-	private Date userBirth;
+	private String userBirth;
 	private String userAddr;
 	private Date enrollDate;
 	private char adminCheck;
@@ -69,11 +69,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Date getUserBirth() {
+	public String getUserBirth() {
 		return userBirth;
 	}
 
-	public void setUserBirth(Date userBirth) {
+	public void setUserBirth(String userBirth) {
 		this.userBirth = userBirth;
 	}
 
@@ -132,4 +132,6 @@ public class User {
 				+ ", enrollDate=" + enrollDate + ", adminCheck=" + adminCheck + ", dogCheck=" + dogCheck
 				+ ", userPhoto=" + userPhoto + ", dogList=" + dogList + "]";
 	}
+
+	
 }

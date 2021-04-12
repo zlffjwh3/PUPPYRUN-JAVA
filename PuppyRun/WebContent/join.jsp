@@ -23,7 +23,7 @@
                 <img src="<%= request.getContextPath() %>assets/img/main_logo.png" alt="">
             </div>
             <div id="form1-area">
-                <form action="" method="POST">
+                <form action="/user/enroll" method="POST">
                     <div id="id-area" class="area-div">
                         <p class="subtitle">아이디</p>
                         <div id="id-input" class="input-div">

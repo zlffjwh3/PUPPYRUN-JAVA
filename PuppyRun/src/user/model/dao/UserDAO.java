@@ -31,7 +31,7 @@ public class UserDAO {
 				user.setUserName(rset.getString("USER_NAME"));
 				user.setPhone(rset.getString("PHONE"));
 				user.setEmail(rset.getString("EMAIL"));
-				user.setUserBirth(rset.getDate("USER_BIRTH"));
+				user.setUserBirth(rset.getString("USER_BIRTH"));
 				user.setUserAddr(rset.getString("USER_ADDR"));
 				user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
 				user.setEnrollDate(rset.getDate("ENROLL_DATE"));
@@ -66,7 +66,7 @@ public class UserDAO {
 				user.setUserName(rset.getString("USER_NAME"));
 				user.setPhone(rset.getString("PHONE"));
 				user.setEmail(rset.getString("EMAIL"));
-				user.setUserBirth(rset.getDate("USER_BIRTH"));
+				user.setUserBirth(rset.getString("USER_BIRTH"));
 				user.setUserAddr(rset.getString("USER_ADDR"));
 				user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
 				user.setEnrollDate(rset.getDate("ENROLL_DATE"));
@@ -101,7 +101,7 @@ public class UserDAO {
 			pstmt.setString(5, user.getPhone());
 			pstmt.setString(6, user.getEmail());
 			pstmt.setString(7, user.getUserAddr());
-			pstmt.setDate(8, user.getUserBirth());
+			pstmt.setString(8, user.getUserBirth());
 			pstmt.setString(9, String.valueOf(user.getDogCheck()));
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
