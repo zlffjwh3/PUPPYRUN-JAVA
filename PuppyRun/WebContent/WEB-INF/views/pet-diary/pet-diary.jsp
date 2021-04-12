@@ -143,7 +143,7 @@
 		<table border = "1">
 		<tr>
 			<td class="sun">일</td>
-			<td>월</td>
+			<td>월,</td>
 			<td>화</td>
 			<td>수</td>
 			<td>목</td>
