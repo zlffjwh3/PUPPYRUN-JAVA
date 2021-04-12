@@ -46,17 +46,17 @@
                     </div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
-                        <a href="/index.html" id="logo"></a>
+                        <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
                         <div id="login">
                         	<%
                         	if(user == null) {
                         	%>
-                            	<a href="/user/login">
+                            	<a href="/login.jsp">
                                 <i class="xi-face xi-2x"></i>
                            		</a>
-                            	<a href="/user/login" id="login-content">로그인</a>
+                            	<a href="/login.jsp" id="login-content">로그인</a>
                             <%
                             } else {
                             %>

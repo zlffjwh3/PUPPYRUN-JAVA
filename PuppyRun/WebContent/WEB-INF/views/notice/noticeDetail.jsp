@@ -51,10 +51,10 @@
                         	<%
                         	if(user == null) {
                         	%>
-                            	<a href="/user/login">
+                            	<a href="/login.jsp">
                                 <i class="xi-face xi-2x"></i>
                            		</a>
-                            	<a href="/user/login" id="login-content">로그인</a>
+                            	<a href="/login.jsp" id="login-content">로그인</a>
                             <%
                             } else {
                             %>

@@ -1,5 +1,9 @@
+<%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	User user = (User)session.getAttribute("user");
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -41,10 +45,23 @@
                             </form>
                         </div>
                         <div id="login">
-                            <a href="#">
+                        	<%
+                        	if(user == null) {
+                        	%>
+                            	<a href="/login.jsp">
                                 <i class="xi-face xi-2x"></i>
-                            </a>
-                            <a href="#" id="login-content">로그인</a>
+                           		</a>
+                            	<a href="/login.jsp" id="login-content">로그인</a>
+                            <%
+                            } else {
+                            %>
+                            	<a href="/user/myInfo">
+                                <img src="#"> <!-- 사진어케 가져와 -->
+                           		</a>
+                            	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
+                            <%
+                            }                        
+                            %>
                         </div>
                     </div>
                 </div>
