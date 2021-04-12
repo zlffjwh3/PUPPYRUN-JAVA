@@ -169,21 +169,32 @@
 		</tr>
 			<tr>
 			<% } %>
-				<% if(week % 7 == 2 ){ %>
-				<td class="sun">
-					<a href="/petdiary/detail" name ="<%=j%>"><%=j%></a>
-					<div><%= pList.get(j).getDiaryTitle() %></div>
-				</td>
-				<%}else if(week%7 == 1){%>
-				<td class="sat">
-					<a href="/petdiary/detail" name ="<%=j%>"><%=j %></a>
-					<div><%= pList.get(j).getDiaryTitle() %></div>
-				</td>
-				<%}else {%>
-				<td>
-					<a href="/petdiary/detail" name ="<%=j%>"><%=j %></a>
-					<div><%= pList.get(j).getDiaryTitle() %></div>
-				</td>
+				<% 
+				String title = pList.get(j).getDiaryTitle();
+				if(week % 7 == 2 ){ 
+				%>
+					<td class="sun">
+						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j%></a>
+						<div>
+							<% if(title != null) { %>
+								<%= title %>
+							<% } %>
+						</div>
+					</td>
+				<%
+				} else if(week%7 == 1){
+				%>
+					<td class="sat">
+						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
+						<div><% if(title != null) {%> <%= title %> <% } %></div>
+					</td>
+				<%
+				}else {
+				%>
+					<td>
+						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
+						<div><% if(title != null) {%> <%= title %> <% } %></div>
+					</td>
 				<% }
 			}%>
 			</tr>

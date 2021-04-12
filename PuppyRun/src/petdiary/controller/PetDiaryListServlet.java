@@ -29,11 +29,11 @@ public class PetDiaryListServlet extends HttpServlet {
 		
 		ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(userId);
 		
-		if(pList.isEmpty()) {
+		if(!pList.isEmpty()) {
 			request.setAttribute("pList", pList);
 			request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/pet-diary/diary.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/pet-diary/diaryError.html").forward(request, response);
 		}
 	}
 
