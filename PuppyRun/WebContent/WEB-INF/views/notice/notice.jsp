@@ -139,7 +139,11 @@
                         %>
                     </div>
                     <%
+<<<<<<< HEAD
                     if(user.getAdminCheck() == 'Y') {
+=======
+                    if(user.getUserId().equals("admin")) {
+>>>>>>> branch 'main' of https://github.com/Dog-Rice-Team/PUPPYRUN-JAVA.git
                     %>
                     	<!-- 글쓰기 버튼 -->
                         <div id="post-wrap">

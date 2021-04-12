@@ -24,7 +24,6 @@ public class NoticeUpdateServlet extends HttpServlet {
 		
 		Notice notice = new NoticeService().selectOneNotice(noticeNo);
 		
-		// 수정할 수 있는 아이디인지 확인해야 하나????????????
 		if(notice != null) {
 			request.setAttribute("notice", notice);
 			request.getRequestDispatcher("/WEB-INF/views/notice/noticeUpdate.jsp").forward(request, response);

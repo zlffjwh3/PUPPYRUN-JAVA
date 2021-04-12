@@ -52,8 +52,9 @@
                             </a>
                             <% if(user != null) { %>
                             <a id="login-content"><%= user.getUserNick() %> 님 환영합니다.</a>
-                            <% } %>
+                            <% }else { %>
                             <a href="/login.jsp" id="login-content">로그인</a>
+                            <% } %>
                         </div>
                     </div>
                 </div>
