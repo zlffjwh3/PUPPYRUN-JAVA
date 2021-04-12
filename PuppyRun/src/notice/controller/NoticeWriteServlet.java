@@ -36,7 +36,7 @@ public class NoticeWriteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		// 사진파일 저장 (실제 upload 폴더 경로에 저장)
-//		String uploadFilePath = request.getServletContext().getRealPath("upload"); // 업로드 되긴 하는데 경로 따로 정해야 할듯
+//		String uploadFilePath = request.getServletContext().getRealPath("upload");
 //		int uploadFileSizeLimit = 5*1024*1024; // 5MB
 //		String encType = "UTF-8";
 //		MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());

@@ -22,34 +22,24 @@ public class NoticeListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-//		if(session != null && (session.getAttribute("userId")) != null) {
+		int currentPage = 0;
+		if(request.getParameter("currentPage") == null) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
 		
-		// 관리자인지 확인하는 작업 필요
+		NoticePage pd = new NoticeService().selectAllNotice(currentPage);
+		ArrayList<Notice> nList = pd.getnList();
+		String pageNavi = pd.getPageNavi();
 		
-			int currentPage = 0;
-			if(request.getParameter("currentPage") == null) {
-				currentPage = 1;
-			} else {
-				currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			}
-			
-			NoticePage pd = new NoticeService().selectAllNotice(currentPage);
-			ArrayList<Notice> nList = pd.getnList();
-			String pageNavi = pd.getPageNavi();
-			
-			if(!nList.isEmpty()) {
-				request.setAttribute("nList", nList);
-				request.setAttribute("pageNavi", pageNavi);
-				request.getRequestDispatcher("/WEB-INF/views/notice/notice.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
-			}
-
-//		} else {
-//			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/serviceFailed.html");
-//			view.forward(request, response);
-//		}
+		if(!nList.isEmpty()) {
+			request.setAttribute("nList", nList);
+			request.setAttribute("pageNavi", pageNavi);
+			request.getRequestDispatcher("/WEB-INF/views/notice/notice.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

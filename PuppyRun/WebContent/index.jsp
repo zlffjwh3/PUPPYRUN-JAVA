@@ -64,7 +64,7 @@
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <a href="#">산책일기</a>
+                            <a href="/petdiary/list">산책일기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">산책짝꿍</a>
