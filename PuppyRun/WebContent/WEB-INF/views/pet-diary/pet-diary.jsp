@@ -1,5 +1,5 @@
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.sql.Date"%>
 <%@page import="petdiary.model.vo.PetDiary"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
@@ -104,7 +104,6 @@
 	        <%
 	   		//getInstance 는 Calendar의 객체만의 생성한 것이다.
 	   		Calendar cal = Calendar.getInstance();
-	        System.out.println(cal);
 	   
 	   		//현재 년도와 현재 달을 받아온 것이다. +1은 0 ~11월달까지 주어지기 때문에 + 1을 해 준 것이다.
 	   		int nowYear = cal.get(Calendar.YEAR);
@@ -166,10 +165,11 @@
 		%>
 		<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
 		<%
+			Date today = new Date();
+			SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+	        String todayString = sdformat.format(today);
+	        
 			for(int j = 1; j<=endDay; j ++){
-				String today = Integer.toString(year) +  Integer.toString(month) +  Integer.toString(j);  
-				/* SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-				Date todayDate = transFormat.parse(today); */
 				week++;
 				if(week % 7 ==2){
 		 %>
@@ -184,10 +184,11 @@
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j%></a>
 				 	<div>
 							<%for(int i = 0; i < pList.size(); i++){
-								  Date calDate = pList.get(i).getDiaryDate();
-								if((calDate.getYear() == year) && (calDate.getMonth() == month) && (calDate.getDate() == j) ){
-								 pList.get(i).getDiaryTitle();
-								 System.out.println(pList.get(i).getDiaryTitle());
+								String calDate = pList.get(i).getDiaryDate();
+								  String calDateString = calDate.substring(0, calDate.length() - 9);
+								if(calDateString.equals(todayString)){ %>
+								 <%= pList.get(i).getDiaryTitle() %>
+								<%
 								}
 							}
 							%>
@@ -200,12 +201,11 @@
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
 						<div>
 							<%for(int i = 0; i < pList.size(); i++){
-								  Date calDate = pList.get(i).getDiaryDate();
-								  calDate.compareTo(cal.getTime());
-								  System.out.println(cal.getTime());
-								if((calDate.getYear() == year) && (calDate.getMonth() == month) && (calDate.getDate() == j) ){
-								 pList.get(i).getDiaryTitle();
-								 System.out.println(pList.get(i).getDiaryTitle());
+								String calDate = pList.get(i).getDiaryDate();
+								  String calDateString = calDate.substring(0, calDate.length() - 9);
+								if(calDateString.equals(todayString)){ %>
+								 <%= pList.get(i).getDiaryTitle() %>
+								<%
 								}
 							}
 							%>
@@ -218,9 +218,11 @@
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
 							<div>
 							<%for(int i = 0; i < pList.size(); i++){
-								  Date calDate = pList.get(i).getDiaryDate();
-								if((calDate.getYear() == year) && (calDate.getMonth() == month) && (calDate.getDate() == j) ){
-								 pList.get(i).getDiaryTitle();
+								String calDate = pList.get(i).getDiaryDate();
+								  String calDateString = calDate.substring(0, calDate.length() - 9);
+								if(calDateString.equals(todayString)){ %>
+								 <%= pList.get(i).getDiaryTitle() %>
+								<%
 								}
 							}
 							%>

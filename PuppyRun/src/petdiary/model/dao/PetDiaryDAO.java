@@ -34,7 +34,7 @@ public class PetDiaryDAO {
 					diary.setDiaryTitle(rset.getString("DIARY_TITLE"));
 					diary.setDiaryContent(rset.getString("DIARY_CONTENT"));
 					diary.setDiaryMap(rset.getString("DIARY_MAP"));
-					diary.setDiaryDate(rset.getDate("DIARY_DATE"));
+					diary.setDiaryDate(rset.getString("DIARY_DATE"));
 					diary.setDiaryPhoto(rset.getString("DIARY_PHOTO"));
 					
 					pList.add(diary);
