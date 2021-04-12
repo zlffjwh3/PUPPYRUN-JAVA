@@ -1,6 +1,13 @@
 package petdiary.model.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import common.JDBCTemplate;
+import notice.model.dao.NoticeDAO;
+import notice.model.vo.NoticePage;
+import petdiary.model.dao.PetDiaryDAO;
 import petdiary.model.vo.PetDiary;
 import petdiary.model.vo.PetDiaryPage;
 
@@ -11,8 +18,20 @@ public class PetDiaryService {
 		factory = JDBCTemplate.getConnection();
 	}
 	
-	public PetDiaryPage selectAllDiary(int currentPage) {
-		return null;
+	public ArrayList<PetDiary> selectAllDiary(String userId) {
+		Connection conn = null;
+		ArrayList<PetDiary> pList = null;
+		
+		try {
+			conn = factory.createConnection();
+			pList = new PetDiaryDAO().selectAllDiary(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return pList;
 	}
 	
 	public PetDiary selectOneDiary(int petDiaryNo) {

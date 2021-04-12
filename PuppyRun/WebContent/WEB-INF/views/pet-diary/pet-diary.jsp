@@ -1,9 +1,12 @@
+<%@page import="petdiary.model.vo.PetDiary"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
+	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
 %>
     
 <!DOCTYPE html>
@@ -139,13 +142,13 @@
 	
 		<table border = "1">
 		<tr>
-			<td style = color:red;>일</td>
+			<td class="sun">일</td>
 			<td>월</td>
 			<td>화</td>
 			<td>수</td>
 			<td>목</td>
 			<td>금</td>
-			<td style = color:blue;>토</td>
+			<td class="sat">토</td>
 		</tr>
 		
 		<tr>
@@ -167,16 +170,24 @@
 			<tr>
 			<% } %>
 				<% if(week % 7 == 2 ){ %>
-				<td style = "color:red";><%=j%></td>
+				<td class="sun">
+					<a href="/petdiary/detail" name ="<%=j%>"><%=j%></a>
+					<div><%= pList.get(j).getDiaryTitle() %></div>
+				</td>
 				<%}else if(week%7 == 1){%>
-				<td style="color: blue;"><%=j %></td>
+				<td class="sat">
+					<a href="/petdiary/detail" name ="<%=j%>"><%=j %></a>
+					<div><%= pList.get(j).getDiaryTitle() %></div>
+				</td>
 				<%}else {%>
-				<td style = "color: block";><%=j %></td>
+				<td>
+					<a href="/petdiary/detail" name ="<%=j%>"><%=j %></a>
+					<div><%= pList.get(j).getDiaryTitle() %></div>
+				</td>
 				<% }
-		
 			}%>
-				</tr>
-			</table>
+			</tr>
+		</table>
 			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
             <footer>
                 <!-- 푸터 -->
