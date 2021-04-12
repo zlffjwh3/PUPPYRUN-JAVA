@@ -169,7 +169,7 @@
             </div>
     </div>
     <footer>
-        <!-- 푸터임 -->
+        <!-- 푸터 -->
         <div id="footer">
             <div id="footer-right-box">
                 <img src="/assets/img/main_logo.png" alt="하단로고">
