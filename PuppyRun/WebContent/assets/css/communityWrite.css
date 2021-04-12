@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+/* font-family: 'Noto Sans KR', sans-serif; */
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin : 0px;
+    padding : 0px;
+    box-sizing: border-box;
+}
+
+a { 
+    text-decoration:none ;
+} 
+
+a:link {
+    text-decoration: none;
+
+}
+
+a:visited {
+    text-decoration: none;
+
+}
+
+input:focus {
+    outline:none;
+}
+
+textarea:focus {
+    outline:none;
+}
+
+
+
+
+#nbb-top {
+    margin : 100px 0 50px 0;
+    text-align: center;
+}
+
+#nbb-top h3 {
+    font-size : 30px;
+    color : #FBB41D;
+    padding-bottom : 6px;
+}
+
+/* 글 작성 전체 영역 */
+#write-wrap {
+    width: 1200px;
+    height : 800px;
+}
+
+/* 글 작성 박스 */
+#write-wrap > #write-box {
+    width : 830px;
+    margin : 0 auto;
+}
+
+/* 제목 전체 박스 */
+#write-box #title {
+    text-align: center;
+}
+
+/* 제목 input 감싸고 있는 박스 */
+.input-box {
+    display: inline-block;
+    width : 700px;
+    height : 35px;
+    border-radius: 30px;
+    border : 1px solid #C9C9C9;
+
+}
+
+/* 제목 input 태그 */
+#write-box #title input {
+    width : 670px;
+    height : 30px;
+    padding : 0 6px;
+    border:none;
+    border-right:0px; 
+    border-top:0px; 
+    border-left:0px; 
+    border-bottom:0px;
+    margin-top : 1px;
+}
+
+/* p태그들 */
+.write-p-tag {
+    font-size : 17px;
+    display: inline-block;
+    margin-right : 30px;
+    
+}
+
+/* 파일 전체 박스 */
+#write-box #file {
+    margin-top : 20px;
+}
+
+/* 파일 input 태그 */
+#file #file-input {
+    margin-top : 5px;
+    margin-left : 10px;
+}
+
+/* 내용 작성 박스 */
+#write-box #content {
+    text-align: center;
+    margin-top : 20px;
+}
+
+/* 내용 */
+#content p {
+    float : left;
+    margin-left: 30px;
+    margin-right : 0px;
+}
+
+/* 내용 textarea 태그 */
+#write-box #content textarea {
+
+    text-align: left;
+    width : 670px;
+    height : 600px;
+    resize : none;
+    border:none;
+    margin-top : 10px;
+}
+
+/* int-box 클래스에 추가로 설정해주기 위해 */
+#textarea-box {
+    height : 620px;
+}
+
+#btn-box {
+    text-align: center;
+}
+
+#btn-box p, #submit-input {
+    display: inline-block;
+    background-color: #FEB415;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #fff;
+    font-size:16px;
+    line-height: 1.4;
+    padding: 10px;
+    width: 120px;
+    height : 40px;
+    margin : 20px 10px;
+}
+
+#btn-box p:nth-last-child(1) {
+    background-color: #ffcf66;
+}
+
+#btn-box a {
+    width : 20px;
+}
