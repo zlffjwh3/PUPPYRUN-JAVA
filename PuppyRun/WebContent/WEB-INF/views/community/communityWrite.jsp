@@ -1,5 +1,10 @@
+<%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	User user = (User)session.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -37,14 +42,14 @@
                         </div></div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
-                        <a href="/index.html" id="logo"></a>
+                        <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
                         <div id="login">
-                            <a href="#">
-                                <i class="xi-face xi-2x"></i>
-                            </a>
-                            <a href="#" id="login-content">로그인</a>
+                            <a href="/user/myInfo">
+                                <img src="#"> <!-- 사진어케 가져와 -->
+                           		</a>
+                            	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
                         </div>
                     </div>
                 </div>
@@ -60,10 +65,10 @@
                             <a href="#">산책짝꿍</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">멍멍이야기</a>
+                            <a href="/community/list">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="/notice.html">퍼피런이야기</a>
+                            <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">반려견계산기</a>
@@ -85,7 +90,16 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="" method="">
+                            <form action="/community/write" method="post" enctype="multipart/form-data">
+                             <div id="tag">
+                                    <select name="tags" id="tegs">
+                                        <option value="">태그를 선택해주세요</option>
+                                        <option value="1">자유</option>
+                                        <option value="2">나눔</option>
+                                        <option value="3">질문</option>
+                                        <option value="4">자랑</option>
+                                    </select>
+                                </div>
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">
@@ -95,7 +109,7 @@
                                 <div id="file">
                                     <p class="write-p-tag">첨부 파일</p>
                                     <div class="input-box">
-                                        <input type="file" id="file-input" name="file">
+                                        <input type="file" id="file-input" name="upFile">
                                     </div>
                                 </div>
                                 <div id="content">

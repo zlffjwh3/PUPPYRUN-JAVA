@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class Community {
 	private int comNo;
-	private int comId;
+	private String comId;
 	private int tagNo;
 	private String comTitle;
 	private String comContent;
 	private int comview;
 	private Date comDate;
-	private int comPhoto;
+	private String comPhoto;
 	private int likeCount;
 	private ArrayList<Comment> comment;
 	
@@ -24,10 +24,10 @@ public class Community {
 	public void setComNo(int comNo) {
 		this.comNo = comNo;
 	}
-	public int getComId() {
+	public String getComId() {
 		return comId;
 	}
-	public void setComId(int comId) {
+	public void setComId(String comId) {
 		this.comId = comId;
 	}
 	public int getTagNo() {
@@ -60,10 +60,10 @@ public class Community {
 	public void setComDate(Date comDate) {
 		this.comDate = comDate;
 	}
-	public int getComPhoto() {
+	public String getComPhoto() {
 		return comPhoto;
 	}
-	public void setComPhoto(int comPhoto) {
+	public void setComPhoto(String comPhoto) {
 		this.comPhoto = comPhoto;
 	}
 	public int getLikeCount() {

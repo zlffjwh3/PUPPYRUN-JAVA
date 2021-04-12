@@ -1,9 +1,15 @@
+<%@page import="community.model.vo.Community"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    
 <%
-	
+	User user = (User)session.getAttribute("user");
+	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
+	String pageNavi = (String)request.getAttribute("pageNavi");
 %>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -42,14 +48,27 @@
                     </div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
-                        <a href="/index.html" id="logo"></a>
+                        <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
+                    <%
+                    if(user == null) {
+                    %>
                         <div id="login">
                             <a href="#">
                                 <i class="xi-face xi-2x"></i>
                             </a>
                             <a href="#" id="login-content">로그인</a>
+                   <% 
+                   } else { 
+                   %>
+                   <a href="/user/myInfo">
+                                <img src="#"> <!-- 사진어케 가져와 -->
+                           		</a>
+                            	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
+                   <% 
+                   } 
+                   %>
                         </div>
                     </div>
                 </div>
@@ -65,10 +84,10 @@
                             <a href="#">산책짝꿍</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">멍멍이야기</a>
+                            <a href="/community/list">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">퍼피런이야기</a>
+                            <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">반려견계산기</a>
@@ -103,56 +122,74 @@
                         <div id="content-box">
                             <ul class="list">
                                 <!-- 게시물 1개 -->
+                                <% 
+                                	for(int i=0; i<cList.size(); i++) {
+                                %>
                                 <li class="post">
-                                    <div class="img-area"><img src="/assets/img/freetest2.jpg"></div>
+                                    <div class="img-area"><img src="/upload/<%=cList.get(i).getComPhoto()%>"></div>
+                                    <% System.out.println(cList.get(i).getComPhoto()); %>
                                     <div class="text-area">
                                         <!-- 태그 이름 -->
+                                        <% 
+                                        	if(cList.get(i).getTagNo() == 1) {
+                                        %>
                                         <div class="post-category"><p>자유</p></div>
+                                        <% 
+                                        } else if(cList.get(i).getTagNo() == 2) {
+                                        %>
+                                        <div class="post-category"><p>나눔</p></div>
+                                        <%
+                                        } else if(cList.get(i).getTagNo() == 3) {
+                                        %>
+                                        <div class="post-category"><p>질문</p></div>
+                                        <%
+                                        } else {
+                                        %>
+                                        <div class="post-category"><p>자랑</p></div>
+                                        <%
+                                        }
+                                        %>
                                         <!-- 제목 -->
-                                        <a class="title" href="/html/free-board-detail.html">강아지</a>
+                                        <a class="title" href="/html/free-board-detail.html"><%= cList.get(i).getComTitle() %></a>
                                         <!-- 내용 -->
-                                        <div class="post-content"><p>멍멍</p></div>
+                                        <div class="post-content"><p><%= cList.get(i).getComContent() %></p></div>
                                         <div class="post-info">
                                             <!-- 프로필 이미지 -->
                                             <div class="profile">
                                                 <div class="img"></div>
                                                 <!-- 닉네임 -->
-                                                <p class="post-nickname">민트</p>
+                                                <p class="post-nickname"><%= user.getUserNick() %></p>
                                             </div>
                                             <div class="counting-bar">
                                                 <!-- 작성일 -->
-                                                <span>2021-04-04 14:33:13</span>
+                                                <span><%= cList.get(i).getComDate() %></span>
                                                 <!-- 댓글 -->
                                                 <span>댓글 3</span>
                                                 <!-- 조회수 -->
-                                                <span>조회수 12312</span>
+                                                <span><%= cList.get(i).getComview() %></span>
                                                 <!-- 좋아요-->
-                                                <span>좋아요 123</span>
+                                                <span><%= cList.get(i).getLikeCount() %>)</span>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
+                                <% 
+                                }
+                                %>
                             </ul>
                         </div>
                     </div>
                     <!-- 글쓰기 버튼 -->
                     <div id="post-wrap">
+                    <% if(user != null) { %>
                             <a href="/community/write" class="link-post">글쓰기</a>
+                    <% } else { %>
+                    		<a class="link-post">글쓰기</a>
+                    <% } %>
                     </div>
                     <!-- 여기에 페이징 번호 -->
                     <div class="pagin-box">
-                        <a href="#" id="page-prev">이전</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">7</a>
-                        <a href="#">8</a>
-                        <a href="#">9</a>
-                        <a href="#">10</a>
-                        <a href="#" id="page-next">다음</a>
+                       <%= pageNavi %>
                     </div>
                 </div>
             </div>
