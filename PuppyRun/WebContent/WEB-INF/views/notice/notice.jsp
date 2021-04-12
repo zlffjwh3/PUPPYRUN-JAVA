@@ -119,8 +119,8 @@
                         			<a href="/notice/detail?noticeNo=<%= nList.get(n).getNoticeNo() %>">
                         				<div class="nbb-content">
 			                       		<span class="nbb-photo">
-			                            	<img src="/assets/img/Margarita Yazhina.jpg">
-			                            			<!-- 사진 어떻게 가져와?..ㅜ -->
+			                            	<img src="/upload/<%= nList.get(n).getNoticePhoto() %>">
+			                            	<% System.out.println(nList.get(n).getNoticePhoto()); %>
 			                            </span>
 			                            <dl class="nbb-info">
 			                                <dt><%= nList.get(n).getNoticeDate() %></dt>
