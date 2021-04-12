@@ -41,7 +41,7 @@ public class NoticeDAO {
 					notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
 					notice.setNoticeView(rset.getInt("NOTICE_VIEW"));
 					notice.setNoticeDate(rset.getDate("NOTICE_DATE"));
-//					notice.setNoticePhoto(rset.getInt("PHOTO_NO")); 사진 어떻게 가져오냥
+					notice.setNoticePhoto(rset.getString("NOTICE_PHOTO"));
 					
 					nList.add(notice);
 				}
