@@ -8,7 +8,7 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
 %>
-    
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
