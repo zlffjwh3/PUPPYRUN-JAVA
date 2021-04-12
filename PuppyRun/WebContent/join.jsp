@@ -20,7 +20,7 @@
     <div id="wrap">
         <div id="join-form">
             <div id="form-logo">
-                <img src="<%= request.getContextPath() %>assets/image/main_logo.png" alt="">
+                <img src="<%= request.getContextPath() %>assets/img/main_logo.png" alt="">
             </div>
             <div id="form1-area">
                 <form action="" method="POST">
