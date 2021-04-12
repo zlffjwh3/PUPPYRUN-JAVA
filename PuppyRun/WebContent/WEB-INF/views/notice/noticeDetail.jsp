@@ -130,7 +130,7 @@
                                 <a href="/notice/list"><span>글 목록</span></a>
                             </div>
                             <%
-                            if(user.getAdminCheck() == 'Y') {
+                            if(user != null && user.getAdminCheck() == 'Y') {
                           	%>
                           	<div class="br">
                                 <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>

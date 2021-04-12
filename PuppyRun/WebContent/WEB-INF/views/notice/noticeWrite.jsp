@@ -85,7 +85,7 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="/notice/write" method="post"><!--  enctype="multipart/form-data" -->
+                            <form action="/notice/write" method="post" enctype="multipart/form-data">
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">

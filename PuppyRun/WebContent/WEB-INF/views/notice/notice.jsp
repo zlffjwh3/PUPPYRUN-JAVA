@@ -139,7 +139,7 @@
                         %>
                     </div>
                     <%
-                    if(user.getAdminCheck() == 'Y') {
+                    if(user != null && user.getAdminCheck() == 'Y') {
                     %>
                     	<!-- 글쓰기 버튼 -->
                         <div id="post-wrap">
