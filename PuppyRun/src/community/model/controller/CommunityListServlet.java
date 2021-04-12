@@ -27,6 +27,8 @@ public class CommunityListServlet extends HttpServlet {
 		
 		// if문을 돌려서 tag별로 다르게 보이게 하기
 		CommunityPage community = new CommunityService().selectAllCommunity(currentPage);
+		
+		request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
