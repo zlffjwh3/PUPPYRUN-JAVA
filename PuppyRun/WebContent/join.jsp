@@ -14,7 +14,7 @@
     <script src="/WebContent/WEB-INF/assets/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="/WebContent/assets/js/join.js"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-    <title>퍼피런 회원가입--</title>
+    <title>퍼피런 회원가입</title>
 </head>
 <body>
     <div id="wrap">
