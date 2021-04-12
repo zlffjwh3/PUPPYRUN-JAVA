@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Dog {
 	private int dogCode;
-	private int userId;
+	private int dogId;
 	private String dogName;
 	private String dogBreed;
 	private char dogGender;
@@ -22,12 +22,12 @@ public class Dog {
 		this.dogCode = dogCode;
 	}
 	
-	public int getUserId() {
-		return userId;
+	public int getDogId() {
+		return dogId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setDogId(int dogId) {
+		this.dogId = dogId;
 	}
 
 	public String getDogName() {
@@ -72,7 +72,7 @@ public class Dog {
 
 	@Override
 	public String toString() {
-		return "Dog [dogCode=" + dogCode + ", userId=" + userId + ", dogName=" + dogName + ", dogBreed=" + dogBreed
+		return "Dog [dogCode=" + dogCode + ", dogId=" + dogId + ", dogName=" + dogName + ", dogBreed=" + dogBreed
 				+ ", dogGender=" + dogGender + ", dogAge=" + dogAge + ", dogWeight=" + dogWeight + "]";
 	}
 }

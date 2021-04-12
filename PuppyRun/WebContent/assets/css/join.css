@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+/* font-family: 'Nanum Gothic', sans-serif; */
+
+/* 폰트 */
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#wrap {
+    width: 100%;
+    /* height: 1300px; */
+    padding: 90px 0 90px 0;
+    background-color: #FFF9EB;
+}
+
+/* 로고, 헤더 */
+#form-logo {
+    width: 220px;
+    margin: 0 auto 40px auto;
+}
+
+#form-logo > img {
+    width: inherit;
+}
+
+/* 하얀색 폼 */
+#join-form {
+    width: 650px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 70px 0;
+    box-shadow: 0 4px 50px 10px rgba(255, 226, 162, 0.3);
+    border-radius: 50px;
+}
+
+
+/* 유저폼 1 */
+#form1-area {
+    display: flex;
+    justify-content: center;
+}
+
+.input-div {
+    background-color: white;
+    border: 1px solid #C9C9C9;
+    width: 400px;
+    /* height: 28px; */
+    border-radius: 32px;
+    margin: 10px 0 0 0;
+    padding: 3px 3px 3px 3px;
+}
+
+.input-div > p {
+    margin: 0 100px 0 0;
+}
+
+.subtitle {
+    font-size: 13px;
+    margin: 15px 0 5px 0;
+}
+input[type=text], input[type=number], input[type=password], select {
+    border : none;
+    outline: none;
+    width: 380px;
+    margin: 0px 10px 0px 10px;
+}
+
+.area-div {
+    margin: 0 0 10px 0;
+}
+
+/* 이메일주소 */
+#email-input {
+    float: left;
+    width: 240px;
+    margin: 0 7px 0 0;
+}
+
+#user-email {
+    width: 220px;
+    border : none;
+    outline: none;
+    margin: 0 10px;
+}
+
+/* 생년월일 */
+#birth-area {
+    margin: 30px 0 0 0;
+}
+
+#year-input {
+    width: 100px;
+    float: left;
+    margin: 0 10px 0 0;
+}
+#year-input > input {
+    width: 80px;
+}
+
+#month-input {
+    width: 100px;
+    float: left;
+    margin: 0 10px 0 0;
+}
+#month-input > select {
+    width: 80px;
+}
+
+#day-input {
+    width: 100px;
+    float: left;
+    margin: 0 10px 0 0;
+}
+#day-input > input {
+    width: 80px;
+}
+
+/* 집주소 */
+
+#addr-area {
+    float: left;
+}
+
+#zip-input {
+    width: 100px;
+    float: left;
+}
+#zip {
+    width: 70px;
+}
+
+#zip-input {
+    margin: 10px  7px 0 0;
+}
+
+#aadr1-input {
+    margin: 15px 0 10px 0;
+    
+}
+
+#addr-search-btn {
+    margin: 10px 0 0 0;
+}
+
+
+/* 확인버튼 */
+.submitBtn {
+    margin: 10px 0 0 36%;
+}
+.submitBtn > input[type=submit] {
+    border: none;
+    color: white;
+    width: inherit;
+    background-color: #FEB415;
+    width: 120px;
+    height: 38px;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0px 2px 3px  #C9C9C9;
+    margin: 18px 0 50px 0;
+}
+
+input[type=button], button {
+    background-color: white;
+    border-radius: 10px;
+    border : 1px solid #B0B0B0 ;
+    cursor: pointer;
+}
+
+/* dog폼 */
+#form2-area {
+    width: 400px;
+    margin: 0 auto;
+    display: none;
+}
+
+
+.error-msg {
+    font-size: 12px;
+    color: #FF0000;
+}
+
+
+.pet-ques {
+    float: left;
+}
+
+/* 반려견 */
+
+#pet-select-area {
+    margin: 10px 0 0 0;
+}
+
+#dog-title {
+    font-size : 23px;
+    color : #FEB415;
+    text-align: center;
+}
+
+.pet-result {
+    float: left;
+}
+
+#user-join-submit {
+    float: left;
+}
+
+#p-hr {
+    width: 430px;
+    height: 1px;
+    background-color: #DFDFDF;
+    margin: 15px auto;
+}
+
+/* 푸터 */
+

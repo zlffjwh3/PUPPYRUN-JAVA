@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import user.model.dao.UserDAO;
+import user.model.vo.Dog;
 import user.model.vo.User;
 
 public class UserService {
@@ -52,6 +53,7 @@ public class UserService {
 		return list;
 	}
 	
+	// 회원가입 (강아지 없음)
 	public int insertUser(User user) {
 		int result = 0; // 이 result는 DAO에서 나오는 결과 값을 받아서 servlet으로 보내기 위해 사용
 		Connection conn = null;
@@ -69,6 +71,27 @@ public class UserService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
+		return result;
+	}
+	
+	// 회원가입 (강아지 있음)
+	public int insertDog(Dog dog) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			conn = factory.createConnection();
+			result = new UserDAO().insertDog(conn, dog);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		
 		return result;
 	}
 	
