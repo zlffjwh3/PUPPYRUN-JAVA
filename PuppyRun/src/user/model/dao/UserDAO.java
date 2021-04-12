@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import user.model.vo.Dog;
 import user.model.vo.User;
 
 public class UserDAO {
@@ -83,7 +84,7 @@ public class UserDAO {
 		return list;
 	}
 	
-	// 회원가입 (강아지 없음에 클릭 시 )
+	// 회원가입 (강아지 없음)
 	public int insertUser(Connection conn, User user) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -109,6 +110,29 @@ public class UserDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		
+		return result;
+	}
+	
+	// 회원가입 (강아지 있음)
+	public int insertDog(Connection conn, Dog dog) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		char dogCheck = 0;
+		String query = "INSERT INTO DOG VALUES(?,?,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dog.getDogName());
+			pstmt.setString(2, dog.getDogBreed());
+			pstmt.setString(3, String.valueOf(dog.getDogGender()));
+			pstmt.setInt(4, dog.getDogAge());
+			pstmt.setInt(5, dog.getDogWeight());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
 		return result;
 	}
 	
@@ -155,4 +179,6 @@ public class UserDAO {
 	public User findUser(Connection conn, String userId) {
 		return null;
 	}
+
+	
 }
