@@ -1,15 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/WebContent/WEB-INF/assets/css/reset.css">
-    <link rel="stylesheet" href="/WebContent/WEB-INF/assets/css/join.css">
-    <link rel="stylesheet" href="/WebContent/WEB-INF/assets/css/index.css">
+    <link rel="stylesheet" href="/WebContent/assets/css/reset.css">
+    <link rel="stylesheet" href="/WebContent/assets/css/join.css">
+    <link rel="stylesheet" href="/WebContent/assets/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/WebContent/WEB-INF/assets/js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="/WebContent/WEB-INF/assets/js/join.js"></script>
+    <script type="text/javascript" src="/WebContent/assets/js/join.js"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <title>퍼피런 회원가입</title>
 </head>
@@ -17,7 +20,7 @@
     <div id="wrap">
         <div id="join-form">
             <div id="form-logo">
-                <img src="/WebContent/WEB-INF/assets/image/main_logo.png" alt="">
+                <img src="/WebContent/assets/image/main_logo.png" alt="">
             </div>
             <div id="form1-area">
                 <form action="" method="POST">
