@@ -10,7 +10,7 @@ public class PetDiary {
 	private String diaryMap;
 	private int diaryId;
 	private Date diaryDate;
-	private int diaryPhoto;
+	private String diaryPhoto;
 	private ArrayList<Goal> goal;
 	
 	public PetDiary() {}
@@ -64,11 +64,11 @@ public class PetDiary {
 		this.diaryDate = diaryDate;
 	}
 
-	public int getDiaryPhoto() {
+	public String getDiaryPhoto() {
 		return diaryPhoto;
 	}
 
-	public void setDiaryPhoto(int diaryPhoto) {
+	public void setDiaryPhoto(String diaryPhoto) {
 		this.diaryPhoto = diaryPhoto;
 	}
 

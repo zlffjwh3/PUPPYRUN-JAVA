@@ -44,6 +44,14 @@ public class EnrollServlet extends HttpServlet {
 		dog.setDogGender(request.getParameter("dog-gender").charAt(0));
 		dog.setDogAge(Integer.parseInt(request.getParameter("dog-weight")));
 		
+//		int result = new UserService().
+				
+		if(request.getParameter("pet-select").charAt(0) == 'Y') {
+			
+		}else {
+			
+		}
+		
 	}
 
 }
