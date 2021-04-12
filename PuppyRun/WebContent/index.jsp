@@ -70,7 +70,7 @@
                             <a href="#">산책짝꿍</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">멍멍이야기</a>
+                            <a href="/community/list">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="/notice/list">퍼피런이야기</a>
