@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("/index.jsp");
 		} else {
 			// 실패
-			response.sendRedirect("/WEB-INF/views/user/loginError.html");
+			response.sendRedirect("/WEB-INF/views/user/error.html");
 		}
 		
 	}

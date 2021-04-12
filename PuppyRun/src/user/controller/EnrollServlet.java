@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import user.model.service.UserService;
 import user.model.vo.Dog;
 import user.model.vo.User;
 
@@ -44,12 +45,26 @@ public class EnrollServlet extends HttpServlet {
 		dog.setDogGender(request.getParameter("dog-gender").charAt(0));
 		dog.setDogAge(Integer.parseInt(request.getParameter("dog-weight")));
 		
-//		int result = new UserService().
+		user.setDog(dog);
 				
 		if(request.getParameter("pet-select").charAt(0) == 'Y') {
+			int userResult = new UserService().insertUser(user);
+			int dogResult = new UserService().insertDog(dog);
+			
+			if(userResult > 0 && dogResult > 0) {
+				response.sendRedirect("/join.jsp");
+			}else {
+				response.sendRedirect("/WEB-INF/views/user/error.html");
+			}
 			
 		}else {
+			int userResult = new UserService().insertUser(user);
 			
+			if(userResult > 0) {
+				response.sendRedirect("/join.jsp");
+			}else {
+				response.sendRedirect("/WEB-INF/views/user/error.html");
+			}
 		}
 		
 	}
