@@ -7,20 +7,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/WebContent/assets/css/reset.css">
-    <link rel="stylesheet" href="/WebContent/assets/css/join.css">
-    <link rel="stylesheet" href="/WebContent/assets/css/index.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/reset.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/join.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/WebContent/WEB-INF/assets/js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="/WebContent/assets/js/join.js"></script>
+    <script src="<%= request.getContextPath() %>assets/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/join.js"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-    <title>퍼피런 회원가입--</title>
+    <title>퍼피런 회원가입</title>
 </head>
 <body>
     <div id="wrap">
         <div id="join-form">
             <div id="form-logo">
-                <img src="/WebContent/assets/image/main_logo.png" alt="">
+                <img src="<%= request.getContextPath() %>assets/image/main_logo.png" alt="">
             </div>
             <div id="form1-area">
                 <form action="" method="POST">
