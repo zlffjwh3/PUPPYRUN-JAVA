@@ -1,11 +1,12 @@
+
 $(document).ready(function(){
     let weatherIcon = {
-        '01' : 'fas fa-sun fa-7x',
-        '02' : 'fas fa-cloud-sun',
-        '03' : 'fas fa-cloud fa-5x',
-        '04' : 'fas cloud-meatball',
-        '09' : 'fas cloud-sun-rain',
-        '10' : 'fas cloud-showers-heavy',
+        '01' : 'fas fa-sun fa-7x', // 태양
+        '02' : 'fas fa-cloud-sun-rain',
+        '03' : 'fas fa-cloud-sun-rain',
+        '04' : 'fas fa-cloud-sun-rain',
+        '09' : 'fas fa-cloud-sun-rain',
+        '10' : 'fas fa-cloud-sun-rain', // 비구름
         '11' : 'fas poo-storm',
         '13' : 'far snowflake',
         '50' : 'fas fa-smog'
