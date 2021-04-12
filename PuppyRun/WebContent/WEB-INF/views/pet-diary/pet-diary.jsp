@@ -136,9 +136,9 @@
 	   		//현재, 즉 오늘날짜를 말한것이다/
 	   		int week = cal.get(Calendar.DAY_OF_WEEK);
 	   	%>
-		<a href = "petdiary2.jsp?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
+		<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
 		<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
-		<a href = "petdiary2.jsp?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
+		<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
 	
 		<table border = "1">
 		<tr>
@@ -170,30 +170,31 @@
 			<tr>
 			<% } %>
 				<% 
-				String title = pList.get(j).getDiaryTitle();
+				String title = pList.get(0).getDiaryTitle();
+			 	System.out.println(title);
 				if(week % 7 == 2 ){ 
 				%>
 					<td class="sun">
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j%></a>
-						<div>
+<%-- 						<div>
 							<% if(title != null) { %>
 								<%= title %>
 							<% } %>
-						</div>
+						</div> --%>
 					</td>
 				<%
 				} else if(week%7 == 1){
 				%>
 					<td class="sat">
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
-						<div><% if(title != null) {%> <%= title %> <% } %></div>
+						<%-- <div><% if(title != null) {%> <%= title %> <% } %></div> --%>
 					</td>
 				<%
 				}else {
 				%>
 					<td>
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
-						<div><% if(title != null) {%> <%= title %> <% } %></div>
+						<%-- <div><% if(title != null) {%> <%= title %> <% } %></div> --%>
 					</td>
 				<% }
 			}%>
