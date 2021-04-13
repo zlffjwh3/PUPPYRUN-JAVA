@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
+
+/* font-family: 'Noto Sans KR', sans-serif; */
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+#nbb-top {
+  margin: 100px 0 50px 0;
+  text-align: center;
+}
+
+#nbb-top h3 {
+  font-size: 30px;
+  color: #fbb41d;
+  padding-bottom: 6px;
+}
+
+#nbb-top p {
+    color : #868686;
+}
+
+.pagin-box {
+  text-align: center;
+}
+
+.pagin-box a {
+  padding: 2px 8px;
+  border: 1px solid rgb(218, 218, 218);
+}
+
+.pagin-box a:visited {
+  color: #fbb41d;
+}
+
+#post-wrap {
+  text-align: right;
+}
+
+.link-post {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #fbb41d;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+#post-wrap > a {
+  color: white;
+}
+
+#main-content {
+    width: 100%;
+    height: 1300px;
+}
+
+#Box1 {
+    height: inherit;
+    margin: 0 auto;
+}
+
+/* 게시글 리스트 */
+
+form {
+  border-radius: 20px;
+}
+
+.content-box {
+    width: 350px;
+    height: 450px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
+    margin: 0 auto;
+  }
+  
+  #all-content-box > ul {
+    
+  }
+  
+  #all-content-box > ul > li {
+    /* 혹시모를 경우 33.333...퍼센트로 바꾸기 */
+    /* width: 350px;  */
+    border-radius: 20px;
+    width: 30%;
+    height: 450px;
+    margin: 0 20px 30px 20px;
+    padding: 0;
+    list-style: none;
+    float: left;
+    background-color: pink;
+}
+#all-content-box > ul > li > a { 
+    display: block;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+/* 게시글 리스트 > 이미지영역 */
+
+.list-img-area {
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.list-img-area > img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover; /*사이즈에 안맞는 이미지 자르게 처리*/
+    /* object-fit: contain; */
+    border-radius: 20px 20px 0 0;
+    margin: 0px 0;
+}
+
+/*  게시글 리스트 > 아래제목(내용) 영역 */
+.list-content-area {
+    width: 350px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 0 0 20px 20px;
+}
+
+.list-content-area > div:nth-child(1) {
+    width: 320px;
+    line-height: 42px;
+    margin: 0 auto;
+    padding-top: 5px;
+}
+
+.user-profile-img-div {
+    /* background-color: red; */
+    float: left;
+}
+
+.list-content-area > div:nth-child(1) > .user-addr {
+    /* float: right; */
+    margin: 0px 0px 0px 38%;
+}
+
+/* 사용자 프로필 사진 */
+.user-profile-img { 
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 30px;
+    margin: 5px 10px 0 0;
+}
+
+/* 내용 + 채팅하기 버튼 위치 */
+
+.list-content-area > div:nth-child(2) {
+    /* width: 330px; */
+    margin: 8px auto 0 auto;
+}
+
+.list-content-area > div:nth-child(2) > span {
+    /* position: relative;
+    left: 40px; */
+    margin: 0 15px;
+}
+
+/* 채팅버튼 */
+.chat-btn {
+    width: 80px;
+    height: 32px;
+    border : none;
+    border-radius: 10px;
+    background: #FEB415;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-btn:hover { 
+    background: #ffce66;
+}
