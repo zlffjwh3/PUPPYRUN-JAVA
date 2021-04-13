@@ -14,6 +14,7 @@ public class Community {
 	private String comPhoto;
 	private int likeCount;
 	private ArrayList<Comment> comment;
+	private String userNick;
 	
 	public Community() {}
 	
@@ -79,6 +80,14 @@ public class Community {
 	}
 	public void setComment(ArrayList<Comment> comment) {
 		this.comment = comment;
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
 
 	@Override
