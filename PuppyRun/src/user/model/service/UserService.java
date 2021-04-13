@@ -144,6 +144,7 @@ public class UserService {
 		try {
 			conn = factory.createConnection();
 			user = new UserDAO().findUserId(conn, userName, userEmail);
+			System.out.println("에러 : " + user);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

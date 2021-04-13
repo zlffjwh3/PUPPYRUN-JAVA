@@ -17,7 +17,7 @@
 <!-- 테스트 -->
     <div id="wrap">
             <div id="header">
-                <a href="#"><img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt=""></a>
+                <a href="/index.jsp"><img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt=""></a>
             </div>
             <div id="content">
                 <div id="utilTab">

@@ -20,16 +20,19 @@ public class FindIdServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String userName = request.getParameter("e-user-name");
 		String userEmail = request.getParameter("e-user-email");
 		
 		User user = new UserService().findUserId(userName, userEmail);
+		System.out.println(user);
 		
 		if(user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-//			response.sendRedirect("/WEB-INF/views/user/findIdSuccess.html");
-			response.sendRedirect("/index.jsp");
+//			request.getRequestDispatcher("/WEB-INF/views/user/findIdSuccess.html").forward(request, response);;
+			request.getRequestDispatcher("/index.jsp").forward(request, response);;
+//			response.sendRedirect("/index.jsp");
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
