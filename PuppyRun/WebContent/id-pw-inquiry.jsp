@@ -33,7 +33,7 @@
                     <!-- https://www.lotteon.com/p/member/find/findId 참고 -->
                 </div>
                 <div id="email-group">
-                    <h2>이메일 정보로 아이디 찾기</h2>
+                    <h2>이메일 정보로 아이디 찾기   </h2>
                     <p></p>
                     <span>회원가입시 등록한 정보로 찾을 수 있습니다</span>
                     <div id="email-form">
