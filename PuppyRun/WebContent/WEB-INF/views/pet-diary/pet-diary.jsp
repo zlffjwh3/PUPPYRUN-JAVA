@@ -114,7 +114,17 @@
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <a href="/petdiary/list">산책일기</a>
+                            <%
+                        		if(user != null) {
+                        	%>
+                        			<a href="/petdiary/list">산책일기</a>
+                        	<%
+                        		} else {
+                        	%>
+                        			<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<%
+                        		}
+                        	%>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">산책짝꿍</a>
@@ -174,9 +184,9 @@
 					<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
                 	
 				   	<!-- Detail ----------------------------------------------------------------------------------------->
-				   	<div>
+				   	<div id="detail-box">
 				   		<div>
-				   			2021 / 04 / 13
+				   			날짜
 				   		</div>
 				   		<div>
 				   			<img src="">
@@ -198,7 +208,7 @@
 				   	
 				   	<!-- List ----------------------------------------------------------------------------------------->
 				
-					<table border = "1">
+					<table id="list-box">
 					<tr>
 						<td class="sun">일</td>
 						<td>월</td>
