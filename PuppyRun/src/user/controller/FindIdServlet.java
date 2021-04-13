@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import user.model.service.UserService;
 import user.model.vo.User;
@@ -24,8 +25,10 @@ public class FindIdServlet extends HttpServlet {
 		
 		User user = new UserService().findUserId(userName, userEmail);
 		
-		if(user != null) {
-			
+		if(user != null && userName.equals(user.getUserName()) && userEmail.equals(user.getEmail())) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			response.sendRedirect("/WEB-INF/views/user/findIdSuccess.html");
 		} else {
 			response.sendRedirect("/WEB-INF/views/user/error.html");
 		}

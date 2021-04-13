@@ -179,8 +179,34 @@ public class UserDAO {
 //	      return 0;
 //	}
 	
-	public User findUser(Connection conn, String userId) {
-		return null;
+//	public User findUser(Connection conn, String userId) { // findUserId - findUserPwd 분리로 주석처리
+//		return null;
+//	}
+
+	public User findUserId(Connection conn, String userName, String userEmail) {
+		User user = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM USERTBL  WHERE USER_NAME = ? AND EMAIL = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userEmail);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				user = new User();
+				user.setUserId(rset.getString("USER_ID"));
+				user.setUserName(rset.getString("USER_NAME"));
+				user.setEmail(rset.getString("EMAIL"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return user;
 	}
 
 	
