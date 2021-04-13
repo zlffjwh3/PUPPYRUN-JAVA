@@ -1,6 +1,10 @@
 package community.model.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import common.JDBCTemplate;
+import community.model.dao.CommunityDAO;
 import community.model.vo.Community;
 import community.model.vo.CommunityPage;
 import notice.model.vo.Notice;
@@ -12,8 +16,25 @@ public class CommunityService {
 		factory = JDBCTemplate.getConnection();
 	}
 	
+	// 전체 게시글 리스트
 	public CommunityPage selectAllCommunity(int currentPage) {
-		return null;
+		Connection conn = null;
+		CommunityPage cp = new CommunityPage();
+		
+		try {
+			conn = factory.createConnection();
+			// 게시글 목록 리스트
+			cp.setcList(new CommunityDAO().selectAllCommunity(conn, currentPage));
+			// 게시글 페이지
+			cp.setPageNavi(new CommunityDAO().getPageNavi(conn, currentPage));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return cp;
 	}
 	
 	// 태그별로 다르게 보이게 해주는 메소드
@@ -25,9 +46,29 @@ public class CommunityService {
 		return null;
 	}
 	
-	public int insertCommunity(Notice community) {
-		return 0;
+	// 게시물 등록하는 메소드
+	public int insertCommunity(Community community) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CommunityDAO().insertCommunity(conn, community);
+			System.out.println(result);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
 	}
+	
 	
 	public int updateCommunity(Notice community) {
 		return 0;
@@ -41,7 +82,9 @@ public class CommunityService {
 		return 0;
 	}
 	
-	public CommunityPage printSearchList(String search, int currentPage) {
-		return null;
+	public int printSearchList(String search, int currentPage) {
+		return 0;
 	}
+
+
 }

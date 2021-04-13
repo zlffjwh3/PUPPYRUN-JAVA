@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="petdiary.model.vo.PetDiary"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
@@ -8,7 +10,7 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
 %>
-    
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -136,9 +138,9 @@
 	   		//현재, 즉 오늘날짜를 말한것이다/
 	   		int week = cal.get(Calendar.DAY_OF_WEEK);
 	   	%>
-		<a href = "petdiary2.jsp?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
+		<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
 		<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
-		<a href = "petdiary2.jsp?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
+		<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
 	
 		<table border = "1">
 		<tr>
@@ -154,6 +156,7 @@
 		<tr>
 		<!-- 그달의 1일 까지 공백처리하기 위한 것임. -->
 		<%
+	
 			for(int i = 1; i < week; i++){
 		%>		
 		<td height = "20">&nbsp;</td>
@@ -162,6 +165,10 @@
 		%>
 		<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
 		<%
+			Date today = new Date();
+			SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+	        String todayString = sdformat.format(today);
+	        
 			for(int j = 1; j<=endDay; j ++){
 				week++;
 				if(week % 7 ==2){
@@ -170,30 +177,56 @@
 			<tr>
 			<% } %>
 				<% 
-				String title = pList.get(j).getDiaryTitle();
+			   
 				if(week % 7 == 2 ){ 
 				%>
 					<td class="sun">
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j%></a>
-						<div>
-							<% if(title != null) { %>
-								<%= title %>
-							<% } %>
-						</div>
+				 	<div>
+							<%for(int i = 0; i < pList.size(); i++){
+								String calDate = pList.get(i).getDiaryDate();
+								  String calDateString = calDate.substring(0, calDate.length() - 9);
+								if(calDateString.equals(todayString)){ %>
+								 <%= pList.get(i).getDiaryTitle() %>
+								<%
+								}
+							}
+							%>
+						</div> 
 					</td>
 				<%
 				} else if(week%7 == 1){
 				%>
 					<td class="sat">
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
-						<div><% if(title != null) {%> <%= title %> <% } %></div>
+						<div>
+							<%for(int i = 0; i < pList.size(); i++){
+								String calDate = pList.get(i).getDiaryDate();
+								  String calDateString = calDate.substring(0, calDate.length() - 9);
+								if(calDateString.equals(todayString)){ %>
+								 <%= pList.get(i).getDiaryTitle() %>
+								<%
+								}
+							}
+							%>
+						</div> 
 					</td>
 				<%
 				}else {
 				%>
 					<td>
 						<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j %></a>
-						<div><% if(title != null) {%> <%= title %> <% } %></div>
+							<div>
+							<%for(int i = 0; i < pList.size(); i++){
+								String calDate = pList.get(i).getDiaryDate();
+								  String calDateString = calDate.substring(0, calDate.length() - 9);
+								if(calDateString.equals(todayString)){ %>
+								 <%= pList.get(i).getDiaryTitle() %>
+								<%
+								}
+							}
+							%>
+						</div> 
 					</td>
 				<% }
 			}%>

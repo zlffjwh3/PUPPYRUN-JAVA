@@ -1,6 +1,6 @@
 package petdiary.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 public class PetDiary {
@@ -9,7 +9,7 @@ public class PetDiary {
 	private String diaryContent;
 	private String diaryMap;
 	private int diaryId;
-	private Date diaryDate;
+	private String diaryDate;
 	private String diaryPhoto;
 	private ArrayList<Goal> goal;
 	
@@ -56,11 +56,11 @@ public class PetDiary {
 		this.diaryId = diaryId;
 	}
 
-	public Date getDiaryDate() {
+	public String getDiaryDate() {
 		return diaryDate;
 	}
 
-	public void setDiaryDate(Date diaryDate) {
+	public void setDiaryDate(String diaryDate) {
 		this.diaryDate = diaryDate;
 	}
 
