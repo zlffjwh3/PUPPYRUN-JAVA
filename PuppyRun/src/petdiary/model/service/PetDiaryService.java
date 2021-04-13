@@ -1,6 +1,7 @@
 package petdiary.model.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -9,7 +10,6 @@ import notice.model.dao.NoticeDAO;
 import notice.model.vo.NoticePage;
 import petdiary.model.dao.PetDiaryDAO;
 import petdiary.model.vo.PetDiary;
-import petdiary.model.vo.PetDiaryPage;
 
 public class PetDiaryService {
 	private JDBCTemplate factory;
@@ -34,8 +34,21 @@ public class PetDiaryService {
 		return pList;
 	}
 	
-	public PetDiary selectOneDiary(int petDiaryNo) {
-		return null;
+	public PetDiary selectOneDiary(Date diaryDate, String diaryId) {
+		Connection conn = null;
+		PetDiary petDiary = null;
+		
+		try {
+			conn = factory.createConnection();
+			petDiary = new PetDiaryDAO().selectOneDiary(conn, diaryDate, diaryId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return petDiary;
 	}
 	
 	public int insertDiary(PetDiary petDiary) {

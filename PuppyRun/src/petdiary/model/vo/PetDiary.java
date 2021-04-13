@@ -8,7 +8,7 @@ public class PetDiary {
 	private String diaryTitle;
 	private String diaryContent;
 	private String diaryMap;
-	private int diaryId;
+	private String diaryId;
 	private String diaryDate;
 	private String diaryPhoto;
 	private ArrayList<Goal> goal;
@@ -19,6 +19,7 @@ public class PetDiary {
 	public int getDiaryNo() {
 		return diaryNo;
 	}
+	
 
 	public void setDiaryNo(int diaryNo) {
 		this.diaryNo = diaryNo;
@@ -48,11 +49,11 @@ public class PetDiary {
 		this.diaryMap = diaryMap;
 	}
 
-	public int getDiaryId() {
+	public String getDiaryId() {
 		return diaryId;
 	}
 
-	public void setDiaryId(int diaryId) {
+	public void setDiaryId(String diaryId) {
 		this.diaryId = diaryId;
 	}
 

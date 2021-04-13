@@ -131,7 +131,13 @@ public class UserService {
 //		return result;
 //	}
 	
-	public User findUser(String userId) {
+//	public User findUser(String userId) { // findUserId / findUserPwd 분리하는게 나을것같아서 주석
+//		return null;
+//	}
+
+
+	public User findUserId(String userName, String userEmail) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
