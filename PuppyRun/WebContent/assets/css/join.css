@@ -37,6 +37,8 @@
 
 /* 유저폼 1 */
 #form1-area {
+    width: 400px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
 }
