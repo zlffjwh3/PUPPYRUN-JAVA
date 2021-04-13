@@ -25,12 +25,13 @@ public class FindIdServlet extends HttpServlet {
 		
 		User user = new UserService().findUserId(userName, userEmail);
 		
-		if(user != null && userName.equals(user.getUserName()) && userEmail.equals(user.getEmail())) {
+		if(user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			response.sendRedirect("/WEB-INF/views/user/findIdSuccess.html");
+//			response.sendRedirect("/WEB-INF/views/user/findIdSuccess.html");
+			response.sendRedirect("/index.jsp");
 		} else {
-			response.sendRedirect("/WEB-INF/views/user/error.html");
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 		
 	}
