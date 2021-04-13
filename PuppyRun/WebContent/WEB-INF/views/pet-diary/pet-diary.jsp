@@ -114,7 +114,17 @@
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <a href="/petdiary/list">산책일기</a>
+                            <%
+                        		if(user != null) {
+                        	%>
+                        			<a href="/petdiary/list">산책일기</a>
+                        	<%
+                        		} else {
+                        	%>
+                        			<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<%
+                        		}
+                        	%>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">산책짝꿍</a>
