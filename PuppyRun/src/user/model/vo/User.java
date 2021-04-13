@@ -16,7 +16,6 @@ public class User {
 	private char adminCheck;
 	private char dogCheck;
 	private int userPhoto;
-	private Dog dog;
 	
 	public User() {}
 
@@ -117,20 +116,12 @@ public class User {
 		this.userPhoto = userPhoto;
 	}
 
-	public Dog getDog() {
-		return dog;
-	}
-
-	public void setDog(Dog dog) {
-		this.dog = dog;
-	}
-
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userPw=" + userPw + ", userNick=" + userNick + ", userName=" + userName
 				+ ", phone=" + phone + ", email=" + email + ", userBirth=" + userBirth + ", userAddr=" + userAddr
 				+ ", enrollDate=" + enrollDate + ", adminCheck=" + adminCheck + ", dogCheck=" + dogCheck
-				+ ", userPhoto=" + userPhoto + ", dog=" + dog + "]";
+				+ ", userPhoto=" + userPhoto + "]";
 	}
 
 	
