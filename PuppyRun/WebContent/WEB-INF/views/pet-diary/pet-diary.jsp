@@ -59,7 +59,7 @@
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
     <!-- CSS 파일 가져오기 -->
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/pet-diary.css">
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
     <!-- 파비콘 이미지 가져오기 -->
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
@@ -178,10 +178,13 @@
                     </div>
                 </div>
                 <!-- 둘다 묶는 박스으으으 ----------------------------------------------------------------------------------------->
-                <div>
+                
+                <div id="main-content2"  align="center" >
+                <div id="top-box">
                 	<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
 					<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
 					<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
+				<div>
                 	
 				   	<!-- Detail ----------------------------------------------------------------------------------------->
 				   	<div id="detail-box">
@@ -192,13 +195,13 @@
 				   			<img src="">
 				   		</div>
 				   		<div>
-				   			내용입니당
+				   			내용 입니당
 				   		</div>
 				   		<div>
 				   			(로고) 산책경로
 				   		</div>
 				   		<div>
-				   			지도
+				   			지 도
 				   		</div>
 				   		<div>
 				   			이번주 목표
@@ -318,6 +321,7 @@
 						</tr>
 					</table>
 				</div>
+			</div>
 			</div>
 			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
             <footer>

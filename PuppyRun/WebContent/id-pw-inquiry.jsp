@@ -6,17 +6,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/WebContent/WEB-INF/assets/css/find_id.css">
-    <link rel="stylesheet" href="/WebContent/WEB-INF/assets/css/reset.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/id-pw-inquiry.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/reset.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/WebContent/WEB-INF/assets/js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="/WebContent/WEB-INF/assets/js/find_id.js"></script>
+    <script src="<%= request.getContextPath() %>/assets/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/id-pw-inquiry.js"></script>
     <title>회원 정보 찾기</title>
 </head>
 <body>
     <div id="wrap">
             <div id="header">
-                <a href="#"><img src="/WebContent/WEB-INF/assets/image/main_logo.png" alt=""></a>
+                <a href="#"><img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt=""></a>
             </div>
             <div id="content">
                 <div id="utilTab">
@@ -33,11 +33,11 @@
                     <!-- https://www.lotteon.com/p/member/find/findId 참고 -->
                 </div>
                 <div id="email-group">
-                    <h2>이메일 정보로 아이디 찾기</h2>
+                    <h2>이메일 정보로 아이디 찾기   </h2>
                     <p></p>
                     <span>회원가입시 등록한 정보로 찾을 수 있습니다</span>
                     <div id="email-form">
-                        <form action="" method="">
+                        <form action="/user/find" method="post">
                             <div id="e-username-area">
                                 <input type="text" name="e-user-name" id="e-user-name" placeholder="이름">
                             </div>

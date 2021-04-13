@@ -1,12 +1,5 @@
-<%@page import="user.model.vo.User"%>
-<%@page import="notice.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	User user = (User)session.getAttribute("user");
-	Notice notice = (Notice)request.getAttribute("notice");
-%>
-
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -19,17 +12,17 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-detail.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-write.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/notice.css"> -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/petMateWrite.css">
         <!-- 파비콘 이미지 가져오기 -->
-        <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
-        <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
+        <link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
+        <link rel="icon" href="/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
-        <title>퍼피런 - 공지사항</title>
+        <script src="./assets/js/jquery-3.4.1.min.js"></script>
+        <script src="/assets/js/slider.js"></script>
+        <script src="/assets/js/scroll.js"></script>
+        <title>산책짝꿍</title>
     </head>
     <body>
         <div id="wrap">
@@ -48,23 +41,10 @@
                             </form>
                         </div>
                         <div id="login">
-                        	<%
-                        	if(user == null) {
-                        	%>
-                            	<a href="/login.jsp">
+                            <a href="#">
                                 <i class="xi-face xi-2x"></i>
-                           		</a>
-                            	<a href="/login.jsp" id="login-content">로그인</a>
-                            <%
-                            } else {
-                            %>
-                            	<a href="/user/myInfo">
-                                <img src="#"> <!-- 사진어케 가져와 -->
-                           		</a>
-                            	<a href="#" id="login-content"><%= user.getUserNick() %></a>
-                            <%
-                            }                        
-                            %>
+                            </a>
+                            <a href="#" id="login-content">로그인</a>
                         </div>
                     </div>
                 </div>
@@ -83,7 +63,7 @@
                             <a href="#">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">퍼피런이야기</a>
+                            <a href="/notice.html">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">반려견계산기</a>
@@ -92,59 +72,57 @@
                 </div>
             </nav>
             <!-- 스크롤 메뉴 -->
-            <div class="scroll-wrap">
+            <!-- <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
-            </div>
-            <!-- 메인 ---------------------------------------------------------------------------------------------------------->
- 			 <div id="main-content">
+            </div> -->
+            <!-- 메인 -->
+            <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
-                        <h3>퍼피런 이야기</h3>
+                        <h3>산책짝꿍 글 작성</h3>
+                        <p>산책할 친구를 찾기 위한 글을 작성해보세요.<br></p>
                     </div>
                     <!-- 작업해야할 부분 -->
-                    <div id="view-wrap">
+                    <div id="write-wrap">
                         <div id="write-box">
-                            <div id="notice-head">
-                                <!-- 글 제목 -->
-                                <h2><%= notice.getNoticeTitle() %></h2>
-                                <div class="fl">
-                                    <span>관리자</span>
+                            <form action="" method="">
+                                <div id="address">
+                                    <p class="write-p-tag">주소</p>
+                                    <div class="addr-box addr1-box">
+                                        <input type="text" id="addr1-input" class="addr-input" name="addr1" maxlength="50" placeholder="구">
+                                    </div>                                 
+                                    <div class="addr-box addr2-box">
+                                        <input type="text" id="addr2-input" class="addr-input" name="addr2" maxlength="50" placeholder="동">
+                                    </div>
                                 </div>
-                                <div class="fr">
-                                    <!-- 작성일 -->
-                                    <span><%= notice.getNoticeDate() %></span>
-                                    <!-- 조회수 -->
-                                    <span><%= notice.getNoticeView() %></span>
+                                <div id="title">
+                                    <p class="write-p-tag">제 목</p>  
+                                    <div class="input-box">
+                                        <input type="text" id="title-input" name="title" maxlength="50">
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="notice-content">
-                                <div class="write-div">
-                                    <p><%= notice.getNoticeContent() %></p>
-                                    <!-- 사진은 어떻게 불러와 ? ,,,, -->
+                                <div id="content">
+                                    <p class="write-p-tag">내 용</p>
+                                    <div class="input-box" id="textarea-box">
+                                        <textarea id="content" name="content"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div id="function-btn">
-                            <div class="bl">
-                                <a href="/notice/list"><span>글 목록</span></a>
-                            </div>
-                            <%
-                            if(user != null && user.getAdminCheck() == 'Y') {
-                          	%>
-                          	<div class="br">
-                                <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>
-                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
-                           		<a href="/notice/write"><span>글쓰기</span></a>
-                           	</div>
-                            <%
-                            }
-                            %>
+                                <div id="file">
+                                    <p class="write-p-tag">첨부 파일</p>
+                                    <div class="input-box">
+                                        <input type="file" id="file-input" name="file">
+                                    </div>
+                                </div>
+                                <div id="btn-box">
+                                    <input type="submit" id="submit-input" value="등록">
+                                    <a href="/html/free-board.html"><p>취소</p></a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
- 			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
             <footer>
                 <!-- 푸터 -->
                 <div id="footer">
