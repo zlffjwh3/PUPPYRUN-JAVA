@@ -95,7 +95,7 @@ public class CommunityWriteServlet extends HttpServlet {
 			photoResult = new PhotoService().registerPhotoInfo(photo);
 		
 		}
-		// File이 없다면
+		// File이 없다면   
 		int communityResult = new CommunityService().insertCommunity(community);
 		
 		// 결과 확인 (File 업로드 안하면 무조건 오류뜨게 해놨음.. 나중에 수정할 부분)
