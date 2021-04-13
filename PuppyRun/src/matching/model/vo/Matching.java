@@ -4,7 +4,7 @@ public class Matching {
 	private int matNo;
 	private String matId;
 	private String matTitle;
-	private String matComment;
+	private String matContent;
 	private String matAddr;
 	private char matCheck;
 	private int matPhoto;
@@ -37,12 +37,12 @@ public class Matching {
 		this.matTitle = matTitle;
 	}
 
-	public String getMatComment() {
-		return matComment;
+	public String getMatContent() {
+		return matContent;
 	}
 
-	public void setMatComment(String matComment) {
-		this.matComment = matComment;
+	public void setMatContent(String matContent) {
+		this.matContent = matContent;
 	}
 
 	public String getMatAddr() {
@@ -81,7 +81,7 @@ public class Matching {
 
 	@Override
 	public String toString() {
-		return "Matching [matNo=" + matNo + ", matId=" + matId + ", matTitle=" + matTitle + ", matComment="
-				+ matComment + ", matAddr=" + matAddr + ", matCheck=" + matCheck + ", matPhoto=" + matPhoto + "]";
+		return "Matching [matNo=" + matNo + ", matId=" + matId + ", matTitle=" + matTitle + ", matContent="
+				+ matContent + ", matAddr=" + matAddr + ", matCheck=" + matCheck + ", matPhoto=" + matPhoto + "]";
 	}
 }

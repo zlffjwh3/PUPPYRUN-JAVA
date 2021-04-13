@@ -54,7 +54,10 @@ public class MatchingWriteServlet extends HttpServlet {
 		// 위에 가져온 값들을 Matching 객체에 저장하기
 		Matching matching = new Matching();
 		matching.setMatId(matchingId);
-		
+		matching.setMatAddr(matchingAddr);
+		matching.setMatTitle(matchingTitle);
+		matching.setMatContent(matchingContent);
+		matching.setUserNick(matchingNickName);
 	}
 
 }
