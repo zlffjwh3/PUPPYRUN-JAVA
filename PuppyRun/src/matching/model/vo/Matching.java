@@ -2,7 +2,7 @@ package matching.model.vo;
 
 public class Matching {
 	private int matNo;
-	private int userId;
+	private String matId;
 	private String matTitle;
 	private String matComment;
 	private String matAddr;
@@ -21,12 +21,12 @@ public class Matching {
 		this.matNo = matNo;
 	}
 
-	public int getUserId() {
-		return userId;
+	public String getMatId() {
+		return matId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setMatId(String matId) {
+		this.matId = matId;
 	}
 
 	public String getMatTitle() {
@@ -81,7 +81,7 @@ public class Matching {
 
 	@Override
 	public String toString() {
-		return "Matching [matNo=" + matNo + ", userId=" + userId + ", matTitle=" + matTitle + ", matComment="
+		return "Matching [matNo=" + matNo + ", matId=" + matId + ", matTitle=" + matTitle + ", matComment="
 				+ matComment + ", matAddr=" + matAddr + ", matCheck=" + matCheck + ", matPhoto=" + matPhoto + "]";
 	}
 }
