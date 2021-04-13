@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<%= request.getContextPath() %>assets/js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/join.js"></script>
+    <%-- <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/join.js"></script> --%>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <title>퍼피런 회원가입</title>
 </head>
@@ -109,7 +109,10 @@
                             <input type="text" name="addr2" id="addr2" placeholder="상세주소">
                         </div>
                     </div>
-                    <div id="pet-select-area" class="area-div">
+                    <div id="user-join-submit" class="submitBtn">
+                        <input type="submit" value="확인">
+                    </div>
+                    <!-- <div id="pet-select-area" class="area-div">
                         <span class="pet-ques">반려견이 있나요? </span>
                         <div class="pet-result">
                             <label for="pet-selectY">
@@ -119,9 +122,6 @@
                                 아니요 <input type="radio" name="pet-select" id="pet-selectN" class="pet-select" value="no" checked>
                             </label>
                         </div>
-                    </div>
-                    <div id="user-join-submit" class="submitBtn">
-                        <input type="submit" value="확인">
                     </div>
                 </div>
                 <div id="form2-area">
@@ -145,9 +145,9 @@
                         <div id="dog-gender-input" class="input-div">
                             <select name="dog-gender" id="dog-gender">
                                 <option value="" disabled selected>성별</option>
-                                <option value="수컷">수컷</option>
-                                <option value="암컷">암컷</option>
-                                <option value="수컷">중성화</option>
+                                <option value="M">수컷</option>
+                                <option value="F">암컷</option>
+                                <option value="T">중성화</option>
                             </select>
                         </div>
                     </div>
@@ -164,10 +164,10 @@
                         </div>
                         <span class="dog-weight-error-msg error-msg"></span>
                     </div>
-                    <div id="dog-and-user-submit" class="submitBtn">
-                        <input type="submit" value="확인">
-                    </div>
-                </div>
+                </div> -->
+                    <!-- <div id="dog-and-user-submit" class="submitBtn"> -->
+                        <!-- <input type="submit" value="확인"> -->
+                    <!-- </div> -->
             </form>
             </div>
     </div>

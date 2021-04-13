@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class Dog {
 	private int dogCode;
-	private int dogId;
+	private String dogId;
 	private String dogName;
 	private String dogBreed;
 	private char dogGender;
 	private int dogAge;
-	private int dogWeight;
+	private float dogWeight;
 	
 	public Dog() {}
 	
@@ -22,11 +22,11 @@ public class Dog {
 		this.dogCode = dogCode;
 	}
 	
-	public int getDogId() {
+	public String getDogId() {
 		return dogId;
 	}
 
-	public void setDogId(int dogId) {
+	public void setDogId(String dogId) {
 		this.dogId = dogId;
 	}
 
@@ -62,11 +62,11 @@ public class Dog {
 		this.dogAge = dogAge;
 	}
 
-	public int getDogWeight() {
+	public float getDogWeight() {
 		return dogWeight;
 	}
 
-	public void setDogWeight(int dogWeight) {
+	public void setDogWeight(float dogWeight) {
 		this.dogWeight = dogWeight;
 	}
 

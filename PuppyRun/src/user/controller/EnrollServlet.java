@@ -26,8 +26,10 @@ public class EnrollServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		User user = new User();
-		Dog dog = new Dog();
+//		Dog dog = new Dog();
 		String birth = request.getParameter("user-birth-year") + request.getParameter("user-birth-month") + request.getParameter("user-birth-day");
 		String address = request.getParameter("zip") + request.getParameter("addr1") + request.getParameter("addr2");
 		user.setUserId(request.getParameter("user-id"));
@@ -38,34 +40,37 @@ public class EnrollServlet extends HttpServlet {
 		user.setEmail(request.getParameter("user-email"));
 		user.setUserBirth(birth);
 		user.setUserAddr(address);
-		user.setDogCheck(request.getParameter("pet-select").charAt(0));
+//		user.setDogCheck(request.getParameter("pet-select").charAt(0));
 		
-		dog.setDogName(request.getParameter("dog-name"));
-		dog.setDogBreed(request.getParameter("dog-kind"));
-		dog.setDogGender(request.getParameter("dog-gender").charAt(0));
-		dog.setDogAge(Integer.parseInt(request.getParameter("dog-weight")));
 		
-		user.setDog(dog);
+		/*
+		 * dog.setDogName(request.getParameter("dog-name"));
+		 * dog.setDogBreed(request.getParameter("dog-kind"));
+		 * dog.setDogGender(request.getParameter("dog-gender").charAt(0));
+		 * dog.setDogAge(Integer.parseInt(request.getParameter("dog-age")));
+		 * dog.setDogWeight(Float.parseFloat(request.getParameter("dog-weight")));
+		 * dog.setDogId(request.getParameter("user-id"));
+		 * 
+		 * user.setDog(dog);
+		 */
 				
-		if(request.getParameter("pet-select").charAt(0) == 'Y') {
-			int userResult = new UserService().insertUser(user);
-			int dogResult = new UserService().insertDog(dog);
-			
-			if(userResult > 0 && dogResult > 0) {
-				response.sendRedirect("/join.jsp");
-			}else {
-				response.sendRedirect("/WEB-INF/views/user/error.html");
-			}
-			
+		int userResult = new UserService().insertUser(user);
+		if(userResult > 0) {
+			response.sendRedirect("/join.jsp");
 		}else {
-			int userResult = new UserService().insertUser(user);
-			
-			if(userResult > 0) {
-				response.sendRedirect("/join.jsp");
-			}else {
-				response.sendRedirect("/WEB-INF/views/user/error.html");
-			}
+			response.sendRedirect("/WEB-INF/views/user/error.html");
 		}
+		/*
+		 * if(request.getParameter("pet-select").charAt(0) == 'Y') { int dogResult = new
+		 * UserService().insertDog(dog);
+		 * 
+		 * if(userResult > 0 && dogResult > 0) { response.sendRedirect("/join.jsp");
+		 * }else { response.sendRedirect("/WEB-INF/views/user/error.html"); }
+		 * 
+		 * }else { int userResult = new UserService().insertUser(user);
+		 * 
+		 * }
+		 */
 		
 	}
 

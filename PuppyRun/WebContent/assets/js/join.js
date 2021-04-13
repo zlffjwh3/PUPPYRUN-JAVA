@@ -218,7 +218,7 @@ $(document).ready(function() {
 
             
             
-        $('#form1-area > form').on('submit', function() {
+        /*$('#form1-area > form').on('submit', function() {
             if(userIdCheckFlag == false) {
                 return false;
             }
@@ -252,9 +252,9 @@ $(document).ready(function() {
             if($('#zip').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == '') {
                 return false;
             }
-        });
+        });*/
 		// 강아지 유 선택하고 입력해야 회원가입할 수 있도록 함
-		$('#dog-and-user-submit > input').on('click', function() {
+		/*$('#dog-and-user-submit > input').on('click', function() {
 			if(dogNameCheckFlag == false) {
 				return false;
 			}
@@ -270,7 +270,7 @@ $(document).ready(function() {
 			if(dogWeightCheckFlag == false) {
 				return false;
 			}
-		});
+		});*/
 
 })
 

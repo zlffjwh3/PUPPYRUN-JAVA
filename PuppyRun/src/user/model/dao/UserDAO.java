@@ -89,7 +89,7 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		char dogCheck = 0;
-		String query = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?,SYSDATE)";
+		String query = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?,SYSDATE,?,?)";
 		
 		try {
 			
@@ -103,6 +103,8 @@ public class UserDAO {
 			pstmt.setString(7, user.getUserAddr());
 			pstmt.setString(8, user.getUserBirth());
 			pstmt.setString(9, String.valueOf(user.getDogCheck()));
+			pstmt.setString(10, 'N' + "");
+			pstmt.setString(11, "NULL");
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,15 +120,16 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		char dogCheck = 0;
-		String query = "INSERT INTO DOG VALUES(?,?,?,?,?)";
+		String query = "INSERT INTO DOG VALUES(SEQ_DOGCODE.NEXTVAL,?,?,?,?,?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, dog.getDogName());
 			pstmt.setString(2, dog.getDogBreed());
-			pstmt.setString(3, String.valueOf(dog.getDogGender()));
+			pstmt.setString(3, dog.getDogGender()+ "");
 			pstmt.setInt(4, dog.getDogAge());
-			pstmt.setInt(5, dog.getDogWeight());
+			pstmt.setFloat(5, dog.getDogWeight());
+			pstmt.setString(6, dog.getDogId());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
