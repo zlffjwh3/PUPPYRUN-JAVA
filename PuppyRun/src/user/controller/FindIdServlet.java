@@ -7,16 +7,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/find")
-public class FindServlet extends HttpServlet {
+import user.model.service.UserService;
+import user.model.vo.User;
+
+@WebServlet("/user/findId")
+public class FindIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public FindServlet() {
+    public FindIdServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String userName = request.getParameter("e-user-name");
+		String userEmail = request.getParameter("e-user-email");
+		
+		User user = new UserService().findUserId(userName, userEmail);
+		
+		if(user != null) {
+			
+		} else {
+			response.sendRedirect("/WEB-INF/views/user/error.html");
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

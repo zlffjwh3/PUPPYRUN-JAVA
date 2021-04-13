@@ -37,7 +37,7 @@
                     <p></p>
                     <span>회원가입시 등록한 정보로 찾을 수 있습니다</span>
                     <div id="email-form">
-                        <form action="/user/find" method="post">
+                        <form action="/user/findId" method="post">
                             <div id="e-username-area">
                                 <input type="text" name="e-user-name" id="e-user-name" placeholder="이름">
                             </div>
