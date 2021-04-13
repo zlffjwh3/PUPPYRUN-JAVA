@@ -9,6 +9,7 @@
 <%
 	User user = (User)session.getAttribute("user");
 	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
+	PetDiary petDiary = (PetDiary)request.getAttribute("petDiary");
 	
 	//getInstance 는 Calendar의 객체만의 생성한 것이다.
 	Calendar cal = Calendar.getInstance();
@@ -187,27 +188,33 @@
 				<div>
                 	
 				   	<!-- Detail ----------------------------------------------------------------------------------------->
+				   	<%
+				   	if(petDiary != null) {
+				   	%>
 				   	<div id="detail-box">
 				   		<div>
-				   			날짜
+				   			<%-- <%= petDiary.getDiaryDate() %> --%>
 				   		</div>
 				   		<div>
-				   			<img src="">
+				   			<%-- <img src="/upload/<%= petDiary.getDiaryPhoto() %>"> --%>
 				   		</div>
 				   		<div>
-				   			내용 입니당
+				   			<%= petDiary.getDiaryContent()%>
 				   		</div>
 				   		<div>
 				   			(로고) 산책경로
 				   		</div>
 				   		<div>
-				   			지 도
+				   			<%-- <%= petDiary.getDiaryMap()%> --%>
+				   			지도야 미안해
 				   		</div>
 				   		<div>
-				   			이번주 목표
+				   			<%-- <%= petDiary.%> --%>
+				   			목표데스!
 				   		</div>
 				   	</div>
-				   	
+				   	<% } %>
+				   	<!-- 일기를 등록해주세요! -->
 				   	
 				   	<!-- List ----------------------------------------------------------------------------------------->
 				
@@ -235,7 +242,7 @@
 					<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
 					<%
 						// 오늘인지 확인
-						Date today = new Date();
+						/* Date today = new Date();
 						SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 				        String todayString = sdformat.format(today);
 				        
@@ -247,7 +254,7 @@
 				        	if(calDateString.equals(todayString)){
 						 	 	todayBox = i;
 							}
-				    	}
+				    	} */
 				        
 						for(int j = 1; j<=endDay; j ++){
 							week++;
@@ -260,7 +267,7 @@
 							if(week % 7 == 2){ 
 							%>
 								<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+									<a href="/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
 									<%
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();
@@ -280,7 +287,7 @@
 							} else if(week % 7 == 1){
 							%>
 									<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+									<a href="/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
 									<%
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();
@@ -300,7 +307,7 @@
 							}else {
 							%>
 									<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+									<a href="/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
 									<%
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();

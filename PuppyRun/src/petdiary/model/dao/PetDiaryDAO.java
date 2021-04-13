@@ -1,6 +1,7 @@
 package petdiary.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,16 +51,35 @@ public class PetDiaryDAO {
 		return pList;
 	}
 	
-	public String getPageNavi(Connection conn, int currentPage) {
-		return null;
-	}
-	
-	public int totalCount(Connection conn) {
-		return 0;
-	}
-	
-	public PetDiary selectOneDiary(Connection conn, int diaryNo) {
-		return null;
+	public PetDiary selectOneDiary(Connection conn, Date diaryDate, String diaryId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM DIARY WHERE DIARY_ID = ? AND DIARY_DATE = ?";
+		PetDiary petDiary = new PetDiary();
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, diaryId); 
+			pstmt.setDate(2, diaryDate); 
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				petDiary.setDiaryNo(rset.getInt("DIARY_NO"));
+				petDiary.setDiaryTitle(rset.getString("DIARY_TITLE"));
+				petDiary.setDiaryContent(rset.getString("DIARY_CONTENT"));
+				petDiary.setDiaryMap(rset.getString("DIARY_MAP"));
+				petDiary.setDiaryId(rset.getString("DIARY_ID"));
+				petDiary.setDiaryDate(rset.getString("DIARY_DATE"));
+				petDiary.setDiaryPhoto(rset.getString("DIARY_PHOTO"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return petDiary;
 	}
 	
 	public int insertDiary(Connection conn, PetDiary petDiary) {
