@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import matching.model.service.MatchingService;
 import matching.model.vo.Matching;
 import photo.model.service.PhotoService;
 import photo.model.vo.Photo;
@@ -96,6 +97,16 @@ public class MatchingWriteServlet extends HttpServlet {
 			photo.setBoardType('M');
 			
 			photoResult = new PhotoService().registerPhotoInfo(photo);
+		}
+		
+		// File이 없다면
+		int matchingResult = new MatchingService().registerMatching(matching);
+		
+		// 결과 확인 (File 업로드 안하면 무조건 오류 뜸 // 나중에 수정할거야~~!)
+		if(matchingResult > 0 && multi.getFilesystemName("upload") != null && photoResult > 0) {
+			response.sendRedirect("/matching/list");
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 	}
 
