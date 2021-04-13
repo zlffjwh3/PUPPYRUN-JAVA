@@ -19,6 +19,7 @@ public class PetDiary {
 	public int getDiaryNo() {
 		return diaryNo;
 	}
+	
 
 	public void setDiaryNo(int diaryNo) {
 		this.diaryNo = diaryNo;
