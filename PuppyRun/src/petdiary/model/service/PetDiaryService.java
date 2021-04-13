@@ -10,7 +10,6 @@ import notice.model.dao.NoticeDAO;
 import notice.model.vo.NoticePage;
 import petdiary.model.dao.PetDiaryDAO;
 import petdiary.model.vo.PetDiary;
-import petdiary.model.vo.PetDiaryPage;
 
 public class PetDiaryService {
 	private JDBCTemplate factory;
