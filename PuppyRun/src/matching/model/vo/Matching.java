@@ -7,7 +7,7 @@ public class Matching {
 	private String matContent;
 	private String matAddr;
 	private char matCheck;
-	private int matPhoto;
+	private String matPhoto;
 	private String userNick;
 	
 	public Matching() {}
@@ -61,11 +61,11 @@ public class Matching {
 		this.matCheck = matCheck;
 	}
 
-	public int getMatPhoto() {
+	public String getMatPhoto() {
 		return matPhoto;
 	}
 
-	public void setMatPhoto(int matPhoto) {
+	public void setMatPhoto(String matPhoto) {
 		this.matPhoto = matPhoto;
 	}
 	
@@ -84,4 +84,6 @@ public class Matching {
 		return "Matching [matNo=" + matNo + ", matId=" + matId + ", matTitle=" + matTitle + ", matContent="
 				+ matContent + ", matAddr=" + matAddr + ", matCheck=" + matCheck + ", matPhoto=" + matPhoto + "]";
 	}
+
+	
 }

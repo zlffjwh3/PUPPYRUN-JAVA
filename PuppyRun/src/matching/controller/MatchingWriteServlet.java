@@ -1,6 +1,10 @@
 package matching.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +17,8 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import matching.model.vo.Matching;
+import photo.model.service.PhotoService;
+import photo.model.vo.Photo;
 import user.model.vo.User;
 
 @WebServlet("/matching/write")
@@ -58,6 +64,39 @@ public class MatchingWriteServlet extends HttpServlet {
 		matching.setMatTitle(matchingTitle);
 		matching.setMatContent(matchingContent);
 		matching.setUserNick(matchingNickName);
+		
+		// 파일 업로드
+		int photoResult = 0;
+		// 작성한 게시물에 File이 존재하면
+		if(multi.getFilesystemName("upload") != null) {
+			// File의 이름 저장
+			String matchingPhoto = multi.getFilesystemName("upFile");
+			// File의 이름을 matching 객체에 저장
+			matching.setMatPhoto(matchingPhoto);
+			
+			// 이제 photo DB에 저장
+			File uploadFile = multi.getFile("upFile");
+			// File의 이름 가져오기
+			String photoName = multi.getFilesystemName("upFile");
+			// File의 경로 가져오기
+			String photoPath = uploadFile.getPath();
+			// File의 크기 가져오기
+			long photoSize = uploadFile.length();
+			// 올린 날짜 설정 및 포맷
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+			Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
+			
+			// 위에 가져온 값들을 Photo 객체에 저장
+			Photo photo = new Photo();
+			photo.setPhotoName(photoName);
+			photo.setPhotoPath(photoPath);
+			photo.setPhotoSize(photoSize);
+			photo.setPhotoId(user.getUserId());
+			photo.setUploadTime(uploadTime);
+			photo.setBoardType('M');
+			
+			photoResult = new PhotoService().registerPhotoInfo(photo);
+		}
 	}
 
 }
