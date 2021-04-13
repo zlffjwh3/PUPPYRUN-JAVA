@@ -17,7 +17,7 @@
     <title>퍼피런 회원가입</title>
 </head>
 <body>
-    <div id="wrap">
+    <div id="wrap"><!-- ㄴㄴㄴ -->
         <div id="join-form">
             <div id="form-logo">
                 <img src="<%= request.getContextPath() %>assets/img/main_logo.png" alt="">
