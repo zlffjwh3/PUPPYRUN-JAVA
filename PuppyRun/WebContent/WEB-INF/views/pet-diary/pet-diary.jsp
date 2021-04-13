@@ -9,6 +9,42 @@
 <%
 	User user = (User)session.getAttribute("user");
 	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
+	
+	//getInstance 는 Calendar의 객체만의 생성한 것이다.
+	Calendar cal = Calendar.getInstance();
+
+	//현재 년도와 현재 달을 받아온 것이다. +1은 0 ~11월달까지 주어지기 때문에 + 1을 해 준 것이다.
+	int nowYear = cal.get(Calendar.YEAR);
+	int nowMonth = cal.get(Calendar.MONTH)+1;
+	
+	//year 년과 month을 값을 받아 온것이다.(이전달, 다음달을 클릭하였을때 받아오는 값)
+	String fyear = request.getParameter("year");
+	String fmonth = request.getParameter("month");
+	
+	//현재년도와 현재 달을 year과 month로 선언해주었따.
+	int year = nowYear;
+	int month = nowMonth;
+	
+	//넘오온값이 널갑이 아니면 해당되는 fyear값은 year의 값인 것이다.
+	if(fyear != null){
+		year = Integer.parseInt(fyear);
+	}
+	//넘어온 값이 널값이 아니면 해당되는 fmonth값은  month의 값인 것이다.
+	if(fmonth != null){
+		month = Integer.parseInt(fmonth);
+	}
+	
+	//넘어온값을 새롭게 cal 객체생성한 곳에 입력이 된다 (년,월,일)초기화 
+	cal.set(year, month-1, 1);
+	
+	//입력되어진 년과 달을 값을 다시 year, month 로 선언해주었다.
+	year = cal.get(Calendar.YEAR);
+	month = cal.get(Calendar.MONTH)+1;
+	
+	//cal.getActualMaximum은 그달의 마지막일을 출력한것이다.
+	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+	//현재, 즉 오늘날짜를 말한것이다/
+	int week = cal.get(Calendar.DAY_OF_WEEK);
 %>
 
 <!DOCTYPE html>
@@ -101,169 +137,178 @@
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
             </div>
             <!-- 메인 ---------------------------------------------------------------------------------------------------------->
-	        <%
-	   		//getInstance 는 Calendar의 객체만의 생성한 것이다.
-	   		Calendar cal = Calendar.getInstance();
-	   
-	   		//현재 년도와 현재 달을 받아온 것이다. +1은 0 ~11월달까지 주어지기 때문에 + 1을 해 준 것이다.
-	   		int nowYear = cal.get(Calendar.YEAR);
-	   		int nowMonth = cal.get(Calendar.MONTH)+1;
-	   		
-	   		//year 년과 month을 값을 받아 온것이다.(이전달, 다음달을 클릭하였을때 받아오는 값)
-	   		String fyear = request.getParameter("year");
-	   		String fmonth = request.getParameter("month");
-	   		
-	   		//현재년도와 현재 달을 year과 month로 선언해주었따.
-	   		int year = nowYear;
-	   		int month = nowMonth;
-	   		
-	   		//넘오온값이 널갑이 아니면 해당되는 fyear값은 year의 값인 것이다.
-	   		if(fyear != null){
-	   			year = Integer.parseInt(fyear);
-	   		}
-	   		//넘어온 값이 널값이 아니면 해당되는 fmonth값은  month의 값인 것이다.
-	   		if(fmonth != null){
-	   			month = Integer.parseInt(fmonth);
-	   		}
-	   		
-	   		//넘어온값을 새롭게 cal 객체생성한 곳에 입력이 된다 (년,월,일)초기화 
-	   		cal.set(year, month-1, 1);
-	   		
-	   		//입력되어진 년과 달을 값을 다시 year, month 로 선언해주었다.
-	   		year = cal.get(Calendar.YEAR);
-	   		month = cal.get(Calendar.MONTH)+1;
-	   		
-	   		//cal.getActualMaximum은 그달의 마지막일을 출력한것이다.
-	   		int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-	   		//현재, 즉 오늘날짜를 말한것이다/
-	   		int week = cal.get(Calendar.DAY_OF_WEEK);
-	   	%>
-		<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
-		<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
-		<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
-	
-		<table border = "1">
-		<tr>
-			<td class="sun">일</td>
-			<td>월</td>
-			<td>화</td>
-			<td>수</td>
-			<td>목</td>
-			<td>금</td>
-			<td class="sat">토</td>
-		</tr>
-		
-		<tr>
-		<!-- 그달의 1일 까지 공백처리하기 위한 것임. -->
-		<%
-	
-			for(int i = 1; i < week; i++){
-		%>		
-		<td height = "20">&nbsp;</td>
-		<%
-		}
-		%>
-		<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
-		<%
-			// 오늘인지 확인
-			Date today = new Date();
-			SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-	        String todayString = sdformat.format(today);
-	        
-	        int todayBox = 0;
-	        
-	        for(int i = 0; i < pList.size(); i++){
-				String calDate = pList.get(i).getDiaryDate();
-				String calDateString = calDate.substring(0, calDate.length() - 9);
-	        	if(calDateString.equals(todayString)){
-			 	 	todayBox = i;
-				}
-	    	}
-	        
-			for(int j = 1; j<=endDay; j ++){
-				week++;
+	   		<div id="main-content">
+	   			<!-- Goal ----------------------------------------------------------------------------------------->
+	   			<div id="mWalkInfo">
+                    <div id="walkcontent-box">
+                        <p id="text01">산책 정보를 확인하려면
+                            <b>로그인</b>
+                            해주세요.</p>
+                        <div id="dog-image-box"></div>
+                        <div id="login-wrap">
+                            <a href="/html/login.html" class="link-login">로그인</a>
+                        </div>
+                        <div id="info-wrap">
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">/ 7</span>
+                                <p class="text" id="text">이번주 총 산책 횟수</p>
+                            </div>
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">km</span>
+                                <p class="text" id="text">총 산책거리</p>
+                            </div>
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">분</span>
+                                <p class="text" id="text">총 산책시간</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 둘다 묶는 박스으으으 ----------------------------------------------------------------------------------------->
+                <div>
+                	<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
+					<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
+					<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
+                	
+				   	<!-- Detail ----------------------------------------------------------------------------------------->
+				   	<div>
+				   		<div>
+				   			2021 / 04 / 13
+				   		</div>
+				   		<div>
+				   			<img src="">
+				   		</div>
+				   		<div>
+				   			내용입니당
+				   		</div>
+				   		<div>
+				   			(로고) 산책경로
+				   		</div>
+				   		<div>
+				   			지도
+				   		</div>
+				   		<div>
+				   			이번주 목표
+				   		</div>
+				   	</div>
+				   	
+				   	
+				   	<!-- List ----------------------------------------------------------------------------------------->
 				
-				if(week % 7 ==2){
-		 	%>
-					</tr>
+					<table border = "1">
 					<tr>
-			<% } 
-				if(week % 7 == 2){ 
-				%>
-					<%
-					for(int i = 0; i < pList.size(); i++){
-						String calDate = pList.get(i).getDiaryDate();
-						String calDateString = calDate.substring(0, calDate.length() - 9);
-			        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
-					 		if(pList.get(i).getDiaryTitle() != null) {
-					 %>
-					 			<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" style="background-color : yellow;"><%=j%></a>
-					 				<div><%= pList.get(i).getDiaryTitle() %></div>
-					 			</td>
-					 <%
-					 		} else {
-					 %>
-					 			<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j%></a>
-					 			</td>
-					 <%
-					 		}
-						}
-			    	}
-					%>
-				<%
-				} else if(week % 7 == 1){
-				%>
-						<%
-					for(int i = 0; i < pList.size(); i++){
-						String calDate = pList.get(i).getDiaryDate();
-						String calDateString = calDate.substring(0, calDate.length() - 9);
-			        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
-					 		if(pList.get(i).getDiaryTitle() != null) {
-					 %>
-					 			<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" style="background-color : yellow;"><%=j%></a>
-					 				<div><%= pList.get(i).getDiaryTitle() %></div>
-					 			</td>
-					 <%
-					 		}
-						} else {
-					%>
+						<td class="sun">일</td>
+						<td>월</td>
+						<td>화</td>
+						<td>수</td>
+						<td>목</td>
+						<td>금</td>
+						<td class="sat">토</td>
+					</tr>
 					
+					<tr>
+					<!-- 그달의 1일 까지 공백처리하기 위한 것임. -->
 					<%
-						}
-			    	}
+				
+						for(int i = 1; i < week; i++){
+					%>		
+					<td height = "20">&nbsp;</td>
+					<%
+					}
 					%>
-				<%
-				}else {
-				%>
-						<%
-					for(int i = 0; i < pList.size(); i++){
-						String calDate = pList.get(i).getDiaryDate();
-						String calDateString = calDate.substring(0, calDate.length() - 9);
-			        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
-					 		if(pList.get(i).getDiaryTitle() != null) {
-					 %>
-					 			<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" style="background-color : yellow;"><%=j%></a>
-					 				<div><%= pList.get(i).getDiaryTitle() %></div>
-					 			</td>
-					 <%
-					 		} else {
-					 %>
-					 			<td class="sun">
-									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>"><%=j%></a>
-					 			</td>
-					 <%
-					 		}
-						}
-			    	}
-					%>
-				<% }
-			}%>
-			</tr>
-		</table>
+					<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
+					<%
+						// 오늘인지 확인
+						Date today = new Date();
+						SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+				        String todayString = sdformat.format(today);
+				        
+				        int todayBox = 0;
+				        
+				        for(int i = 0; i < pList.size(); i++){
+							String calDate = pList.get(i).getDiaryDate();
+							String calDateString = calDate.substring(0, calDate.length() - 9);
+				        	if(calDateString.equals(todayString)){
+						 	 	todayBox = i;
+							}
+				    	}
+				        
+						for(int j = 1; j<=endDay; j ++){
+							week++;
+							
+							if(week % 7 ==2){
+					 	%>
+								</tr>
+								<tr class="diary-row">
+						<% } 
+							if(week % 7 == 2){ 
+							%>
+								<td class="sun">
+									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+									<%
+									for(int i = 0; i < pList.size(); i++){
+										String calDate = pList.get(i).getDiaryDate();
+										String calDateString = calDate.substring(0, calDate.length() - 9);
+							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+									 	%>
+									 		<script>
+									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow');
+									 		</script>
+									 		<div><%= pList.get(i).getDiaryTitle() %></div>
+							        	<%
+										}
+							    	}
+									%>
+								</td>
+							<%
+							} else if(week % 7 == 1){
+							%>
+									<td class="sun">
+									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+									<%
+									for(int i = 0; i < pList.size(); i++){
+										String calDate = pList.get(i).getDiaryDate();
+										String calDateString = calDate.substring(0, calDate.length() - 9);
+							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+									 	%>
+									 		<script>
+									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow');
+									 		</script>
+									 		<div><%= pList.get(i).getDiaryTitle() %></div>
+							        	<%
+										}
+							    	}
+									%>
+								</td>
+							<%
+							}else {
+							%>
+									<td class="sun">
+									<a href="/petdiary/detail?month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+									<%
+									for(int i = 0; i < pList.size(); i++){
+										String calDate = pList.get(i).getDiaryDate();
+										String calDateString = calDate.substring(0, calDate.length() - 9);
+							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+									 	%>
+									 		<script>
+									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow');
+									 		</script>
+									 		<div><%= pList.get(i).getDiaryTitle() %></div>
+							        	<%
+										}
+							    	}
+									%>
+								</td>
+							<% }
+						}%>
+						</tr>
+					</table>
+				</div>
+			</div>
 			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
             <footer>
                 <!-- 푸터 -->
