@@ -25,6 +25,7 @@ public class CommunityDAO {
 		int start = currentPage * recordCountPage - (recordCountPage - 1);
 		int end = currentPage * recordCountPage;
 		
+		System.out.println("DAO완료");
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -100,13 +101,13 @@ public class CommunityDAO {
 		
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) {
-			sb.append("<a href='/notice/list?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
+			sb.append("<a href='/community/list?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
 		}
 		for(int i=startNavi; i<=endNavi; i++) {
-			sb.append("<a href='/notice/list?currentPage=" + i + "'>" + i + "</a>");
+			sb.append("<a href='/community/list?currentPage=" + i + "'>" + i + "</a>");
 		}
 		if(needNext) {
-			sb.append("<a href='/notice/list?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
+			sb.append("<a href='/community/list?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
 		}
 		
 		return sb.toString();

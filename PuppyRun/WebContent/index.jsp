@@ -1,3 +1,5 @@
+<%@page import="community.model.vo.Community"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -166,36 +168,15 @@
                         <p>NEW</p>
                     </div>
                     <div id="fbb-bottom">
+                    	
                         <dl class="fbb-cotent">
-                            <dt>2021-04-06</dt>
-                            <dd>오늘 강아지 꿈을
-                                꾸었습니다1111111111111111111111111111111111111111111111111111.111111111111111111111111111111111111</dd>
-                            <dd>개꿈이었을까요? 개꿈맞을까요? 아닌가요?
-                                궁짱짱꿍깡쭝깡쭝깡쭝깡쭝깡깡깡깡깡깡깡깡깡깡깡깡깡1ㅇㅁ111111111111111111111111111111111111111131231313313131313131ㄹ안ㄹ나랠래랜ㅁ래랠매ㄴㅇㅁㅇㅇㅁㄴㅇㅇ</dd>
+                            <dt>데이터</dt>
+                            <dd>타이틀</dd>
+                            <dd>내용</dd>
                             <div class="profile-image"></div>
-                            <dt>개꿈 꾸는 사람</dt>
+                            <dt>닉네임</dt>
                         </dl>
-                        <dl class="fbb-cotent">
-                            <dt>2021-04-05</dt>
-                            <dd>오늘 한강 놀러왔어요~~</dd>
-                            <dd>우리 귀여운 강아지랑 같이 산책하려고 왔어요~ 날씨도 너무 좋더라고요~~</dd>
-                            <div class="profile-image"></div>
-                            <dt>한강 가는 사람</dt>
-                        </dl>
-                        <dl class="fbb-cotent">
-                            <dt>2021-04-05</dt>
-                            <dd>치킨이닭</dd>
-                            <dd>치킨췩킨취킨</dd>
-                            <div class="profile-image"></div>
-                            <dt>치킨</dt>
-                        </dl>
-                        <dl class="fbb-cotent">
-                            <dt>2021-04-04</dt>
-                            <dd>게시판 망했나요</dd>
-                            <dd>게시물이 없네요</dd>
-                            <div class="profile-image"></div>
-                            <dt>가끔 오는 사람</dt>
-                        </dl>
+                       
                     </div>
                 </div>
                 <!-- 산책친구 -->

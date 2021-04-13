@@ -29,7 +29,7 @@
         <link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="./assets/js/jquery-3.4.1.min.js"></script>
+        <script src="/assets/js/jquery-3.4.1.min.js"></script>
         <script src="/assets/js/slider.js"></script>
         <script src="/assets/js/scroll.js"></script>
         <title>퍼피런 :: 멍멍이야기</title>

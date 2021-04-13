@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import community.model.service.CommunityService;
 import community.model.vo.Community;
@@ -40,6 +41,7 @@ public class CommunityListServlet extends HttpServlet {
 			request.setAttribute("cList", cList);
 			request.setAttribute("pageNavi", pageNavi);
 			request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
+			
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/community/communutyError.html").forward(request, response);
 		}
