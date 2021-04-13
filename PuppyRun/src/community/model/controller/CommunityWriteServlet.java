@@ -22,32 +22,18 @@ import photo.model.service.PhotoService;
 import photo.model.vo.Photo;
 import user.model.vo.User;
 
-/**
- * Servlet implementation class NoticeWriteServlet
- */
 @WebServlet("/community/write")
 public class CommunityWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public CommunityWriteServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/views/community/communityWrite.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
@@ -63,14 +49,14 @@ public class CommunityWriteServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		
 		// 작성 완료한 게시물 정보 가져오기
-		String communityID = user.getUserId();
+		String communityId = user.getUserId();
 		int communityTagNo = Integer.parseInt(multi.getParameter("tags"));
 		String communityTitle = multi.getParameter("title");
 		String communityContent = multi.getParameter("content");
 		String communityUserName = user.getUserNick();
 		// 위에 가져온 값들을 Community 객체에 저장하기
 		Community community = new Community();
-		community.setComId(communityID);
+		community.setComId(communityId);
 		community.setTagNo(communityTagNo);
 		community.setComTitle(communityTitle);
 		community.setComContent(communityContent);

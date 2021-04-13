@@ -8,6 +8,7 @@ public class Matching {
 	private String matAddr;
 	private char matCheck;
 	private int matPhoto;
+	private String userNick;
 	
 	public Matching() {}
 	
@@ -66,6 +67,16 @@ public class Matching {
 
 	public void setMatPhoto(int matPhoto) {
 		this.matPhoto = matPhoto;
+	}
+	
+	
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
 
 	@Override

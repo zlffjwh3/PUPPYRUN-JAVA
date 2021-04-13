@@ -86,7 +86,7 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="" method="">
+                            <form action="/matching/write" method="post">
                                 <div id="address">
                                     <p class="write-p-tag">주소</p>
                                     <div class="addr-box addr1-box">
