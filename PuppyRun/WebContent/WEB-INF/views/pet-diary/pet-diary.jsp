@@ -181,22 +181,22 @@
                 <!-- 둘다 묶는 박스으으으 ----------------------------------------------------------------------------------------->
                 
                 <div id="main-content2"  align="center" >
-                <div id="top-box">
-                	<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
-					<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
-					<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
-				<div>
+	                <div id="top-box">
+	                	<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
+						<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
+						<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
+					</div>
                 	
 				   	<!-- Detail ----------------------------------------------------------------------------------------->
 				   	<%
-				   	if(petDiary != null) {
+				   	if(petDiary != null && petDiary.getDiaryTitle() != null) {
 				   	%>
-				   	<div id="detail-box">
+				   	<div class="detail-box">
 				   		<div>
-				   			<%-- <%= petDiary.getDiaryDate() %> --%>
+				   			<%= petDiary.getDiaryDate().substring(0, 10) %>
 				   		</div>
-				   		<div>
-				   			<%-- <img src="/upload/<%= petDiary.getDiaryPhoto() %>"> --%>
+				   		<div class="diary-photo">
+				   			<img src="/upload/<%= petDiary.getDiaryPhoto() %>">
 				   		</div>
 				   		<div>
 				   			<%= petDiary.getDiaryContent()%>
@@ -213,20 +213,32 @@
 				   			목표 데스!
 				   		</div>
 				   	</div>
-				   	<% } %>
-				   	<!-- 일기를 등록해주세요! -->
+				   	<% } else if(petDiary != null) {
+				   	%>
+				   	<div class="detail-box">
+				   		일기를 등록해주세요! (귀엽게 사진으로 하자)
+				   	</div>
+				   	<%
+				   	} else {
+				   	%>
+				   	<div class="detail-box">
+				   		보고싶은 일기의 날짜를 선택해주세요!!
+				   	</div>
+				   	<%
+				   	}
+				   	%>
 				   	
 				   	<!-- List ----------------------------------------------------------------------------------------->
 				
 					<table id="list-box">
 					<tr>
-						<td class="sun">일</td>
-						<td>월</td>
-						<td>화</td>
-						<td>수</td>
-						<td>목</td>
-						<td>금</td>
-						<td class="sat">토</td>
+						<td class="sun">Sun</td>
+						<td>Mon</td>
+						<td>Tue</td>
+						<td>Wed</td>
+						<td>Thu</td>
+						<td>Fri</td>
+						<td>Sat</td>
 					</tr>
 					
 					<tr>
@@ -262,12 +274,12 @@
 							if(week % 7 ==2){
 					 	%>
 								</tr>
-								<tr class="diary-row">
+								<tr>
 						<% } 
 							if(week % 7 == 2){ 
 							%>
-								<td class="sun">
-									<a href="/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+								<td class="sun day" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
+									<div id="day<%=j%>"><%=j %></div>
 									<%
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();
@@ -284,30 +296,10 @@
 									%>
 								</td>
 							<%
-							} else if(week % 7 == 1){
+							} else {
 							%>
-									<td class="sun">
-									<a href="/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
-									<%
-									for(int i = 0; i < pList.size(); i++){
-										String calDate = pList.get(i).getDiaryDate();
-										String calDateString = calDate.substring(0, calDate.length() - 9);
-							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
-									 	%>
-									 		<script>
-									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow');
-									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-							        	<%
-										}
-							    	}
-									%>
-								</td>
-							<%
-							}else {
-							%>
-									<td class="sun">
-									<a href="/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>" id="day<%=j%>"><%=j %></a>
+								<td class="weekday day" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
+									<div id="day<%=j%>"><%=j %></div>
 									<%
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();

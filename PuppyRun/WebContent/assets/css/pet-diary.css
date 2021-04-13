@@ -2,11 +2,30 @@
 /* #main-content2{
 	marign : 0 auto;		
 } */
-#detail-box{
- display : inline-block;'
+
+.detail-box{
+	display : inline-block;'
+	float: left;
 }
+
+.detail-box > .diary-photo {
+	width : 320px;
+    height : 220px;
+    float : left;
+    cursor: pointer;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.detail-box  > .diary-photo > img{
+	width : 100%;
+    border-radius: 30px;
+    transition: 0.4s;
+}
+
 #list-box{
 	display : inline-block;
+	float : right;
 }
 #main-content2{
 	marign : 0 auto;
@@ -14,4 +33,20 @@
 }
 #top-box{
 	
+}
+.day{
+	width : 100px;
+	height : 100px;
+}
+
+.day:hover {
+	background-color : gray;
+}
+
+.sun {
+	color : red;
+}
+
+.sun > div{
+	color : red;
 }

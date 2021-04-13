@@ -2,6 +2,7 @@ package petdiary.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,8 +42,12 @@ public class PetDiaryDetailServlet extends HttpServlet {
 	 	Date diaryDate = Date.valueOf(tempDate);
 	 	
 	 	PetDiary petDiary = new  PetDiaryService().selectOneDiary(diaryDate, diaryId);
-	 	if(petDiary != null) {
+	 	ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(diaryId);
+	 	
+	 	
+	 	if(petDiary != null && !pList.isEmpty() ) {
 	 		request.setAttribute("petDiary", petDiary);
+	 		request.setAttribute("pList", pList);
 	 		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 	 	}else {
 	 		request.getRequestDispatcher("/WEB-INF/views/pet-diary/diaryError.html").forward(request, response);
