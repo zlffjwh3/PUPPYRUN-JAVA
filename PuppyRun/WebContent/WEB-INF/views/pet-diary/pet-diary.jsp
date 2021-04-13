@@ -202,7 +202,7 @@
 				   			<%= petDiary.getDiaryContent()%>
 				   		</div>
 				   		<div>
-				   			(로고) 산책경로
+				   			(로고) 산책 경로
 				   		</div>
 				   		<div>
 				   			<%-- <%= petDiary.getDiaryMap()%> --%>
