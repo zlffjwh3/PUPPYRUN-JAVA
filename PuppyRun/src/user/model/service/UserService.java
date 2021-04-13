@@ -136,9 +136,20 @@ public class UserService {
 //	}
 
 
+	// 유저ID찾기
 	public User findUserId(String userName, String userEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = null;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			user = new UserDAO().findUserId(conn, userName, userEmail);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return user;
 	}
 
 	

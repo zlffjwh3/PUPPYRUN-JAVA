@@ -14,6 +14,7 @@
     <title>회원 정보 찾기</title>
 </head>
 <body>
+<!-- 테스트 -->
     <div id="wrap">
             <div id="header">
                 <a href="#"><img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt=""></a>
