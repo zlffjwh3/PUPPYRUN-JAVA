@@ -17,7 +17,7 @@ public class CommunityDAO {
 	public ArrayList<Community> selectAllCommunity(Connection conn, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT FROM COMMUNITY) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT, USER_NICK FROM COMMUNITY) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Community> cList = null;
 		
 		// 한 페이지에 보여줄 게시물의 수
@@ -45,6 +45,7 @@ public class CommunityDAO {
 					community.setComDate(rset.getDate("COM_DATE"));
 					community.setComPhoto(rset.getString("COM_PHOTO"));
 					community.setLikeCount(rset.getInt("LIKE_COUNT"));
+					community.setUserNick(rset.getString("USER_NICK"));
 					
 					cList.add(community);
 				}
@@ -148,7 +149,7 @@ public class CommunityDAO {
 	// 글 등록
 	public int insertCommunity(Connection conn, Community community) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO COMMUNITY VALUES(SEQ_COMNO.NEXTVAL, ?, ?, ?, ?, 0, SYSDATE, ?, 0)";
+		String query = "INSERT INTO COMMUNITY VALUES(SEQ_COMNO.NEXTVAL, ?, ?, ?, ?, 0, SYSDATE, ?, 0, ?)";
 		int result = 0;
 		
 		try {
@@ -158,6 +159,7 @@ public class CommunityDAO {
 			pstmt.setString(3, community.getComTitle());
 			pstmt.setString(4, community.getComContent());
 			pstmt.setString(5, community.getComPhoto());
+			pstmt.setString(6, community.getUserNick());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

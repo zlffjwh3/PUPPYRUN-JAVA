@@ -158,7 +158,7 @@
                                             <div class="profile">
                                                 <div class="img"></div>
                                                 <!-- 닉네임 -->
-                                                <p class="post-nickname"><%= user.getUserNick() %></p>
+                                                <p class="post-nickname"><%= cList.get(i).getUserNick() %></p>
                                             </div>
                                             <div class="counting-bar">
                                                 <!-- 작성일 -->

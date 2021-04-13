@@ -67,13 +67,14 @@ public class CommunityWriteServlet extends HttpServlet {
 		int communityTagNo = Integer.parseInt(multi.getParameter("tags"));
 		String communityTitle = multi.getParameter("title");
 		String communityContent = multi.getParameter("content");
-		
+		String communityUserName = user.getUserNick();
 		// 위에 가져온 값들을 Community 객체에 저장하기
 		Community community = new Community();
 		community.setComId(communityID);
 		community.setTagNo(communityTagNo);
 		community.setComTitle(communityTitle);
 		community.setComContent(communityContent);
+		community.setUserNick(communityUserName);
 		
 		// 파일 업로드
 		int photoResult = 0;
