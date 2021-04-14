@@ -1,6 +1,8 @@
 package user.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,11 +30,14 @@ public class FindIdServlet extends HttpServlet {
 		System.out.println(user);
 		
 		if(user != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-//			request.getRequestDispatcher("/WEB-INF/views/user/findIdSuccess.html").forward(request, response);;
-			request.getRequestDispatcher("/index.jsp").forward(request, response);;
-//			response.sendRedirect("/index.jsp");
+//			HttpSession session = request.getSession();
+//			session.setAttribute("userId", user.getUserId());
+//			session.setAttribute("userName", user.getUserName());
+			request.setAttribute("userId", user.getUserId());
+			request.setAttribute("userName", user.getUserName());
+			RequestDispatcher view = request.getRequestDispatcher("/id-pw-inquiry.jsp");
+			view.forward(request, response);
+			
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
