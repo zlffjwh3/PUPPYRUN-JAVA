@@ -88,6 +88,7 @@
                     </form>
 				<% } %>
 				<% if(userPwd != null && userPwd != "") { %>
+				<!-- 해당부분 찌부러짐있음 수정필요함 -->
 				<script>$('#email-group').css('display','none');$('#pwd-group').css('display','block');$('#find-pwd > a').css('background','rgb(240,163,0)');$('#find-id > a').css('background','#FEB415');</script>
 					<br><br>
                    	<h4 class="result"><%= pUserId  %>님의 비밀번호 : </h4><br>
