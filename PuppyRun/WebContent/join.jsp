@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/join.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="<%= request.getContextPath() %>assets/js/jquery-3.5.1.min.js"></script>
-    <%-- <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/join.js"></script> --%>
+    <%-- <script src="<%= request.getContextPath() %>assets/js/jquery-3.5.1.min.js"></script> --%>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/join.js"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <title>퍼피런 회원가입</title>
 </head>
@@ -23,7 +23,8 @@
                 <img src="<%= request.getContextPath() %>assets/img/main_logo.png" alt="">
             </div>
             <div id="form1-area">
-                <form action="/user/enroll" method="post">
+                <form name="frm">
+                <!-- <form action="/user/enroll" method="post" name="frm"> -->
                     <div id="id-area" class="area-div">
                         <p class="subtitle">아이디</p>
                         <div id="id-input" class="input-div">
@@ -77,15 +78,15 @@
                         <div id="month-input" class="input-div">
                             <select name="user-birth-month" id="user-birth-month">
                                 <option value="" selected disabled>월</option>
-                                <option value="1">1월</option>
-                                <option value="2">2월</option>
-                                <option value="3">3월</option>
-                                <option value="4">4월</option>
-                                <option value="5">5월</option>
-                                <option value="6">6월</option>
-                                <option value="7">7월</option>
-                                <option value="8">8월</option>
-                                <option value="9">9월</option>
+                                <option value="01">1월</option>
+                                <option value="02">2월</option>
+                                <option value="03">3월</option>
+                                <option value="04">4월</option>
+                                <option value="05">5월</option>
+                                <option value="06">6월</option>
+                                <option value="07">7월</option>
+                                <option value="08">8월</option>
+                                <option value="09">9월</option>
                                 <option value="10">10월</option>
                                 <option value="11">11월</option>
                                 <option value="12">12월</option>
@@ -109,10 +110,7 @@
                             <input type="text" name="addr2" id="addr2" placeholder="상세주소">
                         </div>
                     </div>
-                    <div id="user-join-submit" class="submitBtn">
-                        <input type="submit" value="확인">
-                    </div>
-                    <!-- <div id="pet-select-area" class="area-div">
+                    <div id="pet-select-area" class="area-div">
                         <span class="pet-ques">반려견이 있나요? </span>
                         <div class="pet-result">
                             <label for="pet-selectY">
@@ -122,6 +120,9 @@
                                 아니요 <input type="radio" name="pet-select" id="pet-selectN" class="pet-select" value="no" checked>
                             </label>
                         </div>
+                    </div>
+                    <div id="user-join-submit" class="submitBtn">
+                        <input type="button" class="joinBtn" value="확인" onclick="getPost('01')">
                     </div>
                 </div>
                 <div id="form2-area">
@@ -164,10 +165,10 @@
                         </div>
                         <span class="dog-weight-error-msg error-msg"></span>
                     </div>
-                </div> -->
-                    <!-- <div id="dog-and-user-submit" class="submitBtn"> -->
-                        <!-- <input type="submit" value="확인"> -->
-                    <!-- </div> -->
+                    <div id="dog-and-user-submit" class="submitBtn">
+                        <input type="button" class="joinBtn" value="확인" onclick="getPost('02')">
+                    </div>
+                </div>
             </form>
             </div>
     </div>

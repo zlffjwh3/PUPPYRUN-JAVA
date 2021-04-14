@@ -150,7 +150,13 @@ input[type=text], input[type=number], input[type=password], select {
 .submitBtn {
     margin: 10px 0 0 36%;
 }
-.submitBtn > input[type=submit] {
+#email-area > input[type=button], #addr-area > button {
+    background-color: white;
+    border-radius: 10px;
+    border : 1px solid #B0B0B0 ;
+    cursor: pointer;
+}
+.submitBtn > input[type=submit], .joinBtn {
     border: none;
     color: white;
     width: inherit;
@@ -164,12 +170,6 @@ input[type=text], input[type=number], input[type=password], select {
     margin: 18px 0 50px 0;
 }
 
-input[type=button], button {
-    background-color: white;
-    border-radius: 10px;
-    border : 1px solid #B0B0B0 ;
-    cursor: pointer;
-}
 
 /* dog폼 */
 #form2-area {

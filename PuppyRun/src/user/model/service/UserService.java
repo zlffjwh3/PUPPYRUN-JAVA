@@ -66,6 +66,7 @@ public class UserService {
 			} else {
 				JDBCTemplate.rollback(conn);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -75,12 +76,31 @@ public class UserService {
 	}
 	
 	// 회원가입 (강아지 있음)
-	public int insertDog(Dog dog) {
+//	public int insertDog(Dog dog) {
+//		int result = 0;
+//		Connection conn = null;
+//		try {
+//			conn = factory.createConnection();
+//			result = new UserDAO().insertDog(conn, dog);
+//			if(result > 0) {
+//				JDBCTemplate.commit(conn);
+//			} else {
+//				JDBCTemplate.rollback(conn);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			JDBCTemplate.close(conn);
+//		}
+//		
+//		return result;
+//	}
+	public int insertDog(User user, Dog dog) {
 		int result = 0;
 		Connection conn = null;
 		try {
 			conn = factory.createConnection();
-			result = new UserDAO().insertDog(conn, dog);
+			result = new UserDAO().insertDog(conn, user, dog);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
 			} else {
@@ -88,7 +108,7 @@ public class UserService {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(conn);
 		}
 		
@@ -102,6 +122,12 @@ public class UserService {
 		try {
 			conn = factory.createConnection(); // 연결 생성해서 DAO에 넘겨주는 역할
 			result = new UserDAO().deleteUser(conn, userId);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -168,6 +194,9 @@ public class UserService {
 		}
 		return user;
 	}
+
+
+
 
 	
 }

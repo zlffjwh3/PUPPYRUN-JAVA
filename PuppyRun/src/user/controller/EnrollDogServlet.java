@@ -14,11 +14,11 @@ import user.model.vo.Dog;
 import user.model.vo.User;
 
 
-@WebServlet("/user/enroll")
-public class EnrollServlet extends HttpServlet {
+@WebServlet("/user/enrollDog")
+public class EnrollDogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public EnrollServlet() {
+    public EnrollDogServlet() {
         super();
     }
 
@@ -30,7 +30,7 @@ public class EnrollServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		User user = new User();
-//		Dog dog = new Dog();
+		Dog dog = new Dog();
 		String birth = request.getParameter("user-birth-year") + request.getParameter("user-birth-month") + request.getParameter("user-birth-day");
 		String address = request.getParameter("zip") + request.getParameter("addr1") + request.getParameter("addr2");
 		
@@ -42,27 +42,26 @@ public class EnrollServlet extends HttpServlet {
 		user.setEmail(request.getParameter("user-email"));
 		user.setUserBirth(birth);
 		user.setUserAddr(address);
-//		user.setDogCheck(request.getParameter("pet-select").charAt(0));
+		user.setDogCheck('Y');
 		
-		
-		/*
-		 * dog.setDogName(request.getParameter("dog-name"));
-		 * dog.setDogBreed(request.getParameter("dog-kind"));
-		 * dog.setDogGender(request.getParameter("dog-gender").charAt(0));
-		 * dog.setDogAge(Integer.parseInt(request.getParameter("dog-age")));
-		 * dog.setDogWeight(Float.parseFloat(request.getParameter("dog-weight")));
-		 * dog.setDogId(request.getParameter("user-id"));
-		 * 
-		 * user.setDog(dog);
-		 */
+		 dog.setDogName(request.getParameter("dog-name"));
+		 dog.setDogBreed(request.getParameter("dog-kind"));
+		 dog.setDogGender(request.getParameter("dog-gender").charAt(0));
+		 dog.setDogAge(Integer.parseInt(request.getParameter("dog-age")));
+		 dog.setDogWeight(Float.parseFloat(request.getParameter("dog-weight")));
+		 dog.setDogId(request.getParameter("user-id"));
+		  
+//		 user.setDog(dog);
+		 
 				
-		int userResult = new UserService().insertUser(user);
+		int userResult = new UserService().insertDog(user, dog);
 		System.out.println("값이 나오나 테스트 : " + userResult);
 		if(userResult > 0) {
 			response.sendRedirect("/join.jsp");
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
+		
 		/*
 		 * if(request.getParameter("pet-select").charAt(0) == 'Y') { int dogResult = new
 		 * UserService().insertDog(dog);

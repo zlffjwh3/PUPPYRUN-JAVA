@@ -1,3 +1,21 @@
+// 전역변수
+
+var userIdCheckFlag = false;
+var userPwdCheckFlag = false;
+var userPwdReCheckFlag = false;
+var userNicknameCheckFlag = false;
+var userNameCheckFlag = false;
+var userPhoneCheckFlag = false;
+var userEamilCheckFlag = false;
+var userYearCheckFlag = false
+var userMonthCheckFlag = false;
+var userDayCheckFlag = false;
+var dogNameCheckFlag = false;
+var dogKindCheckFlag = false;
+var dogGenderCheckFlag = false;
+var dogAgeCheckFlag = false;
+var dogWeightCheckFlag = false;
+
 $(document).ready(function() {
 	
 	const petSelectYes = $('#pet-selectY');
@@ -12,18 +30,18 @@ $(document).ready(function() {
 	});
 
 	// 정규표현식
-	var idExp = /^[a-zA-Z0-9]{5,11}$/;
+		var idExp = /^[a-zA-Z0-9]{5,11}$/;
         var pwdExp = /^[a-zA-Z0-9|!@#&]{8,}$/;
         var nicknameExp = /^[a-zA-Z0-9|가-힣]{2,8}$/;
         var nameExp = /^[가-힣]{2,6}$/;
-        var phoneExp = /^01[0|1|6-9]-[\w]{3,4}-[\w]{3,4}$/;
+        var phoneExp = /^01[0|1|6-9][\w]{3,4}[\w]{3,4}$/;
         var emailExp = /^[\w]{1,12}@[0-9a-zA-Z]{2,8}.[\w]{2,3}/i;
         var yearExp = /^19[0-9]{2,}$/;
-        var dayExp = /^0[1-9]|1[0-9]|2[0-9]$/;
+        var dayExp = /^0[1-9]|1[0-9]|2[0-9]$/; //수정해야할듯
         var dogNameExp = /^[가-힣]{1,8}$/;
         var dogKindExp = /^[가-힣]{1,15}$/;
         var dogAgeExp = /^\d{1,3}$/;
-        var dogWeightExp = /^[\d]{1,3}.[\d]{1,}$/;
+        var dogWeightExp = /^[\d]{1,3}[.][\d]{1,}$/; //수정해야할듯
 
 
         var userId = $('#user-id');
@@ -49,21 +67,7 @@ $(document).ready(function() {
         var emailErrorMsg = $('.email-error-msg');
         var dogNameErrorMsg = $('.dog-name-error-msg');
         
-        var userIdCheckFlag = false;
-        var userPwdCheckFlag = false;
-        var userPwdReCheckFlag = false;
-        var userNicknameCheckFlag = false;
-        var userNameCheckFlag = false;
-        var userPhoneCheckFlag = false;
-        var userEamilCheckFlag = false;
-        var userYearCheckFlag = false
-        var userMonthCheckFlag = false;
-        var userDayCheckFlag = false;
-        var dogNameCheckFlag = false;
-        var dogKindCheckFlag = false;
-        var dogGenderCheckFlag = false;
-        var dogAgeCheckFlag = false;
-        var dogWeightCheckFlag = false;
+       
 
 
         userId.on('keyup', function() {
@@ -128,7 +132,7 @@ $(document).ready(function() {
 
         userPhone.on('keyup', function() {
             if(!phoneExp.test(userPhone.val())) {
-                phoneErrorMsg.html('핸드폰 번호는 -를 포함해 입력해주세요');
+                phoneErrorMsg.html('핸드폰 번호를 입력해주세요');
                 $('#phone-input').css('border', '1px solid #FF0000');
                 userPhoneCheckFlag = false;
             } else {
@@ -215,72 +219,117 @@ $(document).ready(function() {
                 dogWeightCheckFlag = true;
             }
         });
-
-            
-            
-        /*$('#form1-area > form').on('submit', function() {
-            if(userIdCheckFlag == false) {
-                return false;
-            }
-            if(userPwdCheckFlag == false) {
-                return false;
-            }
-            if(userPwdReCheckFlag == false) {
-                return false;
-            }
-            if(userNicknameCheckFlag == false) {
-                return false;
-            }
-            if(userNameCheckFlag == false) {
-                return false;
-            }
-            if(userPhoneCheckFlag == false) {
-                return false;
-            }
-            if(userEamilCheckFlag == false) {
-                return false;
-            }
-            if(userYearCheckFlag == false) {
-                return false;
-            }
-            if($('#user-birth-month').val() == null) {
-                return false;
-            }
-            if(userDayCheckFlag == false) {
-                return false;
-            }
-            if($('#zip').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == '') {
-                return false;
-            }
-        });*/
-		// 강아지 유 선택하고 입력해야 회원가입할 수 있도록 함
-		/*$('#dog-and-user-submit > input').on('click', function() {
-			if(dogNameCheckFlag == false) {
-				return false;
-			}
-			if(dogKindCheckFlag == false) {
-				return false;
-			}
-			if($('#dog-gender').val() == null) {
-				return false;
-			}
-			if(dogAgeCheckFlag == false) {
-				return false;
-			}
-			if(dogWeightCheckFlag == false) {
-				return false;
-			}
-		});*/
-
+		
+		
+		
+	
+	
 })
 
-// 주소검색 api
-function openZipSearch() {
-	new daum.Postcode({
-		oncomplete: function(data) {
-			$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
-			$('[name=addr1]').val(data.address);
-			$('[name=addr2]').val(data.buildingName);
+	function getPost(mode) {
+		var frm = document.frm;
+		var email = $('#user_email');
+        if(mode== "01") { // 반려견 없음
+			if(userIdCheckFlag == false) {
+                return;
+            }
+            if(userPwdCheckFlag == false) {
+                return;
+            }
+            if(userPwdReCheckFlag == false) {
+                return;
+            }
+            if(userNicknameCheckFlag == false) {
+                return;
+            }
+            if(userNameCheckFlag == false) {
+                return;
+            }
+            if(userPhoneCheckFlag == false) {
+                return;
+            }
+            if(userEamilCheckFlag == false) {
+                return;
+            }
+            if(userYearCheckFlag == false) {
+                return;
+            }
+            if($('#user-birth-month').val() == null) {
+                return;
+            }
+            if(userDayCheckFlag == false) {
+                return;
+            }
+            if($('#zip').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == '') {
+                return;
+            }
+	
+            frm.method = "post";
+            frm.action = "/user/enroll";
+		}   else if (mode == "02") {
+				if(userIdCheckFlag == false) {
+                	return;
+	            }
+	            if(userPwdCheckFlag == false) {
+	                return;
+	            }
+	            if(userPwdReCheckFlag == false) {
+	                return;
+	            }
+	            if(userNicknameCheckFlag == false) {
+	                return;
+	            }
+	            if(userNameCheckFlag == false) {
+	                return;
+	            }
+	            if(userPhoneCheckFlag == false) {
+	                return;
+	            }
+	            if(userEamilCheckFlag == false) {
+	                return;
+	            }
+	            if(userYearCheckFlag == false) {
+	                return;
+	            }
+	            if($('#user-birth-month').val() == null) {
+	                return;
+	            }
+	            if(userDayCheckFlag == false) {
+	                return;
+	            }
+	            if($('#zip').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == '') {
+	                return;
+	            }
+				// 강아지
+				if(dogNameCheckFlag == false) {
+					return;
+				}
+				if(dogKindCheckFlag == false) {
+					return;
+				}
+				if($('#dog-gender').val() == null) {
+					return;
+				}
+				if(dogAgeCheckFlag == false) {
+					return;
+				}
+				if(dogWeightCheckFlag == false) {
+					return;
+				}
+			
+			frm.method = "post";
+            frm.action = "/user/enrollDog";
 		}
-	}).open();
-}
+            frm.submit(); // 실행
+    }
+
+		// 주소검색 api
+	function openZipSearch() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+				$('[name=addr1]').val(data.address);
+				$('[name=addr2]').val(data.buildingName);
+			}
+		}).open();
+	}
