@@ -254,12 +254,14 @@
 					<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
 					<%
 						// 오늘인지 확인
-						/* Date today = new Date();
+						 Date today = new Date();
 						SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 				        String todayString = sdformat.format(today);
 				        
-				        int todayBox = 0;
+				        System.out.println(todayString);
 				        
+				        //int todayBox = 0;
+				        /*
 				        for(int i = 0; i < pList.size(); i++){
 							String calDate = pList.get(i).getDiaryDate();
 							String calDateString = calDate.substring(0, calDate.length() - 9);
@@ -284,19 +286,29 @@
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();
 										String calDateString = calDate.substring(0, calDate.length() - 9);
+										if(!(Integer.toString(year).equals(todayString.substring(0, 4)) && month == Integer.parseInt(todayString.substring(5, 7)) && j == Integer.parseInt(todayString.substring(8, 10)))){
 							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
 									 	%>
 									 		<script>
 									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow');
 									 		</script>
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-							        	<%
-										}
+							       	<%
+							        		}
+										}else{
+											if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+										%>
+											<script>
+									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
+									 		</script>
+									 		<div><%= pList.get(i).getDiaryTitle() %></div>
+								<%	}	
 							    	}
+									}
 									%>
 								</td>
 							<%
-							} else {
+							}else{
 							%>
 								<td class="weekday day" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
 									<div id="day<%=j%>"><%=j %></div>
@@ -304,15 +316,25 @@
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();
 										String calDateString = calDate.substring(0, calDate.length() - 9);
+										if(!(Integer.toString(year).equals(todayString.substring(0, 4)) && month == Integer.parseInt(todayString.substring(5, 7)) && j == Integer.parseInt(todayString.substring(8, 10)))){
 							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
 									 	%>
 									 		<script>
 									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow');
 									 		</script>
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-							        	<%
-										}
+							       	<%
+							        		}
+										}else{
+											if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+										%>
+											<script>
+									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
+									 		</script>
+									 		<div><%= pList.get(i).getDiaryTitle() %></div>
+								<%	}	
 							    	}
+									}
 									%>
 								</td>
 							<% }
