@@ -142,9 +142,39 @@ public class CommunityDAO {
 		return null;
 	}
 	
-	
+	// 특정 게시물 보기
 	public Community selectOneCommunity(Connection conn, int comNo) {
-		return null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM COMMUNITY WHERE COM_NO = ?";
+		Community community = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, comNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				community = new Community();
+				community.setComNo(rset.getInt("COM_NO"));
+				community.setComId(rset.getString("COM_ID"));
+				community.setTagNo(rset.getInt("TAG_NO"));
+				community.setComTitle(rset.getString("COM_TITLE"));
+				community.setComContent(rset.getString("COM_CONTENT"));
+				community.setComview(rset.getInt("COM_VIEW"));
+				community.setComDate(rset.getDate("COM_DATE"));
+				community.setComPhoto(rset.getString("COM_PHOTO"));
+				community.setLikeCount(rset.getInt("LIKE_COUNT"));
+				community.setUserNick(rset.getString("USER_NICK"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return community;
 	}
 	
 	// 글 등록
@@ -181,7 +211,22 @@ public class CommunityDAO {
 	}
 	
 	public int addReadCount(Connection conn, int comNo) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE COMMUNITY SET COM_VIEW = COM_VIEW + 1 WHERE COM_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, comNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	public ArrayList<Community> selectSearchList(Connection conn, String search, int currentPage) {

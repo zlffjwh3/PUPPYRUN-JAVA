@@ -65,7 +65,7 @@ a:visited {
   margin : 40px 30px 0px 30px;
 }
 
-#category > li > i{
+#category li i{
   font-size : 50px;
   font-weight: 200;
   color :rgb(31, 30, 30);

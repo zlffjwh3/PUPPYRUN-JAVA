@@ -58,7 +58,7 @@
                             <a href="#">
                                 <i class="xi-face xi-2x"></i>
                             </a>
-                            <a href="#" id="login-content">로그인</a>
+                            <a href="/login.jsp" id="login-content">로그인</a>
                    <% 
                    } else { 
                    %>
@@ -110,7 +110,7 @@
                         <div id="category-wrap">
                             <!-- 태그들 -->
                             <ul id="category">
-                                <li><i class="fas fa-border-all"></i><p>전체</p></li>
+                                <li><a><i class="fas fa-border-all"></i><p>전체</p></a></li>
                                 <li><i class="far fa-comments"></i><p>자유</p></li>
                                 <li><i class="fas fa-cubes"></i><p>나눔</p></li>
                                 <li><i class="fas fa-question"></i><p>질문</p></li>
@@ -150,7 +150,8 @@
                                         }
                                         %>
                                         <!-- 제목 -->
-                                        <a class="title" href="/html/free-board-detail.html"><%= cList.get(i).getComTitle() %></a>
+                                        <a class="title" href="/community/detail?comNo=<%= cList.get(i).getComNo() %>"><%= cList.get(i).getComTitle() %></a>
+                                     
                                         <!-- 내용 -->
                                         <div class="post-content"><p><%= cList.get(i).getComContent() %></p></div>
                                         <div class="post-info">
@@ -166,7 +167,7 @@
                                                 <!-- 댓글 -->
                                                 <span>댓글 3</span>
                                                 <!-- 조회수 -->
-                                                <span><%= cList.get(i).getComview() %></span>
+                                                <span>조회수 <%= cList.get(i).getComview() %></span>
                                                 <!-- 좋아요-->
                                                 <span><%= cList.get(i).getLikeCount() %>)</span>
                                             </div>
@@ -183,8 +184,6 @@
                     <div id="post-wrap">
                     <% if(user != null) { %>
                             <a href="/community/write" class="link-post">글쓰기</a>
-                    <% } else { %>
-                    		<a class="link-post">글쓰기</a>
                     <% } %>
                     </div>
                     <!-- 여기에 페이징 번호 -->

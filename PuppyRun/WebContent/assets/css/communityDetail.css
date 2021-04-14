@@ -1,0 +1,198 @@
+/* <!-- https://fonts.google.com/icons?icon.query=user --> */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+#view-wrap {
+    width : 830px;
+    margin : 0 auto;
+}
+
+#write-box {
+    /* border : 1px solid black; */
+    padding : 20px 30px 20px 30px;
+    border-radius: 30px;
+    box-shadow: 1px 1px 10px 3px #fde5b2;
+}
+
+#nbb-top h3 { 
+    width : 830px;
+    height : 70px;
+    margin : 0 auto;  
+    font-size : 30px;
+    color : #FBB41D;
+    padding-bottom : 6px; 
+}
+
+/*  콘텐츠 헤드 부분 (제목/닉네임/작성일/조회수) */
+#notice-head > h2 {
+    text-align: left;
+    margin-top : 20px;
+    margin-bottom : 20px;
+}
+
+/* 왼쪽 닉네임 부분 */
+#notice-head .fl {
+    float: left;
+    display: block;
+}
+
+/* 오른쪽 작성일, 조회수 부분 */
+#notice-head .fr  {
+    text-align: right;
+    font-size : 15px;
+    padding-bottom : 23px;
+    border-bottom : 3px solid #fce2aa;
+}
+
+#notice-head .fl span {
+    font-size : 15px;
+}
+
+#notice-head .fr span:nth-child(1)  {
+    padding-right : 15px;
+}
+
+/*  콘텐츠 부분 */
+#notice-content {
+    height : 600px;
+    padding-top : 25px;
+    padding-bottom : 50px;
+}
+
+.write-div > div {
+	width : 500px;
+}
+
+.write-div > div > img {
+	width : 100%;
+	
+}
+
+/* 댓글 */
+#comment-wrap > p {
+    border-bottom : 1px solid black;
+    padding-bottom : 10px;
+}
+
+#comment-input {
+    margin-top : 15px;
+    text-align: right;
+}
+
+#comment-input textarea {
+    width : 770px;
+    height : 70px;
+    resize: none;
+}
+
+#comment-input input {
+    background-color: #FEB415;
+    border-radius: 20px;
+    border: 0;
+    color: #fff;
+    padding: 1px;
+    width: 40px;
+    height : 20px;
+    margin : 2px 5px;
+}
+
+.list {
+    list-style-type: none;
+    padding-top : 40px;
+    padding-bottom : 20px;
+}
+
+.list > .comment {
+    padding : 20px 0px;
+    border-bottom : 1px solid rgb(168, 168, 168);
+}
+.list > .comment > * {
+    display: inline-block;
+}
+
+.list > .comment > .profile-image {
+    display: inline-block;
+    line-height: 50px;
+    margin-right : 10px;
+}
+
+.list > .comment > .info {
+    width: calc(100% - 50px);
+}
+
+.list > .comment > .info > .nickname > p {
+    display: inline-block;
+    font-size : 15px;
+    font-weight: 500;
+}
+
+.list > .comment > .info > .nickname span{
+    float : right;
+    font-size : 13px;
+    font-weight: 400;
+
+}
+
+.list > .comment > .info > .nickname span{
+    padding-right : 10px;
+}
+
+.list > .comment > .info > .comment > p {
+    /* padding-top : 5px; */
+    font-size : 13px;
+    font-weight: 400;
+    margin-top : 3px;
+}
+/* 하단 버튼 */
+#function-btn {
+    margin-top : 40px;
+
+}
+
+/* 글 목록 */
+.bl {
+    float: left;
+    display: block;
+}
+
+.bl span {
+    text-align: center;
+    width : 80px;
+    height: 33px;
+    border-radius: 10px;
+    display: inline-block;
+    background-color : #fdcc63;
+}
+
+.bl a {
+    line-height: 30px;
+    color: white;
+}
+
+/* 수정, 삭제, 글쓰기 */
+.br {
+    text-align: right;
+}
+
+.br span {
+    text-align: center;
+    width : 80px;
+    height: 33px;
+    border-radius: 10px;
+    display: inline-block;
+    background-color : #fdcc63;
+}
+
+.br span:not(:nth-last-child(1)) {
+    margin-right : 10px;
+}
+
+.br a {
+    line-height: 30px;
+    color: white;
+}
