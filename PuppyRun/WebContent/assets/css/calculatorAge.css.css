@@ -1,0 +1,483 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+/* font-family: 'Noto Sans KR', sans-serif; */
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin : 0px;
+    padding : 0px;
+    box-sizing: border-box;
+}
+
+a { 
+    text-decoration:none ;
+} 
+
+#wrap {
+    width : 100%;
+    height : 100%;
+    /* min-width: 1100px; */
+    position : relative;
+}
+
+header {
+    width : 100%;
+    height : 280px;
+    margin : auto;
+    min-width: 1200px;
+}
+
+#header {
+    width : 1200px;
+    height : 280px;
+    margin : auto;
+}
+
+#tleft {
+    width : 20%;
+    height : 200px;
+    float: left;
+}
+
+#header-logo {
+    width : 45%;
+    height : 200px;
+    margin-top : 60px;
+    float: left;
+}
+
+#logo {
+    display: block;
+    width : 170px;
+    height : 130px;
+    margin : 0 55%;
+    margin-top : 40px;
+    background-image: url(../img/logo_title1.png);
+}
+
+#tright {
+    width: 30%;
+    height: 150px;
+    float : left;
+    margin-right : 20px;
+}
+
+.search-input {
+    margin-top: 15px;
+    padding : 12px 14px;
+    width: 70%;
+    height : 35px;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 60px; 
+    border-style : none;
+    background-color : #FFF2D4;
+    outline:none; 
+    box-shadow: none;
+    float:left;
+}
+
+#login {
+    margin-top : 15px;
+    margin-left : 10px;
+    float: left;
+}
+
+#login-content {
+    text-align: center;
+}
+
+/* ------------------------------ */
+/* 메인 메뉴 */
+nav {
+    background-color : #FFBD32;
+    width : 1200px;
+    height : 65px;
+    margin : 0 auto;
+    border-radius : 15px;
+}
+
+#main-navi-ul {
+    padding-left : 100px;
+    display : flex;
+    justify-content : center; /*가운데로 옮겨줌*/
+    flex-direction : row; /*가로정렬*/
+    padding : 0;
+}
+
+.main-navi-li {
+    width : 185px;
+    line-height : 65px;
+    float : left;
+    list-style : none;
+    text-align : center;
+}
+
+.main-navi-li>a {
+    color : white;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size : 20px;
+    margin-top : 20px;
+}
+
+/* 메인 콘텐츠----------------------------------------------------- 여기 수정 */
+#main-content {
+    background-color: #fff;
+    width : 1200px;
+    height : 2150px;
+    margin : 0 auto;
+    position : relative;
+}
+
+#content {
+    background-color:#fff;
+    width : 1000px;
+    height : 550px;
+    position : relative; 
+    margin: 0 auto; 
+    
+}
+.cal_top h3{
+    text-align: center;
+    font-size: 30px;
+    padding-top: 30px;
+}
+.calculator {
+    box-shadow: 0px 10px 50px 1px rgb(0 0 0 / 10%);
+    width: 800px;
+    height: 150px;
+    
+    overflow: hidden;
+    margin: 0 auto;
+    background: #FFF;
+    border-radius: 40px;
+    margin-top: 10px;
+}
+
+.calculator > ul {
+   
+    width: inherit;
+    height: inherit;
+}
+
+/* .calculator > ul > li {
+    width: 33.333%;
+    height: 150px;
+    float: left;
+    
+    color: #666666;
+} */
+
+.calculator > ul > li:first-child {
+    text-align: center;
+}
+
+.calculator > ul > li:nth-child(2) {
+    text-align: center;
+    
+}
+
+.calculator > ul > li:nth-child(3) {
+    
+    text-align: center;
+}
+
+
+
+li.active a {
+    color: ivory;
+}
+
+li.nagative a {
+    
+    color: #666666;
+}
+
+a {
+    cursor:pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.cal_icon {
+    display: block;
+    overflow: hidden;
+   
+}
+
+.calculator > ul > li.nagative {
+    width: 33.333%;
+    background-color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 23px 0px;
+    transition: 0.3s;
+    font-size: 20px;
+    border-right: 1px solid #f7e8e7;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+/* .calculator > ul > li:nth-child(3) {
+    width: 33.333%;
+    background-color: blue;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px 0px;
+    transition: 0.3s;
+    font-size: 20px;
+    border-right: 1px solid #f7e8e7;
+    box-sizing: border-box;
+} */
+
+li.active {
+    background-color : #e97723;
+    width: 33.333%;
+    height: 150px;
+    float: left;
+    border: none;
+    outline: none;
+    cursor:pointer;
+    transition: 0.3s;
+    font-size: 20px;
+    border-right: 1px solid #f7e8e7;
+    box-sizing: border-box;
+    padding: 20px 0px;
+    list-style: none;
+}
+
+.cal_navi {
+    width: 800px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 40px;
+    
+}
+
+/* 결과물 나이계산기 */
+.cal_mid {
+    width: 1200pxpx;
+    height: 500px; 
+    /* background: rosybrown; */
+    padding: 50px;
+    margin-top: 50px;
+}
+
+.cal_mid2 {
+    border-radius: 50px;
+    box-shadow: 2px 2px 50px 0px rgba(0, 0, 0, 0.2);
+    width: 700px;
+    height: 500px;
+    margin : 0 auto;
+    background: #fff;
+}
+
+.age_cal_top {
+    box-shadow: 2px 2x 2px 1px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    display: block;
+    width: 100%;
+    height: 200px;
+    background: #fff9ef;
+}
+
+.age_cal_top img {
+    float: left;
+    height: 170px;
+    width: 250px;
+}
+.cal_t01 {
+    float: left;
+    padding: 50px 0;
+    color: #102b58;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 400px;
+    letter-spacing: -0.07em;
+}
+.cal_t02 {
+    display: block;
+    overflow: hidden;
+    padding-top: 5px;
+    color:#ea6210;
+    font-size: 35px;
+    font-weight: 400px;
+}
+.cal_writer {
+    
+    margin: 5%;
+     /* overflow: hidden;
+     display: block;
+    width: 100%; */
+    height: 102px; 
+   
+    border-bottom: 1px solid #ebebeb;
+    background: white; 
+}
+.cal_writer h5 {
+    width: 16%;
+    float: left;
+    margin: 12px 2% 10px 0;
+    border-right: 1px solid #ebebeb;
+    color: #000000;
+    font-size: 17px;
+    font-weight: 500px;
+}
+.cal_community {
+    display: block;
+    border-top: 1px solid #646361;
+}
+.writer_input > h5 {
+    width:78%;
+    float: left;
+    margin-left: -10%;
+    padding: 13px 10px 13px 10px;
+    font-size: 16px;
+    font-weight: 300px;
+    border: none;
+}
+.writer_input {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid #ebebeb;
+}
+.cal_choice {
+    height: 42px;
+    text-align: left;
+    margin-top: 8px;
+    margin-left: 123px;
+    /* padding-left: px; */
+    border: 0px solid #000;
+}
+.dog_type0 {
+    color: #fff;
+    background: #ff9c00;
+}
+.cal_choice a {
+margin: 0 3px;
+border-radius: 100px;
+height: 35px;
+line-height: 35px;
+font-size: 15px;
+text-align: center;
+padding: 5px 15px;
+}
+
+.dog_type1 {
+    margin: 0 3px;
+    border-radius: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
+    text-align: center;
+    padding: 5px 15px;
+}
+
+.dog_type2 {
+    margin: 0 3px;
+    border-radius: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
+    text-align: center;
+    padding: 5px 15px;
+}
+.cal_btn {
+    
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    height: 128px;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    background-color: #fafafa;
+}
+.cal_result {
+    display: block;
+    overflow: hidden;
+    height: 40px;
+    width: 150px;
+    border-radius: 60px;
+    margin: 50px 36% 36px 36%;
+    /* padding: 15px 20px 15px 45px; */
+    background: #e97723;
+
+}
+.cal_result a {
+    display: block;
+    width: inherit;
+    height: inherit;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    
+}
+
+
+
+
+
+/* 푸터 */
+footer {
+    width : 100%;
+    min-width : 1200px;
+    background-color: #FFF9EB;
+}
+
+#footer {
+    width : 1200px;
+    height: 290px;
+    margin : auto;
+    min-width: 1200px;
+}
+
+#footer-right-box {
+    float : right;
+    margin-top : 100px;
+
+}
+
+#footer-right-box > img {
+    width : 200px;
+}
+
+#footer-left-box {
+    float : left;
+    width : 600px;
+    padding-top : 110px;
+}
+
+#footer-left-box > ul {
+    list-style: none;
+    
+}
+
+#footer-left-box > ul > li {
+    float : left;
+    margin-bottom : 30px;
+    margin-right : 45px;
+    color : #ffba26;
+}
+
+#footer-ptag{
+    font-size : 13px;
+    float: left;
+    line-height: 22px;
+    color : rgb(139, 139, 139);
+    
+}
+
