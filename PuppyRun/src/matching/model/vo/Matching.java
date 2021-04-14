@@ -1,11 +1,14 @@
 package matching.model.vo;
 
+import java.util.Date;
+
 public class Matching {
 	private int matNo;
 	private String matId;
 	private String matTitle;
 	private String matContent;
 	private String matAddr;
+	private Date matDate;
 	private char matCheck;
 	private String matPhoto;
 	private String userNick;
@@ -51,6 +54,16 @@ public class Matching {
 
 	public void setMatAddr(String matAddr) {
 		this.matAddr = matAddr;
+	}
+
+	
+	
+	public Date getMatDate() {
+		return matDate;
+	}
+
+	public void setMatDate(Date matDate) {
+		this.matDate = matDate;
 	}
 
 	public char getMatCheck() {

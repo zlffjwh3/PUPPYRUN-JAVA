@@ -12,7 +12,7 @@ public class MatchingPage {
 		return mList;
 	}
 
-	public void setnList(ArrayList<Matching> mList) {
+	public void setmList(ArrayList<Matching> mList) {
 		this.mList = mList;
 	}
 

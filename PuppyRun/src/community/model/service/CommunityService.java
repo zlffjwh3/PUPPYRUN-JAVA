@@ -29,7 +29,6 @@ public class CommunityService {
 			cp.setPageNavi(new CommunityDAO().getPageNavi(conn, currentPage));
 			System.out.println("서비스 완료");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(conn);
