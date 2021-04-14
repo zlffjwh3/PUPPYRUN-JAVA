@@ -70,7 +70,6 @@ textarea:focus {
     height : 35px;
     border-radius: 30px;
     border : 1px solid #C9C9C9;
-
 }
 
 /* 제목 input 태그 */
@@ -91,12 +90,37 @@ textarea:focus {
     font-size : 17px;
     display: inline-block;
     margin-right : 30px;
-    
 }
 
 /* 파일 전체 박스 */
 #write-box #file {
     margin-top : 20px;
+}
+
+#file > p {
+	position : relative;
+	bottom : 10px
+}
+
+/* 기존 파일 있을 때 수정하는 부분 */
+#file-wrapper {
+	position : relative;
+}
+#file-update-box {
+	position : absolute;
+	top : 3px;
+	left : 10px;
+}
+
+#file-update-box > span {
+	font-size : 14px;
+}
+
+#file-update-box2 {
+	position : absolute;
+	top : 0;
+	left : 0;
+	display : none;
 }
 
 /* 파일 input 태그 */
@@ -120,7 +144,6 @@ textarea:focus {
 
 /* 내용 textarea 태그 */
 #write-box #content textarea {
-
     text-align: left;
     width : 670px;
     height : 600px;

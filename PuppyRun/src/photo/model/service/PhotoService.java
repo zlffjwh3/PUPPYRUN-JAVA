@@ -56,13 +56,13 @@ public class PhotoService {
 	}
 	
 	// 사진정보 수정
-	public int updatePhoto(Photo photo) {
+	public int updatePhoto(Photo photo, String photoBefore) {
 		Connection conn = null;
 		int result = 0;
 		
 		try {
 			conn = factory.createConnection();
-			result = new PhotoDAO().updatePhoto(conn, photo);
+			result = new PhotoDAO().updatePhoto(conn, photo, photoBefore);
 			
 			if(result > 0) {
 				JDBCTemplate.commit(conn);

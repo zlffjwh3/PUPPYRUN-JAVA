@@ -58,11 +58,12 @@ header {
 
 #logo {
     display: block;
-    width : 170px;
-    height : 130px;
-    margin : 0 55%;
-    margin-top : 40px;
-    background-image: url(../img/logo_title1.png);
+    /* width : 170px;
+    height : 130px; */
+    width : 200px;
+    height : 200px;
+    margin : 25px 55% 10px 55%;
+    background-image: url(/assets/img/logo_title.png);
 }
 
 #tleft {
@@ -76,19 +77,30 @@ header {
     margin-right : 20px;
 }
 
-.search-input {
-    margin-top: 15px;
-    padding : 12px 14px;
-    width: 70%;
+#search {
+	margin-top: 15px;
+	padding : 2px 5px 6px 20px;
+    width: 80%;
     height : 35px;
     font-size: 14px;
-    line-height: 18px;
     border-radius: 60px; 
     border-style : none;
     background-color : #FFF2D4;
-    outline:none; 
-    box-shadow: none;
     float:left;
+}
+
+.search-input {
+   border : none;
+   background : none;
+   width : 78%;
+}
+
+#search-btn {
+	border : none;
+	background : none;
+	background-image : url('/assets/img/search-icon.png');
+    width: 20px;
+    cursor:pointer;
 }
 
 #login {
@@ -99,6 +111,11 @@ header {
 
 #login-content {
     text-align: center;
+}
+
+#login img {
+	width : 20px;
+	height : 20px;
 }
 
 /* ------------------------------ */
@@ -134,10 +151,9 @@ nav {
     margin-top : 20px;
 }
 
-/* ------------------------------ */
+/* ------------------------------------------------------------------------------------------- */
 /* 메인 콘텐츠 */
 #main-content {
-    /* background-color: darkviolet; */
     width : 1200px;
     /* height : 1500px; */
     margin : 0 auto;
@@ -145,9 +161,8 @@ nav {
 }
 
 #Box1 {
-
     width : 1200px;
-    margin-bottom : 100px;
+    margin-bottom : 120px;
 }
 
 /* 메인 슬라이드 */
@@ -157,6 +172,7 @@ nav {
     border-radius : 60px; 
     margin-top : 80px;
     display: inline-block;
+    box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 
 /* 메인 날씨 */
@@ -167,7 +183,7 @@ nav {
     background-color : #e9ecf0;
     margin-top : 80px;
     float : right;
-    
+    box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 
 #mWeather .City {
@@ -204,9 +220,8 @@ nav {
 #mWalkInfo{
     width : 1200px;
     height : 500px;
-    /* background-color : aquamarine; */
-    background-color : #FFF9EB;
-    border-radius: 30px;
+    /* background-color : #FFF9EB; */
+    /* border-radius: 30px; */
     position: relative;
 }
 
@@ -236,7 +251,10 @@ nav {
     top : 110px;
     left : 720px;
     position: absolute;
-    background-color : chocolate;
+    background-image : url(/assets/img/dog-img.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 
 #login-wrap {
@@ -291,7 +309,7 @@ nav {
 
 .set-info {
     color : white;
-    font-size : 50px;
+    font-size : 40px;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 600;
     -webkit-text-stroke-width: 2px;
@@ -376,21 +394,22 @@ nav {
     float : left;
     padding : 20px;
     cursor: pointer;
-    border : 1px solid #fce1a6;
+    /* border : 1px solid #fce1a6; */
     margin : 40px 15px;
     transition: 0.4s;
     border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0px 4px 30px 5px rgba(255, 226, 162, 0.3);
 }
 
 #fbb-bottom .fbb-cotent:hover {
     background-color : #fcf5e8;
 }
 
-#fbb-bottom .fbb-cotent:hover {
+/* #fbb-bottom .fbb-cotent:hover {
     border:1px solid #fce1a6;
-    /* #ffae00; */
-}
+    #ffae00;
+} */
 
 #fbb-bottom .fbb-cotent dt {
     font-size : 12px;
@@ -435,11 +454,13 @@ nav {
     border-radius: 30px;
 }
 
-/* 푸터----------------------------------------------------- */
+/* 푸터------------------------------------------------------------------------------ */
 footer {
     width : 100%;
     min-width : 1200px;
     background-image : url(/assets/img/footer-yellow.png);
+    background-repeat: round;
+    background-size : cover;
     /* position: relative; */
 }
 

@@ -23,20 +23,23 @@ public class NoticeDeleteServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		String noticePhoto = request.getParameter("noticePhoto");
+		String noticePhoto = new NoticeService().selectOneNotice(noticeNo).getNoticePhoto();
 		String userId = "admin";
 		
 		int noticeResult = new NoticeService().deleteNotice(noticeNo);
-		String photoPath = new PhotoService().selectPhoto(noticePhoto, userId);
-		int photoResult = new PhotoService().removePhoto(noticePhoto, userId);
-		File file = new File(photoPath);
+		
+		int photoResult = 1;
+		if(noticePhoto != null) {
+			String photoPath = new PhotoService().selectPhoto(noticePhoto, userId);
+			photoResult = new PhotoService().removePhoto(noticePhoto, userId);
+			File file = new File(photoPath);
+			file.delete(); //upload 폴더 안 파일 삭제
+		}
 		
 		if(noticeResult > 0 && photoResult > 0) {
-			file.delete(); //upload 폴더 안 파일 삭제
-			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('게시글이 삭제되었습니다'); location.href='/notice/list';</script>");
+			out.println("<script>alert('게시글이 삭제되었습니다.'); location.href='/notice/list';</script>");
 			out.flush();
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);

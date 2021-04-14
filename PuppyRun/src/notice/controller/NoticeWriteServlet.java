@@ -2,6 +2,7 @@ package notice.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,8 +44,6 @@ public class NoticeWriteServlet extends HttpServlet {
 //		
 		String noticeTitle = multi.getParameter("title");
 		String noticeContent = multi.getParameter("content");
-//		String noticeTitle = request.getParameter("title");
-//		String noticeContent = request.getParameter("content");
 		
 		Notice notice = new Notice();
 		notice.setNoticeTitle(noticeTitle);
@@ -74,16 +73,18 @@ public class NoticeWriteServlet extends HttpServlet {
 			photo.setBoardType('N');
 			
 			photoResult = new PhotoService().registerPhotoInfo(photo); // Photo DB에 저장
-			
+		} else {
+			photoResult = 1;
 		}
 		int noticeResult = new NoticeService().insertNotice(notice); // Notice DB에 저장
 			
 			
 		// 결과 확인 ---------------------------------------------------------------------------------------------------
-		if(noticeResult > 0 && multi.getFilesystemName("upFile") != null && photoResult > 0) {
-//		if(noticeResult > 0) {
-			// 등록 완료창 떠야 하나?!
-			response.sendRedirect("/notice/list");
+		if(noticeResult > 0 && photoResult > 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('게시글이 등록되었습니다.'); location.href='/notice/list';</script>");
+			out.flush();
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
 		}

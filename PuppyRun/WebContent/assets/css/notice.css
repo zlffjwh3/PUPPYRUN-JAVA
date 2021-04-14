@@ -3,28 +3,6 @@
 
 /* font-family: 'Noto Sans KR', sans-serif; */
 
-* {
-    font-family: 'Noto Sans KR', sans-serif;
-    margin : 0px;
-    padding : 0px;
-    box-sizing: border-box;
-}
-
-a { 
-    text-decoration:none ;
-} 
-
-a:link {
-    text-decoration: none;
-  
-}
-
-a:visited {
-    text-decoration: none;
-   
-}
-
-
 #nbb-top {
     margin : 100px 0 50px 0;
     text-align: center;
@@ -69,6 +47,8 @@ a:visited {
 
 #nbb-bottom .line-box .nbb-content .nbb-photo img {
     width : 100%;
+    height : 100%;
+    object-fit : cover;
     border-radius: 30px;
     transition: 0.4s;
 }

@@ -60,10 +60,10 @@ public class PhotoDAO {
 	}
 
 	// 사진정보 수정
-	public int updatePhoto(Connection conn, Photo photo) {
+	public int updatePhoto(Connection conn, Photo photo, String photoBefore) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "UPDATE PHOTO SET PHOTO_NAME=?, PHOTO_PATH=?, PHOTO_SIZE=?, UPLOAD_TIME=? WHERE PHOTO_ID=?";
+		String query = "UPDATE PHOTO SET PHOTO_NAME=?, PHOTO_PATH=?, PHOTO_SIZE=?, UPLOAD_TIME=? WHERE PHOTO_ID = ? AND PHOTO_NAME=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -72,6 +72,7 @@ public class PhotoDAO {
 			pstmt.setLong(3, photo.getPhotoSize());
 			pstmt.setTimestamp(4, photo.getUploadTime());
 			pstmt.setString(5, photo.getPhotoId());
+			pstmt.setString(6, photoBefore);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

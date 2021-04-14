@@ -217,4 +217,54 @@ input[type=text], input[type=number], input[type=password], select {
 }
 
 /* 푸터 */
+footer {
+    width : 100%;
+    min-width : 1200px;
+    background-image : url(/assets/img/footer-white.png);
+    background-repeat: round;
+    background-size : cover;
+    /* position: relative; */
+}
 
+#footer {
+    width : 1200px;
+    height: 290px;
+    margin : auto;
+    min-width: 1200px;
+}
+
+#footer-right-box {
+    float : right;
+    margin-top : 100px;
+
+}
+
+#footer-right-box > img {
+    width : 200px;
+}
+
+#footer-left-box {
+    float : left;
+    width : 600px;
+    padding-top : 110px;
+}
+
+#footer-left-box > ul {
+    list-style: none;
+    
+}
+
+#footer-left-box > ul > li {
+    float : left;
+    margin-bottom : 30px;
+    margin-right : 45px;
+    color : #ffba26;
+}
+
+#footer-ptag{
+    font-size : 13px;
+    float: left;
+    line-height: 22px;
+    color : rgba(179, 178, 178, 0.918);
+    
+}

@@ -15,7 +15,7 @@ public class User {
 	private Date enrollDate;
 	private char adminCheck;
 	private char dogCheck;
-	private int userPhoto;
+	private String userPhoto;
 	
 	public User() {}
 
@@ -108,11 +108,11 @@ public class User {
 		this.dogCheck = dogCheck;
 	}
 
-	public int getUserPhoto() {
+	public String getUserPhoto() {
 		return userPhoto;
 	}
 
-	public void setUserPhoto(int userPhoto) {
+	public void setUserPhoto(String userPhoto) {
 		this.userPhoto = userPhoto;
 	}
 

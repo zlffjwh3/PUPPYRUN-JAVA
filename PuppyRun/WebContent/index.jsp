@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/bg-middle.css">
         <link rel="stylesheet" type="text/css" href="/assets/css/slider.css">
         <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
@@ -36,50 +37,53 @@
                 <!-- 헤더-->
                 <div id="header">
                     <div id="tleft">
-                    <div id="search">
-                            <form action="">
-                                <input class="search-input" id="" type="text" placeholder="search">
-                            </form>
-                        </div>
-                    </div>
-                    <!-- 헤더 메인 로고 -->
-                    <div id="header-logo">
-                        <a href="#" id="logo"></a>
-                    </div>
-                    <div id="tright">
-                        
-                        <div id="login">
-                            <a href="#">
-                                <i class="xi-face xi-2x"></i>
-                            </a>
-                            <% if(user != null) { %>
-                            <a id="login-content"><%= user.getUserNick() %> 님 환영합니다.</a>
-                            <% }else { %>
-                            <a href="/login.jsp" id="login-content">로그인</a>
-                            <% } %>
-                        </div>
-                    </div>
-                </div>
+	                    <div id="search">
+	                    	<form action="" method="get">
+		                    	<input class="search-input" type="text" placeholder="search">
+		                    	<input id="search-btn" type="submit" value="">
+	                    	</form>
+	                    </div>
+                	</div>
+	                <!-- 헤더 메인 로고 -->
+	                <div id="header-logo">
+	                    <a href="/index.jsp" id="logo"></a>
+	                </div>
+	                <div id="tright">
+	                    <div id="login">
+	                    	<% if(user == null) { %>
+	                        	<a href="/login.jsp">
+	                            	<i class="xi-face xi-2x"></i>
+	                       		</a>
+	                        	<a href="/login.jsp" id="login-content">로그인</a>
+	                        <% } else { %>
+	                        	<% if(user.getUserPhoto() != null) { %>
+	                        	<a href="/user/myInfo">
+	                            	<img src="/upload/<%= user.getUserPhoto() %>">
+	                       		</a>
+	                       		<% } else { %>
+	                       		<a href="/user/myInfo">
+	                            	<img src="/assets/img/user-no-img.png">
+	                       		</a>
+	                        	<% } %>
+	                        	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
+	                        <% } %>
+	                    </div>
+            		</div>
+           		</div>
             </header>
             <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                        	<%
-                        		if(user != null) {
-                        	%>
-                        			<a href="/petdiary/list">산책일기</a>
-                        	<%
-                        		} else {
-                        	%>
-                        			<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
-                        	<%
-                        		}
-                        	%>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">산책짝꿍</a>
+                            <a href="/matching/list">산책짝꿍</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
@@ -105,9 +109,9 @@
                     <div id="mContent-Box1">
                         <div id="banner">
                             <div class="image">
-                                <img src="./assets/img/slide01.jpg" alt="메인베너2">
+                                <img src="./assets/img/slide01.jpg" alt="메인베너1">
                                 <img src="./assets/img/slide02.jpg" alt="메인베너2">
-                                <img src="./assets/img/slide03.jpg" alt="메인베너2">
+                                <img src="./assets/img/slide03.jpg" alt="메인베너3">
                             </div>
                             <ul class="control">
                                 <li></li>
@@ -131,13 +135,20 @@
                 </div>
                 <!-- 산책정보 -->
                 <div id="mWalkInfo">
+                	<% if(user != null) { %>
                     <div id="walkcontent-box">
-                        <p id="text01">산책 정보를 확인하려면
-                            <b>로그인</b>
-                            해주세요.</p>
-                        <div id="dog-image-box"></div>
+                        <p id="text01">오늘
+                            <b>덕배</b>
+                            는 산책 다녀왔어요!</p>
+                        <div id="dog-image-box">
+                        	<% if(user.getUserPhoto() != null) { %>
+                        	<script>$('#dog-image-box').css('background-image','url(/upload/<%=user.getUserPhoto()%>)');</script>
+                        	<% } else { %>
+                        	<script>$('#dog-image-box').css('background-image','url(/assets/img/user-no-img.png)');</script>
+                        	<% } %>
+                        </div>
                         <div id="login-wrap">
-                            <a href="/html/login.html" class="link-login">로그인</a>
+                            <a href="#" class="link-login">산책기록</a>
                         </div>
                         <div id="info-wrap">
                             <div class="info-content">
@@ -157,6 +168,34 @@
                             </div>
                         </div>
                     </div>
+                    <% } else { %>
+                    <div id="walkcontent-box">
+                        <p id="text01">산책 정보를 확인하려면
+                            <b>로그인</b>
+                            해주세요.</p>
+                        <div id="dog-image-box"></div>
+                        <div id="login-wrap">
+                            <a href="/login.jsp" class="link-login">로그인</a>
+                        </div>
+                        <div id="info-wrap">
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">/ 7</span>
+                                <p class="text" id="text">이번주 총 산책 횟수</p>
+                            </div>
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">km</span>
+                                <p class="text" id="text">총 산책거리</p>
+                            </div>
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">분</span>
+                                <p class="text" id="text">총 산책시간</p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
                 </div>
                 <!-- 멍멍이야기 -->
                 <div class="free-board-box">
@@ -224,7 +263,6 @@
                             <li>사이트맵</li>
                             <li>이용약관</li>
                             <li>개인정보처리방침</li>
-                            <li>운영방침</li>
                         </ul>
                         <p id="footer-ptag">
                             서울특별시 송파구 올림픽로 300 대표자 : 오재승 전화 : 1661-2000<br>

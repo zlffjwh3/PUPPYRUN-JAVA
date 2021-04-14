@@ -39,7 +39,7 @@
                     <div id="tleft"></div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
-                        <a href="/index.html" id="logo"></a>
+                        <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
                         <div id="search">
@@ -115,13 +115,24 @@
                                     <!-- 작성일 -->
                                     <span><%= notice.getNoticeDate() %></span>
                                     <!-- 조회수 -->
+                                    <span>조회수</span>
                                     <span><%= notice.getNoticeView() %></span>
                                 </div>
                             </div>
-                            <div id="notice-content">
-                                <div class="write-div">
-                                    <p><%= notice.getNoticeContent() %></p>
-                                    <!-- 사진은 어떻게 불러와 ? ,,,, -->
+                            <div class="write-div">
+                            	<div id="notice-content">
+                            		<div id="content-img">
+	                                    <% if(notice.getNoticePhoto() != null) { %>
+		                                	<img src="/upload/<%= notice.getNoticePhoto() %>">
+	                                    <% } else { %>
+	                                    	<script>
+	                                    		$('#content-img').css('display', 'none');
+	                                    	</script>
+	                                    <% } %>
+                            		</div>
+                            		<% if(notice.getNoticeContent() != null) { %>
+	                                	<p><%= notice.getNoticeContent() %></p>
+	                                <% } %>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +145,7 @@
                           	%>
                           	<div class="br">
                                 <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>
-                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>&noticePhoto=<%= notice.getNoticePhoto() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
+                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                            		<a href="/notice/write"><span>글쓰기</span></a>
                            	</div>
                             <%

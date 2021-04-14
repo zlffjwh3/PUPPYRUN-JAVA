@@ -50,23 +50,17 @@
                     </div>
                     <div id="tright">
                         <div id="login">
-                        	<%
-                        	if(user == null) {
-                        	%>
+                        	<% if(user == null) { %>
                             	<a href="/login.jsp">
                                 <i class="xi-face xi-2x"></i>
                            		</a>
                             	<a href="/login.jsp" id="login-content">로그인</a>
-                            <%
-                            } else {
-                            %>
+                            <% } else { %>
                             	<a href="/user/myInfo">
                                 <img src="#"> <!-- 사진어케 가져와 -->
                            		</a>
                             	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
-                            <%
-                            }                        
-                            %>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -112,21 +106,22 @@
                         %>
                         	<!-- 게시물 3개씩 묶어두는 박스 -->
                     		<div class="line-box">
-                        <%	
-                        	for(int j=0; j<3; j++) {
-                        		if(n < nList.size()) {
-                        %>			
+                        <% for(int j=0; j<3; j++) {
+                        		if(n < nList.size()) { %>		
                         			<a href="/notice/detail?noticeNo=<%= nList.get(n).getNoticeNo() %>">
                         				<div class="nbb-content">
-			                       		<span class="nbb-photo">
-			                            	<img src="/upload/<%= nList.get(n).getNoticePhoto() %>">
-			                            	<% System.out.println(nList.get(n).getNoticePhoto()); %>
-			                            </span>
-			                            <dl class="nbb-info">
-			                                <dt><%= nList.get(n).getNoticeDate() %></dt>
-			                                <dd><%= nList.get(n).getNoticeTitle() %></dd>
-			                            </dl>
-		                            </div>
+				                       		<span class="nbb-photo">
+				                       			<% if(nList.get(n).getNoticePhoto() != null) {%>
+				                            		<img src="/upload/<%= nList.get(n).getNoticePhoto() %>">
+				                            	<% } else { %>
+				                            		<img src="/assets/img/no-img.jpg">
+				                            	<% } %>
+				                            </span>
+				                            <dl class="nbb-info">
+				                                <dt><%= nList.get(n).getNoticeDate() %></dt>
+				                                <dd><%= nList.get(n).getNoticeTitle() %></dd>
+				                            </dl>
+			                            </div>
                         			</a>
                         <%		
                         		}

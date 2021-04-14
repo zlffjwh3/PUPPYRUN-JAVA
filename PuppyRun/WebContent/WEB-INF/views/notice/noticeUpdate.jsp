@@ -24,7 +24,8 @@
         <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
         <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/notice-update.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/notice-write.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <title>퍼피런 - 공지사항</title>
     </head>
@@ -84,13 +85,13 @@
             <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
-                        <h3>퍼피런 이야기 글 작성</h3>
+                        <h3>퍼피런 이야기 글 수정</h3>
                     </div>
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="/notice/update" method="post" enctype="multipart/form-data">
-                            	<input type="hidden" name="noticeNo" value="<%= notice.getNoticeNo() %>">
+                            <form id="write-check" action="/notice/update?noticeNo=<%= notice.getNoticeNo() %>&photoCheck=N" method="post" enctype="multipart/form-data">
+                            	<input id="notice-num" type="hidden" name="noticeNo" value="<%= notice.getNoticeNo() %>">
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">
@@ -99,18 +100,32 @@
                                 </div>
                                 <div id="file">
                                     <p class="write-p-tag">첨부 파일</p>
-                                    <div class="input-box">
-                                        <input type="file" id="file-input" name="upFile" value="<%= notice.getNoticePhoto() %>">
-                                    </div>
+                                    <% if(notice.getNoticePhoto() != null) { %>
+                                    <div class="input-box" id="file-wrapper">
+                                    	<div id="file-update-box">
+	                                        <span><%= notice.getNoticePhoto() %></span>
+                                    		<input type="button" id="file-update" value="수정하기">
+                                    	</div>
+                                    	<div id="file-update-box2">
+	                                       	<input type="file" id="file-input" name="upFile">
+	                                    </div>
+	                                </div>
+                                    <% } else { %>
+	                                    <div class="input-box">
+	                                        <input type="file" id="file-input" name="upFile">
+	                                    </div>
+                                    <% } %>
                                 </div>
                                 <div id="content">
                                     <p class="write-p-tag">내 용</p>
                                     <div class="input-box" id="textarea-box">
+                                   	 	<% if(notice.getNoticeContent() != null) { %>
                                         <textarea id="content" name="content"><%= notice.getNoticeContent() %></textarea>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <div id="btn-box">
-                                    <input type="submit" id="submit-input" value="수정">
+                                    <input type="button" id="submit-input" value="수정">
                                     <a href="/notice/detail?noticeNo=<%= notice.getNoticeNo() %>"><p>취소</p></a>
                                 </div>
                             </form>

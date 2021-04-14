@@ -36,7 +36,7 @@ public class UserDAO {
 				user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
 				user.setEnrollDate(rset.getDate("ENROLL_DATE"));
 				user.setAdminCheck(rset.getString("ADMIN_CHECK").charAt(0));
-				user.setUserPhoto(rset.getInt("USER_PHOTO"));
+				user.setUserPhoto(rset.getString("USER_PHOTO"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class UserDAO {
 				user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
 				user.setEnrollDate(rset.getDate("ENROLL_DATE"));
 				user.setAdminCheck(rset.getString("ADMIN_CHECK").charAt(0));
-				user.setUserPhoto(rset.getInt("USER_PHOTO"));
+				user.setUserPhoto(rset.getString("USER_PHOTO"));
 				list.add(user);
 				
 			}

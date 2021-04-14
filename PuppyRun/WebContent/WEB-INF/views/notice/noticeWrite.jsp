@@ -24,7 +24,7 @@
         <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
         <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/notice-write.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <title>퍼피런 - 공지사항</title>
     </head>
@@ -56,7 +56,7 @@
                             } else {
                             %>
                             	<a href="/user/myInfo">
-                                <img src="#"> <!-- 사진어케 가져와 -->
+                                <img src="#">
                            		</a>
                             	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
                             <%
@@ -102,7 +102,7 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="/notice/write" method="post" enctype="multipart/form-data">
+                            <form id="write-check" action="/notice/write" method="post" enctype="multipart/form-data">
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <div id="btn-box">
-                                    <input type="submit" id="submit-input" value="등록">
+                                    <input type="button" id="submit-input" value="등록">
                                     <a href="/notice/list"><p>취소</p></a>
                                 </div>
                             </form>
