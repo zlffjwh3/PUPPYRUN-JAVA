@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String userId = (String)request.getAttribute("userId");
+	String userName = (String)request.getAttribute("userName");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,7 +21,7 @@
 <!-- 테스트 -->
     <div id="wrap">
             <div id="header">
-                <a href="#"><img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt=""></a>
+                <a href="/index.jsp"><img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt=""></a>
             </div>
             <div id="content">
                 <div id="utilTab">
@@ -34,11 +38,12 @@
                     <!-- https://www.lotteon.com/p/member/find/findId 참고 -->
                 </div>
                 <div id="email-group">
-                    <h2>이메일 정보로 아이디 찾기   </h2>
-                    <p></p>
+                    <h2>이메일 정보로 아이디 찾기</h2>
                     <span>회원가입시 등록한 정보로 찾을 수 있습니다</span>
+                    <p></p>
                     <div id="email-form">
-                        <form action="/user/findId" method="post">
+                    <% if(userId == null) { %>
+                        <form action="/user/findId" method="POST">
                             <div id="e-username-area">
                                 <input type="text" name="e-user-name" id="e-user-name" placeholder="이름">
                             </div>
@@ -49,7 +54,14 @@
                                 <input type="submit" value="확인">
                             </div>
                         </form>
+                    <% } %>
                     </div>
+                    <% if(userId != null && userId != "") { %>
+                    	<br>
+                    	<h4><%= userName %>님의 아이디 :</h4>
+                    	<h3><%= userId %></h3>
+                    	<br><br><br>
+                    <% } %>
                 </div>
             </div>
             <div id="pwd-group">
@@ -57,7 +69,7 @@
                 <p></p>
                 <span>회원가입시 등록한 정보로 찾을 수 있습니다</span>
                 <div id="pwd-form">
-                    <form action="" method="">
+                    <form action="/user/findPwd" method="POST">
                         <div id="p-username-area">
                             <input type="text" name="p-user-name" id="p-user-name" placeholder="이름">
                         </div>

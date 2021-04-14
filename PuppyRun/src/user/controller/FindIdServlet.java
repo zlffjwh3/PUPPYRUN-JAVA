@@ -1,6 +1,8 @@
 package user.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,17 +22,24 @@ public class FindIdServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String userName = request.getParameter("e-user-name");
 		String userEmail = request.getParameter("e-user-email");
 		
 		User user = new UserService().findUserId(userName, userEmail);
+		System.out.println(user);
 		
-		if(user != null && userName.equals(user.getUserName()) && userEmail.equals(user.getEmail())) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			response.sendRedirect("/WEB-INF/views/user/findIdSuccess.html");
+		if(user != null) {
+//			HttpSession session = request.getSession();
+//			session.setAttribute("userId", user.getUserId());
+//			session.setAttribute("userName", user.getUserName());
+			request.setAttribute("userId", user.getUserId());
+			request.setAttribute("userName", user.getUserName());
+			RequestDispatcher view = request.getRequestDispatcher("/id-pw-inquiry.jsp");
+			view.forward(request, response);
+			
 		} else {
-			response.sendRedirect("/WEB-INF/views/user/error.html");
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 		
 	}

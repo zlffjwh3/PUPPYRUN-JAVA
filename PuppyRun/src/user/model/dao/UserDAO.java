@@ -194,11 +194,15 @@ public class UserDAO {
 			pstmt.setString(1, userName);
 			pstmt.setString(2, userEmail);
 			rset = pstmt.executeQuery();
+			System.out.println(rset + "테스트");
+			
+			
 			if(rset.next()) {
 				user = new User();
 				user.setUserId(rset.getString("USER_ID"));
 				user.setUserName(rset.getString("USER_NAME"));
 				user.setEmail(rset.getString("EMAIL"));
+				System.out.println(rset + "테스트");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
