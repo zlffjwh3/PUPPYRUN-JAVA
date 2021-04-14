@@ -39,8 +39,21 @@ public class CommunityService {
 	}
 	
 	// 태그별로 다르게 보이게 해주는 메소드
-	public CommunityPage selectTagList(int currentPage) {
-		return null;
+	public CommunityPage selectTagList(int currentPage, int tag) {
+		Connection conn = null;
+		CommunityPage cp = new CommunityPage();
+		
+		try {
+			conn = factory.createConnection();
+			cp.setcList(new CommunityDAO().selectTagList(conn, currentPage, tag));
+			cp.setPageNavi(new CommunityDAO().getPageNavi(conn, currentPage, tag));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return cp;
 	}
 	
 	// 게시물 보기 (Detail) 메소드
@@ -119,6 +132,8 @@ public class CommunityService {
 	public int printSearchList(String search, int currentPage) {
 		return 0;
 	}
+
+
 
 
 }

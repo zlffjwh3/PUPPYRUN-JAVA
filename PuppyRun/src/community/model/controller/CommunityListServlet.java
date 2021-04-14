@@ -25,7 +25,7 @@ public class CommunityListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = null; // 세션에서 받아오기
-		int tag = 0; // getparameter로 받아오기
+		int tag = 0;
 		int currentPage = 0; // getparameter로 받아오기
 		
 		if(request.getParameter("currentPage") == null) {
@@ -34,18 +34,45 @@ public class CommunityListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		CommunityPage communityPage = new CommunityService().selectAllCommunity(currentPage);
-		ArrayList<Community> cList = communityPage.getcList();
-		String pageNavi = communityPage.getPageNavi();
-		
-		if(!cList.isEmpty()) {
-			request.setAttribute("cList", cList);
-			request.setAttribute("pageNavi", pageNavi);
-			request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
-			
-		} else {
-			request.getRequestDispatcher("/WEB-INF/views/community/communutyError.html").forward(request, response);
+		if(request.getParameter("tagNo") == null) {
+			tag = 0;
+		}else {
+			tag = Integer.parseInt(request.getParameter("tagNo"));
 		}
+		
+		if(tag >= 1) {
+			// 특정 태그
+			CommunityPage communityPage = new CommunityService().selectTagList(currentPage, tag);
+			ArrayList<Community> cList = communityPage.getcList();
+			String pageNavi = communityPage.getPageNavi();
+			
+			if(!cList.isEmpty()) {
+				request.setAttribute("cList", cList);
+				request.setAttribute("pageNavi", pageNavi);
+				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
+				
+			} else {
+				request.getRequestDispatcher("/WEB-INF/views/community/communutyError.html").forward(request, response);
+			}
+		}else {
+			//전체
+			CommunityPage communityPage = new CommunityService().selectAllCommunity(currentPage);
+			ArrayList<Community> cList = communityPage.getcList();
+			String pageNavi = communityPage.getPageNavi();
+			
+			if(!cList.isEmpty()) {
+				request.setAttribute("cList", cList);
+				request.setAttribute("pageNavi", pageNavi);
+				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
+				
+			} else {
+				request.getRequestDispatcher("/WEB-INF/views/community/communutyError.html").forward(request, response);
+			}
+		}
+		
+		
+		
+		
 		
 	}
 

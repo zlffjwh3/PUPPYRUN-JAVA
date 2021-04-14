@@ -112,7 +112,7 @@ public class CommunityDAO {
 		
 		return sb.toString();
 	}
-	
+
 		// 총 게시물 수 계산
 		public int totalCount(Connection conn) {
 			Statement stmt = null;
@@ -138,8 +138,123 @@ public class CommunityDAO {
 			return recordTotalCount;
 		}
 		
-	public ArrayList<Community> selectTagList(Connection conn, int currentPage) {
-		return null;
+		// 태그 네비게이터
+		public String getPageNavi(Connection conn, int currentPage, int tag) {
+			int recordTotalCount = totalCount(conn, tag);
+			int recordCountPerPage = 10;
+			int pageTotalCount = 0;
+			
+			if((recordTotalCount % recordCountPerPage) > 0) {
+				pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+			} else {
+				pageTotalCount = recordTotalCount / recordCountPerPage;
+			}
+			
+			// 오류방지 코드
+			if(currentPage < 1) {
+				currentPage = 1;
+			} else if(currentPage > pageTotalCount) {
+				currentPage = pageTotalCount;
+			}
+			
+			int naviCountPerPage = 10;
+			int startNavi = ((currentPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
+			int endNavi = startNavi + naviCountPerPage - 1;
+			
+			// 오류방지 코드
+			if(endNavi > pageTotalCount) {
+				endNavi = pageTotalCount;
+			}
+			
+			boolean needPrev = true;
+			boolean needNext = true;
+			if(startNavi == 1) {
+				needPrev = false;
+			}
+			if(endNavi == pageTotalCount) {
+				needNext = false;
+			}
+			
+			StringBuilder sb = new StringBuilder();
+			if(needPrev) {
+				sb.append("<a href='/community/list?tagNo=" + tag + "currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
+			}
+			for(int i=startNavi; i<=endNavi; i++) {
+				sb.append("<a href='/community/list?tagNo=" + tag + "currentPage=" + i + "'>" + i + "</a>");
+			}
+			if(needNext) {
+				sb.append("<a href='/community/list?tagNo=" + tag + "currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
+			}
+			
+			return sb.toString();
+		}
+		
+		// 태그 전체 페이지 수
+		public int totalCount(Connection conn, int tag) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String query = "SELECT COUNT(*) AS TOTALCOUNT FROM COMMUNITY WHERE TAG_NO = ?";
+			
+			int recordTotalCount = 0;
+			
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, tag);
+				rset = pstmt.executeQuery();
+
+				if(rset.next()) {
+					recordTotalCount = rset.getInt("TOTALCOUNT");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(rset);
+				JDBCTemplate.close(pstmt);
+			}
+			
+			return recordTotalCount;
+		}
+		
+	// 특정 태그 게시물 보기
+	public ArrayList<Community> selectTagList(Connection conn, int currentPage, int tag) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM COMMUNITY WHERE TAG_NO = ?";
+		ArrayList<Community> cList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, tag);
+			rset = pstmt.executeQuery();
+			
+			if(rset != null) {
+				cList = new ArrayList<Community>();
+				
+				while(rset.next()) {
+					Community community = new Community();
+					community.setComNo(rset.getInt("COM_NO"));
+					community.setComId(rset.getString("COM_ID"));
+					community.setTagNo(rset.getInt("TAG_NO"));
+					community.setComTitle(rset.getString("COM_TITLE"));
+					community.setComContent(rset.getString("COM_CONTENT"));
+					community.setComview(rset.getInt("COM_VIEW"));
+					community.setComDate(rset.getDate("COM_DATE"));
+					community.setComPhoto(rset.getString("COM_PHOTO"));
+					community.setLikeCount(rset.getInt("LIKE_COUNT"));
+					community.setUserNick(rset.getString("USER_NICK"));
+					
+					cList.add(community);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return cList;
 	}
 	
 	// 특정 게시물 보기

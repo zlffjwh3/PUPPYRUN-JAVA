@@ -110,11 +110,11 @@
                         <div id="category-wrap">
                             <!-- 태그들 -->
                             <ul id="category">
-                                <li><a><i class="fas fa-border-all"></i><p>전체</p></a></li>
-                                <li><a><i class="far fa-comments"></i><p>자유</p></a></li>
-                                <li><a><i class="fas fa-cubes"></i><p>나눔</p></a></li>
-                                <li><a><i class="fas fa-question"></i><p>질문</p></a></li>
-                                <li><a><i class="fas fa-child"></i><p>자랑</p></a></li>
+                                <li><a href="/community/list"><i class="fas fa-border-all"></i><p>전체</p></a></li>
+                                <li><a href="/community/list?tagNo=1"><i class="far fa-comments"></i><p>자유</p></a></li>
+                                <li><a href="/community/list?tagNo=2"><i class="fas fa-cubes"></i><p>나눔</p></a></li>
+                                <li><a href="/community/list?tagNo=3"><i class="fas fa-question"></i><p>질문</p></a></li>
+                                <li><a href="/community/list?tagNo=4"><i class="fas fa-child"></i><p>자랑</p></a></li>
                             </ul>
                         </div>
                     </div>
