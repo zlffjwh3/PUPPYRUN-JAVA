@@ -147,6 +147,9 @@
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
             </div>
+            <div class="scroll-wrap2">
+            <a href="/petdiary/write" class="message"><div><i class="far fa-comment-alt"></i></div>글쓰기</a>
+            </div>
             <!-- 메인 ---------------------------------------------------------------------------------------------------------->
 	   		<div id="main-content">
 	   			<!-- Goal ----------------------------------------------------------------------------------------->

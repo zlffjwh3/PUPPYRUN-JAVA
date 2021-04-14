@@ -400,6 +400,7 @@ function getTimeHTML(distance) {
 </script>
                                    
                                 </div>
+                                </div>
                                 <div id="content">
                                     <p class="write-p-tag">내 용</p>
                                     <div class="input-box" id="textarea-box">
@@ -414,7 +415,7 @@ function getTimeHTML(distance) {
                                 </div>
                                 <div id="btn-box">
                                     <input type="submit" id="submit-input" value="등록">
-                                    <a href="/notice/list"><p>취소</p></a>
+                                    <a href="/petdiary/list"><p>취소</p></a>
                                 </div>
                             </form>
                         </div>
