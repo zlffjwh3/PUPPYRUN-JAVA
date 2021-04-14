@@ -111,10 +111,10 @@
                             <!-- 태그들 -->
                             <ul id="category">
                                 <li><a><i class="fas fa-border-all"></i><p>전체</p></a></li>
-                                <li><i class="far fa-comments"></i><p>자유</p></li>
-                                <li><i class="fas fa-cubes"></i><p>나눔</p></li>
-                                <li><i class="fas fa-question"></i><p>질문</p></li>
-                                <li><i class="fas fa-child"></i><p>자랑</p></li>
+                                <li><a><i class="far fa-comments"></i><p>자유</p></a></li>
+                                <li><a><i class="fas fa-cubes"></i><p>나눔</p></a></li>
+                                <li><a><i class="fas fa-question"></i><p>질문</p></a></li>
+                                <li><a><i class="fas fa-child"></i><p>자랑</p></a></li>
                             </ul>
                         </div>
                     </div>

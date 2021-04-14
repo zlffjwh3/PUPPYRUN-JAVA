@@ -82,7 +82,7 @@ public class AgeCalculatorServlet extends HttpServlet {
 	      }
 	      
 	       request.setAttribute("result", result);
-	        request.getRequestDispatcher("WEB-INF/views/calculator/age.jsp").forward(request, response);
+	        request.getRequestDispatcher("/WEB-INF/views/calculator/age.jsp").forward(request, response);
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
