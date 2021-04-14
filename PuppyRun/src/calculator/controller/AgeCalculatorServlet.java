@@ -57,7 +57,7 @@ public class AgeCalculatorServlet extends HttpServlet {
 	      
 	      
 	      long result = 0;
-	      
+	      System.out.println(widthChoice);
 	      if(widthChoice == 1) {
 	         if(diffyear > 2) {
 	            result = (2*12);
@@ -68,14 +68,14 @@ public class AgeCalculatorServlet extends HttpServlet {
 	      }else if(widthChoice == 2) {
 	         if(diffyear > 2) {
 	            result = (2*12);
-	            result = result + ((diffyear - 2) * 4);
+	            result = result + ((diffyear - 2) * 5);
 	         }else {
 	            result = diffyear*12;
 	         }
 	      }else if(widthChoice == 3) {
 	         if(diffyear > 2) {
 	            result = (2*12);
-	            result = result + ((diffyear - 2) * 4);
+	            result = result + ((diffyear - 2) * 6);
 	         }else {
 	            result = diffyear*12;
 	         }
