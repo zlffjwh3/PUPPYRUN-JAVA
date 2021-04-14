@@ -34,12 +34,11 @@ public class FindIdServlet extends HttpServlet {
 //			session.setAttribute("userId", user.getUserId());
 //			session.setAttribute("userName", user.getUserName());
 			request.setAttribute("userId", user.getUserId());
-			request.setAttribute("userName", user.getUserName());
 			RequestDispatcher view = request.getRequestDispatcher("/id-pw-inquiry.jsp");
 			view.forward(request, response);
 			
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
+			request.getRequestDispatcher("/id-pw-inquiry.jsp").forward(request, response);
 		}
 		
 	}

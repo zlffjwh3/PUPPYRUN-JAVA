@@ -153,5 +153,21 @@ public class UserService {
 		return user;
 	}
 
+	// 유저Pwd찾기
+	public User finduserPwd(String userName, String userId, String userEmail) {
+		User user = null;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			user = new UserDAO().findUserPwd(conn, userName, userId, userEmail);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return user;
+	}
+
 	
 }

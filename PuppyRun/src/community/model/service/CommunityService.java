@@ -38,12 +38,39 @@ public class CommunityService {
 	}
 	
 	// 태그별로 다르게 보이게 해주는 메소드
-	public CommunityPage selectTagList(int currentPage) {
-		return null;
+	public CommunityPage selectTagList(int currentPage, int tag) {
+		Connection conn = null;
+		CommunityPage cp = new CommunityPage();
+		
+		try {
+			conn = factory.createConnection();
+			cp.setcList(new CommunityDAO().selectTagList(conn, currentPage, tag));
+			cp.setPageNavi(new CommunityDAO().getPageNavi(conn, currentPage, tag));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return cp;
 	}
 	
+	// 게시물 보기 (Detail) 메소드
 	public Community selectOneCommunity(int communityNo) {
-		return null;
+		Connection conn = null;
+		Community community = null;
+		
+		try {
+			conn = factory.createConnection();
+			community = new CommunityDAO().selectOneCommunity(conn, communityNo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return community;
 	}
 	
 	// 게시물 등록하는 메소드
@@ -79,12 +106,33 @@ public class CommunityService {
 	}
 	
 	public int addReadCount(int communityNo) {
-		return 0;
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CommunityDAO().addReadCount(conn, communityNo);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
 	}
 	
 	public int printSearchList(String search, int currentPage) {
 		return 0;
 	}
+
+
 
 
 }

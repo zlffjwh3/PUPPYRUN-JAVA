@@ -1,12 +1,12 @@
 <%@page import="user.model.vo.User"%>
-<%@page import="notice.model.vo.Notice"%>
+<%@page import="community.model.vo.Community"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%
+	Community community = (Community)request.getAttribute("community");
 	User user = (User)session.getAttribute("user");
-	Notice notice = (Notice)request.getAttribute("notice");
 %>
-
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -19,52 +19,53 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-detail.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/communityDetail.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-write.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> -->
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
         <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
-        <title>퍼피런 - 공지사항</title>
+        <title>퍼피런 :: 멍멍이야기</title>
     </head>
     <body>
         <div id="wrap">
             <header>
                 <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft"></div>
-                    <!-- 헤더 메인 로고 -->
-                    <div id="header-logo">
-                        <a href="/index.html" id="logo"></a>
-                    </div>
-                    <div id="tright">
+                    <div id="tleft">
                         <div id="search">
                             <form action="">
                                 <input class="search-input" id="" type="text" placeholder="search">
                             </form>
                         </div>
+                    </div>
+                    <!-- 헤더 메인 로고 -->
+                    <div id="header-logo">
+                        <a href="/index.jsp" id="logo"></a>
+                    </div>
+                    <div id="tright">
                         <div id="login">
-                        	<%
-                        	if(user == null) {
-                        	%>
-                            	<a href="/login.jsp">
+                        <%
+                        if(user == null) {
+                        %>
+                            <a href="#">
                                 <i class="xi-face xi-2x"></i>
-                           		</a>
-                            	<a href="/login.jsp" id="login-content">로그인</a>
-                            <%
-                            } else {
-                            %>
-                            	<a href="/user/myInfo">
+                            </a>
+                            <a href="/login.jsp" id="login-content">로그인</a>
+                        <%
+                        }else {
+                        %>
+                            <a href="/user/myInfo">
                                 <img src="#"> <!-- 사진어케 가져와 -->
                            		</a>
-                            	<a href="#" id="login-content"><%= user.getUserNick() %></a>
-                            <%
-                            }                        
-                            %>
+                            <a href="#" id="login-content"><%= user.getUserNick() %></a>
+                        <%
+                        }
+                        %>
                         </div>
                     </div>
                 </div>
@@ -80,10 +81,10 @@
                             <a href="#">산책짝꿍</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">멍멍이야기</a>
+                            <a href="/community/list">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">퍼피런이야기</a>
+                            <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">반려견계산기</a>
@@ -96,55 +97,104 @@
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
             </div>
-            <!-- 메인 ---------------------------------------------------------------------------------------------------------->
- 			 <div id="main-content">
+            <!-- 메인 -->
+            <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
-                        <h3>퍼피런 이야기</h3>
+                        <h3>멍멍이야기</h3>
                     </div>
                     <!-- 작업해야할 부분 -->
                     <div id="view-wrap">
                         <div id="write-box">
                             <div id="notice-head">
                                 <!-- 글 제목 -->
-                                <h2><%= notice.getNoticeTitle() %></h2>
+                                <h2><%=community.getComTitle() %></h2>
                                 <div class="fl">
-                                    <span>관리자</span>
+                                    <span><%=community.getUserNick() %></span>
                                 </div>
                                 <div class="fr">
                                     <!-- 작성일 -->
-                                    <span><%= notice.getNoticeDate() %></span>
+                                    <span><%= community.getComDate() %></span>
                                     <!-- 조회수 -->
-                                    <span><%= notice.getNoticeView() %></span>
+                                    <span>조회수 <%= community.getComview() %></span>
                                 </div>
                             </div>
                             <div id="notice-content">
                                 <div class="write-div">
-                                    <p><%= notice.getNoticeContent() %></p>
-                                    <!-- 사진은 어떻게 불러와 ? ,,,, -->
+                                	<div><img src="/upload/<%=community.getComPhoto()%>"></div>
+                                    <p><%= community.getComContent() %></p>
                                 </div>
+                            </div>
+                            <div id="comment-wrap">
+                                <p>댓글  2<!-- 이부분에 댓글 수 넣을 것--></p>
+                                <div id="comment-input">
+                                <%
+                                if(user != null) {
+                               	%>
+                                    <form action="" method="">
+                                        <textarea name="comment"></textarea>
+                                        <input type="submit" value="등록">
+                                    </form>
+                                <%
+                                }
+                                %>
+                                </div>
+                                <ul class="list">
+                                    <!-- 여기에 입력한 댓글 넣기 -->
+                                    <li class="comment">
+                                        <!-- 댓글 프로필 이미지 -->
+                                        <div class="profile-image"></div>
+                                        <div class="info">
+                                            <div class="nickname">
+                                                <!-- 닉네임 -->
+                                                <p>땅콩</p>
+                                                <!-- 작성일 -->
+                                                <span>2021-04-12 13:42:21</span>
+                                                <span><a>삭제</a></span>
+                                                <span><a>수정</a></span>
+                                            </div>
+                                            <!-- 댓글 내용 -->
+                                            <div class="comment"><p>dasdsadasdasdadsadadaddsa</p></div>
+                                        </div>
+                                    </li>
+                                    <li class="comment">
+                                        <!-- 댓글 프로필 이미지 -->
+                                        <div class="profile-image"></div>
+                                        <div class="info">
+                                            <div class="nickname">
+                                                <!-- 닉네임 -->
+                                                <p>땅콩</p>
+                                                <!-- 작성일 -->
+                                                <span>2021-04-12 13:42:21</span>
+                                                <span><a>삭제</a></span>
+                                                <span><a>수정</a></span>
+                                            </div>
+                                            <!-- 댓글 내용 -->
+                                            <div class="comment"><p>dasdsadasdasdadsadadaddsa</p></div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div id="function-btn">
                             <div class="bl">
-                                <a href="/notice/list"><span>글 목록</span></a>
+                                <a href="/community/list"><span>글 목록</span></a>
                             </div>
-                            <%
-                            if(user != null && user.getAdminCheck() == 'Y') {
-                          	%>
-                          	<div class="br">
-                                <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>
-                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>&noticePhoto=<%= notice.getNoticePhoto() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
-                           		<a href="/notice/write"><span>글쓰기</span></a>
-                           	</div>
-                            <%
+                           	<%
+                            if(user != null) {
+                            %>
+                            <div class="br">
+                                <a href="#"><span>수정</span></a>
+                                <a href="#"><span>삭제</span></a>
+                                <a href="/community/write"><span>글쓰기</span></a>
+                            </div>
+                             <%
                             }
                             %>
                         </div>
                     </div>
                 </div>
             </div>
- 			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
             <footer>
                 <!-- 푸터 -->
                 <div id="footer">

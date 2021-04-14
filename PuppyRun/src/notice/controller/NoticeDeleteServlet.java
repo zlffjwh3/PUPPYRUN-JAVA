@@ -1,6 +1,9 @@
 package notice.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
+import photo.model.service.PhotoService;
 
 @WebServlet("/notice/delete")
 public class NoticeDeleteServlet extends HttpServlet {
@@ -19,10 +23,21 @@ public class NoticeDeleteServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		String noticePhoto = request.getParameter("noticePhoto");
+		String userId = "admin";
 		
-		int result = new NoticeService().deleteNotice(noticeNo);
-		if(result > 0) {
-			response.sendRedirect("/notice/list");
+		int noticeResult = new NoticeService().deleteNotice(noticeNo);
+		String photoPath = new PhotoService().selectPhoto(noticePhoto, userId);
+		int photoResult = new PhotoService().removePhoto(noticePhoto, userId);
+		File file = new File(photoPath);
+		
+		if(noticeResult > 0 && photoResult > 0) {
+			file.delete(); //upload 폴더 안 파일 삭제
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('게시글이 삭제되었습니다'); location.href='/notice/list';</script>");
+			out.flush();
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
 		}

@@ -4,6 +4,7 @@
 } */
 
 .detail-box{
+	margin-top : 100px ;
 	display : inline-block;'
 	float: left;
 }
@@ -29,10 +30,9 @@
 }
 #main-content2{
 	marign : 0 auto;
+	height : 670px;
+	width: 100%;
 		
-}
-#top-box{
-	
 }
 .day{
 	width : 100px;
