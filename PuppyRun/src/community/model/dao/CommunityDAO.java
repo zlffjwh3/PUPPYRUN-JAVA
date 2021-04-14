@@ -177,13 +177,13 @@ public class CommunityDAO {
 			
 			StringBuilder sb = new StringBuilder();
 			if(needPrev) {
-				sb.append("<a href='/community/list?tagNo=" + tag + "currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
+				sb.append("<a href='/community/list?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
 			}
 			for(int i=startNavi; i<=endNavi; i++) {
-				sb.append("<a href='/community/list?tagNo=" + tag + "currentPage=" + i + "'>" + i + "</a>");
+				sb.append("<a href='/community/list?currentPage=" + i + "'>" + i + "</a>");
 			}
 			if(needNext) {
-				sb.append("<a href='/community/list?tagNo=" + tag + "currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
+				sb.append("<a href='/community/list?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
 			}
 			
 			return sb.toString();
@@ -215,16 +215,22 @@ public class CommunityDAO {
 			return recordTotalCount;
 		}
 		
-	// 특정 태그 게시물 보기
+	// 특정 태그 게시물 보기 (여기여기여기)
 	public ArrayList<Community> selectTagList(Connection conn, int currentPage, int tag) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM COMMUNITY WHERE TAG_NO = ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT, USER_NICK FROM COMMUNITY) WHERE TAG_NO = ? AND NUM BETWEEN ? AND ?";
 		ArrayList<Community> cList = null;
+		
+		int recordCountPage = 10;
+		int start = currentPage * recordCountPage - (recordCountPage - 1);
+		int end = currentPage * recordCountPage;
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, tag);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			rset = pstmt.executeQuery();
 			
 			if(rset != null) {
@@ -257,7 +263,7 @@ public class CommunityDAO {
 		return cList;
 	}
 	
-	// 특정 게시물 보기
+	// 게시물 상세보기 (디테일)
 	public Community selectOneCommunity(Connection conn, int comNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
