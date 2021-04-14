@@ -102,6 +102,12 @@ public class UserService {
 		try {
 			conn = factory.createConnection(); // 연결 생성해서 DAO에 넘겨주는 역할
 			result = new UserDAO().deleteUser(conn, userId);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
