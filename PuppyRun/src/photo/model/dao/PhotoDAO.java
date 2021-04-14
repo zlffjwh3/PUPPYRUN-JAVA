@@ -2,13 +2,39 @@ package photo.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import photo.model.vo.Photo;
 
 public class PhotoDAO {
+	// 사진정보 가져오기
+	public String selectPhoto(Connection conn, String photoName, String photoId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String photoPath = null;
+		String query = "SELECT PHOTO_PATH FROM PHOTO WHERE PHOTO_NAME = ? AND PHOTO_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, photoName);
+			pstmt.setString(2, photoId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				photoPath = rset.getString("PHOTO_PATH");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return photoPath;
+	}
+	
 	// 사진정보 등록
 	public int insertPhotoInfo(Connection conn, Photo photo) {
 		PreparedStatement pstmt = null;
@@ -57,7 +83,22 @@ public class PhotoDAO {
 	}
 	
 	// 사진정보 삭제
-	public int deletePhoto(Connection conn, String photoPath, String userId) {
-		return 0;
+	public int deletePhoto(Connection conn, String photoName, String photoId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM PHOTO WHERE PHOTO_NAME = ? AND PHOTO_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, photoName);
+			pstmt.setString(2, photoId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 }

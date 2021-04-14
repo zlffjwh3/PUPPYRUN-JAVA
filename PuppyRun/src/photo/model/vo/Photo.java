@@ -3,7 +3,6 @@ package photo.model.vo;
 import java.sql.Timestamp;
 
 public class Photo {
-	private int photoNo;
 	private String photoName;
 	private String photoPath;
 	private long photoSize;
@@ -13,12 +12,6 @@ public class Photo {
 	
 	public Photo() {}
 	
-	public int getPhotoNo() {
-		return photoNo;
-	}
-	public void setPhotoNo(int photoNo) {
-		this.photoNo = photoNo;
-	}
 	public String getPhotoName() {
 		return photoName;
 	}
@@ -58,7 +51,7 @@ public class Photo {
 	
 	@Override
 	public String toString() {
-		return "Photo [photoNo=" + photoNo + ", photoName=" + photoName + ", photoPath=" + photoPath + ", photoSize="
+		return "Photo [photoName=" + photoName + ", photoPath=" + photoPath + ", photoSize="
 				+ photoSize + ", photoId=" + photoId + ", uploadTime=" + uploadTime + ", boardType=" + boardType + "]";
 	}
 }

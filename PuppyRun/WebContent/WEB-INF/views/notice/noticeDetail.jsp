@@ -134,7 +134,7 @@
                           	%>
                           	<div class="br">
                                 <a href="/notice/update?noticeNo=<%= notice.getNoticeNo() %>"><span>수정</span></a>
-                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
+                                <a href="/notice/delete?noticeNo=<%= notice.getNoticeNo() %>&noticePhoto=<%= notice.getNoticePhoto() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                            		<a href="/notice/write"><span>글쓰기</span></a>
                            	</div>
                             <%
