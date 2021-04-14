@@ -3,6 +3,8 @@
 <%
 	String userId = (String)request.getAttribute("userId");
 	String userName = (String)request.getAttribute("userName");
+	String userPwd = (String)request.getAttribute("userPwd");
+	String pUserId = (String)request.getAttribute("PuserId");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -57,24 +59,25 @@
                     <% } %>
                     </div>
                     <% if(userId != null && userId != "") { %>
-                    	<br>
-                    	<h4><%= userName %>님의 아이디 :</h4>
-                    	<h3><%= userId %></h3>
+                    	<br><br>
+                    	<h4 class="result"><%= userName %>님의 아이디 :</h4><br>
+                    	<h3 class="result"><%= userId %></h3>
                     	<br><br><br>
                     <% } %>
                 </div>
             </div>
             <div id="pwd-group">
                 <h2>이메일 정보로 비밀번호 찾기</h2>
-                <p></p>
                 <span>회원가입시 등록한 정보로 찾을 수 있습니다</span>
+                <p></p>
                 <div id="pwd-form">
+                <% if(userPwd == null) { %>
                     <form action="/user/findPwd" method="POST">
                         <div id="p-username-area">
                             <input type="text" name="p-user-name" id="p-user-name" placeholder="이름">
                         </div>
                         <div id="p-userid-area">
-                            <input type="email" name="p-user-id" id="p-user-id" placeholder="아이디">
+                            <input type="text" name="p-user-id" id="p-user-id" placeholder="아이디">
                         </div>
                         <div id="p-useremail-area">
                             <input type="email" name="p-user-email" id="p-user-email" placeholder="이메일">
@@ -83,6 +86,14 @@
                             <input type="submit" value="확인">
                         </div>
                     </form>
+				<% } %>
+				<% if(userPwd != null && userPwd != "") { %>
+				<script>$('#email-group').css('display','none');$('#pwd-group').css('display','block');$('#find-pwd > a').css('background','rgb(240,163,0)');$('#find-id > a').css('background','#FEB415');</script>
+					<br><br>
+                   	<h4 class="result"><%= pUserId  %>님의 비밀번호 : </h4><br>
+                   	<h3 class="result"><%= userPwd %></h3>
+                    <br><br><br>
+				<% } %>
                 </div>
             </div>
         </div>

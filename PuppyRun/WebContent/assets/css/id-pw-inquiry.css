@@ -183,3 +183,6 @@ body {
 }
 
 /* 비밀번호 찾기 */
+.result {
+	margin : 5px 0 5px 0;
+}

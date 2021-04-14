@@ -200,9 +200,6 @@ public class UserDAO {
 			if(rset.next()) {
 				user = new User();
 				user.setUserId(rset.getString("USER_ID"));
-				user.setUserName(rset.getString("USER_NAME"));
-				user.setEmail(rset.getString("EMAIL"));
-				System.out.println(rset + "테스트");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -210,6 +207,32 @@ public class UserDAO {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+		return user;
+	}
+
+	public User findUserPwd(Connection conn, String userName, String userId, String userEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		User user = null;
+		String query = "SELECT * FROM USERTBL  WHERE USER_NAME = ? AND EMAIL = ? AND USER_ID = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userEmail);
+			pstmt.setString(3, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				user = new User();
+				user.setUserPw(rset.getString("USER_PW"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
 		return user;
 	}
 
