@@ -46,7 +46,9 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	//현재, 즉 오늘날짜를 말한것이다/
 	int week = cal.get(Calendar.DAY_OF_WEEK);
+	int j = 0;
 %>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -128,7 +130,7 @@
                         	%>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">산책짝꿍</a>
+                            <a href="#">산책 짝꿍</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">멍멍이야기</a>
@@ -146,9 +148,6 @@
             <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
-            </div>
-            <div class="scroll-wrap2">
-            <a href="/petdiary/write" class="message"><div><i class="far fa-comment-alt"></i></div>글쓰기</a>
             </div>
             <!-- 메인 ---------------------------------------------------------------------------------------------------------->
 	   		<div id="main-content">
@@ -261,7 +260,7 @@
 						SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 				        String todayString = sdformat.format(today);
 				        
-				        System.out.println(todayString);
+				      //  System.out.println(todayString);
 				        
 				        //int todayBox = 0;
 				        /*
@@ -273,7 +272,7 @@
 							}
 				    	} */
 				        
-						for(int j = 1; j<=endDay; j ++){
+						for(j = 1; j<=endDay; j ++){
 							week++;
 							
 							if(week % 7 ==2){
@@ -282,9 +281,12 @@
 								<tr>
 						<% } 
 							if(week % 7 == 2){ 
+
 							%>
-								<td class="sun day" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
-									<div id="day<%=j%>"><%=j %></div>
+
+							<td class="sun day" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
+							<div id="day<%=j%>"><%=j %></div>
+
 									<%
 									for(int i = 0; i < pList.size(); i++){
 										String calDate = pList.get(i).getDiaryDate();
@@ -306,7 +308,7 @@
 									 		</script>
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
 								<%	}	
-							    	}
+							    	}			
 									}
 									%>
 								</td>
@@ -343,6 +345,22 @@
 							<% }
 						}%>
 						</tr>
+				<%
+			//	String path2 = getServletConfig().getServletContext().getRealPath("");
+			//	String now_address = javax.servlet.http.HttpUtils.getRequestURL(request).toString();
+			//	String path = request.getScheme() + "://" + request.getServerName() +":" + request.getServerPort();
+			//	System.out.println(now_address);
+			//String spath = request.getServletPath();  
+			//String url = request.getRequestURL().toString();  
+// 필요에 따라서 사용  
+//Stirng strCurrentUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath(); 
+
+				%>
+
+            	<div class="scroll-wrap2">
+           <a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=j%>'" class="message">
+           <div><i class="far fa-comment-alt"></i></div>글쓰기</a>
+            	</div>
 					</table>
 				</div>
 			</div>
@@ -371,6 +389,5 @@
                     </div>
                 </div>
             </footer>
-        </div>
     </body>
 </html>
