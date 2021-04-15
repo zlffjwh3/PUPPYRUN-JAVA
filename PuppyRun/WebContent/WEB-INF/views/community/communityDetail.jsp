@@ -184,7 +184,7 @@
                             if(user != null) {
                             %>
                             <div class="br">
-                                <a href="#"><span>수정</span></a>
+                                <a href="/community/update?comNo=<%= community.getComNo()%>"><span>수정</span></a>
                                 <a href="#"><span>삭제</span></a>
                                 <a href="/community/write"><span>글쓰기</span></a>
                             </div>
