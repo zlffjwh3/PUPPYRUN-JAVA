@@ -359,7 +359,7 @@
             		<div><i class="far fa-comment-alt"></i></div>글쓰기</a></div>
                          <div id="function-btn">
                         	<div class="br">
-                                <a href="/petdiary/update"><span>수정</span></a>
+                                <a onclick="location.href='/petdiary/update?year=<%=year%>&month=<%=month%>&date=<%=day%>'" ><span>수정</span></a>
                                 <a href="/petdiary/delete" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                            	</div>
                         </div>

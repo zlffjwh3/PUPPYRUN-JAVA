@@ -122,7 +122,7 @@
                                     <div class="input-box" id="file-wrapper">
                                     	<div id="file-update-box">
                                     		<span><%= community.getComPhoto() %></span>
-                     
+                     						<%}%>
                                         	<input type="file" id="file-input" name="upFile">
                                         	</div>
                                     </div>

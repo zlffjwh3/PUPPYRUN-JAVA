@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import community.model.dao.CommunityDAO;
 import notice.model.dao.NoticeDAO;
 import notice.model.vo.NoticePage;
 import petdiary.model.dao.PetDiaryDAO;
@@ -52,7 +53,25 @@ public class PetDiaryService {
 	}
 	
 	public int insertDiary(PetDiary petDiary) {
-		return 0;
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new PetDiaryDAO().insertDiary(conn, petDiary);
+			System.out.println(result); // 오류
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
 	}
 	
 	public int updateDiary(PetDiary petDiary) {
