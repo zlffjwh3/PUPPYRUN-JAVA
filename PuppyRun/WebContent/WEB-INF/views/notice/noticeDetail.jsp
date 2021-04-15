@@ -20,8 +20,7 @@
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-detail.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-write.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
+ <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-write.css">         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">

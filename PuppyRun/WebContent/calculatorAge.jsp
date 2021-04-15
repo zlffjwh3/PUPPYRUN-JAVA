@@ -6,6 +6,7 @@
 %>
 <!DOCTYPE html>
 <html lang="ko">
+<!-- 수정 -->
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +28,8 @@
         <link rel="icon" href="./assets/img/Favicon/favicon.ico">
         <script src="/assets/js/jquery-3.4.1.min.js"></script>
         <script src="/assets/js/slider.js"></script>
-        <title>퍼피런 - 친구와 산책 나가요</title>
+        <script src="/assets/js/calculatorAge.js"></script>
+        <title>나이계산기</title>
     </head>
     <body>
         <div id="wrap">
@@ -157,12 +159,11 @@
                                     
                                     		<h5>몸무게선택</h5>
                                     		<div class="cal_choice">
-                                        	<input type="hidden" id="dog_type" name="dog_type" value="0">
-                                    	 	<a class="dog_type0 cal_checked" onclick="weight_choice0">소(~9kg)</a>
-                                     		<a class="dog_type1" onclick="weight_choice1">중(9~23kg)</a>
-                                    	 	<a class="dog_type2" onclick="weight_choice2">대(24kg이상)</a>
-                                     
-                                    		</div>
+			                                     <input type="hidden" id="dog_type" name="dog_type" value="0">
+			                                     <a class="dog_type dog_type0 cal_checked" onclick="weight_choice(0)">소(~9kg)</a>
+			                                     <a class="dog_type dog_type1" onclick="weight_choice(1)">중(9~23kg)</a>
+			                                     <a class="dog_type dog_type2" onclick="weight_choice(2)">대(24kg이상)</a>
+		                                    </div>
                                 		</span>
                             		</div>
                         		</div>
