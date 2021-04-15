@@ -1,7 +1,9 @@
+<%@page import="user.model.vo.User"%>
 <%@page import="notice.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	User user = (User)session.getAttribute("user");
 	Notice notice = (Notice)request.getAttribute("notice");
 %>
    
