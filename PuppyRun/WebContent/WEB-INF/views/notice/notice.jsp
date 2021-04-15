@@ -107,7 +107,7 @@
                         	<!-- 게시물 3개씩 묶어두는 박스 -->
                     		<div class="line-box">
                         <% for(int j=0; j<3; j++) {
-                        		if(n < nList.size()) { %>		
+                        		if(n < nList.size()) { %>
                         			<a href="/notice/detail?noticeNo=<%= nList.get(n).getNoticeNo() %>">
                         				<div class="nbb-content">
 				                       		<span class="nbb-photo">

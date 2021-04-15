@@ -1,6 +1,7 @@
 package user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -57,9 +58,11 @@ public class EnrollServlet extends HttpServlet {
 		 */
 				
 		int userResult = new UserService().insertUser(user);
-		System.out.println("값이 나오나 테스트 : " + userResult);
 		if(userResult > 0) {
-			response.sendRedirect("/join.jsp");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('퍼피런 회원 등록이 완료되었습니다!'); location.href='/index.jsp';</script>");
+			out.flush();
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
