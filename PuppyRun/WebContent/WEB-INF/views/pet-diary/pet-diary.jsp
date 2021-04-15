@@ -368,7 +368,7 @@
                     </div>
                     <div id="footer-left-box"> 
                         <ul>
-                            <li>퍼피런 소개</li>
+                            <li>퍼피런소개</li>
                             <li>사이트맵</li>
                             <li>이용약관</li>
                             <li>개인정보처리방침</li>
