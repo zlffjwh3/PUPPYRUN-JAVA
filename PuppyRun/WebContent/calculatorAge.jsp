@@ -27,7 +27,7 @@
         <link rel="icon" href="./assets/img/Favicon/favicon.ico">
         <script src="/assets/js/jquery-3.4.1.min.js"></script>
         <script src="/assets/js/slider.js"></script>
-        <script src="/assets/js/slider.js"></script>
+        <script src="/assets/js/calculatorAge.js"></script>
         <title>나이계산기</title>
     </head>
     <body>
