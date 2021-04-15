@@ -2,6 +2,7 @@ package community.model.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,7 +33,8 @@ public class CommunityUpdateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 수정할 정보 불러오기
-		int communityNo = Integer.parseInt(request.getParameter("comNo"));
+		int communityNo = Integer.parseInt(request.getParameter("communityNo"));
+		int communutyTagNo = Integer.parseInt(request.getParameter("communityTagNo"));
 		
 		// 게시물 상세보기 (Detail)에서 쓰인 메소드 가져와 재사용하기
 		// (해당 게시물번호에 맞는 정보 가져오기) 
@@ -58,15 +60,15 @@ public class CommunityUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		// js 파일에서 해당 값 계속 변경해줌 (Y/N)
-		char photoCheck = request.getParameter("photoCheck").charAt(0);  
-		int communityNo = Integer.parseInt(request.getParameter("comNo"));
+		char photoCheck = request.getParameter("photoCheck").charAt(0);
+		int communityNo = Integer.parseInt(request.getParameter("communityNo"));
 		// 기존 정보 가져오기
 		Community communityBefore = new CommunityService().selectOneCommunity(communityNo);
 		
 		// 기존에 파일이 있었는데 수정한 경우, 기본 파일 삭제
 		if(photoCheck == 'Y') {
 			// 기존 파일, 기존 닉네임
-			String photoPathBefore = new PhotoService().selectPhoto(communityBefore.getComPhoto(), communityBefore.getUserNick());
+			String photoPathBefore = new PhotoService().selectPhoto(communityBefore.getComPhoto(), communityBefore.getComId());
 			// 기존 파일을 upload 폴더에서 삭제
 			new File(photoPathBefore).delete();
 		}
@@ -81,15 +83,15 @@ public class CommunityUpdateServlet extends HttpServlet {
 	    String communityPhoto = multi.getFilesystemName("upFile");
 	    if(communityPhoto == null && photoCheck == 'Y') {
 	    	// 위에서 실제로 삭제한 파일을 DB에서도 삭제
-	    	photoResult = new PhotoService().removePhoto(communityBefore.getComPhoto(), communityBefore.getUserNick());
+	    	photoResult = new PhotoService().removePhoto(communityBefore.getComPhoto(), communityBefore.getComId());
 	    }else if(communityPhoto != null) {
 	    	// 파일 추가 또는 수정
 	    	File uploadFile = multi.getFile("upFile");
 	    	
 	    	String photoName = multi.getFilesystemName("upFile");
-	    	String photoPath = uploadFile.getAbsolutePath();
+	    	String photoPath = uploadFile.getPath();
 	    	long photoSize = uploadFile.length();
-	    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:SSS");
+	    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS"); 
 	    	Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
 	    	
 	    	Photo photo = new Photo();
@@ -124,7 +126,13 @@ public class CommunityUpdateServlet extends HttpServlet {
 	    
 	    int communityResult = new CommunityService().updateCommunity(community);
 	    
-	    
+	    if(communityResult > 0 && photoResult > 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('게시글이 수정되었습니다.'); location.href='/community/detail?comNo=" + communityNo +"';</script>");
+			out.flush();
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
+		}
 	}
-
 }

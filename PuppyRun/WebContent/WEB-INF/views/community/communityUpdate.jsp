@@ -30,6 +30,7 @@
         <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/community-update.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/notice-write.js"></script>
         <title>퍼피런 :: 멍멍이야기</title>
     </head>
     <body>
@@ -100,21 +101,36 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form id="write-check" action="/community/update?comNo=<%= community.getComNo() %>&photoCheck=N" method="post" enctype="multipart/form-data">
+                            <form id="write-check" action="/community/update?communityNo=<%= community.getComNo() %>&photoCheck=N" method="post" enctype="multipart/form-data">
                             	<input id="community-num" type="hidden" name="communityNo" value="<%= community.getComNo() %>">
                              	<div id="tag">
+                             	<%
+                             	String select1 = "";
+                             	String select2 = "";
+                             	String select3 = "";
+                             	String select4 = "";
+                             	if(community.getTagNo() == 1) {
+                             		select1 = "selected";
+                             	}else if(community.getTagNo() == 2) {
+                             		select2 = "selected";
+                             	}else if(community.getTagNo() == 3) {
+                             		select3 = "selected";
+                             	}else {
+                             		select4 = "selected";
+                             	}
+                             	%>
                                     <select name="tags" id="tags">
-                                        <option value="">태그를 선택해주세요</option>
-                                        <option value="1">자유</option>
-                                        <option value="2">나눔</option>
-                                        <option value="3">질문</option>
-                                        <option value="4">자랑</option>
+                                        <option value="" >태그를 선택해주세요</option>
+                                        <option value="1" <%= select1 %>>자유</option>
+                                        <option value="2" <%= select2 %>>나눔</option>
+                                        <option value="3" <%= select3 %>>질문</option>
+                                        <option value="4" <%= select4 %>>자랑</option>
                                     </select>
                                 </div>
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">
-                                        <input type="text" id="title-input" name="title" maxlength="50">
+                                        <input type="text" id="title-input" name="title" maxlength="50" value="<%= community.getComTitle() %>">
                                     </div>
                                 </div>
                                 <div id="file">
@@ -125,7 +141,7 @@
                                     		<span><%= community.getComPhoto() %></span>
                                     		<input type="button" id="file-update" value="수정하기">
                     					</div>
-                                    	<div id="file-update-box2">
+                                    	<div id="file-update-box2" style="display:none">
 	                                       	<input type="file" id="file-input" name="upFile">
 	                                    </div>
 	                                </div>

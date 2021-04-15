@@ -108,6 +108,7 @@
                         <div id="write-box">
                             <div id="notice-head">
                                 <!-- 글 제목 -->
+                                <input type="hidden" name="communityTagNo" value="<%= community.getTagNo() %>">
                                 <h2><%=community.getComTitle() %></h2>
                                 <div class="fl">
                                     <span><%=community.getUserNick() %></span>
@@ -184,7 +185,7 @@
                             if(user != null) {
                             %>
                             <div class="br">
-                                <a href="/community/update?comNo=<%= community.getComNo()%>"><span>수정</span></a>
+                                <a href="/community/update?communityNo=<%= community.getComNo()%>&communityTagNo=<%= community.getTagNo() %>"><span>수정</span></a>
                                 <a href="#"><span>삭제</span></a>
                                 <a href="/community/write"><span>글쓰기</span></a>
                             </div>
