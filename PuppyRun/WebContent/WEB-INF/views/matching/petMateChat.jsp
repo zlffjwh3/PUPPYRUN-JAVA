@@ -1,5 +1,12 @@
+<%@page import="matching.model.vo.Matching"%>
+<%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	User user = (User)session.getAttribute("user");
+	Matching matching = (Matching)request.getAttribute("matching");
+%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -81,194 +88,20 @@
             <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
-                        <h3>산책짝꿍</h3>
-                        <p>산책짝꿍에서 산책 같이할 친구를 찾아요!</p>
+                        <h3><%= matching.getMatTitle() %></h3>
+                        <p><%= matching.getMatContent() %></p>
                         <!-- 태그 박스
                         <div id="tag-box">
                             <i class="fas fa-border-all"></i>
                         </div> -->
                     </div>
-                    <div id="nbb-bottom">
-                        <div id="all-content-box">
-                            <ul>
-                                <!-- 게시글1 -->
-                                <li>
-                                    <a href="#"> <!-- 게시글 확인용 a-->
-                                    <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
-                                        <div class="content-box">
-                                            <div class="list-img-area">
-                                                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw.jpg" alt="게시글 대표이미지">
-                                            </div>
-                                            <div class="list-content-area">
-                                                <div>
-                                                    <div class="user-profile-img-div">
-                                                        <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1.jpg" alt="프로필 이미지" class="user-profile-img">
-                                                    </div>
-                                                    <span class="user-name">홍덕배</span>
-                                                    <span class="user-addr">종로구 관철동</span>
-                                                </div>
-                                                <div>
-                                                    <span>덕배랑 산책 같이할 친구 구해요</span>
-                                                    <input type="submit" value="채팅하기" class="chat-btn">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    </a>
-                                </li>
-                                <!-- 게시글1 끝 -->
-                                <!-- 게시글2 -->
-                                <li>
-                                    <a href="#"> <!-- 게시글 확인용 a-->
-                                        <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
-                                            <div class="content-box">
-                                                <div class="list-img-area">
-                                                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw.jpg" alt="게시글 대표이미지">
-                                                </div>
-                                                <div class="list-content-area">
-                                                    <div>
-                                                        <div class="user-profile-img-div">
-                                                            <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1.jpg" alt="프로필 이미지" class="user-profile-img">
-                                                        </div>
-                                                        <span class="user-name">홍덕배</span>
-                                                        <span class="user-addr">종로구 관철동</span>
-                                                    </div>
-                                                    <div>
-                                                        <span>덕배랑 산책 같이할 친구 구해요</span>
-                                                        <input type="submit" value="채팅하기" class="chat-btn">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        </a>
-                                </li>
-                                <li><a href="#"> <!-- 게시글 확인용 a-->
-                                    <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
-                                        <div class="content-box">
-                                            <div class="list-img-area">
-                                                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw.jpg" alt="게시글 대표이미지">
-                                            </div>
-                                            <div class="list-content-area">
-                                                <div>
-                                                    <div class="user-profile-img-div">
-                                                        <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1.jpg" alt="프로필 이미지" class="user-profile-img">
-                                                    </div>
-                                                    <span class="user-name">홍덕배</span>
-                                                    <span class="user-addr">종로구 관철동</span>
-                                                </div>
-                                                <div>
-                                                    <span>덕배랑 산책 같이할 친구 구해요</span>
-                                                    <input type="submit" value="채팅하기" class="chat-btn">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <!-- 게시글 확인용 a-->
-                                        <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
-                                            <div class="content-box">
-                                                <div class="list-img-area">
-                                                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw.jpg" alt="게시글 대표이미지">
-                                                </div>
-                                                <div class="list-content-area">
-                                                    <div>
-                                                        <div class="user-profile-img-div">
-                                                            <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1.jpg" alt="프로필 이미지" class="user-profile-img">
-                                                        </div>
-                                                        <span class="user-name">홍덕배</span>
-                                                        <span class="user-addr">종로구 관철동</span>
-                                                    </div>
-                                                    <div>
-                                                        <span>덕배랑 산책 같이할 친구 구해요</span>
-                                                        <input type="submit" value="채팅하기" class="chat-btn">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <!-- 게시글 확인용 a-->
-                                    <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
-                                        <div class="content-box">
-                                            <div class="list-img-area">
-                                                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw.jpg" alt="게시글 대표이미지">
-                                            </div>
-                                            <div class="list-content-area">
-                                                <div>
-                                                    <div class="user-profile-img-div">
-                                                        <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1.jpg" alt="프로필 이미지" class="user-profile-img">
-                                                    </div>
-                                                    <span class="user-name">홍덕배</span>
-                                                    <span class="user-addr">종로구 관철동</span>
-                                                </div>
-                                                <div>
-                                                    <span>덕배랑 산책 같이할 친구 구해요</span>
-                                                    <input type="submit" value="채팅하기" class="chat-btn">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <!-- 게시글 확인용 a-->
-                                    <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
-                                        <div class="content-box">
-                                            <div class="list-img-area">
-                                                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw.jpg" alt="게시글 대표이미지">
-                                            </div>
-                                            <div class="list-content-area">
-                                                <div>
-                                                    <div class="user-profile-img-div">
-                                                        <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1.jpg" alt="프로필 이미지" class="user-profile-img">
-                                                    </div>
-                                                    <span class="user-name">홍덕배</span>
-                                                    <span class="user-addr">종로구 관철동</span>
-                                                </div>
-                                                <div>
-                                                    <span>덕배랑 산책 같이할 친구 구해요</span>
-                                                    <input type="submit" value="채팅하기" class="chat-btn">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    </a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- 글쓰기 버튼 -->
-                    <div id="post-wrap">
-                            <a href="/html/notice-write.html" class="link-post">글쓰기</a>
-                    </div>
-                    <!-- 여기에 페이징 번호 -->
-                    <div class="pagin-box">
-                        <a href="#" id="page-prev">이전</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">7</a>
-                        <a href="#">8</a>
-                        <a href="#">9</a>
-                        <a href="#">10</a>
-                        <a href="#" id="page-next">다음</a>
-                    </div>
-                </div>
-            </div>
-            <!-- 채팅창 -->
+                    <div id="nbb-bottom"></div>
+                        <!-- 채팅창 -->
             <div id="chat-box">
                 <div id="chat-box-left">
                     <div id="chat-img-box">
                         <!-- 사용자 게시물 첨부사진 -->
-                        <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1.jpg" alt="사용자 첨부파일">
+                        <img src="" alt="사용자 첨부파일">
                     </div>
                     <div id="chat-profile-box">
                         <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
@@ -276,7 +109,7 @@
                                     <div>
                                         <div class="user-profile-img-div">
                                             <!-- 프로필사진 -->
-                                            <img src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1.jpg" alt="프로필 이미지" class="user-profile-img">
+                                            <img src="" alt="프로필 이미지" class="user-profile-img">
                                         </div>
                                         <span class="user-name">홍덕배</span>
                                         <span class="user-addr">종로구 관철동</span>
@@ -293,14 +126,14 @@
                 <div id="chat-box-right"> <!-- 오른쪽(채팅창) 부분 -->
                     <div id="chat-close">
                         <a href="#">
-                            <img src="/WebContent/WEB-INF/assets/img/x_mark.png" alt="창 제거 이미지">
+                            <img src="/assets/img/x_mark.png" alt="창 제거 이미지">
                         </a>
                     </div>
                     <!-- 채팅창 보는 영역 + 속 내용이 길어지면 스크롤 자동생성 설정해놈(overflow : auto) -->
                     <div id="chat-area">
                         <!-- 상대 -->
                         <div class="other-user">
-                            <img class="other-profile-img" src="https://images.unsplash.com/photo-1447684808650-354ae64db5b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8.jpg" alt="상대프로필이미지">
+                            <img class="other-profile-img" src="" alt="상대프로필이미지">
                             <div class="other-chat-block"> <!-- 상대 채팅창 -->
                                 <p class="other-chat-content">
                                     안녕하세요~ 같이 산책 가실래요?
@@ -324,7 +157,7 @@
                         </div>
                         <!-- 상대 -->
                         <div class="other-user">
-                            <img class="other-profile-img" src="https://images.unsplash.com/photo-1447684808650-354ae64db5b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8.jpg" alt="상대프로필이미지">
+                            <img class="other-profile-img" src="" alt="상대프로필이미지">
                             <div class="other-chat-block"> <!-- 상대 채팅창 -->
                                 <p class="other-chat-content">
                                     금방 나갈게요
@@ -352,6 +185,10 @@
                 </div>
             </div>
             <!-- 채팅창 끝 -->
+                    
+                </div>
+            </div>
+            
             <footer>
                 <!-- 푸터 -->
                 <div id="footer">

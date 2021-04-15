@@ -140,7 +140,7 @@
                                 %>
                                 </div>
                                 <ul class="list">
-                                    <!-- 여기에 입력한 댓글 넣기 -->
+                                    <!-- 여기에 입력한 댓글 넣기   -->
                                     <li class="comment">
                                         <!-- 댓글 프로필 이미지 -->
                                         <div class="profile-image"></div>

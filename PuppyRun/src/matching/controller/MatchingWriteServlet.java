@@ -101,8 +101,8 @@ public class MatchingWriteServlet extends HttpServlet {
 		
 		// File이 없다면
 		int matchingResult = new MatchingService().registerMatching(matching);
-		System.out.println(photoResult);
-		System.out.println(matchingResult);
+//		System.out.println(photoResult);
+//		System.out.println(matchingResult);
 		// 결과 확인 (File 업로드 안하면 무조건 오류 뜸 // 나중에 수정할거야~~!)
 		if(matchingResult > 0 && photoResult > 0) {
 			response.sendRedirect("/matching/list");
