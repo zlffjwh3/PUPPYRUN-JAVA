@@ -120,8 +120,8 @@
                                     </div>
                                 </div>
                                 <input type="submit" value="수정하기" class="matching-btn matching-btn1">
-                                <input type="submit" value="삭제하기" class="matching-btn matching-btn2">
-                                <input type="submit" value="매칭완료" class="matching-btn matching-btn3">
+                                <input type="submit" value="삭제하기" class="matching-btn matching-btn2" onclick="return confirm('정말 탈퇴하시겠습니까?')" >
+                                <input type="button" value="매칭완료" class="matching-btn matching-btn3">
                         </form>
                     </div>
                 </div>
