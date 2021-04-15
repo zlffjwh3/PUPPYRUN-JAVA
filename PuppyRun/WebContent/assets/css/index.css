@@ -12,10 +12,12 @@
 
 a { 
     text-decoration:none ;
+    color : #000000;
 } 
 
 a:link {
     text-decoration: none;
+    color : #000000;
 }
 
 a:visited {
@@ -124,13 +126,28 @@ header {
 }
 
 #pop-up {
-	display : none;
 	width : 100px;
 	height : 90px;
-	box-shadow: 0px 4px 50px 10px #e0e0e0;
+	box-shadow: 0px 2px 10px 3px #e0e0e0;
+	border-radius : 20%;
+	text-align : center;
+	padding-top : 4px;
 	position : absolute;
-	top : 10px;
-	text-align : center
+	top : 50px;
+	right : 0;
+}
+
+#pop-up #show-id {
+	font-size : 14px;
+	color : #c9c9c9;
+	border-bottom : 1.5px solid #c9c9c9;
+	margin-bottom : 3px;
+	padding : 3px 0;
+}
+
+#pop-up p {
+	font-size : 13px;
+	padding: 1.5px 0;
 }
 
 /* ------------------------------ */
