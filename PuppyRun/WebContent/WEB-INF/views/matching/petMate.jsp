@@ -132,7 +132,7 @@
                                                     <span class="user-addr"><%=mList.get(i).getMatAddr() %></span>
                                                 </div>
                                                 <div>
-                                                    <span class="user-mini-content"><%=mList.get(i).getMatContent() %></span>
+                                                    <span class="user-mini-content"><%=mList.get(i).getMatContent() %></span> <!-- 클래스 생성하고 수정함 -->
                                                     <!-- <input type="submit" value="채팅하기" class="chat-btn"> -->
                                                     <a href = "/matching/detail?matNo=<%= mList.get(i).getMatNo()%>" class="chat-btn">채팅하기</a>
                                                 </div>
