@@ -33,6 +33,7 @@ public class MatchingWriteServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/matching/petMateWrite.jsp").forward(request, response);
 	}
 
 
@@ -51,9 +52,8 @@ public class MatchingWriteServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		
 		// 작성 완료한 게시물 정보 가져오기
-		String mAddr = "addr1" + "addr2";
+		String matchingAddr = multi.getParameter("addr1") + multi.getParameter("addr2");
 		String matchingId = user.getUserId();
-		String matchingAddr = multi.getParameter(mAddr);
 		String matchingTitle = multi.getParameter("title");
 		String matchingContent = multi.getParameter("content");
 		String matchingNickName = user.getUserNick();
@@ -69,7 +69,7 @@ public class MatchingWriteServlet extends HttpServlet {
 		// 파일 업로드
 		int photoResult = 0;
 		// 작성한 게시물에 File이 존재하면
-		if(multi.getFilesystemName("upload") != null) {
+		if(multi.getFilesystemName("upFile") != null) {
 			// File의 이름 저장
 			String matchingPhoto = multi.getFilesystemName("upFile");
 			// File의 이름을 matching 객체에 저장
@@ -101,10 +101,11 @@ public class MatchingWriteServlet extends HttpServlet {
 		
 		// File이 없다면
 		int matchingResult = new MatchingService().registerMatching(matching);
-		
+		System.out.println(photoResult);
+		System.out.println(matchingResult);
 		// 결과 확인 (File 업로드 안하면 무조건 오류 뜸 // 나중에 수정할거야~~!)
-		if(matchingResult > 0 && multi.getFilesystemName("upload") != null && photoResult > 0) {
-			response.sendRedirect("/WEB-INF/views/matching/petMateWrite.jsp");
+		if(matchingResult > 0 && photoResult > 0) {
+			response.sendRedirect("/matching/list");
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/matching/matchingError.html").forward(request, response);
 		}

@@ -101,13 +101,13 @@ public class MatchingDAO {
 
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) {
-			sb.append("<a href='/notice/list?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
+			sb.append("<a href='/matching/list?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
 		}
 		for(int i=startNavi; i<=endNavi; i++) {
-			sb.append("<a href='/notice/list?currentPage=" + i + "'>" + i + "</a>");
+			sb.append("<a href='/matching/list?currentPage=" + i + "'>" + i + "</a>");
 		}
 		if(needNext) {
-			sb.append("<a href='/notice/list?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
+			sb.append("<a href='/matching/list?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
 		}
 		
 		return sb.toString();
@@ -175,17 +175,16 @@ public class MatchingDAO {
 	public int insertMatching(Connection conn, Matching matching) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO MATCHING VALUES(SEQ_MATNO.NEXTVAL,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO MATCHING VALUES(SEQ_MATNO.NEXTVAL,?,?,?,?,SYSDATE,'N',?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, matching.getMatNo());
-			pstmt.setString(2, matching.getMatId());
-			pstmt.setString(3, matching.getMatTitle());
-			pstmt.setString(4, matching.getMatContent());
-			pstmt.setString(5, matching.getMatAddr());
-			pstmt.setString(6, matching.getMatPhoto());
-			pstmt.setString(7, matching.getUserNick());
+			pstmt.setString(1, matching.getMatId());
+			pstmt.setString(2, matching.getMatTitle());
+			pstmt.setString(3, matching.getMatContent());
+			pstmt.setString(4, matching.getMatAddr());
+			pstmt.setString(5, matching.getMatPhoto());
+			pstmt.setString(6, matching.getUserNick());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
