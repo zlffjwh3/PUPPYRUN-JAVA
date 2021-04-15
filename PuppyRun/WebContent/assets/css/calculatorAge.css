@@ -359,42 +359,31 @@ li.active {
     /* padding-left: px; */
     border: 0px solid #000;
 }
-.dog_type0 {
-    color: #fff;
-    background: #ff9c00;
+
+.dog_type {
+    margin: 0 3px;
+    border-radius: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
+    text-align: center;
+    padding: 5px 15px;
 }
 .cal_choice a {
-margin: 0 3px;
-border-radius: 100px;
-height: 35px;
-line-height: 35px;
-font-size: 15px;
-text-align: center;
-padding: 5px 15px;
-}
-
-.dog_type1 {
     margin: 0 3px;
     border-radius: 100px;
     height: 35px;
     line-height: 35px;
     font-size: 15px;
-    color: #909090;
-    background: #e8e8e8;
     text-align: center;
     padding: 5px 15px;
 }
 
-.dog_type2 {
-    margin: 0 3px;
-    border-radius: 100px;
-    height: 35px;
-    line-height: 35px;
-    font-size: 15px;
-    color: #909090;
-    background: #e8e8e8;
-    text-align: center;
-    padding: 5px 15px;
+.cal_checked {
+    color: #fff;
+    background: #ff9c00;
 }
 .cal_btn {
     
@@ -406,6 +395,7 @@ padding: 5px 15px;
     width: 100%;
     background-color: #fafafa;
 }
+
 .cal_result {
     display: block;
     overflow: hidden;
