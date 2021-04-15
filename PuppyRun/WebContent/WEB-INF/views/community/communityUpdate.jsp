@@ -141,7 +141,7 @@
                                     		<span><%= community.getComPhoto() %></span>
                                     		<input type="button" id="file-update" value="수정하기">
                     					</div>
-                                    	<div id="file-update-box2" style="display:none">
+                                    	<div id="file-update-box2">
 	                                       	<input type="file" id="file-input" name="upFile">
 	                                    </div>
 	                                </div>
