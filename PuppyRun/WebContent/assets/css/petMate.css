@@ -107,7 +107,7 @@ form {
     padding: 0;
     list-style: none;
     float: left;
-    background-color: pink;
+    background-color: white;
 }
 #all-content-box > ul > li > a { 
     display: block;
@@ -172,21 +172,29 @@ form {
     margin: 8px auto 0 auto;
 }
 
-.list-content-area > div:nth-child(2) > span {
-    /* position: relative;
-    left: 40px; */
-    margin: 0 15px;
+/* 핑크색 뜨던곳 */
+.user-mini-content {
+    overflow : hidden;
+    width: 250px;
+    display: inline-block;
+    height: 50px;
+    margin-left: 5px;
 }
+
+
+
 
 /* 채팅버튼 */
 .chat-btn {
+	display: inline-block;
     width: 80px;
     height: 32px;
     border : none;
     border-radius: 10px;
     background: #FEB415;
+    text-align-last: center;
+    line-height: 30px;
     color: white;
-    cursor: pointer;
 }
 
 .chat-btn:hover { 

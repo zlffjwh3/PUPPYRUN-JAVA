@@ -97,8 +97,27 @@ public class CommunityService {
 	}
 	
 	
-	public int updateCommunity(Notice community) {
-		return 0;
+	public int updateCommunity(Community community) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CommunityDAO().updateCommunity(conn, community);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
 	}
 	
 	public int deleteCommunity(int communityNo) {

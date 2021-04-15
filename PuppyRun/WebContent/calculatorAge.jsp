@@ -26,9 +26,41 @@
 
         <link rel="shortcut icon" href="./assets/img/Favicon/favicon.ico">
         <link rel="icon" href="./assets/img/Favicon/favicon.ico">
-        <script src="/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/slider.js"></script>
+       <!--  <script src="/assets/js/jquery-3.4.1.min.js"></script> -->
+       <!--  <script src="/assets/js/slider.js"></script> -->
         <script src="/assets/js/calculatorAge.js"></script>
+        <script type="text/javascript"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/calculatorAge.js"></script>
+        <script>
+        function weight_choice(check) { // 무게계산
+
+            var dogBirth = $('#dog_date').val();
+            if(check == '0') {
+                $('.dog_type0').addClass('cal_checked');
+                $('.dog_type1').removeClass('cal_checked');
+                $('.dog_type2').removeClass('cal_checked');
+                //return dogBirth * ($('.dog_type0').val());
+        		$('#ageResultTxt').val(dogBirth * ($('.dog_type0').val()));
+            } else if(check == '1') {
+                $('.dog_type1').addClass('cal_checked');
+                $('.dog_type0').removeClass('cal_checked');
+                $('.dog_type2').removeClass('cal_checked');
+                //return dogBirth + ($('.dog_type1').val());
+                // cal_checked
+        		$('#ageResultTxt').val(dogBirth + ($('.dog_type1').val()));
+            } else if(check == '2') {
+                $('.dog_type2').addClass('cal_checked');
+                $('.dog_type0').removeClass('cal_checked');
+                $('.dog_type1').removeClass('cal_checked');
+                //return dogBirth + ($('.dog_type2').val());
+        		$('#ageResultTxt').val(dogBirth + ($('.dog_type2').val()));
+            }
+
+        	alert($('#ageResultTxt').val());
+            
+        }
+        </script>
         <title>나이계산기</title>
     </head>
     <body>
@@ -169,7 +201,7 @@
                         		</div>
                        		
                         <!-- 결과보기 -->
-                        <div class="cal_btn">
+                        <div id="resultArea" class="cal_btn">
                             <div class="cal_result" onclick="result_view1">
                             <a>결과보기</a>
                            <!-- <input type="submit" value="결과"> -->
@@ -183,7 +215,7 @@
                         </div>
                     </div>
                 </div>
-
+				<input id='ageResultTxt' type='text' style='display: none;'">
                 <footer>
                     <div id="footer">
                         <div id="footer-right-box">
