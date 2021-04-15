@@ -33,38 +33,33 @@
     </head>
     <body>
         <div id="wrap">
-            <header>
+           <header>
                 <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft"></div>
+                    <div id="tleft">
+                    	<div id="search">
+                            <form action="">
+                                <input class="search-input" id="" type="text" placeholder="search">
+                            </form>
+                        </div>
+                    </div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
                         <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
-                        <div id="search">
-                            <form action="">
-                                <input class="search-input" id="" type="text" placeholder="search">
-                            </form>
-                        </div>
                         <div id="login">
-                        	<%
-                        	if(user == null) {
-                        	%>
+                        	<% if(user == null) { %>
                             	<a href="/login.jsp">
                                 <i class="xi-face xi-2x"></i>
                            		</a>
                             	<a href="/login.jsp" id="login-content">로그인</a>
-                            <%
-                            } else {
-                            %>
+                            <% } else { %>
                             	<a href="/user/myInfo">
                                 <img src="#"> <!-- 사진어케 가져와 -->
                            		</a>
-                            	<a href="#" id="login-content"><%= user.getUserNick() %></a>
-                            <%
-                            }                        
-                            %>
+                            	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
+                            <% } %>
                         </div>
                     </div>
                 </div>
