@@ -180,7 +180,7 @@
                             <a href="/community/write" class="link-post">글쓰기</a>
                     <% } %>
                     </div>
-                    <!-- 여기에 페이징 번호 -->
+                    <!-- 여기에 페이징 번호   -->
                     <div class="pagin-box">
                        <%= pageNavi %>
                     </div>

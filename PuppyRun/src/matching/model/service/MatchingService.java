@@ -17,7 +17,7 @@ public class MatchingService {
 	}
 
 	// 전체 게시글 리스트
-	public MatchingPage printAllList(int currentPage) {
+	public MatchingPage printAllMatching(int currentPage) {
 		Connection conn = null;
 		MatchingPage mp = new MatchingPage();
 		
