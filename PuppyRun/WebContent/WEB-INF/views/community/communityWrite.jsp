@@ -94,10 +94,10 @@
                              <div id="tag">
                                     <select name="tags" id="tegs">
                                         <option value="">태그를 선택해주세요</option>
-                                        <option value="1">자유</option>
-                                        <option value="2">나눔</option>
-                                        <option value="3">질문</option>
-                                        <option value="4">자랑</option>
+                                        <option value="0">자유</option>
+                                        <option value="1">나눔</option>
+                                        <option value="2">질문</option>
+                                        <option value="3">자랑</option>
                                     </select>
                                 </div>
                                 <div id="title">

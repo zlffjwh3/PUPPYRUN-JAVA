@@ -25,7 +25,7 @@ public class CommunityListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = null; // 세션에서 받아오기
-		int tag = 0;
+		int tag = 5;
 		int currentPage = 0; // getparameter로 받아오기
 		
 		if(request.getParameter("currentPage") == null) {
@@ -35,12 +35,12 @@ public class CommunityListServlet extends HttpServlet {
 		}
 		
 		if(request.getParameter("tagNo") == null) {
-			tag = 0;
+			tag = 5;
 		}else {
 			tag = Integer.parseInt(request.getParameter("tagNo"));
 		}
 		
-		if(tag >= 1) {
+		if(tag == 0 || tag == 1 || tag == 2 || tag == 3) {
 			// 특정 태그
 			CommunityPage communityPage = new CommunityService().selectTagList(currentPage, tag);
 			ArrayList<Community> cList = communityPage.getcList();

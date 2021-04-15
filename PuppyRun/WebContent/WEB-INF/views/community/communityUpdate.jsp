@@ -109,22 +109,22 @@
                              	String select2 = "";
                              	String select3 = "";
                              	String select4 = "";
-                             	if(community.getTagNo() == 1) {
+                             	if(community.getTagNo() == 0) {
                              		select1 = "selected";
-                             	}else if(community.getTagNo() == 2) {
+                             	}else if(community.getTagNo() == 1) {
                              		select2 = "selected";
-                             	}else if(community.getTagNo() == 3) {
+                             	}else if(community.getTagNo() == 2) {
                              		select3 = "selected";
-                             	}else {
+                             	}else if(community.getTagNo() == 3){
                              		select4 = "selected";
                              	}
                              	%>
                                     <select name="tags" id="tags">
                                         <option value="" >태그를 선택해주세요</option>
-                                        <option value="1" <%= select1 %>>자유</option>
-                                        <option value="2" <%= select2 %>>나눔</option>
-                                        <option value="3" <%= select3 %>>질문</option>
-                                        <option value="4" <%= select4 %>>자랑</option>
+                                        <option value="0" <%= select1 %>>자유</option>
+                                        <option value="1" <%= select2 %>>나눔</option>
+                                        <option value="2" <%= select3 %>>질문</option>
+                                        <option value="3" <%= select4 %>>자랑</option>
                                     </select>
                                 </div>
                                 <div id="title">

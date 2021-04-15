@@ -105,10 +105,10 @@
                             <!-- 태그들 -->
                             <ul id="category">
                                 <li><a href="/community/list"><i class="fas fa-border-all"></i><p>전체</p></a></li>
-                                <li><a href="/community/list?tagNo=1"><i class="far fa-comments"></i><p>자유</p></a></li>
-                                <li><a href="/community/list?tagNo=2"><i class="fas fa-cubes"></i><p>나눔</p></a></li>
-                                <li><a href="/community/list?tagNo=3"><i class="fas fa-question"></i><p>질문</p></a></li>
-                                <li><a href="/community/list?tagNo=4"><i class="fas fa-child"></i><p>자랑</p></a></li>
+                                <li><a href="/community/list?tagNo=0"><i class="far fa-comments"></i><p>자유</p></a></li>
+                                <li><a href="/community/list?tagNo=1"><i class="fas fa-cubes"></i><p>나눔</p></a></li>
+                                <li><a href="/community/list?tagNo=2"><i class="fas fa-question"></i><p>질문</p></a></li>
+                                <li><a href="/community/list?tagNo=3"><i class="fas fa-child"></i><p>자랑</p></a></li>
                             </ul>
                         </div>
                     </div>
@@ -125,19 +125,19 @@
                                     <div class="text-area">
                                         <!-- 태그 이름 -->
                                         <% 
-                                        	if(cList.get(i).getTagNo() == 1) {
+                                        if(cList.get(i).getTagNo() == 0) {
                                         %>
                                         <div class="post-category"><p>자유</p></div>
                                         <% 
-                                        } else if(cList.get(i).getTagNo() == 2) {
+                                        } else if(cList.get(i).getTagNo() == 1) {
                                         %>
                                         <div class="post-category"><p>나눔</p></div>
                                         <%
-                                        } else if(cList.get(i).getTagNo() == 3) {
+                                        } else if(cList.get(i).getTagNo() == 2) {
                                         %>
                                         <div class="post-category"><p>질문</p></div>
                                         <%
-                                        } else if(cList.get(i).getTagNo() == 4) {
+                                        } else if(cList.get(i).getTagNo() == 3) {
                                         %>
                                         <div class="post-category"><p>자랑</p></div>
                                         <%
