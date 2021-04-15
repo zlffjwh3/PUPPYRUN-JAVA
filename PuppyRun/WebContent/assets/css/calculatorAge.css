@@ -337,9 +337,9 @@ li.active {
     border-top: 1px solid #646361;
 }
 .writer_input > h5 {
-    width:78%;
+    width:150px;
     float: left;
-    margin-left: -10%;
+   /*  margin-left: -10%; */
     padding: 13px 10px 13px 10px;
     font-size: 16px;
     font-weight: 300px;
@@ -347,7 +347,7 @@ li.active {
 }
 .writer_input {
     display: block;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-bottom: 1px solid #ebebeb;
 }
 .cal_choice {
@@ -358,7 +358,7 @@ li.active {
     /* padding-left: px; */
     border: 0px solid #000;
 }
-.dog_type0 {
+#dog_type {
     color: #fff;
     background: #ff9c00;
 }
@@ -416,7 +416,7 @@ padding: 5px 15px;
     background: #e97723;
 
 }
-.cal_result a {
+.cal_result input {
     display: block;
     width: inherit;
     height: inherit;

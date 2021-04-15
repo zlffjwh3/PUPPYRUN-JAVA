@@ -119,10 +119,11 @@
                                         </span>
                                 </div>
                             </div>
-                            <form action="/calculator/age" method="post">
+                            <!-- <form action="/calculator/age" method="post"> -->
                             	<div class="cal_writer">
                             		<div class="cal_community">
                                 		<span class="writer_input">
+                                		
                                     		<h5>생년월일입력</h5>
                                     		<input type="text" name="dog_date" id="dog_date" inputmode="numeric" maxlength="10"  placeholder="반련견의 생년월일을 입력해주세요. ex) 20210413">
                                		 	</span>
@@ -145,7 +146,7 @@
                             <div class="cal_result" onclick="result_view1">
                            <input type="submit" value="결과">
                         </div>
-                      </form>
+                      <!-- </form> -->
                     </div>
                     </div>
                     <div>
