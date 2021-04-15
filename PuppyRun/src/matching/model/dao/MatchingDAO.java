@@ -140,6 +140,7 @@ public class MatchingDAO {
 		
 	}
 	
+	// 게시글 한개 보기
 	public Matching printOneMatching(Connection conn, int matchingNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -152,6 +153,7 @@ public class MatchingDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				matching = new Matching();
 				matching.setMatNo(rset.getInt("MAT_NO"));
 				matching.setMatId(rset.getString("MAT_ID"));
 				matching.setMatTitle(rset.getString("MAT_TITLE"));

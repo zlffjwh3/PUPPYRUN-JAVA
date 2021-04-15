@@ -36,7 +36,7 @@ public class MatchingService {
 	}
 
 	// 산책짝궁 게시글 한개 보기
-	public Matching printOne(int matchingNo) {
+	public Matching printOneMatching(int matchingNo) {
 		Connection conn = null;
 		Matching matching = null;
 		

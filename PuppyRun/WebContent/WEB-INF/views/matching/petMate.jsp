@@ -117,8 +117,8 @@
                                 	for(int i=0; i<mList.size(); i++) {
                                 %>
                                 <li>
-                                    <a href="/matching/detail"> <!-- 게시글 확인용 a-->
-                                    <form action="" method=""> <!-- 채팅하기 버튼용 form-->
+                                    <a href="/matching/detail?matNo=<%= mList.get(i).getMatNo()%>"> <!-- 게시글 확인용 a-->
+                                    
                                         <div class="content-box">
                                             <div class="list-img-area">
                                                 <img src="/upload/<%=mList.get(i).getMatPhoto() %>" alt="게시글 대표이미지">
@@ -133,11 +133,12 @@
                                                 </div>
                                                 <div>
                                                     <span><%=mList.get(i).getMatContent() %></span>
-                                                    <input type="submit" value="채팅하기" class="chat-btn">
+                                                    <!-- <input type="submit" value="채팅하기" class="chat-btn"> -->
+                                                    <a href = "/matching/detail?matNo=<%= mList.get(i).getMatNo()%>" class="chat-btn">채팅하기</a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                     </a>
                                 </li>
                                 <% 
