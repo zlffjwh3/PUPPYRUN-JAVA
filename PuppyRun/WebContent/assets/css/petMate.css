@@ -172,11 +172,15 @@ form {
     margin: 8px auto 0 auto;
 }
 
-.list-content-area > div:nth-child(2) > span {
-    /* position: relative;
-    left: 40px; */
-    margin: 0 15px;
+.user-mini-content {
+    overflow : hidden;
+    width: 250px;
+    display: inline-block;
+    height: 50px;
 }
+
+
+
 
 /* 채팅버튼 */
 .chat-btn {
