@@ -58,30 +58,27 @@
 		                        	<a href="/login.jsp" id="login-content">로그인</a>
 		                        <% } else { %>
 		                        	<% if(user.getUserPhoto() != null) { %>
-	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup();">
+	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
 		                       		<% } else { %>
-	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup();">
+	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
 		                        	<% } %>
-		                        	<a href="javascript:showPopup();" id="login-content"><%= user.getUserNick() %></a>
+		                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
 		                        <% } %>
 		                    </div>
 		                    <% if(user != null) { %>
 		                    <div id="pop-up">
-		                    	<p><%= user.getUserId() %></p>
-		                    	<p><a>마이페이지</a></p>
-		                    	<p><a>로그아웃</a></p>
+		                    	<p id="show-id"><%= user.getUserId() %></p>
+		                    	<p><a href="/user/myInfo?userId=<%= user.getUserId() %>">마이페이지</a></p>
+		                    	<p><a href="/user/logout?userId=<%= user.getUserId() %>">로그아웃</a></p>
 		                    </div>
 		                    <% } %>
 	                    </div>
 	                    <script>
-	                    	function showPopUp() {
-	                    		$('#pop-up').css('display', 'block');
-	                    		/* if ( $('#pop-up').css('display') === 'none' )
-	                    			{ $('#pop-up').show();
-	                    		} else {
-	                    			$('#pop-up').hide();
-	                    		} */
-	                    	}
+	                    	/* $(document).ready(function() { */
+	                    		function showPopUp() {
+		                    		$('#pop-up').toggle();
+		                    	}
+							/* }); */
 	                    </script>
             		</div>
            		</div>
