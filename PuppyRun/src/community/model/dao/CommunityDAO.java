@@ -177,13 +177,13 @@ public class CommunityDAO {
 			
 			StringBuilder sb = new StringBuilder();
 			if(needPrev) {
-				sb.append("<a href='/community/list?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
+				sb.append("<a href='/community/list?currentPage=" + (startNavi - 1) + "&tagNo=" + tag + "' id='page-prev'> < </a>");
 			}
 			for(int i=startNavi; i<=endNavi; i++) {
-				sb.append("<a href='/community/list?currentPage=" + i + "'>" + i + "</a>");
+				sb.append("<a href='/community/list?currentPage=" + i + "&tagNo=" + tag + "'>" + i + "</a>");
 			}
 			if(needNext) {
-				sb.append("<a href='/community/list?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
+				sb.append("<a href='/community/list?currentPage=" + (endNavi + 1) + "&tagNo =" + tag + "' id='page-next'> > </a>");
 			}
 			
 			return sb.toString();
@@ -219,7 +219,7 @@ public class CommunityDAO {
 	public ArrayList<Community> selectTagList(Connection conn, int currentPage, int tag) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT, USER_NICK FROM COMMUNITY) WHERE TAG_NO = ? AND NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT, USER_NICK FROM COMMUNITY WHERE TAG_NO = ?) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Community> cList = null;
 		
 		int recordCountPage = 10;

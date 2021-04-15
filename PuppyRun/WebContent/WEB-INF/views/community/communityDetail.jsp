@@ -6,6 +6,9 @@
 <%
 	Community community = (Community)request.getAttribute("community");
 	User user = (User)session.getAttribute("user");
+	
+	System.out.println("jsp : " + community);
+	System.out.println("user : " + user);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -182,8 +185,6 @@
                                 <a href="/community/list"><span>글 목록</span></a>
                             </div>
                            	<%
-                           	System.out.println(user.getUserId());
-                        	System.out.println(community.getComId());
                             if(user != null) {
                             %>
                             <div class="br">

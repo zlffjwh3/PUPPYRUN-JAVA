@@ -29,9 +29,11 @@ public class CommunityDetailServlet extends HttpServlet {
 		int comNo = Integer.parseInt(request.getParameter("comNo"));
 		
 		int result = new CommunityService().addReadCount(comNo);
+		System.out.println("result : " + result);
 		if(result > 0) {
 			Community community = new CommunityService().selectOneCommunity(comNo);
 		
+			System.out.println("community : " + community);
 			if(community != null) {
 				request.setAttribute("community", community);
 				request.getRequestDispatcher("/WEB-INF/views/community/communityDetail.jsp").forward(request, response);
