@@ -51,24 +51,18 @@
                         <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
-                    <%
-                    if(user == null) {
-                    %>
                         <div id="login">
-                            <a href="#">
+                        	<% if(user == null) { %>
+                            	<a href="/login.jsp">
                                 <i class="xi-face xi-2x"></i>
-                            </a>
-                            <a href="/login.jsp" id="login-content">로그인</a>
-                   <% 
-                   } else { 
-                   %>
-                   <a href="/user/myInfo">
+                           		</a>
+                            	<a href="/login.jsp" id="login-content">로그인</a>
+                            <% } else { %>
+                            	<a href="/user/myInfo">
                                 <img src="#"> <!-- 사진어케 가져와 -->
                            		</a>
                             	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
-                   <% 
-                   } 
-                   %>
+                            <% } %>
                         </div>
                     </div>
                 </div>
