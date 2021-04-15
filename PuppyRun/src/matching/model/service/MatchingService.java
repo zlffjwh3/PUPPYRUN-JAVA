@@ -59,7 +59,6 @@ public class MatchingService {
 		try {
 			conn = factory.createConnection();
 			result = new MatchingDAO().insertMatching(conn, matching);
-			System.out.println(result);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
 			}else {

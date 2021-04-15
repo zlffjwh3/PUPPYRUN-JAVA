@@ -86,7 +86,7 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="/matching/write" method="post">
+                            <form action="/matching/write" method="post" enctype="multipart/form-data">
                                 <div id="address">
                                     <p class="write-p-tag">주소</p>
                                     <div class="addr-box addr1-box">
@@ -111,7 +111,7 @@
                                 <div id="file">
                                     <p class="write-p-tag">첨부 파일</p>
                                     <div class="input-box">
-                                        <input type="file" id="file-input" name="file">
+                                        <input type="file" id="file-input" name="upFile">
                                     </div>
                                 </div>
                                 <div id="btn-box">
