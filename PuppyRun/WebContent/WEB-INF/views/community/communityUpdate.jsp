@@ -139,6 +139,12 @@
                                     <div class="input-box" id="file-wrapper">
                                     	<div id="file-update-box">
                                     		<span><%= community.getComPhoto() %></span>
+<<<<<<< HEAD
+                     						<%}%>
+                                        	<input type="file" id="file-input" name="upFile">
+                                        	</div>
+                                    </div>
+=======
                                     		<input type="button" id="file-update" value="수정하기">
                     					</div>
                                     	<div id="file-update-box2">
@@ -150,6 +156,7 @@
 	                                        <input type="file" id="file-input" name="upFile">
 	                                    </div>
                                     <% } %>
+>>>>>>> branch 'main' of https://github.com/Dog-Rice-Team/PUPPYRUN-JAVA.git
                                 </div>
                                 <div id="content">
                                     <p class="write-p-tag">내 용</p>

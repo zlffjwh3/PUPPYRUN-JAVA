@@ -359,7 +359,7 @@
             		<div><i class="far fa-comment-alt"></i></div>글쓰기</a></div>
                          <div id="function-btn">
                         	<div class="br">
-                                <a href="/petdiary/update"><span>수정</span></a>
+                                <a onclick="location.href='/petdiary/update?year=<%=year%>&month=<%=month%>&date=<%=day%>'" ><span>수정</span></a>
                                 <a href="/petdiary/delete" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                            	</div>
                         </div>
@@ -382,7 +382,7 @@
                             <li>운영방침</li>
                         </ul>
                         <p id="footer-ptag">
-                            서울특별시 송파구 올림픽로 300 대표자 : 이혜성 전화 : 1661-2000<br>
+                            서울특별시 송파구 올림픽로 300 대표자 : 오재승 전화 : 1661-2000<br>
                             전자우편주소 : puppyrun@naver.com<br>
                             사업자등록번호 : 230-85-024691 통신판매업신고번호 : 송파 제12038호<br>
                             Copyright 2021 PUPPYRUN. All Rights Reserved.

@@ -83,7 +83,24 @@ public class PetDiaryDAO {
 	}
 	
 	public int insertDiary(Connection conn, PetDiary petDiary) {
-		return 0;
+		PreparedStatement pstmt = null;
+		String query = "INSERT INTO DIARY VALUES(SEQ_DIARYNO.NEXTVAL, ?, ?, ?, ?, SYSDATE, ?)";
+		int result = 0;	
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, petDiary.getDiaryTitle());
+			pstmt.setString(2, petDiary.getDiaryContent());
+			pstmt.setString(3, petDiary.getDiaryMap());
+			pstmt.setString(4, petDiary.getDiaryId());
+			pstmt.setString(5, petDiary.getDiaryPhoto());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 	
 	public int updateDiary(Connection conn, PetDiary petDiary) {
