@@ -144,7 +144,8 @@
                         <!-- 결과보기 -->
                         <div class="cal_btn">
                             <div class="cal_result" onclick="result_view1">
-                           <input type="submit" value="결과">
+                            <a>결과보기</a>
+                           <!-- <input type="submit" value="결과"> -->
                         </div>
                       <!-- </form> -->
                     </div>

@@ -337,12 +337,13 @@ li.active {
     border-top: 1px solid #646361;
 }
 .writer_input input {
-    width:150px;
+    width:78%;
     float: left;
-    /* margin-left: -10%; */
+   /*  margin-left: -10%;  */
+   	overflow: hidden;
     padding: 13px 10px 13px 10px;
     font-size: 16px;
-    font-weight: 300px;
+    font-weight: 300px; 
     border: none;
 }
 .writer_input {
@@ -350,6 +351,7 @@ li.active {
     overflow: hidden;
     border-bottom: 1px solid #ebebeb;
 }
+
 .cal_choice {
     height: 42px;
     text-align: left;
