@@ -336,10 +336,10 @@ li.active {
     display: block;
     border-top: 1px solid #646361;
 }
-.writer_input > h5 {
-    width:150px;
+.writer_input input {
+    width:78%;
     float: left;
-   /*  margin-left: -10%; */
+    margin-left: -10%;
     padding: 13px 10px 13px 10px;
     font-size: 16px;
     font-weight: 300px;
