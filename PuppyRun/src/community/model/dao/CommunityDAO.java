@@ -323,8 +323,28 @@ public class CommunityDAO {
 		return result;
 	}
 	
+	// 게시물 수정
 	public int updateCommunity(Connection conn, Community community) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE COMMUNITY SET TAG_NO=?, COM_TITLE=?, COM_CONTENT=?, COM_PHOTO=? WHERE COM_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, community.getTagNo());
+			pstmt.setString(2, community.getComTitle());
+			pstmt.setString(3, community.getComContent());
+			pstmt.setString(4, community.getComPhoto());
+			pstmt.setInt(5, community.getComNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	public int deleteNotice(Connection conn, int comNo) {

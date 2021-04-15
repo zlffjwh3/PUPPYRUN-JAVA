@@ -21,7 +21,7 @@
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
         <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/communityWrite.css">
-
+		
         <!-- <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css"> -->
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
@@ -29,6 +29,7 @@
         <!-- JS 파일 가져오기 -->
         <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/community-update.js"></script>
         <title>퍼피런 :: 멍멍이야기</title>
     </head>
     <body>
@@ -100,7 +101,7 @@
                     <div id="write-wrap">
                         <div id="write-box">
                             <form id="write-check" action="/community/update?comNo=<%= community.getComNo() %>&photoCheck=N" method="post" enctype="multipart/form-data">
-                            	<input id="notice-num" type="hidden" name="noticeNo" value="<%= community.getComNo() %>">
+                            	<input id="community-num" type="hidden" name="communityNo" value="<%= community.getComNo() %>">
                              	<div id="tag">
                                     <select name="tags" id="tags">
                                         <option value="">태그를 선택해주세요</option>
@@ -122,20 +123,27 @@
                                     <div class="input-box" id="file-wrapper">
                                     	<div id="file-update-box">
                                     		<span><%= community.getComPhoto() %></span>
-                     
-                                        	<input type="file" id="file-input" name="upFile">
-                                        	</div>
-                                    </div>
+                                    		<input type="button" id="file-update" value="수정하기">
+                    					</div>
+                                    	<div id="file-update-box2">
+	                                       	<input type="file" id="file-input" name="upFile">
+	                                    </div>
+	                                </div>
+                                    <% } else { %>
+	                                    <div class="input-box">
+	                                        <input type="file" id="file-input" name="upFile">
+	                                    </div>
+                                    <% } %>
                                 </div>
                                 <div id="content">
                                     <p class="write-p-tag">내 용</p>
                                     <div class="input-box" id="textarea-box">
-                                        <textarea id="content" name="content"></textarea>
+                                        <textarea id="content" name="content"><%= community.getComContent() %></textarea>
                                     </div>
                                 </div>
                                 <div id="btn-box">
-                                    <input type="submit" id="submit-input" value="등록">
-                                    <a href="/html/free-board.html"><p>취소</p></a>
+                                    <input type="button" id="submit-input" value="수정">
+                                    <a href="/community/detail?comNo=<%= community.getComNo() %>"><p>취소</p></a>
                                 </div>
                             </form>
                         </div>
