@@ -5,7 +5,6 @@
 <%
 	User user = (User)session.getAttribute("user");
 	Notice notice = (Notice)request.getAttribute("notice");
-	User user = (User)session.getAttribute("user");
 %>
    
 <!DOCTYPE html>
