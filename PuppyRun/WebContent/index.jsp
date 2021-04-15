@@ -25,7 +25,7 @@
         <link rel="shortcut icon" href="./assets/img/Favicon/favicon.ico">
         <link rel="icon" href="./assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="assets/js/jquery-3.4.1.min.js"></script>
+        <script src="/assets/js/jquery-3.4.1.min.js"></script>
         <script src="/assets/js/slider.js"></script>
         <script src="assets/js/weather.js"></script>
         <script src="assets/js/scroll.js"></script>
@@ -66,7 +66,7 @@
 		                        <% } %>
 		                    </div>
 		                    <% if(user != null) { %>
-		                    <div id="pop-up">
+		                    <div id="pop-up" style="display:none">
 		                    	<p id="show-id"><%= user.getUserId() %></p>
 		                    	<p><a href="/user/myInfo?userId=<%= user.getUserId() %>">마이페이지</a></p>
 		                    	<p><a href="/user/logout?userId=<%= user.getUserId() %>">로그아웃</a></p>
@@ -74,11 +74,15 @@
 		                    <% } %>
 	                    </div>
 	                    <script>
-	                    	/* $(document).ready(function() { */
-	                    		function showPopUp() {
-		                    		$('#pop-up').toggle();
+	                    		function showPopup() {
+	                    			var popUp = document.getElementById("pop-up")
+	                    			
+	                    			if(popUp.style.display == 'none') {
+	                    				popUp.style.display = 'block';
+	                    			}else {
+	                    				popUp.style.display = 'none';
+	                    			}
 		                    	}
-							/* }); */
 	                    </script>
             		</div>
            		</div>
