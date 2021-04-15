@@ -24,7 +24,7 @@ body {
     padding:50px 100px 100px 100px;
     transform: translate(-50%, -50%);
     background-color:white;
-
+	box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 
 #header {

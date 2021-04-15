@@ -68,8 +68,12 @@
 		                    <% if(user != null) { %>
 		                    <div id="pop-up" style="display:none">
 		                    	<p id="show-id"><%= user.getUserId() %></p>
-		                    	<p><a href="/user/myInfo?userId=<%= user.getUserId() %>">마이페이지</a></p>
-		                    	<p><a href="/user/logout?userId=<%= user.getUserId() %>">로그아웃</a></p>
+		                    	<% if(user.getAdminCheck() == 'N') { %>
+		                    	<p><a href="/user/myInfo">마이페이지</a></p>
+		                    	<% } else { %>
+		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<% } %>
+		                    	<p><a href="/user/logout">로그아웃</a></p>
 		                    </div>
 		                    <% } %>
 	                    </div>
@@ -82,7 +86,6 @@
 	                    			}else {
 	                    				popUp.style.display = 'none';
 	                    			}
-	                    			/*  */
 		                    	}
 	                    </script> 
             		</div>

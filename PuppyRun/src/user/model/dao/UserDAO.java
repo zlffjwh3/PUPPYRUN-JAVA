@@ -14,6 +14,7 @@ import user.model.vo.User;
 public class UserDAO {
 	public UserDAO() {}
 	
+	// 유저 한명 정보 가져오기
 	public User selectOneUser(Connection conn, String userId, String userPw) {
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -47,15 +48,54 @@ public class UserDAO {
 		return user;
 	}
 	
-	public ArrayList<User> selectAllUserList(Connection conn) {
-		Statement stmt = null;
+	// 유저 한명 강아지 정보 가져오기
+	public Dog selectOneDog(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<User> list = null;
-		String query = "SELECT * FROM USERTBL";
+		String query = "SELECT * FROM DOG WHERE DOG_ID = ?";
+		Dog dog = null;
 		
 		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				dog = new Dog();
+				dog.setDogCode(rset.getInt("DOG_CODE"));
+				dog.setDogName(rset.getString("DOG_NAME"));
+				dog.setDogBreed(rset.getString("DOG_BREED"));
+				dog.setDogGender(rset.getString("DOG_GENDER").charAt(0));
+				dog.setDogAge(rset.getInt("DOG_AGE"));
+				dog.setDogWeight(rset.getFloat("DOG_WEIGHT"));
+				dog.setDogId(userId);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return dog;
+	}
+	
+	// 유저 리스트 전부 가져오기
+	public ArrayList<User> selectAllUserList(Connection conn, int currentPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<User> list = null;
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY ENROLL_DATE DESC) AS NUM, USER_ID, USER_PW, USER_NICK, USER_NAME, PHONE, EMAIL, USER_BIRTH, USER_ADDR, DOG_CHECK, ENROLL_DATE, ADMIN_CHECK, USER_PHOTO FROM USERTBL) WHERE NUM BETWEEN ? AND ?";
+		
+		int recordCountPage = 9;
+		int start = currentPage * recordCountPage - (recordCountPage - 1);
+		int end = currentPage * recordCountPage;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
 			list = new ArrayList<User>();
 			while(rset.next()) {
 				User user = new User();
@@ -73,40 +113,94 @@ public class UserDAO {
 				user.setAdminCheck(rset.getString("ADMIN_CHECK").charAt(0));
 				user.setUserPhoto(rset.getString("USER_PHOTO"));
 				list.add(user);
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(pstmt);
 		}
 		return list;
 	}
 	
+	// 회원 리스트 - 네비
+	public String getPageNavi(Connection conn, int currentPage) {
+		int recordTotalCount = totalCount(conn);
+		int recordCountPerPage = 9;
+		int pageTotalCount = 0;
+		
+		if((recordTotalCount % recordCountPerPage) > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		} else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		
+		// 오류방지 코드
+		if(currentPage < 1) {
+			currentPage = 1;
+		} else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int naviCountPerPage = 10;
+		int startNavi = ((currentPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		
+		// 오류방지 코드
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a href='/user/list?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			sb.append("<a href='/user/list?currentPage=" + i + "'>" + i + "</a>");
+		}
+		if(needNext) {
+			sb.append("<a href='/user/list?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
+		}
+		
+		return sb.toString();
+	}
+	
+	// 회원 리스트 - 총 숫자 계산
+	public int totalCount(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM USERTBL";
+		
+		int recordTotalCount = 0;
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset.next()) {
+				recordTotalCount = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		
+		return recordTotalCount;
+	}
+	
 	// 회원가입 (강아지 없음)
 	public int insertUser(Connection conn, User user) {
-//		PreparedStatement pstmt = null;
-//		int result = 0;
-//		char dogCheck = 0;
-//		String query = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?,SYSDATE,?,?)";
-//		String query2 = "INSERT INTO USERTBL VALUES('user2', 'ASDFASDF', '이름', '닉네임', '01024243232', 'user2@naver.com', '001224', '서울시 종로구','N', SYSDATE, 'N', null);";
-//		try {
-//			
-//			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, user.getUserId());
-//			pstmt.setString(2, user.getUserPw());
-//			pstmt.setString(3, user.getUserNick());
-//			pstmt.setString(4, user.getUserName());
-//			pstmt.setString(5, user.getPhone());
-//			pstmt.setString(6, user.getEmail());
-//			pstmt.setString(7, user.getUserAddr());
-//			pstmt.setString(8, user.getUserBirth());
-//			pstmt.setString(9, String.valueOf(user.getDogCheck()));
-//			pstmt.setString(10, 'N' + "");
-//			pstmt.setString(11, "NULL");
-//			result = pstmt.executeUpdate();
-		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query2 = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,'N', SYSDATE, 'N', null)";
@@ -170,7 +264,7 @@ public class UserDAO {
 		return result;
 	}
 	
- 	
+ 	// 회원 탈퇴
 	public int deleteUser(Connection conn, String userId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -266,6 +360,4 @@ public class UserDAO {
 		
 		return user;
 	}
-
-	
 }

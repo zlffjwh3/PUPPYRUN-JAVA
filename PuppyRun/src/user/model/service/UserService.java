@@ -10,6 +10,7 @@ import common.JDBCTemplate;
 import user.model.dao.UserDAO;
 import user.model.vo.Dog;
 import user.model.vo.User;
+import user.model.vo.UserPage;
 
 public class UserService {
 	
@@ -19,7 +20,7 @@ public class UserService {
 		factory = JDBCTemplate.getConnection();
 	}
 	
-	
+	// 유저 한명 정보 가져오기
 	public User selectOneUser(String userId, String userPw) {
 		User user = null;
 		Connection conn = null;
@@ -34,23 +35,41 @@ public class UserService {
 		}
 		
 		return user;
-		
 	}
 	
-	public ArrayList<User> selectAllUserList(String userId) {
-		ArrayList<User> list = null;
+	// 유저 한명 강아지 정보 가져오기
+	public Dog selectOneDog(String userId) {
+		Dog dog = null;
 		Connection conn = null;
 		
 		try {
 			conn = factory.createConnection();
-			list = new UserDAO().selectAllUserList(conn);
-			
+			dog = new UserDAO().selectOneDog(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return dog;
+	}
+	
+	// 유저 전체 정보 가져오기
+	public UserPage selectAllUserList(int currentPage) {
+		UserPage up = null;
+		Connection conn = null;
+		
+		try {
+			up = new UserPage();
+			conn = factory.createConnection();
+			up.setuList(new UserDAO().selectAllUserList(conn, currentPage));
+			up.setPageNavi(new UserDAO().getPageNavi(conn, currentPage));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(conn);
 		}
-		return list;
+		return up;
 	}
 	
 	// 회원가입 (강아지 없음)
@@ -75,26 +94,6 @@ public class UserService {
 		return result;
 	}
 	
-	// 회원가입 (강아지 있음)
-//	public int insertDog(Dog dog) {
-//		int result = 0;
-//		Connection conn = null;
-//		try {
-//			conn = factory.createConnection();
-//			result = new UserDAO().insertDog(conn, dog);
-//			if(result > 0) {
-//				JDBCTemplate.commit(conn);
-//			} else {
-//				JDBCTemplate.rollback(conn);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			JDBCTemplate.close(conn);
-//		}
-//		
-//		return result;
-//	}
 	public int insertDog(User user, Dog dog) {
 		int result = 0;
 		Connection conn = null;
@@ -115,12 +114,13 @@ public class UserService {
 		return result;
 	}
 	
+	// 회원 탈퇴
 	public int deleteUser(String userId) {
 		int result = 0;
 		Connection conn = null;
 		
 		try {
-			conn = factory.createConnection(); // 연결 생성해서 DAO에 넘겨주는 역할
+			conn = factory.createConnection();
 			result = new UserDAO().deleteUser(conn, userId);
 			
 			if(result > 0) {

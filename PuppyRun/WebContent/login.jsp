@@ -15,7 +15,7 @@
         <div id="wrap">
             <div id="id-container">
                 <div id="header">
-                    <a href="/index.html"><img src="/assets/img/main_logo.png" alt=""></a>
+                    <a href="/index.jsp"><img src="/assets/img/main_logo.png" alt=""></a>
                 </div>
                 <div id="content">
                     <form action="/user/login" method="post">
