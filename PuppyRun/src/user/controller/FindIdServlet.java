@@ -30,10 +30,8 @@ public class FindIdServlet extends HttpServlet {
 		System.out.println(user);
 		
 		if(user != null) {
-//			HttpSession session = request.getSession();
-//			session.setAttribute("userId", user.getUserId());
-//			session.setAttribute("userName", user.getUserName());
 			request.setAttribute("userId", user.getUserId());
+			request.setAttribute("userName", userName);
 			RequestDispatcher view = request.getRequestDispatcher("/id-pw-inquiry.jsp");
 			view.forward(request, response);
 			

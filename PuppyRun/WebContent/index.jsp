@@ -14,21 +14,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- 폰트, 이모티콘, JQUERY CDN-->
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
-        <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="/assets/css/bg-middle.css">
-        <link rel="stylesheet" type="text/css" href="/assets/css/slider.css">
-        <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/bg-middle.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/slider.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
-        <link rel="shortcut icon" href="./assets/img/Favicon/favicon.ico">
-        <link rel="icon" href="./assets/img/Favicon/favicon.ico">
+        <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
+        <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/slider.js"></script>
-        <script src="assets/js/weather.js"></script>
-        <script src="assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/weather.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <title>퍼피런 - 친구와 산책 나가요</title>
     </head>
     <body>
@@ -84,7 +84,7 @@
 	                    			}
 	                    			/*  */
 		                    	}
-	                    </script>
+	                    </script> 
             		</div>
            		</div>
             </header>

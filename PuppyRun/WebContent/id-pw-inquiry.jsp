@@ -14,9 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/id-pw-inquiry.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/reset.css">
+    <!-- 스크립트 -->
+    
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/id-pw-inquiry.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="<%= request.getContextPath() %>/assets/js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/id-pw-inquiry.js"></script>
+    <!-- 파비콘 이미지 가져오기 -->
+   	<link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
+   	<link rel="icon" href="/assets/img/Favicon/favicon.ico">
     <title>회원 정보 찾기</title>
 </head>
 <body>
@@ -58,12 +63,17 @@
                         </form>
                     <% } %>
                     </div>
+                    
                     <% if(userId != null && userId != "") { %>
+                    <!-- 아이디 찾기 결과페이지 -->
                     	<br><br>
                     	<h4 class="result"><%= userName %>님의 아이디 :</h4><br>
                     	<h3 class="result"><%= userId %></h3>
-                    	<br><br><br>
+                    	<br><br>
+                    	<button onclick="goLogin">로그인</button>
+                    	<br>
                     <% } %>
+                    
                 </div>
             </div>
             <div id="pwd-group">
