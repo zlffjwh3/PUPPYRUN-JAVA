@@ -1,4 +1,4 @@
-function weight_choice(check) {
+function weight_choice(check) { // 무게계산
 
     var dogBirth = $('#dog_date').val();
     if(check == '0') {
