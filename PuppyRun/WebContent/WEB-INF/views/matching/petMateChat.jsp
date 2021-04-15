@@ -119,7 +119,9 @@
                                         <p id="user-write-content"><%= matching.getMatContent() %></p>
                                     </div>
                                 </div>
-                                <input type="submit" value="매칭완료" class="matching-btn">
+                                <input type="submit" value="수정하기" class="matching-btn1">
+                                <input type="submit" value="삭제하기" class="matching-btn2">
+                                <input type="submit" value="매칭완료" class="matching-btn3">
                         </form>
                     </div>
                 </div>

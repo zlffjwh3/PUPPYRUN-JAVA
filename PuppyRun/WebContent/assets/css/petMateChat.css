@@ -93,9 +93,33 @@ div#chat-box {
     overflow: auto;
 }
 
+/* 수정하기 버튼 */
+.matching-btn1 {
+    width: 80px;
+    height: 32px;
+    border: none;
+    border-radius: 10px;
+    background: #FEB415;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0 0 320px;
+}
+
+/* 삭제하기 버튼 */
+.matching-btn2 {
+    width: 80px;
+    height: 32px;
+    border: none;
+    border-radius: 10px;
+    background: #FEB415;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0 0 320px;
+}
+
 
 /* 매칭완료 버튼 */
-.matching-btn {
+.matching-btn3 {
     width: 80px;
     height: 32px;
     border: none;
