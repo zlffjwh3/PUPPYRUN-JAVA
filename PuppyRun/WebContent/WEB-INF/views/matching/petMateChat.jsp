@@ -88,8 +88,8 @@
             <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
-                        <h3><%= matching.getMatTitle() %></h3>
-                        <p><%= matching.getMatContent() %></p>
+                        <h3>산책짝꿍</h3>
+                        <p>같이 산책할 친구 찾아요 !</p>
                         <!-- 태그 박스
                         <div id="tag-box">
                             <i class="fas fa-border-all"></i>
@@ -101,22 +101,22 @@
                 <div id="chat-box-left">
                     <div id="chat-img-box">
                         <!-- 사용자 게시물 첨부사진 -->
-                        <img src="" alt="사용자 첨부파일">
+                        <img src="/upload/<%= matching.getMatPhoto() %>" alt="사용자 첨부파일">
                     </div>
                     <div id="chat-profile-box">
-                        <form action="" method="POST"> <!-- 채팅하기 버튼용 form-->
+                        <form action="/matching/detail" method="POST"> <!-- 채팅하기 버튼용 form-->
                                 <div class="chat-content-area">
                                     <div>
                                         <div class="user-profile-img-div">
                                             <!-- 프로필사진 -->
                                             <img src="" alt="프로필 이미지" class="user-profile-img">
                                         </div>
-                                        <span class="user-name">홍덕배</span>
-                                        <span class="user-addr">종로구 관철동</span>
+                                        <span class="user-name"><%= matching.getUserNick() %></span>
+                                        <span class="user-addr"><%= matching.getMatAddr() %></span>
                                     </div>
                                     <div>
                                         <!-- 글내용이 길어지면 자동으로 스크롤바가 생김 -->
-                                        <p id="user-write-content">덕배랑 산책 같이할 친구 구해요. 우리 덕배는 몽실몽실 귀엽답니다.</p>
+                                        <p id="user-write-content"><%= matching.getMatContent() %></p>
                                     </div>
                                 </div>
                                 <input type="submit" value="매칭완료" class="matching-btn">
