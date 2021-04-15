@@ -131,11 +131,11 @@
                                     
                                     		<h5>몸무게선택</h5>
                                     		<div class="cal_choice">
-                                        		<select id="dog_type" name="dog_type">
-                                            		<option value="1"> 소(~9kg)</option>
-                                            		<option value="2"> 중(9~23kg)</option>
-                                            		<option value="3"> 대(23kg 이상)</option>
-                                        		</select>
+                                        	<input type="hidden" id="dog_type" name="dog_type" value="0">
+                                    	 	<a class="dog_type0 cal_checked" onclick="weight_choice0">소(~9kg)</a>
+                                     		<a class="dog_type1" onclick="weight_choice1">중(9~23kg)</a>
+                                    	 	<a class="dog_type2" onclick="weight_choice2">대(24kg이상)</a>
+                                     
                                     		</div>
                                 		</span>
                             		</div>
