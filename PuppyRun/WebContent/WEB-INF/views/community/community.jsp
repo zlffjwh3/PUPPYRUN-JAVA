@@ -121,7 +121,7 @@
                                 %>
                                 <li class="post">
                                     <div class="img-area"><img src="/upload/<%=cList.get(i).getComPhoto()%>"></div>
-                                    <% System.out.println(cList.get(i).getComPhoto()); %>
+                                    
                                     <div class="text-area">
                                         <!-- 태그 이름 -->
                                         <% 
@@ -137,7 +137,7 @@
                                         %>
                                         <div class="post-category"><p>질문</p></div>
                                         <%
-                                        } else {
+                                        } else if(cList.get(i).getTagNo() == 4) {
                                         %>
                                         <div class="post-category"><p>자랑</p></div>
                                         <%

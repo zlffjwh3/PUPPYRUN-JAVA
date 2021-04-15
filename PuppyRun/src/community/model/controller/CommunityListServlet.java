@@ -52,7 +52,7 @@ public class CommunityListServlet extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
 				
 			} else {
-				request.getRequestDispatcher("/WEB-INF/views/community/communutyError.html").forward(request, response);
+				System.out.println("list 태그 오류다");
 			}
 		}else {
 			//전체
@@ -66,7 +66,7 @@ public class CommunityListServlet extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
 				
 			} else {
-				request.getRequestDispatcher("/WEB-INF/views/community/communutyError.html").forward(request, response);
+				System.out.println("List 오류다");
 			}
 		}
 		

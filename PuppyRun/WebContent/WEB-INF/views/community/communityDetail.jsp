@@ -182,14 +182,22 @@
                                 <a href="/community/list"><span>글 목록</span></a>
                             </div>
                            	<%
+                           	System.out.println(user.getUserId());
+                        	System.out.println(community.getComId());
                             if(user != null) {
                             %>
                             <div class="br">
+                            <%
+                            if(user.getUserId().equals(community.getComId())) {
+                            %>
                                 <a href="/community/update?communityNo=<%= community.getComNo()%>&communityTagNo=<%= community.getTagNo() %>"><span>수정</span></a>
-                                <a href="#"><span>삭제</span></a>
+                                <a href="/community/delete?communityNo=<%= community.getComNo()%>"><span>삭제</span></a>
+                            <%
+                            }
+                            %>
                                 <a href="/community/write"><span>글쓰기</span></a>
                             </div>
-                             <%
+                            <%
                             }
                             %>
                         </div>
