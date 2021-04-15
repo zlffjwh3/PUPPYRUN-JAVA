@@ -1,13 +1,18 @@
+<%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%
+	User user = (User)session.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        
+		
+		<link rel="stylesheet" type="text/css" href="/assets/css/index.css">
         <link rel="stylesheet" type="text/css" href="/assets/css/calculatorAge.css">
 
         <link rel="icon" href="images/fv.ico" type="image/png">
@@ -20,8 +25,8 @@
 
         <link rel="shortcut icon" href="./assets/img/Favicon/favicon.ico">
         <link rel="icon" href="./assets/img/Favicon/favicon.ico">
-        <script src="./assets/js/jquery-3.4.1.min.js"></script>
-        <script src="./assets/js/slider.js"></script>
+        <script src="/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="/assets/js/slider.js"></script>
         <title>퍼피런 - 친구와 산책 나가요</title>
     </head>
     <body>
@@ -49,19 +54,24 @@
                 </div>
             </header>
             <nav>
+                <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <a href="#">산책일기</a>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">산책짝꿍</a>
+                            <a href="/matching/list">산책짝꿍</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">멍멍이야기</a>
+                            <a href="/community/list">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">퍼피런이야기</a>
+                            <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">반려견계산기</a>
@@ -108,7 +118,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="cal_mid">
+                    <div class="cal_mid"> <!-- 수정수정 수정-->
                         <div class="cal_mid2" id="contents_tab_1" style="display: block;">
                             <div class="age_cal_top">
                                 <img src="http://appdata.hungryapp.co.kr/images/hatdog/img//calculator/T_character01.png" alt="">
@@ -119,10 +129,11 @@
                                         </span>
                                 </div>
                             </div>
-                            <form action="/calculator/age" method="post">
+                            <!-- <form action="/calculator/age" method="post"> -->
                             	<div class="cal_writer">
                             		<div class="cal_community">
                                 		<span class="writer_input">
+                                		
                                     		<h5>생년월일입력</h5>
                                     		<input type="text" name="dog_date" id="dog_date" inputmode="numeric" maxlength="10"  placeholder="반련견의 생년월일을 입력해주세요. ex) 20210413">
                                		 	</span>
@@ -130,11 +141,11 @@
                                     
                                     		<h5>몸무게선택</h5>
                                     		<div class="cal_choice">
-                                        		<select id="dog_type" name="dog_type">
-                                            		<option value="1"> 소(~9kg)</option>
-                                            		<option value="2"> 중(9~23kg)</option>
-                                            		<option value="3"> 대(23kg 이상)</option>
-                                        		</select>
+                                        	<input type="hidden" id="dog_type" name="dog_type" value="0">
+                                    	 	<a class="dog_type0 cal_checked" onclick="weight_choice0">소(~9kg)</a>
+                                     		<a class="dog_type1" onclick="weight_choice1">중(9~23kg)</a>
+                                    	 	<a class="dog_type2" onclick="weight_choice2">대(24kg이상)</a>
+                                     
                                     		</div>
                                 		</span>
                             		</div>
@@ -145,7 +156,7 @@
                             <div class="cal_result" onclick="result_view1">
                            <input type="submit" value="결과">
                         </div>
-                      </form>
+                      <!-- </form> -->
                     </div>
                     </div>
                     <div>

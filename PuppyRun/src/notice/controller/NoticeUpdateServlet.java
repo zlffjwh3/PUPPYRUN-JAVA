@@ -46,7 +46,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 수정사항 수정해서 보내기
 		request.setCharacterEncoding("UTF-8");
-		
+
 		char photoCheck = request.getParameter("photoCheck").charAt(0);
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		Notice noticeBefore = new NoticeService().selectOneNotice(noticeNo); // 기존 정보 가져오기

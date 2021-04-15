@@ -1,14 +1,8 @@
-/Community.ucls
-/Matching.ucls
-/Notice.ucls
-/PetDiary.ucls
-/Photo.ucls
-/User.ucls
+/matching/
+/user/
+/calculator/
 /common/
 /community/
-/matching/
 /notice/
 /petdiary/
 /photo/
-/user/
-/calculator/

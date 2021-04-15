@@ -46,7 +46,6 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	//현재, 즉 오늘날짜를 말한것이다/
 	int week = cal.get(Calendar.DAY_OF_WEEK);
-	int j = 0;
 %>
 
 
@@ -130,7 +129,7 @@
                         	%>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">산책 짝꿍</a>
+                            <a href="#">산책짝꿍</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="#">멍멍이야기</a>
@@ -246,7 +245,6 @@
 					<tr>
 					<!-- 그달의 1일 까지 공백처리하기 위한 것임. -->
 					<%
-				
 						for(int i = 1; i < week; i++){
 					%>		
 					<td height = "20">&nbsp;</td>
@@ -272,7 +270,7 @@
 							}
 				    	} */
 				        
-						for(j = 1; j<=endDay; j ++){
+						for(int j = 1; j<=endDay; j ++){
 							week++;
 							
 							if(week % 7 ==2){
@@ -306,8 +304,11 @@
 											<script>
 									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
 									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-								<%	}	
+									 		<div><%= pList.get(i).getDiaryTitle() %></div> 
+								<%	}	else{%>
+											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+									 		
+							<%	}
 							    	}			
 									}
 									%>
@@ -337,29 +338,22 @@
 									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
 									 		</script>
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-								<%	}	
+								<%	}else{%>
+											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+							<%	}
 							    	}
 									}
 									%>
 								</td>
-							<% }
+							<% }      
 						}%>
 						</tr>
 				<%
-			//	String path2 = getServletConfig().getServletContext().getRealPath("");
-			//	String now_address = javax.servlet.http.HttpUtils.getRequestURL(request).toString();
-			//	String path = request.getScheme() + "://" + request.getServerName() +":" + request.getServerPort();
-			//	System.out.println(now_address);
-			//String spath = request.getServletPath();  
-			//String url = request.getRequestURL().toString();  
-// 필요에 따라서 사용  
-//Stirng strCurrentUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath(); 
-
+					String day = request.getParameter("date");
 				%>
-
             	<div class="scroll-wrap2">
-           <a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=j%>'" class="message">
-           <div><i class="far fa-comment-alt"></i></div>글쓰기</a>
+           <a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'" class="message">
+            <div><i class="far fa-comment-alt"></i></div>글쓰기</a>
             	</div>
 					</table>
 				</div>
@@ -374,7 +368,7 @@
                     </div>
                     <div id="footer-left-box"> 
                         <ul>
-                            <li>퍼피런 소개</li>
+                            <li>퍼피런소개</li>
                             <li>사이트맵</li>
                             <li>이용약관</li>
                             <li>개인정보처리방침</li>
