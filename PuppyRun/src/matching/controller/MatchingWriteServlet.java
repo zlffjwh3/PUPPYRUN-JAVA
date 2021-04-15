@@ -104,9 +104,9 @@ public class MatchingWriteServlet extends HttpServlet {
 		
 		// 결과 확인 (File 업로드 안하면 무조건 오류 뜸 // 나중에 수정할거야~~!)
 		if(matchingResult > 0 && multi.getFilesystemName("upload") != null && photoResult > 0) {
-			response.sendRedirect("/matching/list");
+			response.sendRedirect("/WEB-INF/views/matching/petMateWrite.jsp");
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/matching/matchingError.html").forward(request, response);
 		}
 	}
 

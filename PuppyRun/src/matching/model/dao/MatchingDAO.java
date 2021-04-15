@@ -19,7 +19,7 @@ public class MatchingDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUM() OVER(ORDER BY MAT_NO DESC) AS NUM, MAT_NO, MAT_ID, MAT_TITLE, MAT_CONTENT, MAT_ADDR, MAT_DATE, MAT_CHECK, MAT_PHOTO, USER_NICK FROM MATCHING) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY MAT_NO DESC) AS NUM, MAT_NO, MAT_ID, MAT_TITLE, MAT_CONTENT, MAT_ADDR, MAT_DATE, MAT_CHECK, MAT_PHOTO, USER_NICK FROM MATCHING) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Matching> mList = null;
 		
 		// 한 페이지에 보여줄 게시물의 수
@@ -175,17 +175,24 @@ public class MatchingDAO {
 	public int insertMatching(Connection conn, Matching matching) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO MATCHING VALUES(SEQ_MATNO.NEXTVAL,?)";
+		String query = "INSERT INTO MATCHING VALUES(SEQ_MATNO.NEXTVAL,?,?,?,?,?,?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, matching.getMatNo());
 			pstmt.setString(2, matching.getMatId());
 			pstmt.setString(3, matching.getMatTitle());
+			pstmt.setString(4, matching.getMatContent());
+			pstmt.setString(5, matching.getMatAddr());
+			pstmt.setString(6, matching.getMatPhoto());
+			pstmt.setString(7, matching.getUserNick());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
-		return 0;
+		return result;
 	}
 
 	public int deleteMatching(Connection conn, int matNo) {
