@@ -49,25 +49,40 @@
 	                    <a href="/index.jsp" id="logo"></a>
 	                </div>
 	                <div id="tright">
-	                    <div id="login">
-	                    	<% if(user == null) { %>
-	                        	<a href="/login.jsp">
-	                            	<i class="xi-face xi-2x"></i>
-	                       		</a>
-	                        	<a href="/login.jsp" id="login-content">로그인</a>
-	                        <% } else { %>
-	                        	<% if(user.getUserPhoto() != null) { %>
-	                        	<a href="/user/myInfo">
-	                            	<img src="/upload/<%= user.getUserPhoto() %>">
-	                       		</a>
-	                       		<% } else { %>
-	                       		<a href="/user/myInfo">
-	                            	<img src="/assets/img/user-no-img.png">
-	                       		</a>
-	                        	<% } %>
-	                        	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
-	                        <% } %>
+	                	<div id="tright-wrapper">
+		                    <div id="login">
+		                    	<% if(user == null) { %>
+		                        	<a href="/login.jsp">
+		                            	<i class="xi-face xi-2x"></i>
+		                       		</a>
+		                        	<a href="/login.jsp" id="login-content">로그인</a>
+		                        <% } else { %>
+		                        	<% if(user.getUserPhoto() != null) { %>
+	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup();">
+		                       		<% } else { %>
+	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup();">
+		                        	<% } %>
+		                        	<a href="javascript:showPopup();" id="login-content"><%= user.getUserNick() %></a>
+		                        <% } %>
+		                    </div>
+		                    <% if(user != null) { %>
+		                    <div id="pop-up">
+		                    	<p><%= user.getUserId() %></p>
+		                    	<p><a>마이페이지</a></p>
+		                    	<p><a>로그아웃</a></p>
+		                    </div>
+		                    <% } %>
 	                    </div>
+	                    <script>
+	                    	function showPopUp() {
+	                    		$('#pop-up').css('display', 'block');
+	                    		/* if ( $('#pop-up').css('display') === 'none' )
+	                    			{ $('#pop-up').show();
+	                    		} else {
+	                    			$('#pop-up').hide();
+	                    		} */
+	                    	}
+	                    </script>
             		</div>
            		</div>
             </header>
@@ -83,7 +98,11 @@
                         	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="/matching/list">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
