@@ -22,3 +22,6 @@ $(document).ready(function(){
 });
 
 // 로그인페이지로 이동하는 펑션만들어서 링크달기
+function goLogin() {
+	location.href = "/login.jsp";
+}

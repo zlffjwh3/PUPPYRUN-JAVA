@@ -50,7 +50,7 @@
                     <p></p>
                     <div id="email-form">
                     <% if(userId == null) { %>
-                        <form action="/user/findId" method="POST">
+                        <form action="/user/findId" method="POST" class="findIdForm">
                             <div id="e-username-area">
                                 <input type="text" name="e-user-name" id="e-user-name" placeholder="이름">
                             </div>
@@ -66,12 +66,14 @@
                     
                     <% if(userId != null && userId != "") { %>
                     <!-- 아이디 찾기 결과페이지 -->
+                    <div class="result-form">
                     	<br><br>
-                    	<h4 class="result"><%= userName %>님의 아이디 :</h4><br>
-                    	<h3 class="result"><%= userId %></h3>
+                    	<h4 class="result1"><%= userName %>님의 아이디 :</h4><br>
+                    	<h3 class="result2"><%= userId %></h3>
                     	<br><br>
-                    	<button onclick="goLogin">로그인</button>
+                    	<button onclick="goLogin()" class="go-login-btn">로그인</button>
                     	<br>
+                    </div>
                     <% } %>
                     
                 </div>
@@ -100,10 +102,14 @@
 				<% if(userPwd != null && userPwd != "") { %>
 				<!-- 해당부분 찌부러짐있음 수정필요함 -->
 				<script>$('#email-group').css('display','none');$('#pwd-group').css('display','block');$('#find-pwd > a').css('background','rgb(240,163,0)');$('#find-id > a').css('background','#FEB415');</script>
+					<div class="result-form">
 					<br><br>
-                   	<h4 class="result"><%= pUserId  %>님의 비밀번호 : </h4><br>
-                   	<h3 class="result"><%= userPwd %></h3>
+                   	<h4 class="result1"><%= pUserId  %>님의 비밀번호 : </h4><br>
+                   	<h3 class="result2"><%= userPwd %></h3>
+                   	<br><br>
+                    	<button onclick="goLogin()" class="go-login-btn">로그인</button>
                     <br><br><br>
+					</div>
 				<% } %>
                 </div>
             </div>
