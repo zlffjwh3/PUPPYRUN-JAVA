@@ -32,26 +32,42 @@
     <body>
         <div id="wrap">
             <header>
+                <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft"></div>
-                    <!-- 헤더 메인 로고 -->
-                    <div id="header-logo">
-                        <a href="#" id="logo"></a>
-                    </div>
-                    <div id="tright">
-                        <div id="search">
-                            <form action="">
-                                <input class="search-input" id="" type="text" placeholder="search">
-                            </form>
-                        </div>
-                        <div id="login">
-                            <a href="#">
-                                <i class="xi-face xi-2x"></i>
-                            </a>
-                            <a href="#" id="login-content">로그인</a>
-                        </div>
-                    </div>
-                </div>
+                    <div id="tleft">
+	                    <div id="search">
+	                    	<form action="" method="get">
+		                    	<input class="search-input" type="text" placeholder="search">
+		                    	<input id="search-btn" type="submit" value="">
+	                    	</form>
+	                    </div>
+                	</div>
+	                <!-- 헤더 메인 로고 -->
+	                <div id="header-logo">
+	                    <a href="/index.jsp" id="logo"></a>
+	                </div>
+	                <div id="tright">
+	                    <div id="login">
+	                    	<% if(user == null) { %>
+	                        	<a href="/login.jsp">
+	                            	<i class="xi-face xi-2x"></i>
+	                       		</a>
+	                        	<a href="/login.jsp" id="login-content">로그인</a>
+	                        <% } else { %>
+	                        	<% if(user.getUserPhoto() != null) { %>
+	                        	<a href="/user/myInfo">
+	                            	<img src="/upload/<%= user.getUserPhoto() %>">
+	                       		</a>
+	                       		<% } else { %>
+	                       		<a href="/user/myInfo">
+	                            	<img src="/assets/img/user-no-img.png">
+	                       		</a>
+	                        	<% } %>
+	                        	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
+	                        <% } %>
+	                    </div>
+            		</div>
+           		</div>
             </header>
             <nav>
                 <!-- 메뉴 -->
@@ -154,7 +170,8 @@
                         <!-- 결과보기 -->
                         <div class="cal_btn">
                             <div class="cal_result" onclick="result_view1">
-                           <input type="submit" value="결과">
+                            <a>결과보기</a>
+                           <!-- <input type="submit" value="결과"> -->
                         </div>
                       <!-- </form> -->
                     </div>

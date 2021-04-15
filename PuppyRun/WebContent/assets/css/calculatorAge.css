@@ -14,6 +14,79 @@ a {
     text-decoration:none ;
 } 
 
+/* #wrap {
+    width : 100%;
+    height : 100%;
+    min-width: 1100px;
+    position : relative;
+}
+
+header {
+    width : 100%;
+    height : 280px;
+    margin : auto;
+    min-width: 1200px;
+}
+
+#header {
+    width : 1200px;
+    height : 280px;
+    margin : auto;
+}
+
+#tleft {
+    width : 20%;
+    height : 200px;
+    float: left;
+}
+
+#header-logo {
+    width : 45%;
+    height : 200px;
+    margin-top : 60px;
+    float: left;
+}
+
+#logo {
+    display: block;
+    width : 170px;
+    height : 130px;
+    margin : 0 55%;
+    margin-top : 40px;
+    background-image: url(../img/logo_title1.png);
+}
+
+#tright {
+    width: 30%;
+    height: 150px;
+    float : left;
+    margin-right : 20px;
+}
+
+.search-input {
+    margin-top: 15px;
+    padding : 12px 14px;
+    width: 70%;
+    height : 35px;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 60px; 
+    border-style : none;
+    background-color : #FFF2D4;
+    outline:none; 
+    box-shadow: none;
+    float:left;
+}
+
+#login {
+    margin-top : 15px;
+    margin-left : 10px;
+    float: left;
+}
+
+#login-content {
+    text-align: center;
+} */
 
 /* ------------------------------ */
 /* 메인 메뉴 */
@@ -263,13 +336,14 @@ li.active {
     display: block;
     border-top: 1px solid #646361;
 }
-.writer_input > h5 {
-    width:150px;
+.writer_input input {
+    width:78%;
     float: left;
-    
+    /* margin-left: -10%;  */
+    overflow: hidden;
     padding: 13px 10px 13px 10px;
     font-size: 16px;
-    font-weight: 300px;
+    font-weight: 300;
     border: none;
 }
 .writer_input {
@@ -277,12 +351,6 @@ li.active {
     overflow: hidden;
     border-bottom: 1px solid #ebebeb;
 }
-
-.writer_input > input#dog_date {
-	width: 400px;
-    margin-top: 24px;
-}
-
 .cal_choice {
     height: 42px;
     text-align: left;
@@ -339,28 +407,25 @@ padding: 5px 15px;
     background-color: #fafafa;
 }
 .cal_result {
-    /* display: block;
-    overflow: hidden; */
+    display: block;
+    overflow: hidden;
     height: 40px;
-    width: 150px;
+    /* width: 150px; */
     border-radius: 60px;
     margin: 50px 36% 36px 36%;
     /* padding: 15px 20px 15px 45px; */
     background: #e97723;
 
 }
-.cal_result > input[type=submit] {
+.cal_result a {
     display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+    width: inherit;
+    height: inherit;
     color: #fff;
     font-size: 18px;
     text-align: center;
     line-height: 40px;
-	background: #e97723;
-	border-radius: 60px;
-	border : none;
+    
 }
 
 
