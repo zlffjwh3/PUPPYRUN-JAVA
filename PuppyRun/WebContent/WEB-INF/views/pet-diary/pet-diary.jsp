@@ -245,7 +245,6 @@
 					<tr>
 					<!-- 그달의 1일 까지 공백처리하기 위한 것임. -->
 					<%
-				
 						for(int i = 1; i < week; i++){
 					%>		
 					<td height = "20">&nbsp;</td>
@@ -305,8 +304,11 @@
 											<script>
 									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
 									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-								<%	}	
+									 		<div><%= pList.get(i).getDiaryTitle() %></div> 
+								<%	}	else{%>
+											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+									 		
+							<%	}
 							    	}			
 									}
 									%>
@@ -336,20 +338,22 @@
 									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
 									 		</script>
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-								<%	}	
+								<%	}else{%>
+											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+							<%	}
 							    	}
 									}
 									%>
 								</td>
-							<% }
+							<% }      
 						}%>
 						</tr>
 				<%
-					String day = request.getParameter("date").trim();
+					String day = request.getParameter("date");
 				%>
             	<div class="scroll-wrap2">
            <a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'" class="message">
-           <div><i class="far fa-comment-alt"></i></div>글쓰기</a>
+            <div><i class="far fa-comment-alt"></i></div>글쓰기</a>
             	</div>
 					</table>
 				</div>
