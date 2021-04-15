@@ -117,7 +117,7 @@
                                 	for(int i=0; i<mList.size(); i++) {
                                 %>
                                 <li>
-                                    <a href="#"> <!-- 게시글 확인용 a-->
+                                    <a href="/matching/detail"> <!-- 게시글 확인용 a-->
                                     <form action="" method=""> <!-- 채팅하기 버튼용 form-->
                                         <div class="content-box">
                                             <div class="list-img-area">
@@ -152,7 +152,9 @@
                     
                     <!-- 글쓰기 버튼 -->
                     <div id="post-wrap">
-                            <a href="/petMateWrite.jsp" class="link-post">글쓰기</a>
+                     
+                            <a href="/matching/write" class="link-post">글쓰기</a>
+                     
                     </div>
                     <!-- 여기에 페이징 번호 -->
                     <div class="pagin-box">
