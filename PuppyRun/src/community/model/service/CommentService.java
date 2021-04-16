@@ -70,7 +70,28 @@ public class CommentService {
 		return 0;
 	}
 	
+	// 댓글 삭제
 	public int deleteCommunity(int commentNo) {
-		return 0;
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CommentDAO().deleteComment(conn, commentNo);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
+		
 	}
 }
