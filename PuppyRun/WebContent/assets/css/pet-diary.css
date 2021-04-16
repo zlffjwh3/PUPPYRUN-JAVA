@@ -19,7 +19,13 @@
     transition: 0.4s;
 }
 
-#function
+#function-btn {
+	
+}
+
+	#function-btn a {
+	
+	}
 
 .day-border {
 	border: 1px solid silver;
