@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -36,7 +37,7 @@
                     </form>
                 </div>
                 <div id="join-find-id-pwd">
-                    <a href="/id-pw-inquiry.jsp">아이디 · 비밀번호 찾기</a>
+                    <a href="#" >아이디 · 비밀번호 찾기</a>
                     <a href="/join.jsp">회원가입</a>
                 </div>
             </div>
