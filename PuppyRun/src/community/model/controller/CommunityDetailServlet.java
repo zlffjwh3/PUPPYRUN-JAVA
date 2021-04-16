@@ -36,13 +36,11 @@ public class CommunityDetailServlet extends HttpServlet {
 			// 댓글 전체 불러오기
 			ArrayList<Comment> cList = new CommentService().selectAllComment(comNo);
 			
-
 			if(community != null) {
 				request.setAttribute("community", community);
 				if(cList != null) {
 					request.setAttribute("cList", cList);
-					request.getRequestDispatcher("/WEB-INF/views/community/communityDetail.jsp").forward(request, response);
-					
+					request.getRequestDispatcher("/WEB-INF/views/community/communityDetail.jsp").forward(request, response);	
 				}else {
 					request.getRequestDispatcher("/WEB-INF/views/community/communityDetail.jsp").forward(request, response);
 				}

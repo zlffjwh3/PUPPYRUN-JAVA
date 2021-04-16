@@ -34,24 +34,7 @@ public class CommunityWriteServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 댓글 작성
-		String commentContent = request.getParameter("comment");
-		String commentUserId = request.getParameter("userId");
-		String commentUserNick = request.getParameter("userNick");
-		int communityNo = Integer.parseInt(request.getParameter("comNo"));
-		Comment comment = new Comment();
-		
-		comment.setCommentContents(commentContent);
-		comment.setCommentId(commentUserId);
-		comment.setComNo(communityNo);
-		comment.setUserNick(commentUserNick);
-		
-		int result = 0;
-		result = new CommentService().insertCommunity(comment);
-		
-		if(result > 0) {
-			response.sendRedirect("/community/detail?comNo=" + communityNo);
-		}
+		request.getRequestDispatcher("/WEB-INF/views/community/communityWrite.jsp").forward(request, response);
 	
 	}
 
@@ -120,7 +103,7 @@ public class CommunityWriteServlet extends HttpServlet {
 		int communityResult = new CommunityService().insertCommunity(community);
 		
 		// 결과 확인 (File 업로드 안하면 무조건 오류뜨게 해놨음.. 나중에 수정할 부분)
-		if(communityResult > 0 && multi.getFilesystemName("upFile") != null && photoResult > 0) {
+		if(communityResult > 0) {
 			response.sendRedirect("/community/list");
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/commuity/commuityError.html").forward(request, response);

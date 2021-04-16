@@ -145,7 +145,7 @@
                                 <%
                                 if(user != null) {
                                	%>
-                                    <form action="/community/write" method="get">
+                                    <form action="/comment/write" method="get">
                                     	<input type="hidden" name="userNick" value="<%= user.getUserNick() %>">
                                     	<input type="hidden" name="userId" value="<%= user.getUserId() %>">
                                     	<input type="hidden" name="comNo" value="<%= community.getComNo() %>">
