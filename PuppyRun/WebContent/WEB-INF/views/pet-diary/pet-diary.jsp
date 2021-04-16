@@ -62,7 +62,7 @@
     <!-- CSS 파일 가져오기 -->
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/pet-diary.css">
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-detail.css">
+    <%-- <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-detail.css"> --%>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
     <!-- 파비콘 이미지 가져오기 -->
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
@@ -218,6 +218,12 @@
 				   			목표 데스!
 				   		</div>
 				   	</div>
+				   	<div id="function-btn">
+                   		<div class="br">
+                            <a href="/petdiary/update?diaryDate=<%= petDiary.getDiaryDate() %>" ><span>수정</span></a>
+                            <a href="/petdiary/delete?diaryDate=<%= petDiary.getDiaryDate() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
+                       	</div>
+                    </div>
 				   	<% } else if(petDiary != null) {
 				   	%>
 				   	<div class="detail-box">
@@ -364,16 +370,11 @@
 					</table>
 				</div>
 					<div class="scroll-wrap2">
-           			<a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'" class="message">
-            		<div><i class="far fa-comment-alt"></i></div>글쓰기</a></div>
-                         <div id="function-btn">
-                        	<div class="br">
-                                <a onclick="location.href='/petdiary/update?year=<%=year%>&month=<%=month%>&date=<%=day%>'" ><span>수정</span></a>
-                                <a href="/petdiary/delete" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
-                           	</div>
-                        </div>
-            
-			</div>
+           				<a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'" class="message">
+            			<div><i class="far fa-comment-alt"></i></div>
+            			글쓰기</a>
+            		</div>
+				</div>
 			</div>
 			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
             <footer>
