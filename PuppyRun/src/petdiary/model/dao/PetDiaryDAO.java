@@ -84,8 +84,8 @@ public class PetDiaryDAO {
 	
 	public int insertDiary(Connection conn, PetDiary petDiary) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO DIARY VALUES(SEQ_DIARYNO.NEXTVAL, ?, ?, ?, ?, SYSDATE, ?)";
-		int result = 0;	
+		String query = "INSERT INTO DIARY VALUES(SEQ_DIARYNO.NEXTVAL, ?, ?, ?, ?, TO_CHAR(SYSDATE, 'YY/MM/DD'), ?)";
+		int result = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(query);
