@@ -78,8 +78,26 @@ public class PetDiaryService {
 		return 0;
 	}
 	
-	public int deleteDiary(int DiaryNo) {
-		return 0;
+	public int deleteDiary(int diaryNo) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new PetDiaryDAO().deleteDiary(conn, diaryNo);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
 	}
 	
 	public int addReadCount(int noticeNo) {
