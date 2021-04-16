@@ -196,12 +196,22 @@ public class MatchingDAO {
 		return result;
 	}
 
+	public int updateMatching(Connection conn, Matching matching) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE MATCHING SET MAT_ADDR=?, MAT_TITLE=?, MAT_CONTENT=?, MAT_PHOTO=? WHERE MAT_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	public int deleteMatching(Connection conn, int matNo) {
 		return 0;
 	}
 
-	public int updateMatching(Connection conn, Matching matching) {
-		return 0;
-	}
 
 }

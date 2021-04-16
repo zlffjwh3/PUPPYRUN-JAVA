@@ -72,11 +72,31 @@ public class MatchingService {
 		return result;
 	}
 
+	// 산책짝꿍 수정
+	public int modifyMatching(Matching matching) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new MatchingDAO().updateMatching(conn, matching);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
+	}
+	
 	public int deleteMatching(int matNo) {
 		return 0;
 	}
 
-	public int modifyMatching(Matching matching) {
-		return 0;
-	}
 }
