@@ -52,12 +52,19 @@
 	                <div id="tright">
 	                	<div id="tright-wrapper">
 		                    <div id="login">
-	                        	<% if(user.getUserPhoto() != null) { %>
-                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
-	                       		<% } else { %>
-                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
-	                        	<% } %>
-	                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
+	                        	<% if(user == null) { %>
+		                        	<a href="/login.jsp">
+		                            	<i class="xi-face xi-2x"></i>
+		                       		</a>
+		                        	<a href="/login.jsp" id="login-content">로그인</a>
+		                        <% } else { %>
+		                        	<% if(user.getUserPhoto() != null) { %>
+	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
+		                       		<% } else { %>
+	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
+		                        	<% } %>
+		                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
+		                        <% } %>
 		                    </div>
 		                    <% if(user != null) { %>
 		                    <div id="pop-up" style="display:none">
