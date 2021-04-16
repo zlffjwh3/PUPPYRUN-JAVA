@@ -52,7 +52,7 @@ public class MatchingWriteServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		
 		// 작성 완료한 게시물 정보 가져오기
-		String matchingAddr = multi.getParameter("addr1") + multi.getParameter("addr2");
+		String matchingAddr = multi.getParameter("addr1") + " " +  multi.getParameter("addr2");
 		String matchingId = user.getUserId();
 		String matchingTitle = multi.getParameter("title");
 		String matchingContent = multi.getParameter("content");

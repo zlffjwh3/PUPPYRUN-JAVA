@@ -137,12 +137,16 @@
                         <img src="/upload/<%= matching.getMatPhoto() %>" alt="사용자 첨부파일">
                     </div>
                     <div id="chat-profile-box">
-                        <form action="/matching/detail" method="POST"> <!-- 채팅하기 버튼용 form-->
                                 <div class="chat-content-area">
                                     <div>
                                         <div class="user-profile-img-div">
                                             <!-- 프로필사진 -->
-                                            <img src="" alt="프로필 이미지" class="user-profile-img">
+                                            <% if(user.getUserPhoto() != null) { %>
+                                            <img src="/upload/<%= user.getUserPhoto() %>" class="user-profile-img">
+                                            <% } else { %>
+                                            <img src="/assets/img/user-no-img.png">
+		                        			<% } %>
+		                        			<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
                                         </div>
                                         <span class="user-name"><%= matching.getUserNick() %></span>
                                         <span class="user-addr"><%= matching.getMatAddr() %></span>
@@ -152,10 +156,8 @@
                                         <p id="user-write-content"><%= matching.getMatContent() %></p>
                                     </div>
                                 </div>
-                                <input type="submit" value="수정하기" class="matching-btn matching-btn1">
-                                <input type="submit" value="삭제하기" class="matching-btn matching-btn2" onclick="return confirm('정말 삭제하시겠습니까?')" > <!-- 삭제되물어봄 -->
-                                <input type="button" value="매칭완료" class="matching-btn matching-btn3">
-                        </form>
+                                <a href="/matching/modify?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn1">수정하기</a>
+                                <a href="/matching/delete?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn2" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
                     </div>
                 </div>
                 <div id="chat-box-right"> <!-- 오른쪽(채팅창) 부분 -->
