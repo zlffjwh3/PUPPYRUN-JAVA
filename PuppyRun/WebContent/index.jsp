@@ -29,6 +29,7 @@
         <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/weather.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/index.js"></script>
         <title>퍼피런 - 친구와 산책 나가요</title>
     </head>
     <body>
@@ -62,7 +63,7 @@
 		                       		<% } else { %>
 	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
 		                        	<% } %>
-		                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
+		                        	<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
 		                        <% } %>
 		                    </div>
 		                    <% if(user != null) { %>
@@ -77,17 +78,7 @@
 		                    </div>
 		                    <% } %>
 	                    </div>
-	                    <script>
-	                    		function showPopup() {
-	                    			var popUp = document.getElementById("pop-up")
-	                    			
-	                    			if(popUp.style.display == 'none') {
-	                    				popUp.style.display = 'block';
-	                    			}else {
-	                    				popUp.style.display = 'none';
-	                    			}
-		                    	}
-	                    </script> 
+	                    <!-- index.js로 옮김 -->
             		</div>
            		</div>
             </header>
