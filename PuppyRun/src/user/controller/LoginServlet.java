@@ -36,7 +36,12 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("/index.jsp");
 		} else {
 			// 실패
-			response.sendRedirect("/WEB-INF/views/user/error.html");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script> alert('아이디 혹은 비밀번호가 잘못되었습니다'); location.href='/login.jsp'; </script>");
+			out.flush();
+//			request.getRequestDispatcher("/login.jsp").forward(request, response);
+
 		}
 	}
 
