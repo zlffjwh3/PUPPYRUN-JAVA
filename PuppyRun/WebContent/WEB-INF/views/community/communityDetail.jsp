@@ -125,7 +125,7 @@
                             </div>
                             <div id="notice-content">
                                 <div class="write-div">
-                                	<div><img src="/upload/<%=community.getComPhoto()%>"></div>
+                                	<div><img id="imgTag" src="/upload/<%=community.getComPhoto()%>"></div>
                                     <p><%= community.getComContent() %></p>
                                 </div>
                             </div>
@@ -177,8 +177,13 @@
                                                 <p><%=cList.get(i).getUserNick() %></p>
                                                 <!-- 작성일 -->
                                                 <span><%=cList.get(i).getCommentDate() %></span>
-                                                <span><a>삭제</a></span>
+                                     <% if(user != null && cList != null && user.getUserId().equals(cList.get(i).getCommentId())) { %>
+                                                <span><a href="/comment/delete?commentNo=<%=cList.get(i).getCommentNo() %>&comNo=<%=community.getComNo() %>">삭제</a></span>
                                                 <span><a>수정</a></span>
+                                                <% } else { %>
+                                                <span></span>
+                                                <span></span>
+                                                <%} %>
                                             </div>
                                             <!-- 댓글 내용 -->
                                             <div class="comment"><p><%=cList.get(i).getCommentContents() %></p></div>

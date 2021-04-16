@@ -83,8 +83,24 @@ public class CommentDAO {
 		return 0;
 	}
 	
+	// 댓글 삭제
 	public int deleteComment(Connection conn, int commentNo) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM COMMENTTBL WHERE COMMENT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, commentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	public void addReadCount(Connection conn, int commentNo) {}

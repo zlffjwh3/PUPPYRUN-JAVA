@@ -59,7 +59,7 @@
 
 /*  콘텐츠 부분 */
 #notice-content {
-    height : 600px;
+    height : 800px;
     padding-top : 25px;
     padding-bottom : 50px;
 }
@@ -68,8 +68,9 @@
 	width : 500px;
 }
 
-.write-div > div > img {
-	width : 100%;
+#imgTag {
+	/* width : 100%; */
+	width : 400px;
 	
 }
 

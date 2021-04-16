@@ -122,8 +122,13 @@
                                 	for(int i=0; i<cList.size(); i++) {
                                 %>
                                 <li class="post">
-                                    <div class="img-area"><img src="/upload/<%=cList.get(i).getComPhoto()%>"></div>
-                                    
+                                    <div class="img-area">
+                                	<% if(cList.get(i).getComPhoto() != null) {%>
+                                    	<img src="/upload/<%=cList.get(i).getComPhoto()%>">
+                                    <% } else { %>
+                                    	<img src="/assets/img/no-img.jpg">
+                                    <% } %>
+                                    </div>
                                     <div class="text-area">
                                         <!-- 태그 이름 -->
                                         <% 
@@ -161,7 +166,7 @@
                                                 <!-- 작성일 -->
                                                 <span><%= cList.get(i).getComDate() %></span>
                                                 <!-- 댓글 -->
-                                                <span>댓글 0</span>
+                                                <!-- <span>댓글 0</span> -->
                                                 <!-- 조회수 -->
                                                 <span>조회수 <%= cList.get(i).getComview() %></span>
                                                 <!-- 좋아요-->

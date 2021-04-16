@@ -171,7 +171,7 @@
                			<% } %>
                			<!--------------------------------------------->
                			<div id="info3">
-               				<a href="/user/modify" id="modify-btn">프로필 수정</a>
+               				<a href="/user/modify?userId=<%= user.getUserId() %>&userPw=<%= user.getUserPw() %>" id="modify-btn">프로필 수정</a>
                				<a href="/user/delete" id="delete-btn" onclick="return confirm('정말 탈퇴하시겠습니까?')">회원탈퇴</a>
                			</div>
 	               	</div>

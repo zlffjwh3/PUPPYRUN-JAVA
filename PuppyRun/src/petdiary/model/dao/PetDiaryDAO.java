@@ -108,8 +108,24 @@ public class PetDiaryDAO {
 	}
 	
 	public int deleteDiary(Connection conn, int diaryNo) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = " DELETE FROM DIARY WHERE DIARY_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, diaryNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
+	
 	
 	public int addReadCount(Connection conn, int diaryNo) {
 		return 0;
