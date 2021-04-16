@@ -221,16 +221,13 @@
 				   	<% } else if(petDiary != null) {
 				   	%>
 				   	<div class="detail-box">
-				   		<div class="diary-today">
-				   			<%= petDiary.getDiaryDate().substring(0, 10) %>
-				   		</div>
-				   		<div class=""><img src=""></div>
+				   		<div id="noimage"><img src="/assets/img/no-diary.png"></div>
 				   	</div>
 				   	<%
 				   	} else {
 				   	%>
 				   	<div class="detail-box">
-				   		산책하세요!
+				   		일기를 등록하세요!
 				   	</div>
 				   	<%
 				   	}
