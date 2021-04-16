@@ -18,10 +18,10 @@
 </head>
 <body>
     <div id="wrap"><!-- ㄴㄴㄴ -->
-        <div id="join-form">
+        <div id="join-form"><a href="/index.jsp">
             <div id="form-logo">
-                <img src="<%= request.getContextPath() %>assets/img/main_logo.png" alt="">
-            </div>
+                <img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt="">
+            </a></div>
             <div id="form1-area">
                 <form name="frm">
                 <!-- <form action="/user/enroll" method="post" name="frm"> -->

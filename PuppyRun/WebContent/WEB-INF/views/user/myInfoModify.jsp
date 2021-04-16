@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
-	Dog dog = (Dog)session.getAttribute("dog");
+	Dog dog = (Dog)request.getAttribute("dog");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,7 +17,7 @@
     <%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/index.css"> --%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <%-- <script src="<%= request.getContextPath() %>assets/js/jquery-3.5.1.min.js"></script> --%>
-    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/join.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/myInfoModify.js"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <title>회원정보 수정</title>
 </head>
@@ -25,7 +25,9 @@
     <div id="wrap"><!-- ㄴㄴㄴ -->
         <div id="join-form">
             <div id="form-logo">
-                <img src="<%= request.getContextPath() %>assets/img/main_logo.png" alt="">
+	            <a href="/index.jsp">
+	                <img src="<%= request.getContextPath() %>/assets/img/main_logo.png" alt="">
+	            </a>
             </div>
             <div id="form1-area">
                 <form name="frm">
@@ -82,23 +84,12 @@
                         </div>
                         <div id="month-input" class="input-div">
                         <select name="user-birth-month" id="user-birth-month">
-                                <option value="" selected disabled>월</option>
+                                <option value="" disabled>월</option>
                         <% for(int i = 1; i < 13; i++) { %>
                                 <option value="0'<%= i%>'"><%= i%>월</option>
                                 <% if(Integer.parseInt(user.getUserBirth().substring(4,6)) == i) { %>
-                                
+                                	<option value="0'<%= i%>'" selected ><%= i%>월</option>
                                 <% } %>
-                               <%--  <option value="02"><%= i%>월</option>
-                                <option value="03"><%= i%>월</option>
-                                <option value="04"><%= i%>월</option>
-                                <option value="05"><%= i%>월</option>
-                                <option value="06"><%= i%>월</option>
-                                <option value="07"><%= i%>월</option>
-                                <option value="08"><%= i%>월</option>
-                                <option value="09"><%= i%>월</option>
-                                <option value="10"><%= i%>월</option>
-                                <option value="11"><%= i%>월</option>
-                                <option value="12"><%= i%>월</option> --%>
                         <% } %>
                             </select>
                         </div>
@@ -120,6 +111,29 @@
                             <input type="text" name="addr2" id="addr2" placeholder="상세주소">
                         </div>
                     </div>
+                 
+                    <!-- 강아지가 있거나 없는경우 -->
+                    <% if(user.getDogCheck() == 'Y') { %>
+                    <div id="pet-select-area" class="area-div">
+                        <span class="pet-ques">반려견이 있나요? </span>
+                        <div class="pet-result">
+                            <label for="pet-selectY">
+                                예 <input type="radio" name="pet-select" id="pet-selectY" class="pet-select" value="yes">
+                            </label>
+                            <label for="pet-selectN">
+                                아니요 <input type="radio" name="pet-select" id="pet-selectN" class="pet-select" value="no">
+                            </label>
+                            <script>
+                            	$(document).ready(function() {
+	                            	$('#pet-selectY').attr('checked', 'checked');
+	                            	$('#user-join-submit').css('display','none');
+	                    			$('#form2-area').css('display','block');
+                            	});
+                            </script>
+                        </div>
+                    </div>
+                    
+                    <% } else {%>
                     <div id="pet-select-area" class="area-div">
                         <span class="pet-ques">반려견이 있나요? </span>
                         <div class="pet-result">
@@ -131,10 +145,71 @@
                             </label>
                         </div>
                     </div>
+                    
+                    <% } %>
+                    
                     <div id="user-join-submit" class="submitBtn">
                         <input type="button" class="joinBtn" value="확인" onclick="getPost('01')">
                     </div>
                 </div>
+                <% if(user.getDogCheck() == 'Y') { %> <!-- 반려견 있음(Y) 체크됐을 때 -->
+                <div id="form2-area">
+                    <p id="p-hr"></p>
+                    <p id="dog-title">반려견의 정보를 입력해주세요</p><br>
+                    <div id="dog-name-area" class="area-div">
+                        <p class="subtitle">반려견 이름</p>
+                        <div id="dog-name-input" class="input-div">
+                            <input value="<%= dog.getDogName() %>" type="text" name="dog-name" id="dog-name" placeholder="이름(한글, 1~8글자)">
+                        </div>
+                        <span class="dog-name-error-msg error-msg"></span>
+                    </div>
+                    <div id="dog-kind-area" class="area-div">
+                        <p class="subtitle">품종</p>
+                        <div id="dog-kind-input" class="input-div">
+                            <input value="<%= dog.getDogBreed() %>" type="text" name="dog-kind" id="dog-kind" placeholder="품종(한글, 1~15글자)">
+                        </div>
+                    </div>
+                    <div id="dog-gender-area" class="area-div">
+                        <p class="subtitle">성별</p>
+                        <div id="dog-gender-input" class="input-div">
+                            <select name="dog-gender" id="dog-gender">
+                                <option value="" disabled selected>성별</option>
+                               <% if(dog.getDogGender() == 'M') {%>
+                               		<option value="M" selected>수컷</option>
+                               		<option value="F">암컷</option>
+                                	<option value="T">중성화</option>
+                               <% } else if (dog.getDogGender() == 'F') { %>
+	                                <option value="M">수컷</option>
+	                                <option value="F" selected>암컷</option>
+	                                <option value="T">중성화</option>
+                               <% } else if (dog.getDogGender() == 'T') { %>
+	                                <option value="M">수컷</option>
+	                                <option value="F">암컷</option>
+	                                <option value="T" selected>중성화</option>
+                               <% } %>
+                               
+                            </select>
+                        </div>
+                    </div>
+                    <div id="dog-age-area" class="area-div">
+                        <p class="subtitle">나이(세)</p>
+                        <div id="dog-age-input" class="input-div">
+                            <input value="<%= dog.getDogAge() %>" type="text" name="dog-age" id="dog-age" placeholder="나이(숫자)">
+                        </div>
+                    </div>
+                    <div id="dog-weight-area" class="area-div">
+                        <p class="subtitle">몸무게(kg)</p>
+                        <div id="dog-weight-input" class="input-div">
+                            <input value="<%= dog.getDogWeight() %>" type="text" name="dog-weight" id="dog-weight" placeholder="몸무게(소수점 첫째자리까지 입력)">
+                        </div>
+                        <span class="dog-weight-error-msg error-msg"></span>
+                    </div>
+                    <div id="dog-and-user-submit" class="submitBtn">
+                        <input type="button" class="joinBtn" value="확인" onclick="getPost('02')">
+                    </div>
+                </div>
+                
+                <% } else {%> <!-- 반려견 없음(N) 체크됐을 때 -->
                 <div id="form2-area">
                     <p id="p-hr"></p>
                     <p id="dog-title">반려견의 정보를 입력해주세요</p><br>
@@ -163,13 +238,13 @@
                         </div>
                     </div>
                     <div id="dog-age-area" class="area-div">
-                        <p class="subtitle">나이</p>
+                        <p class="subtitle">나이(세)</p>
                         <div id="dog-age-input" class="input-div">
                             <input type="text" name="dog-age" id="dog-age" placeholder="나이(숫자)">
                         </div>
                     </div>
                     <div id="dog-weight-area" class="area-div">
-                        <p class="subtitle">몸무게</p>
+                        <p class="subtitle">몸무게(kg)</p>
                         <div id="dog-weight-input" class="input-div">
                             <input type="text" name="dog-weight" id="dog-weight" placeholder="몸무게(소수점 첫째자리까지 입력)">
                         </div>
@@ -179,6 +254,8 @@
                         <input type="button" class="joinBtn" value="확인" onclick="getPost('02')">
                     </div>
                 </div>
+                
+                <% } %>
             </form>
             </div>
     </div>

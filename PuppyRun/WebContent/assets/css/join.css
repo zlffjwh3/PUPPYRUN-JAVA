@@ -20,7 +20,11 @@
     margin: 0 auto 40px auto;
 }
 
-#form-logo > img {
+#form-logo > a {
+	width: inherit;
+}
+
+#form-logo > a > img {
     width: inherit;
 }
 
