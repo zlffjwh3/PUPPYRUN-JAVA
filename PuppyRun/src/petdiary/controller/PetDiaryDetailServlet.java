@@ -41,6 +41,7 @@ public class PetDiaryDetailServlet extends HttpServlet {
 	 	String tempDate = year+"-"+month+"-"+date;
 	 	Date diaryDate = Date.valueOf(tempDate);
 	 	
+	 	
 	 	PetDiary petDiary = new  PetDiaryService().selectOneDiary(diaryDate, diaryId);
 	 	ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(diaryId);
 	 	
