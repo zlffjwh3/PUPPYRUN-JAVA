@@ -191,7 +191,7 @@ public class MatchingDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(pstmt);  
 		}
 		return result;
 	}
