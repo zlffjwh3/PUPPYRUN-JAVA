@@ -227,7 +227,7 @@
 				   	} else {
 				   	%>
 				   	<div class="detail-box">
-				   		일기를 등 록하세요!
+				   		<div id="noimage"><img src="/assets/img/Non-diary.png"></div>
 				   	</div>
 				   	<%
 				   	}
