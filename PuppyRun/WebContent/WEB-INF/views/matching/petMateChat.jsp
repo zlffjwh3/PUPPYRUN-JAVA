@@ -146,18 +146,22 @@
                                             <% } else { %>
                                             <img src="/assets/img/user-no-img.png">
 		                        			<% } %>
-		                        			<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
                                         </div>
-                                        <span class="user-name"><%= matching.getUserNick() %></span>
-                                        <span class="user-addr"><%= matching.getMatAddr() %></span>
+                                        <div class="user-profile-name-div">
+			                        		<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
+	                                       <%-- <span class="user-name"><%= matching.getUserNick() %></span> --%>
+                                        </div>
+                                        <div class="user-profile-addr-div">
+	                                        <span class="user-addr"><%= matching.getMatAddr() %></span>
+                                        </div>
                                     </div>
                                     <div>
                                         <!-- 글내용이 길어지면 자동으로 스크롤바가 생김 -->
                                         <p id="user-write-content"><%= matching.getMatContent() %></p>
                                     </div>
                                 </div>
-                                <a href="/matching/modify?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn1">수정하기</a>
-                                <a href="/matching/delete?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn2" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+                                <a href="/matching/modify?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn1" style="color: white;">수정하기</a>
+                                <a href="/matching/delete?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn2" style="color: white;" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
                     </div>
                 </div>
                 <div id="chat-box-right"> <!-- 오른쪽(채팅창) 부분 -->
