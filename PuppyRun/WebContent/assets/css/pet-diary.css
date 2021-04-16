@@ -50,6 +50,11 @@
 		text-align : center;
 		padding-bottom : 20px;
 	} 
+	
+	#list-box #goal-btn {
+		border : none;
+		
+	}
 
 
 #main-content2{

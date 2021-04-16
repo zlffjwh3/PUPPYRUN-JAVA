@@ -241,6 +241,7 @@
 				   	%>
 				   	
 				   	<!-- List ----------------------------------------------------------------------------------------->
+				
 					<table id="list-box">
 					<tr>
 						<td class="sun">Sun</td>
@@ -320,7 +321,7 @@
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
 								<%	}	else{%>
 											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
-									 		<div> </div>
+									 		<div></div>
 							<%	}
 							    	}			
 									}
@@ -354,11 +355,11 @@
 									 		</script>
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
 										<%	}else{%>
-											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
-											<div> </div>
-									<%	}
-							    	}
-								}
+													<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+													<div></div>
+										<%	}
+							    		}
+									}
 									%>
 								</td>
 							<% }      
