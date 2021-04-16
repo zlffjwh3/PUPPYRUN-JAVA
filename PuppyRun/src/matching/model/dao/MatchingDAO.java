@@ -218,7 +218,21 @@ public class MatchingDAO {
 	}
 	
 	public int deleteMatching(Connection conn, int matNo) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM MATCHING WHERE MAT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, matNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 
