@@ -41,6 +41,7 @@ public class PetDiaryWriteServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		request.setCharacterEncoding("UTF-8");
 		
+		
 		String uploadFilePath = request.getServletContext().getRealPath("upload");
 		int uploadFileSizeLimit = 5*1024*1024; //파일 사이즈
 		String encType = "UTF-8";
@@ -50,12 +51,19 @@ public class PetDiaryWriteServlet extends HttpServlet {
 		String petdiaryTitle = multi.getParameter("title");
 		String petdiaryContent = multi.getParameter("content");
 		String petdiaryMap = multi.getParameter("map");
+		//지도 테스트
+		int goaldis = Integer.parseInt(multi.getParameter("distance"));
+		int goalwak = Integer.parseInt(multi.getParameter("walkkTime"));
 		
 		PetDiary petdiary = new PetDiary();
 		petdiary.setDiaryId(petdiaryId);
 		petdiary.setDiaryTitle(petdiaryTitle);
 		petdiary.setDiaryContent(petdiaryContent);
 		petdiary.setDiaryMap(petdiaryMap);
+		
+		//지도 테스트
+		System.out.println(goaldis);
+		System.out.println(goalwak);
 		
 		int photoResult = 0;
 		if(multi.getFilesystemName("upFile") != null) {

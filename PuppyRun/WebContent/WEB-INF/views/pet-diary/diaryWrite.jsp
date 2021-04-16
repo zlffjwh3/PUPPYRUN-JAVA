@@ -395,11 +395,14 @@ function getTimeHTML(distance) {
     content += '    </li>';
     content += '</ul>'
 
-    return content;
+    $('#distance').val(distance);
+    $('#walkkTime').val(walkkTime);
+		 return content;
 }
     
 </script>
-                                   
+                                 <input type="hidden" id="distance" name="distance">
+                                 <input type="hidden" id="walkkTime" name="walkkTime">
                                 </div>
                                 </div>
                                 <div id="content">
