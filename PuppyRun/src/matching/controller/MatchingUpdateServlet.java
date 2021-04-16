@@ -38,9 +38,9 @@ public class MatchingUpdateServlet extends HttpServlet {
 		if(matching != null) {
 			request.setAttribute("matching", matching);
 			// 수정 페이지로 가기
-			request.getRequestDispatcher("/WEB-INF/views/notice/matchingUpdate.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/matching/matchingUpdate.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/notice/matchingError.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/matching/matchingError.html").forward(request, response);
 		}
 	}
 

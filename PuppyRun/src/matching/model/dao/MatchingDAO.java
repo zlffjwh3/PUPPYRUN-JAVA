@@ -231,9 +231,6 @@ public class MatchingDAO {
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
 		return result;
 	}
-
-
 }

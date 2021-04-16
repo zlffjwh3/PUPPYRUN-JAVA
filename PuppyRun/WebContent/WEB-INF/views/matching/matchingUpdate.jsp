@@ -1,8 +1,11 @@
+<%@page import="matching.model.vo.Matching"%>
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
+	Matching matching = (Matching)request.getAttribute("matching");
+	int index = matching.getMatAddr().indexOf(" ");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -23,10 +26,11 @@
         <link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="./assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/slider.js"></script>
-        <script src="/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/notice-write.js"></script>
         <title>산책짝꿍 글 수정</title>
+        
     </head>
     <body>
         <div id="wrap">
@@ -123,37 +127,50 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="/matching/write" method="post" enctype="multipart/form-data">
+                            <form id="write-check" action="/matching/modify?matNo=<%= matching.getMatNo() %>&photoCheck=N" method="post" enctype="multipart/form-data">
                                 <div id="address">
                                     <p class="write-p-tag">주소</p>
                                     <div class="addr-box addr1-box">
-                                        <input type="text" id="addr1-input" class="addr-input" name="addr1" maxlength="50" placeholder="구">
+                                        <input type="text" id="addr1-input" class="addr-input" name="addr1" maxlength="50" placeholder="구" value="<%= matching.getMatAddr().substring(0, index) %>">
+                                   
                                     </div>                                 
                                     <div class="addr-box addr2-box">
-                                        <input type="text" id="addr2-input" class="addr-input" name="addr2" maxlength="50" placeholder="동">
+                                        <input type="text" id="addr2-input" class="addr-input" name="addr2" maxlength="50" placeholder="동" value="<%= matching.getMatAddr().substring(index+1) %>">
                                     </div>
                                 </div>
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">
-                                        <input type="text" id="title-input" name="title" maxlength="50">
+                                        <input type="text" id="title-input" name="title" maxlength="50" value="<%= matching.getMatTitle() %>">
                                     </div>
                                 </div>
                                 <div id="content">
                                     <p class="write-p-tag">내 용</p>
                                     <div class="input-box" id="textarea-box">
-                                        <textarea id="content" name="content"></textarea>
+                                        <textarea id="content" name="content" value="<%= matching.getMatContent() %>"></textarea>
                                     </div>
                                 </div>
                                 <div id="file">
                                     <p class="write-p-tag">첨부 파일</p>
-                                    <div class="input-box">
-                                        <input type="file" id="file-input" name="upFile">
-                                    </div>
+                                    <% if(matching.getMatPhoto() != null) { %>
+                                    <div class="input-box" id="file-wrapper">
+                                    	<div id="file-update-box">
+	                                        <span><%= matching.getMatPhoto() %></span>
+                                    		<input type="button" id="file-update" value="수정하기">
+                                    	</div>
+                                    	<div id="file-update-box2">
+	                                       	<input type="file" id="file-input" name="upFile">
+	                                    </div>
+	                                </div>
+                                    <% } else { %>
+	                                    <div class="input-box">
+	                                        <input type="file" id="file-input" name="upFile">
+	                                    </div>
+                                    <% } %>
                                 </div>
                                 <div id="btn-box">
-                                    <input type="submit" id="submit-input" value="등록">
-                                    <a href="/html/free-board.html"><p>취소</p></a>
+                                    <input type="button" id="submit-input" value="수정">
+                                    <a href="/matching/detail?matNo=<%= matching.getMatNo() %>"><p>취소</p></a>
                                 </div>
                             </form>
                         </div>
