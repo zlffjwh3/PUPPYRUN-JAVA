@@ -220,8 +220,8 @@
 				   	</div>
 				   	<div id="function-btn">
                    		<div class="br">
-                            <a href="/petdiary/update?diaryDate=<%= petDiary.getDiaryDate() %>&diaryNo=<%= petDiary.getDiaryNo() %>" ><span>수정</span></a>
-                            <a href="/petdiary/delete?diaryDate=<%= petDiary.getDiaryDate() %>&diaryNo=<%= petDiary.getDiaryNo() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
+                            <a href="/petdiary/update?diaryDate=<%= petDiary.getDiaryDate().substring(0, 10) %>&diaryNo=<%= petDiary.getDiaryNo() %>" ><span>수정</span></a>
+                            <a href="/petdiary/delete?diaryDate=<%= petDiary.getDiaryDate().substring(0, 10) %>&diaryNo=<%= petDiary.getDiaryNo() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                        	</div>
                     </div>
                     
