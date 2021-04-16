@@ -60,6 +60,30 @@ div#chat-box {
     object-fit: cover;
 }
 
+/* 작성자 프로필 이미지 */
+.user-profile-img-div {
+	width: 25px;
+    height: 25px;
+    margin: 6px 6px 0 0;
+}
+
+.user-profile-img-div > img {
+	width: inherit;
+    height: inherit;
+}
+
+/* 작성자 프로필 이름 */
+.user-profile-name-div {
+	float: left;
+    width: 160px;
+}
+
+/* 작성자 프로필 주소 */
+.user-profile-addr-div {
+	float: left;
+    width: 120px;
+}
+
 /* 작성자가 쓴 내용 */
 .chat-content-area {
     width: 350px;
@@ -93,15 +117,29 @@ div#chat-box {
 }
 
 /* 수정하기 버튼 */
-.matching-btn {
-    width: 60px;
+.matching-btn1 {
+    width: 80px;
     height: 32px;
     border: none;
-    border-radius: 10px;
+    float: left;
+    border-radius: 50px;
     background: #FEB415;
     color: white;
-    cursor: pointer;
-  	margin: 0px 0 0 5px;
+    margin: 10px 5px 0 235px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+.matching-btn2 {
+	width: 80px;
+    height: 32px;
+    border: none;
+    float: left;
+    border-radius: 50px;
+    background: #FEB415;
+    margin: 10px 5px 0 5px;
+    text-align: center;
+    line-height: 1.8;
 }
 
 .matching-btn:hover {
