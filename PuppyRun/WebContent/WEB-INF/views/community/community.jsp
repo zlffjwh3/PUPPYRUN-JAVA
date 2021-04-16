@@ -9,6 +9,8 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
 	String pageNavi = (String)request.getAttribute("pageNavi");
+	ArrayList<int[]> cnt = (ArrayList<int[]>)request.getAttribute("cnt");
+	int[] array = null;
 	
 %>
 
@@ -166,7 +168,27 @@
                                                 <!-- 작성일 -->
                                                 <span><%= cList.get(i).getComDate() %></span>
                                                 <!-- 댓글 -->
-                                                <!-- <span>댓글 0</span> -->
+                                               <%
+                                               /* 객체가 존재하면  */
+                                               if(cnt != null) { 
+                                            	   /* 임시 저장소 */
+                                               		array = new int[2];
+                                            	   /* 게시물 번호와 같은게 있으면 */
+                                               		for(int j = 0; j < cnt.size(); j++) {
+                                               			/* 임시 저장소에 j번째 배열리스트 저장
+                                               			(배열리스트에 저장되어있는 배열을 직접 열 수 없어서 저장하는거임)
+                                               			임시 저장소에 저장된 배열에는 게시물 번호(0)와 댓글 수(1)이 존재*/
+                                               			array = cnt.get(j).clone();
+                                               			/* 게시물 번호가 서로 같으면  */
+                                               			if(cList.get(i).getComNo() == array[0]) {
+                                               %>		
+                                               <!-- 댓글 출력 -->
+                                                <span>댓글 <%= array[1] %></span>
+                                               <% 
+                                               			}
+                                               		}
+                                               	}
+                                               %>
                                                 <!-- 조회수 -->
                                                 <span>조회수 <%= cList.get(i).getComview() %></span>
                                                 <!-- 좋아요-->

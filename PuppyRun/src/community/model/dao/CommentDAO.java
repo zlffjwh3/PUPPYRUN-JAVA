@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
@@ -103,5 +104,39 @@ public class CommentDAO {
 		return result;
 	}
 	
-	public void addReadCount(Connection conn, int commentNo) {}
+	// 댓글 수
+	public ArrayList<int[]> addReadCount(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<int[]> cnt = null;
+		String query = "SELECT A.COM_NO, (SELECT COUNT(*) FROM COMMENTTBL B WHERE B.COM_NO = A.COM_NO) as CNT FROM COMMUNITY A ORDER BY A.COM_NO DESC";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if(rset != null) {
+				cnt = new ArrayList<int[]>();
+				
+				while(rset.next()) {
+					int[] result = new int[2];
+					result[0] = rset.getInt("COM_NO");
+					result[1] = rset.getInt("CNT");
+					
+					cnt.add(result);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		
+		return cnt;
+	}
+	
+	
+	
 }

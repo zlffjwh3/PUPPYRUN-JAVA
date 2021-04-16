@@ -94,4 +94,22 @@ public class CommentService {
 		return result;
 		
 	}
+	
+	// 댓글 수
+	public ArrayList<int[]> cnt() {
+		Connection conn = null;
+		ArrayList<int[]> cnt = null;
+		
+		try {
+			conn = factory.createConnection();
+			cnt = new CommentDAO().addReadCount(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return cnt;
+	}
 }

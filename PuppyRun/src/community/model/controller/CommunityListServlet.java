@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import community.model.service.CommentService;
 import community.model.service.CommunityService;
-import community.model.vo.Comment;
 import community.model.vo.Community;
 import community.model.vo.CommunityPage;
 
@@ -46,9 +45,13 @@ public class CommunityListServlet extends HttpServlet {
 			ArrayList<Community> cList = communityPage.getcList();
 			String pageNavi = communityPage.getPageNavi();
 			
+			// 댓글 수 구하는 객체
+			ArrayList<int[]> cnt = new CommentService().cnt();
+						
 			if(!cList.isEmpty()) {
 				request.setAttribute("cList", cList);
 				request.setAttribute("pageNavi", pageNavi);
+				request.setAttribute("cnt", cnt);
 					
 				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
 			} else {
@@ -60,9 +63,13 @@ public class CommunityListServlet extends HttpServlet {
 			ArrayList<Community> cList = communityPage.getcList();
 			String pageNavi = communityPage.getPageNavi();
 			
+			// 댓글 수 구하는 객체
+			ArrayList<int[]> cnt = new CommentService().cnt();
+			
 			if(!cList.isEmpty()) {
 				request.setAttribute("cList", cList);
 				request.setAttribute("pageNavi", pageNavi);
+				request.setAttribute("cnt", cnt);
 				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
 				
 			} else {
