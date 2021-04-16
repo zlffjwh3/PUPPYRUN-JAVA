@@ -7,7 +7,6 @@ import common.JDBCTemplate;
 import community.model.dao.CommunityDAO;
 import community.model.vo.Community;
 import community.model.vo.CommunityPage;
-import notice.model.vo.Notice;
 
 public class CommunityService {
 	private JDBCTemplate factory;
@@ -121,7 +120,26 @@ public class CommunityService {
 	}
 	
 	public int deleteCommunity(int communityNo) {
-		return 0;
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CommunityDAO().deleteNotice(conn, communityNo);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
 	}
 	
 	public int addReadCount(int communityNo) {

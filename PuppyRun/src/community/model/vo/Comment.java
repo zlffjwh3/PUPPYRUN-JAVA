@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Comment {
 	private int commentNo;
 	private int comNo;
+	private String userNick;
 	private String commentContents;
 	private String commentId;
 	private Date commentDate;
@@ -14,6 +15,14 @@ public class Comment {
 	// getter/setter
 	public int getCommentNo() {
 		return commentNo;
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
 
 	public void setCommentNo(int commentNo) {

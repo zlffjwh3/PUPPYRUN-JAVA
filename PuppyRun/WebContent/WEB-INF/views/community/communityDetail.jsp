@@ -1,3 +1,5 @@
+<%@page import="community.model.vo.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
 <%@page import="community.model.vo.Community"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,9 +8,7 @@
 <%
 	Community community = (Community)request.getAttribute("community");
 	User user = (User)session.getAttribute("user");
-	
-	System.out.println("jsp : " + community);
-	System.out.println("user : " + user);
+	ArrayList<Comment> cList = (ArrayList<Comment>)request.getAttribute("cList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -130,12 +130,25 @@
                                 </div>
                             </div>
                             <div id="comment-wrap">
-                                <p>댓글  2<!-- 이부분에 댓글 수 넣을 것--></p>
+                            <%
+                            if(cList != null) {
+                            %>
+                                <p>댓글  <%=cList.size() %></p>
+                            <%
+                            } else { 
+                            %>
+                            	<p>댓글  0</p>
+                           	<%
+                           	}
+                           	%>
                                 <div id="comment-input">
                                 <%
                                 if(user != null) {
                                	%>
-                                    <form action="" method="">
+                                    <form action="/community/write" method="get">
+                                    	<input type="hidden" name="userNick" value="<%= user.getUserNick() %>">
+                                    	<input type="hidden" name="userId" value="<%= user.getUserId() %>">
+                                    	<input type="hidden" name="comNo" value="<%= community.getComNo() %>">
                                         <textarea name="comment"></textarea>
                                         <input type="submit" value="등록">
                                     </form>
@@ -145,38 +158,42 @@
                                 </div>
                                 <ul class="list">
                                     <!-- 여기에 입력한 댓글 넣기   -->
-                                    <li class="comment">
+                                    <% 
+                                    if (cList != null) {
+                                    	for(int i = 0; i < cList.size(); i++) {
+                                    		
+                                    		if(user != null && user.getUserId().equals(cList.get(i).getCommentId())) {
+                                    %>
+                                    <li class="comment my-comment">
                                         <!-- 댓글 프로필 이미지 -->
+                                    <% 		}else { %>
+                                        <li class="comment">
+                                    <% 		} %>
                                         <div class="profile-image"></div>
+
                                         <div class="info">
                                             <div class="nickname">
                                                 <!-- 닉네임 -->
-                                                <p>땅콩</p>
+                                                <p><%=cList.get(i).getUserNick() %></p>
                                                 <!-- 작성일 -->
-                                                <span>2021-04-12 13:42:21</span>
+                                                <span><%=cList.get(i).getCommentDate() %></span>
                                                 <span><a>삭제</a></span>
                                                 <span><a>수정</a></span>
                                             </div>
                                             <!-- 댓글 내용 -->
-                                            <div class="comment"><p>dasdsadasdasdadsadadaddsa</p></div>
+                                            <div class="comment"><p><%=cList.get(i).getCommentContents() %></p></div>
                                         </div>
                                     </li>
-                                    <li class="comment">
-                                        <!-- 댓글 프로필 이미지 -->
-                                        <div class="profile-image"></div>
-                                        <div class="info">
-                                            <div class="nickname">
-                                                <!-- 닉네임 -->
-                                                <p>땅콩</p>
-                                                <!-- 작성일 -->
-                                                <span>2021-04-12 13:42:21</span>
-                                                <span><a>삭제</a></span>
-                                                <span><a>수정</a></span>
-                                            </div>
-                                            <!-- 댓글 내용 -->
-                                            <div class="comment"><p>dasdsadasdasdadsadadaddsa</p></div>
-                                        </div>
+                                    <% 
+                                    	}
+                                    } else {
+                                    %>
+                            		<li class="comment">
+                                        댓글이 없습니다.  
                                     </li>
+                                    <%
+                                    }
+                                    %>
                                 </ul>
                             </div>
                         </div>

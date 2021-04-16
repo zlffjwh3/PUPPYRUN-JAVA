@@ -2,16 +2,16 @@ package community.model.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import community.model.service.CommentService;
 import community.model.service.CommunityService;
+import community.model.vo.Comment;
 import community.model.vo.Community;
 import community.model.vo.CommunityPage;
 
@@ -49,8 +49,8 @@ public class CommunityListServlet extends HttpServlet {
 			if(!cList.isEmpty()) {
 				request.setAttribute("cList", cList);
 				request.setAttribute("pageNavi", pageNavi);
+					
 				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
-				
 			} else {
 				System.out.println("list 태그 오류다");
 			}

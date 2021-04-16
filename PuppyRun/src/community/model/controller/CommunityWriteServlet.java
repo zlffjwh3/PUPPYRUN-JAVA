@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import community.model.service.CommentService;
 import community.model.service.CommunityService;
+import community.model.vo.Comment;
 import community.model.vo.Community;
 import photo.model.service.PhotoService;
 import photo.model.vo.Photo;
@@ -31,7 +34,25 @@ public class CommunityWriteServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/community/communityWrite.jsp").forward(request, response);
+		// 댓글 작성
+		String commentContent = request.getParameter("comment");
+		String commentUserId = request.getParameter("userId");
+		String commentUserNick = request.getParameter("userNick");
+		int communityNo = Integer.parseInt(request.getParameter("comNo"));
+		Comment comment = new Comment();
+		
+		comment.setCommentContents(commentContent);
+		comment.setCommentId(commentUserId);
+		comment.setComNo(communityNo);
+		comment.setUserNick(commentUserNick);
+		
+		int result = 0;
+		result = new CommentService().insertCommunity(comment);
+		
+		if(result > 0) {
+			response.sendRedirect("/community/detail?comNo=" + communityNo);
+		}
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

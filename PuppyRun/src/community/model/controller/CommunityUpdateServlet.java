@@ -109,6 +109,8 @@ public class CommunityUpdateServlet extends HttpServlet {
 	    	}
 	    }else {
 	    	photoResult = 1;
+	    	communityPhoto = communityBefore.getComPhoto(); // 만약 이미 존재하는 파일이 있으면 그대로 유지
+	    	// 파일은 수정 안할 경우임
 	    }
 	    
 	    // Community DB 업데이트

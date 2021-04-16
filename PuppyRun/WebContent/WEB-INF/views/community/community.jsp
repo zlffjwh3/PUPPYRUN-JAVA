@@ -1,3 +1,4 @@
+<%@page import="community.model.vo.Comment"%>
 <%@page import="community.model.vo.Community"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
@@ -8,6 +9,7 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
 	String pageNavi = (String)request.getAttribute("pageNavi");
+	
 %>
 
 <!DOCTYPE html>
@@ -159,7 +161,7 @@
                                                 <!-- 작성일 -->
                                                 <span><%= cList.get(i).getComDate() %></span>
                                                 <!-- 댓글 -->
-                                                <span>댓글 3</span>
+                                                <span>댓글 0</span>
                                                 <!-- 조회수 -->
                                                 <span>조회수 <%= cList.get(i).getComview() %></span>
                                                 <!-- 좋아요-->

@@ -27,28 +27,38 @@ public class CommunityDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int comNo = Integer.parseInt(request.getParameter("comNo"));
-		
 		int result = new CommunityService().addReadCount(comNo);
-		System.out.println("result : " + result);
-		if(result > 0) {
-			Community community = new CommunityService().selectOneCommunity(comNo);
 		
-			System.out.println("community : " + community);
+		if(result > 0) {
+			// 특정 게시물 불러오기
+			Community community = new CommunityService().selectOneCommunity(comNo);
+			
+			// 댓글 전체 불러오기
+			ArrayList<Comment> cList = new CommentService().selectAllComment(comNo);
+			
+
 			if(community != null) {
 				request.setAttribute("community", community);
-				request.getRequestDispatcher("/WEB-INF/views/community/communityDetail.jsp").forward(request, response);
+				if(cList != null) {
+					request.setAttribute("cList", cList);
+					request.getRequestDispatcher("/WEB-INF/views/community/communityDetail.jsp").forward(request, response);
+					
+				}else {
+					request.getRequestDispatcher("/WEB-INF/views/community/communityDetail.jsp").forward(request, response);
+				}
 			}else {
 				System.out.println("게시물 오류다!");
 			}
 		} else {
 			System.out.println("조회수 오류다!");
 		}
-		// comment
-		ArrayList<Comment> cCommentList = new CommentService().selectAllComment(comNo);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+	
+	
 	}
 
 }
