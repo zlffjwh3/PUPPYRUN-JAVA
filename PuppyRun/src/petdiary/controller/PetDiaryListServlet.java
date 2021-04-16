@@ -1,6 +1,7 @@
 package petdiary.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -29,12 +30,8 @@ public class PetDiaryListServlet extends HttpServlet {
 		
 		ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(userId);
 		
-		if(!pList.isEmpty()) {
-			request.setAttribute("pList", pList);
-			request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/views/pet-diary/diaryError.html").forward(request, response);
-		}
+		request.setAttribute("pList", pList);
+		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

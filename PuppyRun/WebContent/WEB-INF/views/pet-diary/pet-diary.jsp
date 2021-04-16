@@ -311,10 +311,10 @@
 											<script>
 									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
 									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div> 
+									 		<div><%= pList.get(i).getDiaryTitle() %></div>
 								<%	}	else{%>
 											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
-									 		
+									 		<div></div>
 							<%	}
 							    	}			
 									}
@@ -347,11 +347,12 @@
 									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
 									 		</script>
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-								<%	}else{%>
-											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
-							<%	}
+										<%	}else{%>
+													<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+													<div></div>
+									<%	}
 							    	}
-									}
+								}
 									%>
 								</td>
 							<% }      

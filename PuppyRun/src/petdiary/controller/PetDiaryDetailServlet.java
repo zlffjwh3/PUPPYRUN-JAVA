@@ -45,14 +45,9 @@ public class PetDiaryDetailServlet extends HttpServlet {
 	 	PetDiary petDiary = new  PetDiaryService().selectOneDiary(diaryDate, diaryId);
 	 	ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(diaryId);
 	 	
-	 	
-	 	if(petDiary != null && !pList.isEmpty() ) {
-	 		request.setAttribute("petDiary", petDiary);
-	 		request.setAttribute("pList", pList);
-	 		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
-	 	}else {
-	 		request.getRequestDispatcher("/WEB-INF/views/pet-diary/diaryError.html").forward(request, response);
-	 	}	
+ 		request.setAttribute("petDiary", petDiary);
+ 		request.setAttribute("pList", pList);
+ 		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
