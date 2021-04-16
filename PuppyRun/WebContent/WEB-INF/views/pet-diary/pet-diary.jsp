@@ -224,6 +224,7 @@
                             <a href="/petdiary/delete?diaryDate=<%= petDiary.getDiaryDate() %>&diaryId=<%= petDiary.getDiaryId() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                        	</div>
                     </div>
+                    
 				   	<% } else if(petDiary != null) {
 				   	%>
 				   	<div class="detail-box">
