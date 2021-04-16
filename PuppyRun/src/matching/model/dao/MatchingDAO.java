@@ -203,10 +203,18 @@ public class MatchingDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, matching.getMatAddr());
+			pstmt.setString(2, matching.getMatTitle());
+			pstmt.setString(3, matching.getMatContent());
+			pstmt.setString(4, matching.getMatPhoto());
+			pstmt.setInt(5, matching.getMatNo());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 		}
-		return 0;
+		return result;
 	}
 	
 	public int deleteMatching(Connection conn, int matNo) {
