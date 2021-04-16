@@ -7,9 +7,9 @@ $(document).ready(function() {
 	});
 	
 	$('#like').click(function() {
-		$('like').css('background-color','#F0A300');
-		$('post').css('background-color','#FFBD32');
-		$('comment').css('background-color', '#FFBD32');
+		$('#like').css('background-color','#F0A300');
+		$('#post').css('background-color','#FFBD32');
+		$('#comment').css('background-color', '#FFBD32');
 		
 		$('#like-list').css('display', 'block');
 		$('#post-list').css('display', 'none');
@@ -17,9 +17,9 @@ $(document).ready(function() {
 	});
 	
 	$('#post').click(function() {
-		$('like').css('background-color','#FFBD32');
-		$('post').css('background-color','#F0A300');
-		$('comment').css('background-color', '#FFBD32');
+		$('#like').css('background-color','#FFBD32');
+		$('#post').css('background-color','#F0A300');
+		$('#comment').css('background-color', '#FFBD32');
 		
 		$('#like-list').css('display', 'none');
 		$('#post-list').css('display', 'block');
@@ -27,9 +27,9 @@ $(document).ready(function() {
 	});
 	
 	$('#comment').click(function() {
-		$('like').css('background-color','#FFBD32');
-		$('post').css('background-color','#FFBD32');
-		$('comment').css('background-color', '#F0A300');
+		$('#like').css('background-color','#FFBD32');
+		$('#post').css('background-color','#FFBD32');
+		$('#comment').css('background-color', '#F0A300');
 		
 		$('#like-list').css('display', 'none');
 		$('#post-list').css('display', 'none');

@@ -93,6 +93,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 			}
 		} else {
 			photoResult = 1;
+			noticePhoto = noticeBefore.getNoticePhoto();///////////////////
 		}
 		
 		// NOTICE DB 업데이트
