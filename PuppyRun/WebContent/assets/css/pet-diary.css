@@ -53,7 +53,8 @@
 	
 	#list-box #goal-btn {
 		border : none;
-		
+		background-color : #FFF9EB;
+		cursor : pointer;
 	}
 
 

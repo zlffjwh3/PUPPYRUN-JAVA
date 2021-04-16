@@ -290,42 +290,41 @@
 					<tr>
 						<% } 
 							if(week % 7 == 2){ 
-
+							// 일요일이면
 							%>
 
 							<td class="sun day day-border" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
-							<div id="day<%=j%>"><%=j %></div>
-
-									<%
-									for(int i = 0; i < pList.size(); i++){
-										String calDate = pList.get(i).getDiaryDate();
-										String calDateString = calDate.substring(0, calDate.length() - 9);
-										if(!(Integer.toString(year).equals(todayString.substring(0, 4)) && month == Integer.parseInt(todayString.substring(5, 7)) && j == Integer.parseInt(todayString.substring(8, 10)))){
-							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
-									 	%>
-									 		<script>
-									 			<%-- document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow'); --%>
-									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow; border-radius: 40px; width: 30px;');
-									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-									 		<!-- 달력칸에 내용 추가 -->
-									 		<%-- <div><%= pList.get(i).getDiaryContent() %></div> --%>
-							       	<%
-							        		}
-										}else{
-											if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+								<div id="day<%=j%>"><%=j %></div>
+	
+										<%
+										for(int i = 0; i < pList.size(); i++){
+											String calDate = pList.get(i).getDiaryDate();
+											String calDateString = calDate.substring(0, calDate.length() - 9);
+											if(!(Integer.toString(year).equals(todayString.substring(0, 4)) && month == Integer.parseInt(todayString.substring(5, 7)) && j == Integer.parseInt(todayString.substring(8, 10)))){
+								        		// 오늘 날짜 아님
+												if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+										 	%>	<!-- 가져온 날짜와 같은지 확인 -->
+											 		<script>
+											 			<%-- document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow'); --%>
+											 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow; border-radius: 40px; width: 30px;');
+											 		</script>
+											 		<div><%= pList.get(i).getDiaryTitle() %></div>
+								       	<%
+								        		}
+											} else{ //오늘 날짜
+												if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
+											%> <!-- 가져온 날짜와 같은지 확인 -->
+												<script>
+										 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
+										 		</script>
+										 		<div><%= pList.get(i).getDiaryTitle() %></div>
+											<%	} else{ %>
+												<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+											<%	}
+								    		}			
+										}
 										%>
-											<script>
-									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
-									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div>
-								<%	}	else{%>
-											<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
-									 		<div></div>
-							<%	}
-							    	}			
-									}
-									%>
+									<input type=button id="goal-btn" value="목표 설정">
 								</td>
 							<%
 							}else{
@@ -356,7 +355,6 @@
 									 		<div><%= pList.get(i).getDiaryTitle() %></div>
 										<%	}else{%>
 													<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
-													<div></div>
 										<%	}
 							    		}
 									}
@@ -370,11 +368,31 @@
 				%>
 					</table>
 				</div>
-					<div class="scroll-wrap2">
-           				<a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'" class="message">
-            			<div><i class="far fa-comment-alt"></i></div>
-            			글쓰기</a>
-            		</div>
+				<div class="scroll-wrap2">
+          				<a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'" class="message">
+           			<div><i class="far fa-comment-alt"></i></div>
+           			글쓰기</a>
+           		</div>
+           		<div id="goal-box">
+           			x <!-- 로고 -->
+           			<form action="/goal/write" method="get">
+           				<p>이번주 목표 설정</p>
+	           			<p>산책거리</p><input type="text" name="walk-dis">
+	           			<p>산책시간</p><input type="text" name="walk-time">
+	           			<input type="submit" id="goal-write">
+           			</form>
+           		</div>
+           		<script>
+					$('#goal-btn').click(function() {
+							$('#file-update-box').css('display','none');
+							$('#file-update-box2').css('display','inline-block');
+							var noticeNum = $('#notice-num').val();
+							var url = '/notice/update?noticeNo=' + noticeNum + '&photoCheck=Y';
+							$('#write-check').attr('action', url);
+						});
+				</script>
+           		
+           		
 				</div>
 			</div>
 			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
