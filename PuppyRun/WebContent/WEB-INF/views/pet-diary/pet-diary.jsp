@@ -227,7 +227,7 @@
 				   	} else {
 				   	%>
 				   	<div class="detail-box">
-				   		일기를 등록하세요!
+				   		일기를 등 록하세요!
 				   	</div>
 				   	<%
 				   	}
