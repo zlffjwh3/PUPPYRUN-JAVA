@@ -12,6 +12,10 @@ public class Matching {
 	private char matCheck;
 	private String matPhoto;
 	private String userNick;
+	private int msgNo;
+	private String rcvId;
+	private String sendId;
+	private String content;
 	
 	public Matching() {}
 	
@@ -91,12 +95,50 @@ public class Matching {
 	public void setUserNick(String userNick) {
 		this.userNick = userNick;
 	}
+	
+	
+
+	public int getMsgNo() {
+		return msgNo;
+	}
+
+	public void setMsgNo(int msgNo) {
+		this.msgNo = msgNo;
+	}
+
+	public String getRcvId() {
+		return rcvId;
+	}
+
+	public void setRcvId(String rcvId) {
+		this.rcvId = rcvId;
+	}
+
+	public String getSendId() {
+		return sendId;
+	}
+
+	public void setSendId(String sendId) {
+		this.sendId = sendId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 
 	@Override
 	public String toString() {
-		return "Matching [matNo=" + matNo + ", matId=" + matId + ", matTitle=" + matTitle + ", matContent="
-				+ matContent + ", matAddr=" + matAddr + ", matCheck=" + matCheck + ", matPhoto=" + matPhoto + "]";
+		return "Matching [matNo=" + matNo + ", matId=" + matId + ", matTitle=" + matTitle + ", matContent=" + matContent
+				+ ", matAddr=" + matAddr + ", matDate=" + matDate + ", matCheck=" + matCheck + ", matPhoto=" + matPhoto
+				+ ", userNick=" + userNick + ", msgNo=" + msgNo + ", rcvId=" + rcvId + ", sendId=" + sendId
+				+ ", content=" + content + "]";
 	}
+
+	
 
 	
 }
