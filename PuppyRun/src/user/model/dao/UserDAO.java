@@ -360,4 +360,19 @@ public class UserDAO {
 		
 		return user;
 	}
+
+	public int updateUser(Connection conn, User user) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE USERTBL SET ";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, user.getUserPw());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
