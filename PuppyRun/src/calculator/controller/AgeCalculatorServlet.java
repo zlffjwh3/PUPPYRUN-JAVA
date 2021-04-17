@@ -31,58 +31,14 @@ public class AgeCalculatorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String birth = request.getParameter("dog_date");
-		int widthChoice = Integer.parseInt(request.getParameter("dog_type"));
-	      Calendar getToday = Calendar.getInstance();
-	      getToday.setTime(new Date()); //금일 날짜
-	      
-	      String s_date = "2017-01-21";
-	      Date date;
-	      Calendar cmpDate = Calendar.getInstance();
-
-	      try {
-	         date = new SimpleDateFormat("yyyy-MM-dd").parse(s_date);
-	         cmpDate.setTime(date); //특정 일자
-	      } catch (ParseException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }
-	         
-	      long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
-	      long diffDays = diffSec / (24*60*60); //일자수 차이
-
-	      System.out.println(diffDays);
-	      long diffyear = diffDays/365;
-	      System.out.println("년 : " + diffyear);
-	      
-	      
-	      long result = 0;
-	      System.out.println(widthChoice);
-	      if(widthChoice == 1) {
-	         if(diffyear > 2) {
-	            result = (2*12);
-	            result = result + ((diffyear - 2) * 4);
-	         }else {
-	            result = diffyear*12;
-	         }
-	      }else if(widthChoice == 2) {
-	         if(diffyear > 2) {
-	            result = (2*12);
-	            result = result + ((diffyear - 2) * 5);
-	         }else {
-	            result = diffyear*12;
-	         }
-	      }else if(widthChoice == 3) {
-	         if(diffyear > 2) {
-	            result = (2*12);
-	            result = result + ((diffyear - 2) * 6);
-	         }else {
-	            result = diffyear*12;
-	         }
-	      }
-	      
-	       request.setAttribute("result", result);
-	        request.getRequestDispatcher("/WEB-INF/views/calculatorAge.jsp").forward(request, response);
+		String calc_type = request.getParameter("calc_type");
+		if("2".equals(calc_type)) {
+			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorCalorie.jsp").forward(request, response);
+		}else if("3".equals(calc_type)) {
+			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorObesity.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorAge.jsp").forward(request, response);
+		}
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

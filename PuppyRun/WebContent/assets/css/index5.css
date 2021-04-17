@@ -14,10 +14,10 @@ a {
     text-decoration:none ;
 } 
 
-/* #wrap {
+#wrap {
     width : 100%;
     height : 100%;
-    min-width: 1100px;
+    /* min-width: 1100px; */
     position : relative;
 }
 
@@ -53,7 +53,7 @@ header {
     height : 130px;
     margin : 0 55%;
     margin-top : 40px;
-    background-image: url(../img/logo_title1.png);
+    background-image: url(/assets/img/logo_title.png);
 }
 
 #tright {
@@ -86,7 +86,7 @@ header {
 
 #login-content {
     text-align: center;
-} */
+}
 
 /* ------------------------------ */
 /* 메인 메뉴 */
@@ -141,13 +141,12 @@ nav {
 .cal_top h3{
     text-align: center;
     font-size: 30px;
-    margin: 30px 0 30px 0;
+    padding-top: 30px;
 }
 .calculator {
-    box-shadow: 0px 10px 50px 1px rgb(0 0 0 / 10%);
     width: 800px;
     height: 150px;
-    
+    box-shadow: 2px 2px 50px 0px rgb(0 0 0 / 20%);
     overflow: hidden;
     margin: 0 auto;
     background: #FFF;
@@ -161,13 +160,21 @@ nav {
     height: inherit;
 }
 
-/* .calculator > ul > li {
+.calculator li {
     width: 33.333%;
-    height: 150px;
+    background-color: #fff;
     float: left;
-    
-    color: #666666;
-} */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px 0px;
+    transition: 0.3s;
+    font-size: 20px;
+    border-right: 1px solid #f7e8e7;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 .calculator > ul > li:first-child {
     text-align: center;
@@ -222,9 +229,24 @@ a {
     box-sizing: border-box;
     list-style: none;
 }
-
-/* .calculator > ul > li:nth-child(3) {
+.calculator > ul > li.nagative1 {
     width: 33.333%;
+    background-color: #e97723;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 23px 0px;
+    transition: 0.3s;
+    font-size: 20px;
+    border-right: 1px solid #f7e8e7;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.calculator > ul > li:nth-child {
+    text-align: center;
+    /* width: 33.333%;
     background-color: blue;
     float: left;
     border: none;
@@ -234,11 +256,41 @@ a {
     transition: 0.3s;
     font-size: 20px;
     border-right: 1px solid #f7e8e7;
-    box-sizing: border-box;
-} */
+    box-sizing: border-box; */
+}
+.calculator > ul > li:first-child {
+    
+    text-align: center;
+}
+
+.calculator > ul > li:nth-child(2) {
+    
+    text-align: center;
+    
+}
+
+.calculator > ul > li:nth-child(3) {
+    
+    text-align: center;
+}
+
+
+
+li.active a {
+    
+    color: #666666;
+}
+
+li.nagative a {
+    
+    color: #666666;
+}
+li.nagative1 a {
+    color: ivory;
+}
 
 li.active {
-    background-color : #e97723;
+    background-color : white;
     width: 33.333%;
     height: 150px;
     float: left;
@@ -275,10 +327,12 @@ li.active {
     border-radius: 50px;
     box-shadow: 2px 2px 50px 0px rgba(0, 0, 0, 0.2);
     width: 700px;
-    height: 500px;
+    height: 1000px;
     margin : 0 auto;
     background: #fff;
+   
 }
+
 
 .age_cal_top {
     box-shadow: 2px 2x 2px 1px rgba(0, 0, 0, 0.2);
@@ -339,11 +393,10 @@ li.active {
 .writer_input input {
     width:78%;
     float: left;
-    /* margin-left: -10%;  */
-    overflow: hidden;
+    margin-left: 1%;
     padding: 13px 10px 13px 10px;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 300px;
     border: none;
 }
 .writer_input {
@@ -356,10 +409,24 @@ li.active {
     text-align: left;
     margin-top: 8px;
     margin-left: 123px;
+    /* padding-left: px; */
     border: 0px solid #000;
 }
+.dog_type0 {
+    color: #fff;
+    background: #ff9c00;
+}
+.cal_choice a {
+margin: 0 3px;
+border-radius: 100px;
+height: 35px;
+line-height: 35px;
+font-size: 15px;
+text-align: center;
+padding: 5px 15px;
+}
 
-.dog_type {
+.dog_type1 {
     margin: 0 3px;
     border-radius: 100px;
     height: 35px;
@@ -370,121 +437,91 @@ li.active {
     text-align: center;
     padding: 5px 15px;
 }
-.cal_choice a {
+
+.dog_type2 {
     margin: 0 3px;
     border-radius: 100px;
     height: 35px;
     line-height: 35px;
     font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
     text-align: center;
     padding: 5px 15px;
 }
-
-.cal_checked {
-    color: #fff;
-    background: #ff9c00;
-}
 .cal_btn {
-    
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    height: 128px;
+    box-shadow: 0px 10px 50px 1px rgb(0 0 0 / 10%);
+    border-radius: 50px;
+    padding-top: 540px;
     display: block;
     overflow: hidden;
     width: 100%;
     background-color: #fafafa;
 }
-
 .cal_result {
+    text-align: center;
+    height: 45px;
     display: block;
     overflow: hidden;
-    height: 40px;
-    /* width: 150px; */
+    width: 200px;
+    margin: 30px 36% 30px 36%;
     border-radius: 60px;
-    margin: 50px 36% 36px 36%;
-    /* padding: 15px 20px 15px 45px; */
-    background: #e97723;
+    padding: 18px 40px 16px 40px;
+    background: #e97723
 
 }
 .cal_result a {
-    display: block;
+    text-align: center;
     width: inherit;
     height: inherit;
     color: #fff;
     font-size: 18px;
     text-align: center;
-    line-height: 40px;
+    line-height: 1px;
+    
     
 }
-
-.age_lifecycle {
-    display: block;
-    padding: 0% 0 0 0;
-    font-size: 26px;
-    color: #8c5600;
-    font-weight: 500;
-
-}
-.cal_result_age {
+.cal_BCS {
     display: block;
     overflow: hidden;
-    text-align: center;
-    margin: 7% auto;
-    padding-top: 1px;
-     /* overflow: hidden;
-     display: block;
-    width: 100%; */
-    
-    background:white
+    width: 100%;
+    margin: 0 0 2% 0;
    
+   
+}
+.cal_BCS li:first-child {
+    margin: 2% 0 0 0;
+}
+.cal_BCS li a img {
+    width: 100%;
     
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
-
-.age_circle {
-   display: inline-block;
-   width: 120px;
-   height: 120px;
-   background: #ffb901;
-   border-radius: 100px;
-}
-.age_same {
-    display: inline-block;
-    width:50px;
-}
-.age_img {
-    
-    display: block;
-    text-align: center;
-    padding-top: 16px;
-}
-.age_img img {
-    width: 55%;
-}
-/* .writer_input input {
-    width:78%;
+.cal_BCS li {
+    list-style: none;
     float: left;
-    margin-left: 1%;
-    padding: 13px 10px 13px 10px;
-    font-size: 16px;
-    font-weight: 300px;
-    border: none;
-} */
-.age_num {
-    display: block;
-    overflow: hidden;
-   color: white;
+    width: 32%;
+    margin: 2% 0 0 2%;
+    border: 1px solid #ececec;
+    background: #fafafa;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
-.age_same {
-    
-    display: inline-block;
-    width: 50px;
-    
+.cal_BCS li:nth-child(4n+0) {
+    margin: 2% 0 0 0;
 }
-.age_same img{
+.cal_BCS li:nth-child(7n+0) {
+    margin: 2% 2% 0 0;
+}
 
-   width: 100%;
-   vertical-align: 17px;
+.cal_BCS li.bcs_on{
+	border: 1px solid #ffb901;
 }
+
+
+
+
 
 /* 푸터 */
 footer {

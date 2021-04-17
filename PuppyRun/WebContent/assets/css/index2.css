@@ -14,10 +14,10 @@ a {
     text-decoration:none ;
 } 
 
-/* #wrap {
+#wrap {
     width : 100%;
     height : 100%;
-    min-width: 1100px;
+    /* min-width: 1100px; */
     position : relative;
 }
 
@@ -86,7 +86,7 @@ header {
 
 #login-content {
     text-align: center;
-} */
+}
 
 /* ------------------------------ */
 /* 메인 메뉴 */
@@ -141,10 +141,9 @@ nav {
 .cal_top h3{
     text-align: center;
     font-size: 30px;
-    margin: 30px 0 30px 0;
+    padding-top: 30px;
 }
 .calculator {
-    box-shadow: 0px 10px 50px 1px rgb(0 0 0 / 10%);
     width: 800px;
     height: 150px;
     
@@ -312,119 +311,6 @@ li.active {
     font-size: 35px;
     font-weight: 400px;
 }
-.cal_writer {
-    
-    margin: 5%;
-     /* overflow: hidden;
-     display: block;
-    width: 100%; */
-    height: 102px; 
-   
-    border-bottom: 1px solid #ebebeb;
-    background: white; 
-}
-.cal_writer h5 {
-    width: 16%;
-    float: left;
-    margin: 12px 2% 10px 0;
-    border-right: 1px solid #ebebeb;
-    color: #000000;
-    font-size: 17px;
-    font-weight: 500px;
-}
-.cal_community {
-    display: block;
-    border-top: 1px solid #646361;
-}
-.writer_input input {
-    width:78%;
-    float: left;
-    /* margin-left: -10%;  */
-    overflow: hidden;
-    padding: 13px 10px 13px 10px;
-    font-size: 16px;
-    font-weight: 300;
-    border: none;
-}
-.writer_input {
-    display: block;
-    overflow: hidden;
-    border-bottom: 1px solid #ebebeb;
-}
-.cal_choice {
-    height: 42px;
-    text-align: left;
-    margin-top: 8px;
-    margin-left: 123px;
-    border: 0px solid #000;
-}
-
-.dog_type {
-    margin: 0 3px;
-    border-radius: 100px;
-    height: 35px;
-    line-height: 35px;
-    font-size: 15px;
-    color: #909090;
-    background: #e8e8e8;
-    text-align: center;
-    padding: 5px 15px;
-}
-.cal_choice a {
-    margin: 0 3px;
-    border-radius: 100px;
-    height: 35px;
-    line-height: 35px;
-    font-size: 15px;
-    text-align: center;
-    padding: 5px 15px;
-}
-
-.cal_checked {
-    color: #fff;
-    background: #ff9c00;
-}
-.cal_btn {
-    
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    height: 128px;
-    display: block;
-    overflow: hidden;
-    width: 100%;
-    background-color: #fafafa;
-}
-
-.cal_result {
-    display: block;
-    overflow: hidden;
-    height: 40px;
-    /* width: 150px; */
-    border-radius: 60px;
-    margin: 50px 36% 36px 36%;
-    /* padding: 15px 20px 15px 45px; */
-    background: #e97723;
-
-}
-.cal_result a {
-    display: block;
-    width: inherit;
-    height: inherit;
-    color: #fff;
-    font-size: 18px;
-    text-align: center;
-    line-height: 40px;
-    
-}
-
-.age_lifecycle {
-    display: block;
-    padding: 0% 0 0 0;
-    font-size: 26px;
-    color: #8c5600;
-    font-weight: 500;
-
-}
 .cal_result_age {
     display: block;
     overflow: hidden;
@@ -439,7 +325,15 @@ li.active {
    
     
 }
-
+/* .cal_writer h5 {
+    width: 16%;
+    float: left;
+    margin: 12px 2% 10px 0;
+    border-right: 1px solid #ebebeb;
+    color: #000000;
+    font-size: 17px;
+    font-weight: 500px;
+} */
 .age_circle {
    display: inline-block;
    width: 120px;
@@ -485,6 +379,85 @@ li.active {
    width: 100%;
    vertical-align: 17px;
 }
+.dog_type0 {
+    color: #fff;
+    background: #ff9c00;
+}
+/* .cal_choice a {
+margin: 0 3px;
+border-radius: 100px;
+height: 35px;
+line-height: 35px;
+font-size: 15px;
+text-align: center;
+padding: 5px 15px;
+} */
+
+.dog_type1 {
+    margin: 0 3px;
+    border-radius: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
+    text-align: center;
+    padding: 5px 15px;
+}
+
+.dog_type2 {
+    margin: 0 3px;
+    border-radius: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
+    text-align: center;
+    padding: 5px 15px;
+}
+.cal_btn {
+    box-shadow: 2px 25px 50px 2px rgb(0 0 0 / 20%);
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    height: 128px;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    background-color: #fafafa;
+    padding-left: 25px;
+}
+.cal_result {
+    height: 40px;
+    width: 150px;
+    border-radius: 60px;
+    margin: 50px 36% 36px 40%;
+    background: #6ea0f3;
+
+}
+.cal_result a {
+    display: block;
+    width: inherit;
+    height: inherit;
+    color: #fff;
+    vertical-align: 50px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    
+}
+.age_lifecycle {
+    display: block;
+    padding: 0% 0 0 0;
+    font-size: 26px;
+    color: #8c5600;
+    font-weight: 500;
+
+}
+
+
+
+
 
 /* 푸터 */
 footer {

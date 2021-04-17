@@ -14,10 +14,10 @@ a {
     text-decoration:none ;
 } 
 
-/* #wrap {
+#wrap {
     width : 100%;
     height : 100%;
-    min-width: 1100px;
+    /* min-width: 1100px; */
     position : relative;
 }
 
@@ -86,7 +86,7 @@ header {
 
 #login-content {
     text-align: center;
-} */
+}
 
 /* ------------------------------ */
 /* 메인 메뉴 */
@@ -133,7 +133,7 @@ nav {
 #content {
     background-color:#fff;
     width : 1000px;
-    height : 550px;
+    height : 1000px;
     position : relative; 
     margin: 0 auto; 
     
@@ -141,13 +141,12 @@ nav {
 .cal_top h3{
     text-align: center;
     font-size: 30px;
-    margin: 30px 0 30px 0;
+    padding-top: 30px;
 }
 .calculator {
-    box-shadow: 0px 10px 50px 1px rgb(0 0 0 / 10%);
     width: 800px;
     height: 150px;
-    
+    box-shadow: 2px 2px 50px 0px rgb(0 0 0 / 20%);
     overflow: hidden;
     margin: 0 auto;
     background: #FFF;
@@ -186,7 +185,9 @@ nav {
 
 
 li.active a {
-    color: ivory;
+    color: #666;
+    
+
 }
 
 li.nagative a {
@@ -205,10 +206,25 @@ a {
 .cal_icon {
     display: block;
     overflow: hidden;
-   
+    
 }
 
+
 .calculator > ul > li.nagative {
+    width: 33.333%;
+    background-color: #e97723;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 23px 0px;
+    transition: 0.3s;
+    font-size: 20px;
+    border-right: 1px solid #f7e8e7;
+    box-sizing: border-box;
+    list-style: none;
+}
+.calculator > ul > li.nagative2 {
     width: 33.333%;
     background-color: white;
     float: left;
@@ -222,6 +238,7 @@ a {
     box-sizing: border-box;
     list-style: none;
 }
+
 
 /* .calculator > ul > li:nth-child(3) {
     width: 33.333%;
@@ -238,13 +255,13 @@ a {
 } */
 
 li.active {
-    background-color : #e97723;
+    background-color: white;
     width: 33.333%;
     height: 150px;
     float: left;
     border: none;
     outline: none;
-    cursor:pointer;
+    cursor: pointer;
     transition: 0.3s;
     font-size: 20px;
     border-right: 1px solid #f7e8e7;
@@ -252,6 +269,7 @@ li.active {
     padding: 20px 0px;
     list-style: none;
 }
+
 
 .cal_navi {
     width: 800px;
@@ -272,7 +290,8 @@ li.active {
 }
 
 .cal_mid2 {
-    border-radius: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
     box-shadow: 2px 2px 50px 0px rgba(0, 0, 0, 0.2);
     width: 700px;
     height: 500px;
@@ -280,7 +299,7 @@ li.active {
     background: #fff;
 }
 
-.age_cal_top {
+.cal_cal_top {
     box-shadow: 2px 2x 2px 1px rgba(0, 0, 0, 0.2);
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
@@ -290,10 +309,11 @@ li.active {
     background: #fff9ef;
 }
 
-.age_cal_top img {
+.cal_cal_top img {
     float: left;
     height: 170px;
     width: 250px;
+    margin-left: 30px;
 }
 .cal_t01 {
     float: left;
@@ -312,121 +332,9 @@ li.active {
     font-size: 35px;
     font-weight: 400px;
 }
-.cal_writer {
+.cal_result_cal {
+    padding-top: 8px;
     
-    margin: 5%;
-     /* overflow: hidden;
-     display: block;
-    width: 100%; */
-    height: 102px; 
-   
-    border-bottom: 1px solid #ebebeb;
-    background: white; 
-}
-.cal_writer h5 {
-    width: 16%;
-    float: left;
-    margin: 12px 2% 10px 0;
-    border-right: 1px solid #ebebeb;
-    color: #000000;
-    font-size: 17px;
-    font-weight: 500px;
-}
-.cal_community {
-    display: block;
-    border-top: 1px solid #646361;
-}
-.writer_input input {
-    width:78%;
-    float: left;
-    /* margin-left: -10%;  */
-    overflow: hidden;
-    padding: 13px 10px 13px 10px;
-    font-size: 16px;
-    font-weight: 300;
-    border: none;
-}
-.writer_input {
-    display: block;
-    overflow: hidden;
-    border-bottom: 1px solid #ebebeb;
-}
-.cal_choice {
-    height: 42px;
-    text-align: left;
-    margin-top: 8px;
-    margin-left: 123px;
-    border: 0px solid #000;
-}
-
-.dog_type {
-    margin: 0 3px;
-    border-radius: 100px;
-    height: 35px;
-    line-height: 35px;
-    font-size: 15px;
-    color: #909090;
-    background: #e8e8e8;
-    text-align: center;
-    padding: 5px 15px;
-}
-.cal_choice a {
-    margin: 0 3px;
-    border-radius: 100px;
-    height: 35px;
-    line-height: 35px;
-    font-size: 15px;
-    text-align: center;
-    padding: 5px 15px;
-}
-
-.cal_checked {
-    color: #fff;
-    background: #ff9c00;
-}
-.cal_btn {
-    
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    height: 128px;
-    display: block;
-    overflow: hidden;
-    width: 100%;
-    background-color: #fafafa;
-}
-
-.cal_result {
-    display: block;
-    overflow: hidden;
-    height: 40px;
-    /* width: 150px; */
-    border-radius: 60px;
-    margin: 50px 36% 36px 36%;
-    /* padding: 15px 20px 15px 45px; */
-    background: #e97723;
-
-}
-.cal_result a {
-    display: block;
-    width: inherit;
-    height: inherit;
-    color: #fff;
-    font-size: 18px;
-    text-align: center;
-    line-height: 40px;
-    
-}
-
-.age_lifecycle {
-    display: block;
-    padding: 0% 0 0 0;
-    font-size: 26px;
-    color: #8c5600;
-    font-weight: 500;
-
-}
-.cal_result_age {
-    display: block;
     overflow: hidden;
     text-align: center;
     margin: 7% auto;
@@ -436,29 +344,71 @@ li.active {
     width: 100%; */
     
     background:white
+}
+.cal_txt {
+    
+    margin: 18px 5% 0 5%;
+    padding: 0px;
+    font-size: 16px;
+    color: #b3945b;
+    font-weight: 100;
+    line-height: 28px;
+    text-align: center;
+    
+}
+.cal_txt {
+    font-weight: 600;
+}
    
     
+/* .cal_writer h5 {
+    width: 16%;
+    float: left;
+    margin: 12px 2% 10px 0;
+    border-right: 1px solid #ebebeb;
+    color: #000000;
+    font-size: 17px;
+    font-weight: 500px;
+} */
+.cal_circle:first-child{
+    border-right: 1px solid #f2f2f2;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 0 50px;
 }
-
-.age_circle {
-   display: inline-block;
-   width: 120px;
-   height: 120px;
-   background: #ffb901;
-   border-radius: 100px;
+.cal_circle {
+    
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 0 50px;
 }
-.age_same {
+/* .cal_circle3 {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 0 50px;
+} */
+/* .cal_resultc {
     display: inline-block;
     width:50px;
-}
-.age_img {
+} */
+.cal_img {
     
-    display: block;
-    text-align: center;
-    padding-top: 16px;
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    background: #ffb901;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -o-border-radius: 100px;
+    border-radius: 100px;
 }
-.age_img img {
-    width: 55%;
+/* .age_img img {
+    width: 30px;
+    padding-top: 7px;
+} */
+.cal_img img {
+    width: 30px;
+    padding-top: 7px;
 }
 /* .writer_input input {
     width:78%;
@@ -469,11 +419,11 @@ li.active {
     font-weight: 300px;
     border: none;
 } */
-.age_num {
-    display: block;
+/* .age_num {
+    
     overflow: hidden;
-   color: white;
-}
+   color: black;
+} */
 .age_same {
     
     display: inline-block;
@@ -485,6 +435,97 @@ li.active {
    width: 100%;
    vertical-align: 17px;
 }
+.dog_type0 {
+    color: #fff;
+    background: #ff9c00;
+}
+/* .cal_choice a {
+margin: 0 3px;
+border-radius: 100px;
+height: 35px;
+line-height: 35px;
+font-size: 15px;
+text-align: center;
+padding: 5px 15px;
+} */
+
+.dog_type1 {
+    margin: 0 3px;
+    border-radius: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
+    text-align: center;
+    padding: 5px 15px;
+}
+
+.dog_type2 {
+    margin: 0 3px;
+    border-radius: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #909090;
+    background: #e8e8e8;
+    text-align: center;
+    padding: 5px 15px;
+}
+.cal_btn {
+    box-shadow: 2px 25px 50px 2px rgb(0 0 0 / 20%);
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    height: 128px;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    background-color: #fafafa;
+}
+.cal_result {
+    display: block;
+    overflow: hidden;
+    height: 40px;
+    width: 150px;
+    border-radius: 60px;
+    margin: 50px 36% 36px 40%;
+    padding: 8px 20px 15px 45px;
+        background: #6ea0f3;
+
+}
+.cal_result a {
+    color: #fff;
+    vertical-align: 50px;
+    font-size: 18px;
+    text-align: center;
+    line-height: px;
+    
+}
+#basic_meta {
+    font-size: 32px;
+    color: #ffb901;
+    font-weight: 600;
+}
+#basic_kal {
+    font-size: 32px;
+    color: #ffb901;
+    font-weight: 600;
+}
+.ob_txt_b {
+    font-weight: 600;
+}
+/* .age_lifecycle {
+    display: block;
+    padding: 0% 0 0 0;
+    font-size: 26px;
+    color: #8c5600;
+    font-weight: 500;
+
+} */
+
+
+
+
 
 /* 푸터 */
 footer {
