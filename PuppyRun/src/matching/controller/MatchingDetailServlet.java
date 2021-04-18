@@ -1,6 +1,7 @@
 package matching.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import matching.model.service.MatchingService;
 import matching.model.vo.Matching;
+import matching.model.vo.MatchingChat;
 
 @WebServlet("/matching/detail")
 public class MatchingDetailServlet extends HttpServlet {
@@ -24,10 +26,19 @@ public class MatchingDetailServlet extends HttpServlet {
       
       
       Matching matching = new MatchingService().printOneMatching(matchingNo);
+      ArrayList<MatchingChat> matChat = new MatchingService().viewMsg(matchingNo);
+      
+      
       
       if(matching != null) {
     	  request.setAttribute("matching", matching);
-    	  request.getRequestDispatcher("/WEB-INF/views/matching/petMateChat.jsp").forward(request, response);
+    	  if(matChat != null) {
+    		  request.setAttribute("matChat", matChat);
+    		  request.getRequestDispatcher("/WEB-INF/views/matching/petMateChat.jsp").forward(request, response);
+    	  }else {
+    		  request.getRequestDispatcher("/WEB-INF/views/matching/petMateChat.jsp").forward(request, response);
+    	  }
+    	  
       } else {
     	  request.getRequestDispatcher("/WEB-INF/views/matching/matchingError.html").forward(request, response);
       }
@@ -35,7 +46,27 @@ public class MatchingDetailServlet extends HttpServlet {
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      
+	   request.setCharacterEncoding("UTF-8");
+	   int matchingNo = Integer.parseInt(request.getParameter("matching-no"));
+	   String sendId = request.getParameter("send-id");
+	   String rcvId = request.getParameter("rcv-id");
+	   String matchingContent = request.getParameter("chat-content");
+	   
+	   MatchingChat matChat = new MatchingChat();
+	   
+	   matChat.setMatNo(matchingNo);
+	   matChat.setSendId(sendId);
+	   matChat.setRcvId(rcvId);
+	   matChat.setContent(matchingContent);
+	   
+	   int result = new MatchingService().sendMsg(matChat);
+	   
+	   
+	   if(result > 0) {
+		   response.sendRedirect("/matching/detail?matNo=" + matchingNo);
+	   } else {
+		   System.out.println("오류다 피해 !!!!!!!!!!!!!!!!!!!!!!!!!!");
+	   }
    }
 
 }

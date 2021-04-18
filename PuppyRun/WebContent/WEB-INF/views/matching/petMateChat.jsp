@@ -1,3 +1,5 @@
+<%@page import="matching.model.vo.MatchingChat"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="matching.model.vo.Matching"%>
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +8,11 @@
 <%
 	User user = (User)session.getAttribute("user");
 	Matching matching = (Matching)request.getAttribute("matching");
+	ArrayList<MatchingChat> matChat = (ArrayList<MatchingChat>)request.getAttribute("matChat");
+	System.out.println(matching.getMatId());
 %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -132,6 +138,7 @@
                         <!-- 채팅창 -->
             <div id="chat-box">
                 <div id="chat-box-left">
+               		
                     <div id="chat-img-box">
                         <!-- 사용자 게시물 첨부사진 -->
                         <img src="/upload/<%= matching.getMatPhoto() %>" alt="사용자 첨부파일">
@@ -172,51 +179,42 @@
                     </div>
                     <!-- 채팅창 보는 영역 + 속 내용이 길어지면 스크롤 자동생성 설정해놈(overflow : auto) -->
                     <div id="chat-area">
-                        <!-- 상대 -->
-                        <div class="other-user">
-                            <img class="other-profile-img" src="" alt="상대프로필이미지">
-                            <div class="other-chat-block"> <!-- 상대 채팅창 -->
-                                <p class="other-chat-content">
-                                    안녕하세요~ 같이 산책 가실래요?
-                                </p>
-                            </div>
-                        </div>
+                    <% if(matChat != null) { 
+                    		for(int i = 0; i < matChat.size(); i++) {
+                    			if(matChat.get(i).getSendId().equals(user.getUserId())) {
+                    %>
                         <!-- 나 -->
                         <div class="my-user">
                             <div class="my-chat-block"> <!-- 내 채팅창 -->
                                 <p class="my-chat-content">
-                                    네 좋아요!
+                                    <%= matChat.get(i).getContent() %>
                                 </p>
                             </div>
                         </div>
-                        <div class="my-user">
-                            <div class="my-chat-block"> <!-- 내 채팅창 -->
-                                <p class="my-chat-content">
-                                    ㅁㅁ에서 만나요!
-                                </p>
-                            </div>
-                        </div>
+                        <% }
+                    	if(matChat.get(i).getRcvId() != null) {
+                        if(!(matChat.get(i).getSendId().equals(user.getUserId()))) {%>
                         <!-- 상대 -->
                         <div class="other-user">
                             <img class="other-profile-img" src="" alt="상대프로필이미지">
                             <div class="other-chat-block"> <!-- 상대 채팅창 -->
                                 <p class="other-chat-content">
-                                    금방 나갈게요
+                                    <%= matChat.get(i).getContent() %>
                                 </p>
                             </div>
                         </div>
-                         <!-- 나 -->
-                         <div class="my-user">
-                            <div class="my-chat-block"> <!-- 내 채팅창 -->
-                                <p class="my-chat-content">
-                                    넵
-                                </p>
-                            </div>
-                        </div>
+                        			<% } %>
+                        		<% } %>
+                        	<% } %>
+                        <% } %>
+                        
                     </div>
                     <!-- 채팅작성 -->
                     <div id="chat-write-area">
-                        <form action="" method="">
+                        <form action="/matching/detail" method="post">
+                       		<input type="hidden" name="send-id" value="<%= user.getUserId()%>">
+               				<input type="hidden" name="rcv-id" value="<%= matching.getMatId()%>">
+               				<input type="hidden" name="matching-no" value="<%= matching.getMatNo()%>">
                             <div>
                                 <textarea name="chat-content" id="" cols="50" rows="20"></textarea>
                                 <input type="submit" value="보내기">

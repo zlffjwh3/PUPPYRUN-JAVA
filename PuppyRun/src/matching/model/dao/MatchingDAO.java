@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import matching.model.vo.Matching;
+import matching.model.vo.MatchingChat;
 
 public class MatchingDAO {
 	
@@ -232,5 +233,59 @@ public class MatchingDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public int insertMsg(Connection conn, MatchingChat matChat) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO MESSAGE VALUES(SEQ_MSGNO.NEXTVAL, ?,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, matChat.getMatNo());
+			pstmt.setString(2, matChat.getRcvId());
+			pstmt.setString(3, matChat.getSendId());
+			pstmt.setString(4, matChat.getContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+	}
+
+	public ArrayList<MatchingChat> selectAllMsg(Connection conn, int matchingNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MESSAGE WHERE MAT_NO=? ORDER BY MSG_NO ASC";
+		ArrayList<MatchingChat> matChatList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, matchingNo);
+			rset = pstmt.executeQuery();
+			if(rset != null) {
+				matChatList = new ArrayList<MatchingChat>();
+				while(rset.next()) {
+					MatchingChat matChat = new MatchingChat();
+					matChat.setMatNo(rset.getInt("MAT_NO"));
+					matChat.setMsgNo(rset.getInt("MSG_NO"));
+					matChat.setRcvId(rset.getString("RCV_ID"));
+					matChat.setSendId(rset.getString("SEND_ID"));
+					matChat.setContent(rset.getString("MSG_CONTENT"));
+					matChatList.add(matChat);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return matChatList;
+		
 	}
 }
