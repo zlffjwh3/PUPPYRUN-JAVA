@@ -236,8 +236,11 @@ $(document).ready(function() {
 	function getPost(mode) {
 		var frm = document.frm;
 		var email = $('#user_email');
+		var userId = $('#user-id');
+		var idNum = userId.val();
+		
         if(mode== "01") { // 반려견 없음
-			if(userIdCheckFlag == false) {
+			/*if(userIdCheckFlag == false) {
                 return;
             }
             if(userPwdCheckFlag == false) {
@@ -269,12 +272,12 @@ $(document).ready(function() {
             }
             if($('#zip').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == '') {
                 return;
-            }
+            }*/
 	
             frm.method = "post";
-            frm.action = "/user/update?userId =" + userId;
+            frm.action = '/user/modify?userId =' + idNum;
 		}   else if (mode == "02") {
-				if(userIdCheckFlag == false) {
+				/*if(userIdCheckFlag == false) {
                 	return;
 	            }
 	            if(userPwdCheckFlag == false) {
@@ -322,10 +325,10 @@ $(document).ready(function() {
 				}
 				if(dogWeightCheckFlag == false) {
 					return;
-				}
+				}*/
 			
 			frm.method = "post";
-            frm.action = "/user/update?userId =" + userId;
+            frm.action = '/user/modify?userId =' + idNum;
 		}
             frm.submit(); // 실행
     }

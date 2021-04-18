@@ -319,7 +319,6 @@ public class UserDAO {
 			pstmt.setString(1, userName);
 			pstmt.setString(2, userEmail);
 			rset = pstmt.executeQuery();
-			System.out.println(rset + "테스트");
 			
 			
 			if(rset.next()) {
@@ -361,16 +360,97 @@ public class UserDAO {
 		return user;
 	}
 
+	// 회원정보 수정
 	public int updateUser(Connection conn, User user) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE USERTBL SET ";
+		String query = "UPDATE USERTBL SET USER_PW = ?, PHONE = ?, EMAIL = ?, USER_BIRTH = ?, USER_ADDR = ? WHERE USER_ID= ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, user.getUserPw());
-			
+			pstmt.setString(2, user.getPhone());
+			pstmt.setString(3, user.getEmail());
+			pstmt.setString(4, user.getUserBirth());
+			pstmt.setString(5, user.getUserAddr());
+			pstmt.setNString(6, user.getUserId());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	// 회원가입 정보 수정하기 전 조회
+	public User selectOneUserIdOnly(Connection conn, String userId) {
+		User user = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM USERTBL WHERE USER_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				user = new User();
+				user.setUserId(rset.getString("USER_ID"));
+				user.setUserPw(rset.getString("USER_PW"));
+				user.setUserNick(rset.getString("USER_NICK"));
+				user.setUserName(rset.getString("USER_NAME"));
+				user.setPhone(rset.getString("PHONE"));
+				user.setEmail(rset.getString("EMAIL"));
+				user.setUserBirth(rset.getString("USER_BIRTH"));
+				user.setUserAddr(rset.getString("USER_ADDR"));
+				user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
+				user.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				user.setAdminCheck(rset.getString("ADMIN_CHECK").charAt(0));
+				user.setUserPhoto(rset.getString("USER_PHOTO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return user;
+	}
+
+	public int updateDog(Connection conn, User user, Dog dog) {
+		int result = 0;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		String query1 = "UPDATE USERTBL SET USER_PW = ?, PHONE = ?, EMAIL = ?, USER_BIRTH = ?, USER_ADDR = ?, DOG_CHECK = ? WHERE USER_ID= ?";
+		String query2 = "UPDATE DOG SET DOG_NAME = ?, DOG_BREED = ?, DOG_GENDER = ?, DOG_AGE = ?, DOG_WEIGHT = ? WHERE DOG_ID= ?";
+		
+		try {
+			pstmt1 = conn.prepareStatement(query1);
+			pstmt1.setString(1, user.getUserPw());
+			pstmt1.setString(2, user.getPhone());
+			pstmt1.setString(3, user.getEmail());
+			pstmt1.setString(4, user.getUserBirth());
+			pstmt1.setString(5, user.getUserAddr());
+			pstmt1.setString(6, "Y");
+			pstmt1.setNString(7, user.getUserId());
+			result = pstmt1.executeUpdate();
+			System.out.println("제대로 오나? : " + result);
+			
+			
+			pstmt2 = conn.prepareStatement(query2);
+			pstmt2.setString(1, dog.getDogName());
+			pstmt2.setString(2, dog.getDogBreed());
+			pstmt2.setString(3, String.valueOf(dog.getDogGender()));
+			pstmt2.setInt(4, dog.getDogAge());
+			pstmt2.setFloat(5, dog.getDogWeight());
+			pstmt2.setString(6, user.getUserId());
+			result = pstmt2.executeUpdate();
+			System.out.println("제대로 오나? 2 : " + result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt1);
 		}
 		
 		return result;

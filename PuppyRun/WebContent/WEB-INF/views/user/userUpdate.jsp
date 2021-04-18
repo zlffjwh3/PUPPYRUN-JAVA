@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	User user = (User)session.getAttribute("user");
+	User user = (User)request.getAttribute("user");
+	System.out.println("아아..." + user);
 	Dog dog = (Dog)request.getAttribute("dog");
 %>
 <!DOCTYPE html>
@@ -45,10 +46,10 @@
                             <input type="password" name="user-pwd" id="user-pwd" placeholder="비밀번호 (숫자, 영문, 특수문자 조합 최소 8글자)">
                         </div>
                         <span class="pwd-error-msg error-msg"></span>
-                        <div id="pwd-re-input" class="input-div">
+                       <!--  <div id="pwd-re-input" class="input-div">
                             <input type="password" name="user-re-pwd" id="user-re-pwd" placeholder="비밀번호 확인">
                         </div>
-                        <span class="re-pwd-error-msg error-msg"></span>
+                        <span class="re-pwd-error-msg error-msg"></span> ---------------------------------------------------------------->
                     </div>
                     <div id="nickname-area" class="area-div">
                         <p class="subtitle">닉네임</p>
@@ -86,9 +87,9 @@
                         <select name="user-birth-month" id="user-birth-month">
                                 <option value="" disabled>월</option>
                         <% for(int i = 1; i < 13; i++) { %>
-                                <option value="0'<%= i%>'"><%= i%>월</option>
+                                <option value="0<%= i%>"><%= i%>월</option>
                                 <% if(Integer.parseInt(user.getUserBirth().substring(4,6)) == i) { %>
-                                	<option value="0'<%= i%>'" selected ><%= i%>월</option>
+                                	<option value="0<%= i%>" selected ><%= i%>월</option>
                                 <% } %>
                         <% } %>
                             </select>
@@ -152,7 +153,8 @@
                     <% } %>
                     
                     <div id="user-join-submit" class="submitBtn">
-                        <input type="button" class="joinBtn" value="확인" onclick="getPost('01')">
+                    	<input type="hidden" name="userId" value="<%= user.getUserId() %>">
+                        <input type="button" class="joinBtn" value="수정" onclick="getPost('01')">
                     </div>
                 </div>
                 <% if(user.getDogCheck() == 'Y') { %> <!-- 반려견 있음(Y) 체크됐을 때 -->
@@ -254,7 +256,7 @@
                         <span class="dog-weight-error-msg error-msg"></span>
                     </div>
                     <div id="dog-and-user-submit" class="submitBtn">
-                        <input type="button" class="joinBtn" value="확인" onclick="getPost('02')">
+                        <input type="button" class="joinBtn" value="수정" onclick="getPost('02')">
                     </div>
                 </div>
                 
