@@ -13,8 +13,10 @@
 
        <!--  <link rel="stylesheet" type="text/css" href="/assets/css/index3.css"> 
        <link rel="stylesheet" type="text/css" href="/assets/css/index4.css">  -->
+       <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
+       <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index3.css">
        <link rel="stylesheet" type="text/css"
-	href="/assets/css/calculatorCalorie.css">
+	href="<%= request.getContextPath() %>/assets/css/calculatorCalorie.css">
         
 
         <link rel="icon" href="images/fv.ico" type="image/png">
