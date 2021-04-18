@@ -13,7 +13,6 @@ public class Goal {
 	private char goalCheck;
 	private int goalId;
 	private Date goalDate;
-	private char writeCheck;
 	
 	public Goal() {}
 	
@@ -81,17 +80,11 @@ public class Goal {
 	public void setGoalDate(Date goalDate) {
 		this.goalDate = goalDate;
 	}
-	public char getWriteCheck() {
-		return writeCheck;
-	}
-	public void setWriteCheck(char writeCheck) {
-		this.writeCheck = writeCheck;
-	}
 
 	@Override
 	public String toString() {
 		return "Goal [goalNo=" + goalNo + ", goalDis=" + goalDis + ", goalTime=" + goalTime + ", userDis=" + userDis
 				+ ", userTime=" + userTime + ", weekDis=" + weekDis + ", weekTime=" + weekTime + ", goalCheck="
-				+ goalCheck + ", goalId=" + goalId + ", goalDate=" + goalDate + ", writeCheck=" + writeCheck + "]";
+				+ goalCheck + ", goalId=" + goalId + ", goalDate=" + goalDate + "]";
 	}
 }
