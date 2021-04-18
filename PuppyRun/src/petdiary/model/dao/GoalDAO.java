@@ -1,20 +1,71 @@
 package petdiary.model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import common.JDBCTemplate;
 import petdiary.model.vo.Goal;
 
 public class GoalDAO {
 	// 목표 설정하면 저장하는 메소드
 	public int saveUserGoal(Connection conn, Goal goal) {
+		PreparedStatement pstmt = null;
 		int result = 0;
+		String query = "INSERT INTO GOAL VALUES(SEQ_GOALNO.NEXTVAL, ?, ?, 'N', ?, ?, null, null)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, goal.getGoalDis());
+			pstmt.setInt(2, goal.getGoalTime());
+			pstmt.setString(3, goal.getGoalDate());
+			pstmt.setString(4, goal.getGoalId());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
 		return result;
 	}
 	
 	// 일주일 기록 불러옴
-	public Goal weekGoal(Connection conn, String goalId) {
-		return null;
+	public Goal weekGoal(Connection conn, String goalId, String goalDate) {
+		Goal goal = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM GOAL WHERE ? >= TO_CHAR(GOAL_DATE, 'YYMMDD') AND ? < (TO_CHAR(GOAL_DATE + 7, 'YYMMDD')) AND GOAL_ID = ?;";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, goalDate);
+			pstmt.setString(2, goalDate);
+			pstmt.setString(3, goalId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				goal = new Goal();
+				goal.setGoalNo(rset.getInt("GOAL_NO"));
+				goal.setGoalDis(rset.getInt("GOAL_DIS"));
+				goal.setGoalTime(rset.getInt("GOAL_TIME"));
+				goal.setGoalCheck(rset.getString("GOAL_CHECK").charAt(0));
+				goal.setGoalDate(rset.getString("GOAL_DATE"));
+				goal.setGoalId(rset.getString("GOAL_ID"));
+				goal.setWeekDis(rset.getInt("WEEK_DIS"));
+				goal.setWeekTime(rset.getInt("WEEK_TIME"));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return goal;
 	}
 	
 	// 일주일 기록 계산해서 하루랑 일주일 저장하는 메소드
