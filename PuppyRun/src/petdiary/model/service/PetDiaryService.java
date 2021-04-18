@@ -35,7 +35,7 @@ public class PetDiaryService {
 		return pList;
 	}
 	
-	public PetDiary selectOneDiary(Date diaryDate, String diaryId) {
+	public PetDiary selectOneDiary(String diaryDate, String diaryId) {
 		Connection conn = null;
 		PetDiary petDiary = null;
 		
@@ -43,7 +43,6 @@ public class PetDiaryService {
 			conn = factory.createConnection();
 			petDiary = new PetDiaryDAO().selectOneDiary(conn, diaryDate, diaryId);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(conn);
@@ -65,7 +64,6 @@ public class PetDiaryService {
 				JDBCTemplate.rollback(conn);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(conn);

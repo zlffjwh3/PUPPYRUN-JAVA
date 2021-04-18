@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import petdiary.model.dao.GoalDAO;
 import petdiary.model.vo.Goal;
+import petdiary.model.vo.PetDiary;
 
 public class GoalService {
 	private JDBCTemplate factory;
@@ -45,8 +46,6 @@ public class GoalService {
 		try {
 			conn = factory.createConnection();
 			goal = new GoalDAO().weekGoal(conn, goalId, goalDate);
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -55,9 +54,26 @@ public class GoalService {
 		return goal;
 	}
 	
-	// 기록 저장하는 메소드 - PetDiaryWriteServlet / PetDiaryUpdateServlet
-	public int saveTodayGoal(String goalId, Goal goal) {
+	// 기록 저장하는 메소드
+	public int addGoalData(PetDiary petDiary, String goalDate) {
+		Connection conn = null;
 		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new GoalDAO().addGoalData(conn, petDiary, goalDate);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			JDBCTemplate.close(conn);
+		}
+		
 		return result;
 	}
 	
@@ -68,11 +84,6 @@ public class GoalService {
 	
 	// 아이디별로 목표 달성 몇개했는지 카운트해서 가져오는 메소드 - GoalStampServlet
 	public int countGoal(String goalId) {
-		return 0;
-	}
-	
-	// 달성 스탬프 찍기
-	public int addStamp(String goalId) {
 		return 0;
 	}
 }

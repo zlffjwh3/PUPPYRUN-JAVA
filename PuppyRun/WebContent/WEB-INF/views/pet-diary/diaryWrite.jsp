@@ -4,6 +4,7 @@
 <%
 	User user = (User)session.getAttribute("user");
 	String diaryDate = (String)request.getAttribute("diaryDate");
+	String goalDate = (String)request.getAttribute("goalDate");
 %>
 
 <!DOCTYPE html>
@@ -137,6 +138,7 @@
                             <form action="/petdiary/write" method="post" enctype="multipart/form-data">
                             
                             <input type="hidden" name= "diaryDate" value ="<%= diaryDate %>">
+                            <input type="hidden" name= "goalDate" value ="<%= goalDate %>">
                             
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  

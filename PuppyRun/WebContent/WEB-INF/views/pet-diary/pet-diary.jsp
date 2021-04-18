@@ -1,3 +1,4 @@
+<%@page import="petdiary.model.vo.Goal"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="petdiary.model.vo.PetDiary"%>
@@ -8,10 +9,15 @@
     pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
+
 	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
+	Goal weekGoal = (Goal)request.getAttribute("weekGoal");
+	
 	PetDiary petDiary = (PetDiary)request.getAttribute("petDiary");
-	/* Goal goal = (Goal)request.getAttribute("goal"); */
+	Goal goal = (Goal)request.getAttribute("goal");
 	String day = request.getParameter("date");
+	
+	////////////////////////////////////////////////////////////
 	
 	//getInstance 는 Calendar의 객체만의 생성한 것이다.
 	Calendar cal = Calendar.getInstance();
@@ -48,6 +54,23 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	//현재, 즉 오늘날짜를 말한것이다
 	int week = cal.get(Calendar.DAY_OF_WEEK);
+	
+	////////////////////////////////////////////////
+	
+	// 오늘인지 확인
+	Date today = new Date();
+	SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+    String todayString = sdformat.format(today);
+	
+	// 목표 설정 위해서 선택한 날짜의 요일값 구하기
+	int sunCheck = 0;
+	if(petDiary != null && petDiary.getDiaryTitle() != null) {
+		String diaryDateS = petDiary.getDiaryDate().substring(0, 10);
+		Date diaryDateD = new SimpleDateFormat("yyyy-MM-dd").parse(diaryDateS);
+		
+		cal.setTime(diaryDateD);
+		sunCheck = cal.get(Calendar.DAY_OF_WEEK);
+	}
 %>
 
 
@@ -192,23 +215,25 @@
                         <div id="login-wrap">
                             <a href="/goal/stamp" class="link-login">산책기록</a>
                         </div>
+                        <% if(weekGoal != null) { %>
                         <div id="info-wrap">
+                            <p>이번주</p>
                             <div class="info-content">
-                                <span class="set-info">0</span>
-                                <span class="text">/ 7</span>
-                                <p class="text" id="text">이번주 총 산책 횟수</p>
+                                <span class="set-info"><%= weekGoal.getWeekDis() %></span>
+                                <span class="text">m</span>
+                                <p class="text">총 산책거리</p>
                             </div>
                             <div class="info-content">
-                                <span class="set-info">0</span>
-                                <span class="text">km</span>
-                                <p class="text" id="text">총 산책거리</p>
-                            </div>
-                            <div class="info-content">
-                                <span class="set-info">0</span>
+                                <span class="set-info"><%= weekGoal.getWeekTime() %></span>
                                 <span class="text">분</span>
-                                <p class="text" id="text">총 산책시간</p>
+                                <p class="text">총 산책시간</p>
                             </div>
                         </div>
+                        <% } else { %>
+                       <div id="info-wrap">
+                       		이번주 목표를 등록해주세요 (사진으로 하는 게 좋을 듯)
+                       </div>
+                        <% } %>
                     </div>
                     <% } else { %>
                     <div id="walkcontent-box">
@@ -223,17 +248,17 @@
                             <div class="info-content">
                                 <span class="set-info">0</span>
                                 <span class="text">/ 7</span>
-                                <p class="text" id="text">이번주 총 산책 횟수</p>
+                                <p class="text">이번주 총 산책 횟수</p>
                             </div>
                             <div class="info-content">
                                 <span class="set-info">0</span>
                                 <span class="text">km</span>
-                                <p class="text" id="text">총 산책거리</p>
+                                <p class="text">총 산책거리</p>
                             </div>
                             <div class="info-content">
                                 <span class="set-info">0</span>
                                 <span class="text">분</span>
-                                <p class="text" id="text">총 산책시간</p>
+                                <p class="text">총 산책시간</p>
                             </div>
                         </div>
                     </div>
@@ -264,11 +289,21 @@
 				   			<% } %>
 				   		</div>
 				   		<div class="diary-today-goal">
-				   			금일 결과 <br>
-				   			거리 : <%= petDiary.getDiaryDis() %> M(미터),  시간 : <%= petDiary.getDiaryTime() %> m(분)
+				   			<p>오늘의 결과</p>
+				   			<span>거리</span> : <%= petDiary.getDiaryDis() %> m(미터)
+				   			<span>시간</span> : <%= petDiary.getDiaryTime() %> m(분)
 				   		</div>
 				   		<div class="diary-goal">
-				   			목표 데스! 7일동안 설정한 목표....
+				   			<% if(goal != null) { %>
+				   				<p id="goal-p">이번주 목표</p>
+				   				<%= goal.getGoalDis() %>m / <%= goal.getGoalTime() %>분
+				   			<% } else if(goal == null && sunCheck == 1) { %>
+				   				<p id="no-goal-p">
+				   					이번주 목표가 없어요!<br>
+				   					목표를 설정해주세요
+				   				</p>
+				   				<button class="goal-btn">목표 설정</button>
+				   			<% } %>
 				   		</div>
 				   		<div class="diary-content">
 				   			<span>
@@ -284,9 +319,9 @@
                     </div>
                     
 				   	<% } else if(petDiary != null) { %>
+				   	<!-- 글쓰기 버튼 개념 -->
 				   	<div class="detail-box">
 				   		<div id="no-image" onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'">
-				   	<%-- 	<div id="no-image" onclick="location.href='/petdiary/write?diaryDate=<%= petDiary.getDiaryDate().substring(0, 10) %>'" > --%>
 				   			<img src="/assets/img/Non-diary.png">
 				   		</div>
 				   	</div>
@@ -316,11 +351,6 @@
 							<% } %>
 							<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
 							<%
-								// 오늘인지 확인
-								Date today = new Date();
-								SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-						        String todayString = sdformat.format(today);
-						        
 								for(int j = 1; j<=endDay; j ++){
 									week++;
 									
@@ -363,7 +393,6 @@
 								    		}			
 										}
 										%>
-									<input type=button class="goal-btn" value="목표 설정">
 								</td>
 							<%
 							}else{
@@ -387,10 +416,15 @@
 											if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
 										%>
 											<script>
-									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');styl							 		</script>
+												document.getElementById('day<%=j%>').setAttribute('style','color:orange');
+									 			document.getElementById('day-box<%=j%>').setAttribute('style','background-color:rgba(255, 249, 235, 1);');
+									 		</script>
 									 		<div class="diary-title"><%= pList.get(i).getDiaryTitle() %></div>
 										<%	}else{%>
-												<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+												<script>
+													document.getElementById('day<%=j%>').setAttribute('style','color:orange');
+													document.getElementById('day-box<%=j%>').setAttribute('style','background-color:rgba(255, 249, 235, 1);');
+												</script>
 										<%	}
 							    		}
 									}
@@ -409,10 +443,7 @@
 							<img src="/assets/img/logo_title.png">
 						</div>
 						<div id="goal-box2">
-		           			<form action="/goal/write" method="get" id="goal-submit">
-		           				<!-- <input type = "hidden" name = "goal-date" > -->
-		           				<!-- value="" -->
-		           				<!-- js로 val값 추가하는 방식으로 할 것!!!!!!!!! -> year / month / date -->
+		           			<form action="/goal/write?year=<%=year%>&month=<%=month%>&date=<%=day%>" method="post" id="goal-submit">
 			           			산책거리<input id="goal-input1" type="text" name="walk-dis" placeholder="숫자만 입력해주세요">m<br>
 			           			산책시간<input id="goal-input2" type="text" name="walk-time" placeholder="숫자만 입력해주세요">분<br>
 			           			<input type="button" id="goal-write" value="저장">

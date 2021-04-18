@@ -53,16 +53,16 @@ public class PetDiaryDAO {
 		return pList;
 	}
 	
-	public PetDiary selectOneDiary(Connection conn, Date diaryDate, String diaryId) {
+	public PetDiary selectOneDiary(Connection conn, String diaryDate, String diaryId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM DIARY WHERE DIARY_ID = ? AND DIARY_DATE = ?";
+		String query = "SELECT * FROM DIARY WHERE DIARY_ID = ? AND TO_CHAR(DIARY_DATE, 'YY/MM/DD') = ?";
 		PetDiary petDiary = new PetDiary();
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, diaryId); 
-			pstmt.setDate(2, diaryDate); 
+			pstmt.setString(2, diaryDate); 
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				petDiary.setDiaryNo(rset.getInt("DIARY_NO"));

@@ -1,5 +1,5 @@
 var goalCheckFlag1 = false;
-	           			var goalCheckFlag2 = false;
+var goalCheckFlag2 = false;
 	           			
 $(document).ready(function() {
 	var goalExp = /^[0-9]*$/;
@@ -9,7 +9,7 @@ $(document).ready(function() {
          	$('#goal-input1').css('border', '1px solid #FF0000');
             goalCheckFlag1 = false;
         } else {
-         	$('#goal-input1').css('border', '1px solid #B0B0B0');
+         	$('#goal-input1').css('border', '1px solid silver');
             goalCheckFlag1 = true;
         }
     });
@@ -19,13 +19,14 @@ $(document).ready(function() {
          	$('#goal-input2').css('border', '1px solid #FF0000');
             goalCheckFlag2 = false;
         } else {
-         	$('#goal-input2').css('border', '1px solid #B0B0B0');
+         	$('#goal-input2').css('border', '1px solid silver');
             goalCheckFlag2 = true;
         }
     });
 	
 	$('.goal-btn').click(function() {
 		$('#goal-box').css('display','block');
+		$('#goal-date').val(goalDate);
 		event.stopPropagation();
 		event.cancelBubble = true;
 	});

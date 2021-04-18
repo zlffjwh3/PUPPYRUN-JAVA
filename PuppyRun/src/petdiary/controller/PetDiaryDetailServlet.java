@@ -1,8 +1,9 @@
 package petdiary.controller;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,17 +41,22 @@ public class PetDiaryDetailServlet extends HttpServlet {
 	 	if(date.length() == 1) {
 	 		date = "0" + date;
 	 	}
-	 	String tempDate = year+"-"+month+"-"+date;
-	 	Date diaryDate = Date.valueOf(tempDate);
-		/* String goalDate = year+"/"+month+"/"+date; */
 	 	
-	 	PetDiary petDiary = new  PetDiaryService().selectOneDiary(diaryDate, diaryId);
-	 	ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(diaryId);
-		/* Goal goal = new GoalService().weekGoal(diaryId, goalDate); */
+	 	String diaryDate = year.substring(2, 4)+"/"+month+"/"+date;
+		String goalDate = year.substring(2, 4) + month + date;
+		Date today = new Date();
+		SimpleDateFormat sdformat = new SimpleDateFormat("yyMMdd");
+	    String todayString = sdformat.format(today);
+		
+	 	PetDiary petDiary = new  PetDiaryService().selectOneDiary(diaryDate, diaryId); // 하나 가져오기
+	 	ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(diaryId); // 전부 가져오기
+		Goal goal = new GoalService().weekGoal(diaryId, goalDate); // 목표 가져오기
+		Goal weekGoal = new GoalService().weekGoal(diaryId, todayString); // 이번주 기록 가져오기
 	 	
  		request.setAttribute("petDiary", petDiary);
  		request.setAttribute("pList", pList);
-		/* request.setAttribute("goal", goal); */
+		request.setAttribute("goal", goal);
+		request.setAttribute("weekGoal", weekGoal);
  		
  		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 	}
