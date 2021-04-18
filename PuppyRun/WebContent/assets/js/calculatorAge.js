@@ -1,6 +1,6 @@
 function weight_choice(check) { // 무게계산
 
-    var dogBirth = $('#dog_date').val();
+	var dogBirth = $('#dog_date').val();
     if(check == '0') {
         $('.dog_type0').addClass('cal_checked');
         $('.dog_type1').removeClass('cal_checked');

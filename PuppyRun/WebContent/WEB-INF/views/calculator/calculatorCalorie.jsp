@@ -11,7 +11,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" type="text/css" href="/assets/css/index3.css">
+       <!--  <link rel="stylesheet" type="text/css" href="/assets/css/index3.css"> 
+       <link rel="stylesheet" type="text/css" href="/assets/css/index4.css">  -->
+       <link rel="stylesheet" type="text/css"
+	href="/assets/css/calculatorCalorie.css">
+        
 
         <link rel="icon" href="images/fv.ico" type="image/png">
         <link
@@ -26,6 +30,10 @@
         <script	src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
         <script type="text/javascript">
+	        function restartCalc(){
+				location.href="<%= request.getContextPath() %>/calculator/age?calc_type=2";
+			}
+        
         	function calorieResult() {
 				var dogWeight = $('#dog_weight').val();
 				if(dogWeight == null || dogWeight == '' || dogWeight.length == 0){
@@ -59,6 +67,52 @@
                 }
                  
                 $('#calResultValue').val(result);
+                
+                // 이 부분이 결과창 부분 
+                $('.contentArea').html('');
+                var htmlRes = `
+                <div class="cal_result_cal">
+                <div class="cal_circle">
+                    <span class="cal_img">
+                       
+                       <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/result_img04.png" alt="저울">
+                    </span>
+                    <dl>
+                        <dt>1일 기초 대사량</dt>
+                        <dd id ="basic_meta">400kcal</dd>
+                    </dl>
+                    </div>
+                        
+                        <div class="cal_circle">
+                            <span class="cal_img">
+                             <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/result_img04.png" alt="저울">
+                            </span> 
+                            <dl>
+                                <dt>1일 권장 칼로리</dt>
+                                <dd id="basic_kal">1600cal</dd>
+                            </dl>
+                        </div>
+                        <div class="cal_txt">
+                        <span class="txt_b">※ 기초대사량
+                        </span> 
+                        " : 생물체가 생명을 유지하는데 필요한 최소한의 에너지량"
+                        <br>
+                            
+                        
+                        <span class="txt_b">※ 권장칼로리</span> 
+                        " : 몸을 움직이는 데 필요한 에너지인 작업 대사량을 위한 칼로리"
+			
+                        </div>
+                        <!-- <div class="age_lifecycle" id="dog_life"></div> -->
+                
+            </div>
+            <div class="cal_btna">
+            	<div class="cal_resulta" onclick="restartCalc()">
+           			<a class="btn">다시하기</a>
+        		</div>
+    		</div>
+            `;
+        	$('.contentArea').html(htmlRes);
 			}
         </script>
         <title>퍼피런 - 친구와 산책 나가요</title>
@@ -158,34 +212,36 @@
                                         </span>
                                 </div>
                             </div>
-                            <div class="cal_writer">
-                            <div class="cal_community">
-                                <span class="writer_input_select">
-                                    <h5>몸무게</h5>
-                                    <input type="text" name="dog_weight" id="dog_weight" inputmode="numeric" maxlength="10" xonkeyup="myFunction()" placeholder="kg단위로 입력하세요">
-                                </span>
-                                <span class="writer_input_select">
-                                   
-                                    <label>
-                                        <select name="dog_jisu" id="dog_jisu">
-                                            <option value>반려견 상태선택</option>
-                                            <option value="1">생후 4개월 미만 반려견</option>
-                                            <option value="2">중성화한 반려견</option>
-                                            <option value="3">중성화하지 않은 반려견</option>
-                                            <option value="4">비만 상태인 성견</option>
-                                            <option value="5">활동량이 많은 성견</option>
-                                            <option value="6">활동량이 많지 않은 성견</option>
-                                        </select>
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- 결과보기 -->
-                        <div class="cal_btn">
-                            <div class="cal_result" onclick="calorieResult()">
-                           <a>결과보기</a>
-                        </div>
-                    </div>
+                            <div class="contentArea">
+	                            <div class="cal_writer">
+		                            <div class="cal_community">
+		                                <span class="writer_input_select">
+		                                    <h5>몸무게</h5>
+		                                    <input type="text" name="dog_weight" id="dog_weight" inputmode="numeric" maxlength="10" xonkeyup="myFunction()" placeholder="kg단위로 입력하세요">
+		                                </span>
+		                                <span class="writer_input_select">
+		                                   
+		                                    <label>
+		                                        <select name="dog_jisu" id="dog_jisu">
+		                                            <option value>반려견 상태선택</option>
+		                                            <option value="1">생후 4개월 미만 반려견</option>
+		                                            <option value="2">중성화한 반려견</option>
+		                                            <option value="3">중성화하지 않은 반려견</option>
+		                                            <option value="4">비만 상태인 성견</option>
+		                                            <option value="5">활동량이 많은 성견</option>
+		                                            <option value="6">활동량이 많지 않은 성견</option>
+		                                        </select>
+		                                    </label>
+		                                </span>
+		                            </div>
+	                    		</div>
+	                    		<!-- 결과보기 -->
+		                        <div class="cal_btn">
+		                            <div class="cal_result" onclick="calorieResult()">
+		                           <a>결과보기</a>
+		                        </div>
+                        	</div>
+                    	</div>
                     </div>
                     <div>
                         <!-- <input type="" value=""> -->

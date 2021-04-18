@@ -92,6 +92,7 @@
         	$('#peopleAgeResultTxt').val(result_peopleAge);
         	$('#puppyAgeResultTxt').val(result_puppyAge);
         	
+        	// 계산식 보여주는 곳 
         	$('.contentArea').html('');
         	var htmlRes = `
 	        	<div class="cal_result_age">
@@ -110,7 +111,7 @@
 	        				src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/result_img02.png"
 	        				alt="사람"></span><span class="age_num" id="age_cal">`+result_peopleAge+`살</span>
 	        		</div>
-	        		<div class="age_lifecycle" id="dog_life">중장년기</div>
+	        		<div class="age_lifecycle" id="dog_life"></div>
 	        	</div>
 	        	<div class="cal_btn">
 	        		<div class="cal_result" onclick="restartCalc()">
