@@ -2,6 +2,8 @@ package petdiary.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,8 +19,6 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import community.model.service.CommunityService;
-import community.model.vo.Community;
 import petdiary.model.service.PetDiaryService;
 import petdiary.model.vo.PetDiary;
 import photo.model.service.PhotoService;
@@ -34,36 +34,47 @@ public class PetDiaryWriteServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String year = request.getParameter("year");
+	 	String month = request.getParameter("month");
+	 	if(month.length() == 1) {
+	 		month = "0" + month;
+	 	}
+	 	String date = request.getParameter("date");
+	 	if(date.length() == 1) {
+	 		date = "0" + date;
+	 	}
+	 	String diaryDate = year+"/"+month+"/"+date;
+		
+		request.setAttribute("diaryDate", diaryDate);
 		request.getRequestDispatcher("/WEB-INF/views/pet-diary/diaryWrite.jsp").forward(request, response);
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		request.setCharacterEncoding("UTF-8");
 		
-		
 		String uploadFilePath = request.getServletContext().getRealPath("upload");
 		int uploadFileSizeLimit = 5*1024*1024; //파일 사이즈
 		String encType = "UTF-8";
 		MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());
 		
-		String petdiaryId = user.getUserId();
+		String diaryId = user.getUserId();
+		String diaryDate = multi.getParameter("diaryDate");
 		String petdiaryTitle = multi.getParameter("title");
 		String petdiaryContent = multi.getParameter("content");
-		String petdiaryMap = multi.getParameter("map");
-		//지도 테스트
 		int goaldis = Integer.parseInt(multi.getParameter("distance"));
 		int goalwak = Integer.parseInt(multi.getParameter("walkkTime"));
 		
 		PetDiary petdiary = new PetDiary();
-		petdiary.setDiaryId(petdiaryId);
+		petdiary.setDiaryId(diaryId);
 		petdiary.setDiaryTitle(petdiaryTitle);
 		petdiary.setDiaryContent(petdiaryContent);
-		petdiary.setDiaryMap(petdiaryMap);
+		petdiary.setDiaryDate(diaryDate);
+		petdiary.setDiaryDis(goaldis);
+		petdiary.setDiaryTime(goalwak);
 		
-		//지도 테스트
-		System.out.println(goaldis);
-		System.out.println(goalwak);
+		
 		
 		int photoResult = 0;
 		if(multi.getFilesystemName("upFile") != null) {
@@ -88,13 +99,17 @@ public class PetDiaryWriteServlet extends HttpServlet {
 			
 			photoResult = new PhotoService().registerPhotoInfo(photo);
 		
-		}
+		}else {}
+
 		// File이 없다면   
 		int diaryResult = new PetDiaryService().insertDiary(petdiary);
 		
 		// 결과 확인 (File 업로드 안하면 무조건 오류뜨게 해놨음.. 나중에 수정할 부분)
-		if(diaryResult > 0 && multi.getFilesystemName("upFile") != null && photoResult > 0) {
-			response.sendRedirect("/petdiary/list");
+		if(diaryResult > 0 && photoResult > 0) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('게시글이 등록되었습니다.'); location.href='/petdiary/list';</script>");
+			out.flush();
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/pet-diary/diaryError.html").forward(request, response);
 		}

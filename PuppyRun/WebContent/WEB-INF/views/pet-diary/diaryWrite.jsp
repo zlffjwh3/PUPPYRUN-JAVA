@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
+	String diaryDate = (String)request.getAttribute("diaryDate");
 %>
 
 <!DOCTYPE html>
@@ -134,6 +135,9 @@
                     <div id="write-wrap">
                         <div id="write-box">
                             <form action="/petdiary/write" method="post" enctype="multipart/form-data">
+                            
+                            <input type="hidden" name= "diaryDate" value ="<%= diaryDate %>">
+                            
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">

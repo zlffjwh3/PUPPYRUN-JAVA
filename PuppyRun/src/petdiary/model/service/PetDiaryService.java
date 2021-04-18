@@ -59,7 +59,6 @@ public class PetDiaryService {
 		try {
 			conn = factory.createConnection();
 			result = new PetDiaryDAO().insertDiary(conn, petDiary);
-			System.out.println(result); // 오류
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
 			}else {

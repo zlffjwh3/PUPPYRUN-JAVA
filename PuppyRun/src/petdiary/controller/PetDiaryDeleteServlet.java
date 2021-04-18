@@ -26,7 +26,6 @@ public class PetDiaryDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Date diaryDate = Date.valueOf(request.getParameter("diaryDate"));
-		System.out.println(diaryDate);////////////////////////힝 ㅜㅠ
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		String diaryId = user.getUserId();

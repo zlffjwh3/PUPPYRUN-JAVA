@@ -34,9 +34,11 @@ public class PetDiaryDAO {
 					diary.setDiaryNo(rset.getInt("DIARY_NO"));
 					diary.setDiaryTitle(rset.getString("DIARY_TITLE"));
 					diary.setDiaryContent(rset.getString("DIARY_CONTENT"));
-					diary.setDiaryMap(rset.getString("DIARY_MAP"));
+					diary.setDiaryId(rset.getString("DIARY_ID"));
 					diary.setDiaryDate(rset.getString("DIARY_DATE"));
 					diary.setDiaryPhoto(rset.getString("DIARY_PHOTO"));
+					diary.setDiaryDis(rset.getInt("DIARY_DIS"));
+					diary.setDiaryTime(rset.getInt("DIARY_TIME"));
 					
 					pList.add(diary);
 				} 
@@ -66,10 +68,11 @@ public class PetDiaryDAO {
 				petDiary.setDiaryNo(rset.getInt("DIARY_NO"));
 				petDiary.setDiaryTitle(rset.getString("DIARY_TITLE"));
 				petDiary.setDiaryContent(rset.getString("DIARY_CONTENT"));
-				petDiary.setDiaryMap(rset.getString("DIARY_MAP"));
 				petDiary.setDiaryId(rset.getString("DIARY_ID"));
 				petDiary.setDiaryDate(rset.getString("DIARY_DATE"));
 				petDiary.setDiaryPhoto(rset.getString("DIARY_PHOTO"));
+				petDiary.setDiaryDis(rset.getInt("DIARY_DIS"));
+				petDiary.setDiaryTime(rset.getInt("DIARY_TIME"));
 			}
 			
 		} catch (SQLException e) {
@@ -84,16 +87,19 @@ public class PetDiaryDAO {
 	
 	public int insertDiary(Connection conn, PetDiary petDiary) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO DIARY VALUES(SEQ_DIARYNO.NEXTVAL, ?, ?, ?, ?, TO_CHAR(SYSDATE, 'YY/MM/DD'), ?)";
-		int result = 0;
+		String query = "INSERT INTO DIARY VALUES(SEQ_DIARYNO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+		int result = 0;													
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, petDiary.getDiaryTitle());
 			pstmt.setString(2, petDiary.getDiaryContent());
-			pstmt.setString(3, petDiary.getDiaryMap());
-			pstmt.setString(4, petDiary.getDiaryId());
+			pstmt.setString(3, petDiary.getDiaryId());
+			pstmt.setString(4, petDiary.getDiaryDate());
 			pstmt.setString(5, petDiary.getDiaryPhoto());
+			pstmt.setInt(6, petDiary.getDiaryDis());
+			pstmt.setInt(7, petDiary.getDiaryTime());
+			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

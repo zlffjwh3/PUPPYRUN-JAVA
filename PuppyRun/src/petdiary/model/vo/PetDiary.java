@@ -7,7 +7,7 @@ public class PetDiary {
 	private String diaryTitle;
 	private String diaryContent;
 	private String diaryId;
-	private Date diaryDate;
+	private String diaryDate;
 	private String diaryPhoto;
 	private int diaryDis;
 	private int diaryTime;
@@ -49,11 +49,11 @@ public class PetDiary {
 		this.diaryId = diaryId;
 	}
 
-	public Date getDiaryDate() {
+	public String getDiaryDate() {
 		return diaryDate;
 	}
 
-	public void setDiaryDate(Date diaryDate) {
+	public void setDiaryDate(String diaryDate) {
 		this.diaryDate = diaryDate;
 	}
 
@@ -84,7 +84,7 @@ public class PetDiary {
 	@Override
 	public String toString() {
 		return "PetDiary [diaryNo=" + diaryNo + ", diaryTitle=" + diaryTitle + ", diaryContent=" + diaryContent
-				+ ", diaryId=" + diaryId + ", diaryDate=" + diaryDate + ", diaryPhoto="
-				+ diaryPhoto + "]";
+				+ ", diaryId=" + diaryId + ", diaryDate=" + diaryDate + ", diaryPhoto=" + diaryPhoto + ", diaryDis="
+				+ diaryDis + ", diaryTime=" + diaryTime + "]";
 	}
 }

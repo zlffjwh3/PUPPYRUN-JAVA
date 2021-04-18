@@ -264,10 +264,11 @@
 				   			<% } %>
 				   		</div>
 				   		<div class="diary-today-goal">
-				   			오늘 목표 얼마나 했는지
+				   			금일 결과 <br>
+				   			거리 : <%= petDiary.getDiaryDis() %> M(미터),  시간 : <%= petDiary.getDiaryTime() %> m(분)
 				   		</div>
 				   		<div class="diary-goal">
-				   			목표 데스!
+				   			목표 데스! 7일동안 설정한 목표....
 				   		</div>
 				   		<div class="diary-content">
 				   			<span>
@@ -285,6 +286,7 @@
 				   	<% } else if(petDiary != null) { %>
 				   	<div class="detail-box">
 				   		<div id="no-image" onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'">
+				   	<%-- 	<div id="no-image" onclick="location.href='/petdiary/write?diaryDate=<%= petDiary.getDiaryDate().substring(0, 10) %>'" > --%>
 				   			<img src="/assets/img/Non-diary.png">
 				   		</div>
 				   	</div>
