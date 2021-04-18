@@ -29,7 +29,6 @@ public class PetDiaryListServlet extends HttpServlet {
 		String userId = user.getUserId();
 		
 		ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(userId);
-		
 		request.setAttribute("pList", pList);
 		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 	}

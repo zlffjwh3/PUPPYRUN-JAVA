@@ -42,15 +42,16 @@ public class PetDiaryDetailServlet extends HttpServlet {
 	 	}
 	 	String tempDate = year+"-"+month+"-"+date;
 	 	Date diaryDate = Date.valueOf(tempDate);
-	 	String goalDate = year+"/"+month+"/"+date;
+		/* String goalDate = year+"/"+month+"/"+date; */
 	 	
 	 	PetDiary petDiary = new  PetDiaryService().selectOneDiary(diaryDate, diaryId);
 	 	ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(diaryId);
-	 	Goal goal = new GoalService().weekGoal(diaryId, goalDate);
+		/* Goal goal = new GoalService().weekGoal(diaryId, goalDate); */
 	 	
  		request.setAttribute("petDiary", petDiary);
  		request.setAttribute("pList", pList);
- 		request.setAttribute("goal", goal);
+		/* request.setAttribute("goal", goal); */
+ 		
  		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 	}
 
