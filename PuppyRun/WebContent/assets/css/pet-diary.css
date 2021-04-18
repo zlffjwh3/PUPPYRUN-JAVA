@@ -1,148 +1,287 @@
-.detail-box{
-	/* margin-top : 100px ; */
-	display : inline-block;
-	float: left;
-	width : 440px;
-	height : 650px
+#wrap {
+ 	background-image : url(/assets/img/pet-diary-bg.png);
+    background-repeat: round;
+    background-size : cover;
 }
 
-.detail-box > .diary-photo {
-	width : 320px;
-    cursor: pointer;
-    border-radius: 30px;
-    overflow: hidden;
+#main-content {
+	margin-top : 70px;
+	margin-bottom : 140px;
 }
 
-.detail-box  > .diary-photo > img{
-	width : 100%;
-    border-radius: 30px;
-    transition: 0.4s;
-}
-
-#function-btn {
-	
-}
-
-	#function-btn a {
-	
-	}
-
-.day-border {
-	border: 1px solid silver;
-}
-
-/* 달력 table */
-#list-box{
-	display : inline-block;
-	float : left;
-    border-collapse: collapse;
-    border-spacing: 0;
-    width : 750px
-}
-
-#list-box > td {
-	border: 1px solid black;
-    width: 110px;
-    
-}
-
-	#list-box tr:first-child {
-		text-align : center;
-		padding-bottom : 20px;
-	} 
-	
-	#list-box #goal-btn {
-		border : none;
-		background-color : #FFF9EB;
-		cursor : pointer;
-	}
-
-
-#main-content2{
+#main-content2 {
 	marign : 0 auto;
-	height :830px;
+	height :833px;
 	width: 100%;
 	box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);	
-	border-radius: 0 0 30px 30px;
+	border-radius: 30px 30px 30px 30px;
+	position : relative;
 }
 
-/* 달력 왼쪽 */
-.diary-today {
-    margin: 15px 0;
-    background: #FFD883;
-    width: 300px;
-	height: 33px;
-    font-size: 18px;
-    line-height: 32px;
-    border-radius: 30px;
+/* 타이틀 */
+#nbb-top {
+    text-align: center;
 }
 
-.diary-content {
-	background: #FFF9EB;
-    width: 310px;
-    height: 80px;
-    border-radius: 30px;
+	#nbb-top h3 {
+	    font-size : 30px;
+	    color : #FBB41D;
+	    padding-bottom : 6px;
+	}
+	
+	#nbb-top p {
+	    font-size : 14px;
+	    font-weight: 400;
+	    color : #868686;
+	}
+	
+#mWalkInfo {
+	margin-bottom : 80px;
 }
 
-.diary-content > span {
-	width: 270px;
-    margin: 5px auto;
-    display: inline-block;
-    height: 70px;
-    word-break: break-all;
-}
-
-.diary-route-title {
-    width: 300px;
-    height: 30px;
-    background: pink;
-}
-
-.diary-map {
-	width: 320px;
-    height: 160px;
-    background: green;
-}
-
-.diary-goal {
-	width: 310px;
-    height: 80px;
-    background: #FFF9EB;
-    border-radius: 30px;
-}
-
-/*  */
-
-.day{
-	/* width : 100px;
-	height : 100px; */
-    width: 110px;
-    height: 115px;
-}
-
-.day:hover {
-	background-color : #F5F5F5;
-}
-
-.sun {
-	color : red;
-}
-
-.sun > div{
-	color : red;
-}
-
-/* 달력 상단 < 날짜 >  부분 */
+/* 달력 상단 < 날짜 >  부분 -----------------------------------------------*/
 #top-box {
 	background : #FFBD32;;
 	height: 80px;
     border-radius: 30px 30px 0 0;
     line-height: 80px;
-    margin-bottom: 33px;
+    margin-top : 30px;
+    margin-bottom: 20px;
+}
+	
+	#top-box a {
+		color : white;
+		font-size : 30px;
+	}
+	
+	#top-box > b {
+		background: white;
+	    padding: 10px 30px;
+	    border-radius: 20px;
+	}
+
+
+/* 왼쪽 디테일 박스 -----------------------------------------------*/
+.detail-box{
+	float: left;
+	width : 440px;
+	height : 650px
+}
+	
+	.detail-box > div {
+		margin-top : 10px;
+	}
+	
+	/* 오늘 날짜 */
+	.diary-today {
+	    margin: 15px 0;
+	    background: #FFD883;
+	    width: 300px;
+		height: 33px;
+	    font-size: 18px;
+	    line-height: 32px;
+	    border-radius: 30px;
+	}
+	
+	/* 사진 */
+	.detail-box > .diary-photo {
+		width : 320px;
+		height : 200px;
+		overflow : hidden;
+	    cursor: pointer;
+	    border-radius: 30px;
+	    overflow: hidden;
+	}
+
+	.detail-box  > .diary-photo > img{
+		width : 100%;
+		object-fit : cover;
+	    border-radius: 30px;
+	    transition: 0.4s;
+	}
+	
+	/* 내용 */
+	.diary-content {
+		background: #FFF9EB;
+	    width: 310px;
+	    height: 160px;
+	    border-radius: 30px;
+	}
+	
+		.diary-content > span {
+			width: 270px;
+		    margin: 5px auto;
+		    display: inline-block;
+		    height: 70px;
+		    word-break: break-all;
+		}
+	
+	/* 목표 */		
+	.diary-today-goal , .diary-goal {
+		width: 310px;
+	    height: 80px;
+	    background: #FFF9EB;
+	    border-radius: 30px;
+	}
+	
+	/* 내용 없는 경우 */
+	#no-image {
+		cursor : pointer;
+	}
+
+
+/* 수정 또는 삭제 버튼 -----------------------------------------------*/
+#function-btn {
+	position : absolute;
+	left : 120px;
+	top : 750px;
 }
 
-#top-box > b {
-	background: white;
-    padding: 10px 30px;
-    border-radius: 20px;
+	#function-btn a {
+		display : inline-block;
+		margin-left : 20px;
+		background-color : #FFD883;
+		width : 70px;
+		height : 30px;
+		line-height : 30px;
+		border-radius : 30px;
+	}
+
+/* 달력 table -----------------------------------------------*/
+#list-box {
+	display : inline-block;
+	float : left;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width : 750px;
+    cursor : pointer;
 }
+
+	.day-border {
+		border: 1px solid silver;
+	}
+	
+	#list-box #day-of-week {
+		text-align : center;
+		height : 40px;
+	} 
+	
+	.day{
+		/* width : 100px;
+		height : 100px; */
+	    width: 110px;
+	    height: 115px;
+	    position : relative;
+	}
+	
+	.day:hover {
+		background-color : #F5F5F5;
+	}
+	
+	/* 일요일 색 변경 */
+	.sun {
+		color : red;
+	}
+	
+	/* 날짜 숫자 */
+	.day div:first-child {
+		border-radius: 30px;
+		width: 30px;
+		height : 30px;
+		text-align : center;
+		line-height : 30px;
+		position : absolute;
+		top :8px;
+		left : 8px;
+	}
+	
+	.day .diary-title {
+		position : absolute;
+		height : 20px;
+		line-height : 20px;
+		top :45px;
+		left : 8px;
+		color : #000000;
+		overflow : hidden;
+		/* word-break: break-all; */
+		text-overflow: ellipsis;
+	}
+	
+	/* 목표 설정 버튼 */
+	#list-box .goal-btn {
+		border : none;
+		background-color : rgba(255, 216, 131, 0.6);
+		cursor : pointer;
+		border-radius : 30px;
+		width : 60px;
+		height : 25px;
+		font-size : 12px;
+		position : absolute;
+		top :80px;
+		left : 23px;
+	}
+	
+/* 목표 설정 팝업----------------------------------------------- */
+#goal-box {
+	display : none;
+	background-color : white;
+	position : absolute;
+	top : 35%;
+	left : 33%;
+	box-shadow : rgba(0,0,0,0.2) 0 0 0 9999px;
+	/* box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3); */
+	z-index : 100;
+	width : 500px;
+	height : 300px;
+	border-radius : 40px;
+}
+
+	#goal-box button {
+		border : none;
+		background : none;
+		margin : 20px 0 0 400px;
+		cursor : pointer;
+	}
+	
+	#goal-box p {
+		color : #FBB41D;
+		padding-bottom : 15px;
+		width : 400px;
+		border-bottom : 1px solid silver;
+	}
+
+	#goal-box1 {
+		float : left;
+		width : 200px;
+	}
+	
+		#goal-box1 img {
+			width : 70%;
+		}
+	
+	#goal-box2 {
+		float : left;
+		margin-top : 20px
+	}
+		
+		#goal-box input[type=text] {
+			border-radius : 30px;
+			border : 1px solid silver;
+			margin : 5px 5px 10px 10px;
+			padding-left : 17px;
+			width : 150px;
+			height : 30px;
+		}
+		
+		#goal-box input[type=button] {
+			border : none;
+			background-color : #FBB41D;
+			border-radius: 40px;
+		    cursor : pointer;
+		    width : 90px;
+		    height : 35px;
+		    text-align : center;
+		    line-height : 35px;
+		    color : white;
+		    margin-top :15px;
+		}

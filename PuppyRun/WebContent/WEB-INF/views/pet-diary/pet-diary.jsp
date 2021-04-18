@@ -10,6 +10,8 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
 	PetDiary petDiary = (PetDiary)request.getAttribute("petDiary");
+	String day = request.getParameter("date");
+	/* 목표 설정했는지 여부 가져오기....! */
 	
 	//getInstance 는 Calendar의 객체만의 생성한 것이다.
 	Calendar cal = Calendar.getInstance();
@@ -44,7 +46,7 @@
 	
 	//cal.getActualMaximum은 그달의 마지막일을 출력한것이다.
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-	//현재, 즉 오늘날짜를 말한것이다/
+	//현재, 즉 오늘날짜를 말한것이다
 	int week = cal.get(Calendar.DAY_OF_WEEK);
 %>
 
@@ -57,89 +59,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 폰트, 이모티콘, JQUERY CDN-->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
     <!-- CSS 파일 가져오기 -->
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/pet-diary.css">
-    <%-- <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-detail.css"> --%>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
     <!-- 파비콘 이미지 가져오기 -->
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
     <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
     <!-- JS 파일 가져오기 -->
     <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
-    <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
+    <script src="<%= request.getContextPath() %>/assets/js/pet-diary.js"></script>
     <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
-	<title>산책일기 - 추억을 기록해요</title>
+	<title>퍼피런 :: 산책일기</title>
 </head>
 <body>
-		<div id="wrap">
-            <header>
-                <!-- 헤더-->
-                <div id="header">
-                    <div id="tleft">
-                    	<div id="search">
-                            <form action="">
-                                <input class="search-input" id="" type="text" placeholder="search">
-                            </form>
-                        </div>
+	<div id="wrap">
+		<header>
+              <!-- 헤더-->
+              <div id="header">
+                  <div id="tleft">
+                   <div id="search">
+                   	<form action="" method="get">
+                    	<input class="search-input" type="text" placeholder="search">
+                    	<input id="search-btn" type="submit" value="">
+                   	</form>
+                   </div>
+              	</div>
+               <!-- 헤더 메인 로고 -->
+               <div id="header-logo">
+                   <a href="/index.jsp" id="logo"></a>
+               </div>
+               <div id="tright">
+               	<div id="tright-wrapper">
+                    <div id="login">
+                       	<% if(user == null) { %>
+                        	<a href="/login.jsp">
+                            	<i class="xi-face xi-2x"></i>
+                       		</a>
+                        	<a href="/login.jsp" id="login-content">로그인</a>
+                        <% } else { %>
+                        	<% if(user.getUserPhoto() != null) { %>
+                           	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
+                       		<% } else { %>
+                           	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
+                        	<% } %>
+                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
+                        <% } %>
                     </div>
-                    <!-- 헤더 메인 로고 -->
-                    <div id="header-logo">
-                        <a href="/index.jsp" id="logo"></a>
+                    <% if(user != null) { %>
+                    <div id="pop-up" style="display:none">
+                    	<p id="show-id"><%= user.getUserId() %></p>
+                    	<% if(user.getAdminCheck() == 'N') { %>
+                    	<p><a href="/user/myInfo">마이페이지</a></p>
+                    	<% } else { %>
+                    	<p><a href="/user/list">관리자페이지</a></p>
+                    	<% } %>
+                    	<p><a href="/user/logout">로그아웃</a></p>
                     </div>
-                    <div id="tright">
-                        <div id="login">
-                        	<%
-                        	if(user == null) {
-                        	%>
-                            	<a href="/login.jsp">
-                                <i class="xi-face xi-2x"></i>
-                           		</a>
-                            	<a href="/login.jsp" id="login-content">로그인</a>
-                            <%
-                            } else {
-                            %>
-                            	<a href="/user/myInfo">
-                                <img src="#"> <!-- 사진어케 가져와 -->
-                           		</a>
-                            	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
-                            <%
-                            }                        
-                            %>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <nav>
+                    <% } %>
+                   </div>
+                   <script>
+                   		function showPopup() {
+                   			var popUp = document.getElementById("pop-up");
+                   			
+                   			if(popUp.style.display == 'none') {
+                   				popUp.style.display = 'block';
+                   			}else {
+                   				popUp.style.display = 'none';
+                   			}
+                    	}
+                   </script> 
+          		</div>
+         		</div>
+          </header>
+          <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <%
-                        		if(user != null) {
-                        	%>
-                        			<a href="/petdiary/list">산책일기</a>
-                        	<%
-                        		} else {
-                        	%>
-                        			<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
-                        	<%
-                        		}
-                        	%>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">멍멍이야기</a>
+                            <a href="/community/list">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
                             <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">반려견계산기</a>
+                            <a href="/calculator/age">반려견계산기</a>
                         </li>
                     </ul>
                 </div>
@@ -151,15 +172,25 @@
             </div>
             <!-- 메인 ---------------------------------------------------------------------------------------------------------->
 	   		<div id="main-content">
+	   			<div id="nbb-top">
+                    <h3>산책일기</h3>
+                    <p>친구와의 추억을 기록해요!</p>
+                </div>
 	   			<!-- Goal ----------------------------------------------------------------------------------------->
 	   			<div id="mWalkInfo">
+                	<% if(user != null) { %>
                     <div id="walkcontent-box">
-                        <p id="text01">산책 정보를 확인하려면
-                            <b>로그인</b>
-                            해주세요.</p>
-                        <div id="dog-image-box"></div>
+                        <p id="text01">
+                        	이번주 <b><%= user.getUserNick() %></b>님의 기록을 확인하세요!
+                        </p>
+                        <img id="dog-image-box" onclick="location.href='/user/myInfo'">
+                        	<% if(user.getUserPhoto() != null) { %>
+                        	<script>$('#dog-image-box').attr('src','/upload/<%=user.getUserPhoto()%>');</script>
+                        	<% } else { %>
+                        	<script>$('#dog-image-box').attr('src','/assets/img/user-no-img.png');</script>
+                        	<% } %>
                         <div id="login-wrap">
-                            <a href="/html/login.html" class="link-login">로그인</a>
+                            <a href="/goal/stamp" class="link-login">산책기록</a>
                         </div>
                         <div id="info-wrap">
                             <div class="info-content">
@@ -179,14 +210,42 @@
                             </div>
                         </div>
                     </div>
+                    <% } else { %>
+                    <div id="walkcontent-box">
+                        <p id="text01">산책 정보를 확인하려면
+                            <b>로그인</b>
+                            해주세요.</p>
+                        <div id="dog-image-box"></div>
+                        <div id="login-wrap">
+                            <a href="/login.jsp" class="link-login">로그인</a>
+                        </div>
+                        <div id="info-wrap">
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">/ 7</span>
+                                <p class="text" id="text">이번주 총 산책 횟수</p>
+                            </div>
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">km</span>
+                                <p class="text" id="text">총 산책거리</p>
+                            </div>
+                            <div class="info-content">
+                                <span class="set-info">0</span>
+                                <span class="text">분</span>
+                                <p class="text" id="text">총 산책시간</p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
                 </div>
                 <!-- 둘다 묶는 박스으으으 ----------------------------------------------------------------------------------------->
                 
-                <div id="main-content2"  align="center" >
+                <div id="main-content2" align="center" >
 	                <div id="top-box">
-	                	<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>">before</a>&nbsp;
+	                	<a href = "/petdiary/list?year=<%=year %>&month=<%=month -1 %>"><span class="material-icons">navigate_before</span></a>&nbsp;
 						<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
-						<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp; next</a>
+						<a href = "/petdiary/list?year=<%=year %>&month=<%=month + 1 %>">&nbsp;<span class="material-icons">navigate_next</span></a>
 					</div>
                 	
 				   	<!-- Detail ----------------------------------------------------------------------------------------->
@@ -198,24 +257,22 @@
 				   			<%= petDiary.getDiaryDate().substring(0, 10) %>
 				   		</div>
 				   		<div class="diary-photo">
+				   			<% if(petDiary.getDiaryPhoto() != null) { %>
 				   			<img src="/upload/<%= petDiary.getDiaryPhoto() %>">
+				   			<% } else { %>
+				   			<img src="/assets/img/no-img.jpg">
+				   			<% } %>
+				   		</div>
+				   		<div class="diary-today-goal">
+				   			오늘 목표 얼마나 했는지
+				   		</div>
+				   		<div class="diary-goal">
+				   			목표 데스!
 				   		</div>
 				   		<div class="diary-content">
 				   			<span>
 				   				<%= petDiary.getDiaryContent()%>
 				   			</span>
-				   		</div>
-				   		<div class="diary-route-title">
-				   			<img src="" alt="로고">
-				   			산책 경로
-				   		</div>
-				   		<div class="diary-map">
-				   			<%-- <%= petDiary.getDiaryMap()%> --%>
-				   			지도야 미안해
-				   		</div>
-				   		<div class="diary-goal">
-				   			<%-- <%= petDiary.%> --%>
-				   			목표 데스!
 				   		</div>
 				   	</div>
 				   	<div id="function-btn">
@@ -225,76 +282,53 @@
                        	</div>
                     </div>
                     
-				   	<% } else if(petDiary != null) {
-				   	%>
+				   	<% } else if(petDiary != null) { %>
 				   	<div class="detail-box">
-				   		<div id="noimage"><img src="/assets/img/no-diary.png"></div>
+				   		<div id="no-image" onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'">
+				   			<img src="/assets/img/Non-diary.png">
+				   		</div>
 				   	</div>
-				   	<%
-				   	} else {
-				   	%>
+				   	<% } else {	%>
 				   	<div class="detail-box">
-				   		<div id="noimage"><img src="/assets/img/Non-diary.png"></div>
+				   		<div><img src="/assets/img/no-diary.png"></div>
 				   	</div>
-				   	<%
-				   	}
-				   	%>
+				   	<% } %>
 				   	
 				   	<!-- List ----------------------------------------------------------------------------------------->
 				
 					<table id="list-box">
-					<tr>
-						<td class="sun">Sun</td>
-						<td>Mon</td>
-						<td>Tue</td>
-						<td>Wed</td>
-						<td>Thu</td>
-						<td>Fri</td>
-						<td>Sat</td>
-					</tr>
+						<tr id="day-of-week">
+							<td class="sun">Sun</td>
+							<td>Mon</td>
+							<td>Tue</td>
+							<td>Wed</td>
+							<td>Thu</td>
+							<td>Fri</td>
+							<td>Sat</td>
+						</tr>
 					
-					<tr class="day-border">
-					<!-- 그달의 1일 까지 공백처리하기 위한 것임. -->
-						<%
-							for(int i = 1; i < week; i++){
-						%>		
-						<td height = "20">&nbsp;</td>
-						<%
-						}
-						%>
-						<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
-						<%
-							// 오늘인지 확인
-							 Date today = new Date();
-							SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-					        String todayString = sdformat.format(today);
-					        
-					      //  System.out.println(todayString);
-					        
-					        //int todayBox = 0;
-					        /*
-					        for(int i = 0; i < pList.size(); i++){
-								String calDate = pList.get(i).getDiaryDate();
-								String calDateString = calDate.substring(0, calDate.length() - 9);
-					        	if(calDateString.equals(todayString)){
-							 	 	todayBox = i;
-								}
-					    	} */
-					        
-							for(int j = 1; j<=endDay; j ++){
-								week++;
-								
-								if(week % 7 ==2){
-						 	%>
-					</tr>
-					<tr>
-						<% } 
-							if(week % 7 == 2){ 
-							// 일요일이면
-							%>
-
-							<td class="sun day day-border" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
-								<div id="day<%=j%>"><%=j %></div>
+						<tr class="day-border">
+						<!-- 그달의 1일 까지 공백처리하기 위한 것임. -->
+						<% for(int i = 1; i < week; i++){ %>		
+							<td height = "20">&nbsp;</td>
+							<% } %>
+							<!-- 	끝나는 날까지 for 문을 통해서 숫자를 출력한 것이다. week는 1일 제외하고 계산됨 -->
+							<%
+								// 오늘인지 확인
+								Date today = new Date();
+								SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+						        String todayString = sdformat.format(today);
+						        
+								for(int j = 1; j<=endDay; j ++){
+									week++;
+									
+									if(week % 7 ==2){%>
+						</tr>
+						<tr>
+							<% } 
+								if(week % 7 == 2){ %> <!-- 일요일이면 -->
+								<td class="sun day day-border" id="day-box<%=j%>" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
+									<div id="day<%=j%>"><%=j %></div>
 	
 										<%
 										for(int i = 0; i < pList.size(); i++){
@@ -302,13 +336,12 @@
 											String calDateString = calDate.substring(0, calDate.length() - 9);
 											if(!(Integer.toString(year).equals(todayString.substring(0, 4)) && month == Integer.parseInt(todayString.substring(5, 7)) && j == Integer.parseInt(todayString.substring(8, 10)))){
 								        		// 오늘 날짜 아님
-												if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
-										 	%>	<!-- 가져온 날짜와 같은지 확인 -->
+												if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){ %>
+											 		<!-- 가져온 날짜와 같은지 확인 -->
 											 		<script>
-											 			<%-- document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow'); --%>
-											 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow; border-radius: 40px; width: 30px;');
+											 			document.getElementById('day<%=j%>').setAttribute('style','background-color:rgba(255, 189, 50, 0.7);');
 											 		</script>
-											 		<div><%= pList.get(i).getDiaryTitle() %></div>
+											 		<div class="diary-title"><%= pList.get(i).getDiaryTitle() %></div>
 								       	<%
 								        		}
 											} else{ //오늘 날짜
@@ -316,20 +349,24 @@
 											%> <!-- 가져온 날짜와 같은지 확인 -->
 												<script>
 										 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
+										 			document.getElementById('day-box<%=j%>').setAttribute('style','background-color:rgba(255, 249, 235, 1);');
 										 		</script>
-										 		<div><%= pList.get(i).getDiaryTitle() %></div>
+										 		<div class="diary-title"><%= pList.get(i).getDiaryTitle() %></div>
 											<%	} else{ %>
-												<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+												<script>
+													document.getElementById('day<%=j%>').setAttribute('style','color:orange');
+													document.getElementById('day-box<%=j%>').setAttribute('style','background-color:rgba(255, 249, 235, 1);');
+												</script>
 											<%	}
 								    		}			
 										}
 										%>
-									<input type=button id="goal-btn" value="목표 설정">
+									<input type=button class="goal-btn" value="목표 설정">
 								</td>
 							<%
 							}else{
 							%>
-								<td class="weekday day day-border" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
+								<td class="weekday day day-border" id="day-box<%=j%>" onclick="location.href='/petdiary/detail?year=<%=year%>&month=<%=month%>&date=<%=j%>'" >
 									<div id="day<%=j%>"><%=j %></div>
 									<%
 									for(int i = 0; i < pList.size(); i++){
@@ -339,22 +376,19 @@
 							        	if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
 									 	%>
 									 		<script>
-									 			<%-- document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow'); --%>
-									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:yellow; border-radius: 40px; width: 30px');
-
+									 			document.getElementById('day<%=j%>').setAttribute('style','background-color:rgba(255, 189, 50, 0.7);');
 									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div>
+									 		<div class="diary-title"><%= pList.get(i).getDiaryTitle() %></div>
 							       	<%
 							        		}
 										}else{
 											if(Integer.toString(year).equals(calDateString.substring(0, 4)) && month == Integer.parseInt(calDateString.substring(5, 7)) && j == Integer.parseInt(calDateString.substring(8, 10))){
 										%>
 											<script>
-									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');
-									 		</script>
-									 		<div><%= pList.get(i).getDiaryTitle() %></div>
+									 			document.getElementById('day<%=j%>').setAttribute('style','color:orange');styl							 		</script>
+									 		<div class="diary-title"><%= pList.get(i).getDiaryTitle() %></div>
 										<%	}else{%>
-													<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
+												<script>document.getElementById('day<%=j%>').setAttribute('style','color:orange');</script>
 										<%	}
 							    		}
 									}
@@ -363,61 +397,49 @@
 							<% }      
 						}%>
 						</tr>
-				<%
-					String day = request.getParameter("date");
-				%>
 					</table>
+					
+					<!-- 목표설정 버튼 누르면 나오는 div -->
+					<div id="goal-box">
+						<button class="material-icons" id="goal-close">close</button>
+						<p>이번주 목표 설정</p>
+						<div id="goal-box1">
+							<img src="/assets/img/logo_title.png">
+						</div>
+						<div id="goal-box2">
+		           			<form action="/goal/write" method="get" id="goal-submit">
+			           			산책거리<input id="goal-input1" type="text" name="walk-dis" placeholder="숫자만 입력해주세요">m<br>
+			           			산책시간<input id="goal-input2" type="text" name="walk-time" placeholder="숫자만 입력해주세요">분<br>
+			           			<input type="button" id="goal-write" value="저장">
+		           			</form>
+						</div>
+	           		</div>
 				</div>
-				<div class="scroll-wrap2">
-          				<a onclick="location.href='/petdiary/write?year=<%=year%>&month=<%=month%>&date=<%=day%>'" class="message">
-           			<div><i class="far fa-comment-alt"></i></div>
-           			글쓰기</a>
-           		</div>
-           		<div id="goal-box">
-           			x <!-- 로고 -->
-           			<form action="/goal/write" method="get">
-           				<p>이번주 목표 설정</p>
-	           			<p>산책거리</p><input type="text" name="walk-dis">
-	           			<p>산책시간</p><input type="text" name="walk-time">
-	           			<input type="submit" id="goal-write">
-           			</form>
-           		</div>
-           		<script>
-					$('#goal-btn').click(function() {
-							$('#file-update-box').css('display','none');
-							$('#file-update-box2').css('display','inline-block');
-							var noticeNum = $('#notice-num').val();
-							var url = '/notice/update?noticeNo=' + noticeNum + '&photoCheck=Y';
-							$('#write-check').attr('action', url);
-						});
-				</script>
-           		
-           		
-				</div>
-			</div>
-			<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
-            <footer>
-                <!-- 푸터 -->
-                <div id="footer">
-                    <div id="footer-right-box">
-                        <img src="/assets/img/main_logo.png" alt="하단로고">
-                    </div>
-                    <div id="footer-left-box"> 
-                        <ul>
-                            <li>퍼피런소개</li>
-                            <li>사이트맵</li>
-                            <li>이용약관</li>
-                            <li>개인정보처리방침</li>
-                            <li>운영방침</li>
-                        </ul>
-                        <p id="footer-ptag">
-                            서울특별시 송파구 올림픽로 300 대표자 : 이혜썽 전화 : 1661-2000<br>
-                            전자우편주소 : puppyrun@naver.com<br>
-                            사업자등록번호 : 230-85-024691 통신판매업신고번호 : 송파 제12038호<br>
-                            Copyright 2021 PUPPYRUN. All Rights Reserved.
-                        </p>
-                    </div>
-                </div>
-            </footer>
+			</div> <!-- main 닫는 태그 -->
+		</div> <!-- wrap 닫는 태그-->
+		<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
+        <footer>
+               <!-- 푸터 -->
+               <div id="footer">
+                   <div id="footer-right-box">
+                       <img src="/assets/img/main_logo.png" alt="하단로고">
+                   </div>
+                   <div id="footer-left-box"> 
+                       <ul>
+                           <li>퍼피런소개</li>
+                           <li>사이트맵</li>
+                           <li>이용약관</li>
+                           <li>개인정보처리방침</li>
+                           <li>운영방침</li>
+                       </ul>
+                       <p id="footer-ptag">
+                           서울특별시 송파구 올림픽로 300 대표자 : 이혜썽 전화 : 1661-2000<br>
+                           전자우편주소 : puppyrun@naver.com<br>
+                           사업자등록번호 : 230-85-024691 통신판매업신고번호 : 송파 제12038호<br>
+                           Copyright 2021 PUPPYRUN. All Rights Reserved.
+                       </p>
+                   </div>
+               </div>
+        </footer>
     </body>
 </html>

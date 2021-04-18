@@ -283,10 +283,13 @@ nav {
     top : 110px;
     left : 720px;
     position: absolute;
-    background-image : url(/assets/img/dog-img.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-image : url(/assets/img/dog-img.png); */
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    background : #ffffff;
+    object-fit : cover;
     box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
+    cursor : pointer;
 }
 
 #login-wrap {

@@ -1,6 +1,7 @@
 package petdiary.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,13 @@ public class GoalWriteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// saveUserGoal 부르는 서블릿 - 결과는 int result 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int result = 0;
+		
+		if(result > 0) {
+			// 목표 설정 했는지 여부 보내줘야함
+		} else {
+			System.out.println("골 넣는거 실패해따!!!!!!!!!!");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

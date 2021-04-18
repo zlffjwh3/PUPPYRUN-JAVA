@@ -29,7 +29,7 @@
         <script src="<%= request.getContextPath() %>/assets/js/notice-update.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/notice-write.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
-        <title>퍼피런 - 공지사항</title>
+        <title>퍼피런 :: 퍼피런이야기</title>
     </head>
     <body>
 		<div id="wrap">
@@ -96,10 +96,18 @@
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                        	<a href="/petdiary/list">산책일기</a>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                        	<a href="/matching/list">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
@@ -108,7 +116,7 @@
                             <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">반려견계산기</a>
+                            <a href="/calculator/age">반려견계산기</a>
                         </li>
                     </ul>
                 </div>

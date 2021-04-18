@@ -15,18 +15,18 @@
     z-index: 100; 
 }
 
-.scroll-wrap2{
+/* .scroll-wrap2{
     position: fixed;
-    float: left;
     right : 100px;
     bottom: 5%;
     padding:10px;
-    background-color : #ffffff;
+    background-color : #FFBD32;
     opacity: 70%;
-    border-radius: 30px;
+    border-radius: 40px;
     box-shadow: 1px 1px 6px 3px rgb(218, 218, 218);
     z-index: 100; 
-}
+    cursor : pointer;
+} */
 
 
 .fa-chevron-up {

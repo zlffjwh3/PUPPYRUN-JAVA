@@ -152,18 +152,17 @@
                 <div id="mWalkInfo">
                 	<% if(user != null) { %>
                     <div id="walkcontent-box">
-                        <p id="text01">오늘
-                            <b>덕배</b>
-                            는 산책 다녀왔어요!</p>
-                        <div id="dog-image-box">
+                        <p id="text01">
+                        	이번주 <b><%= user.getUserNick() %></b>님의 기록을 확인하세요!
+                        </p>
+                        <img id="dog-image-box" onclick="location.href='/user/myInfo'">
                         	<% if(user.getUserPhoto() != null) { %>
-                        	<script>$('#dog-image-box').css('background-image','url(/upload/<%=user.getUserPhoto()%>)');</script>
+                        	<script>$('#dog-image-box').attr('src','/upload/<%=user.getUserPhoto()%>');</script>
                         	<% } else { %>
-                        	<script>$('#dog-image-box').css('background-image','url(/assets/img/user-no-img.png)');</script>
+                        	<script>$('#dog-image-box').attr('src','/assets/img/user-no-img.png');</script>
                         	<% } %>
-                        </div>
                         <div id="login-wrap">
-                            <a href="#" class="link-login">산책기록</a>
+                            <a href="/goal/stamp" class="link-login">산책기록</a>
                         </div>
                         <div id="info-wrap">
                             <div class="info-content">
@@ -188,7 +187,7 @@
                         <p id="text01">산책 정보를 확인하려면
                             <b>로그인</b>
                             해주세요.</p>
-                        <div id="dog-image-box"></div>
+                        <img id="dog-image-box" src="/assets/img/dog-img.png" onclick="location.href='/user/myInfo'">
                         <div id="login-wrap">
                             <a href="/login.jsp" class="link-login">로그인</a>
                         </div>

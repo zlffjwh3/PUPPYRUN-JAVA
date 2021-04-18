@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#wrap {
+ 	background-image : url(/assets/img/pet-diary-bg.png);
+    background-repeat: round;
+    background-size : cover;
+}
+
+#main-content {
+	margin-top : 50px;
+	margin-bottom : 100px;
+}
+
+/* 타이틀 */
+#nbb-top {
+    text-align: center;
+}
+
+	#nbb-top h3 {
+	    font-size : 30px;
+	    color : #FBB41D;
+	    padding-bottom : 6px;
+	}
+	
+	#nbb-top p {
+	    font-size : 14px;
+	    font-weight: 400;
+	    color : #868686;
+	}
+	
+/* 차트 */
+.chart {
+	float: left;
+	width: 33.33%;
+	height: 230px;
+	text-align: center;
+}
+
+/* 도장 */
+
