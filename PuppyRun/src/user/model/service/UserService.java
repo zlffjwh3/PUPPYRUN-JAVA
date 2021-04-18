@@ -194,7 +194,23 @@ public class UserService {
 		}
 		return user;
 	}
-
+	
+	// 회원정보 수정할 때 사용
+	public User selectOneUserIdOnly(String userId) {
+		User user = null;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			user = new UserDAO().selectOneUserIdOnly(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return user;
+	}
+	// 회원정보수정
 	public int updateUser(User user) {
 		int result = 0;
 		Connection conn = null;
@@ -212,6 +228,22 @@ public class UserService {
 		} finally {
 			JDBCTemplate.close(conn);
 		}
+		return result;
+	}
+	
+	public int updateDog(User user, Dog dog) { // 수정예정@@@@@@@@@@@@@!!
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			result = new UserDAO().updateDog(conn, user, dog);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
 		return result;
 	}
 
