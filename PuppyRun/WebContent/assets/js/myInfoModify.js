@@ -272,7 +272,7 @@ $(document).ready(function() {
             }
 	
             frm.method = "post";
-            frm.action = "/user/enroll";
+            frm.action = "/user/update?userId =" + userId;
 		}   else if (mode == "02") {
 				if(userIdCheckFlag == false) {
                 	return;
@@ -325,7 +325,7 @@ $(document).ready(function() {
 				}
 			
 			frm.method = "post";
-            frm.action = "/user/enrollDog";
+            frm.action = "/user/update?userId =" + userId;
 		}
             frm.submit(); // 실행
     }
