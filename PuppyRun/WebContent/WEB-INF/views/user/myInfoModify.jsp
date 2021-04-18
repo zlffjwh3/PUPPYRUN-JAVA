@@ -65,7 +65,7 @@
                     <div id="phone-area" class="area-div">
                         <p class="subtitle">휴대전화</p>
                         <div id="phone-input" class="input-div">
-                            <input value="<%= user.getUserPhoto() %>" type="text" name="user-phone" id="user-phone" placeholder="휴대전화">
+                            <input value="<%= user.getPhone() %>" type="text" name="user-phone" id="user-phone" placeholder="휴대전화">
                         </div><span class="phone-error-msg error-msg"></span>
                     </div>
                     <div id="email-area" class="area-div">
