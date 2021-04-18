@@ -79,7 +79,7 @@
                     </span>
                     <dl>
                         <dt>1일 기초 대사량</dt>
-                        <dd id ="basic_meta">400kcal</dd>
+                        <dd id ="basic_meta">`+rerVal+`kcal</dd>
                     </dl>
                     </div>
                         
@@ -89,7 +89,7 @@
                             </span> 
                             <dl>
                                 <dt>1일 권장 칼로리</dt>
-                                <dd id="basic_kal">1600cal</dd>
+                                <dd id="basic_kal">`+result+`kcal</dd>
                             </dl>
                         </div>
                         <div class="cal_txt">
