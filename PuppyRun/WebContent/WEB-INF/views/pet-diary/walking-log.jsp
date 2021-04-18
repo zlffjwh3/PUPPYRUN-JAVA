@@ -124,6 +124,7 @@
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                 <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
             </div>
+            
             <!-- 메인 ---------------------------------------------------------------------------------------------------------->
 	   		<div id="main-content">
 	   			<div id="nbb-top">
