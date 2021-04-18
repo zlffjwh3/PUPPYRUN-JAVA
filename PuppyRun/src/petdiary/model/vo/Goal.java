@@ -6,8 +6,6 @@ public class Goal {
 	private int goalNo;
 	private int goalDis;
 	private int goalTime;
-	private int userDis;
-	private int userTime;
 	private int weekDis;
 	private int weekTime;
 	private char goalCheck;
@@ -33,18 +31,6 @@ public class Goal {
 	}
 	public void setGoalTime(int goalTime) {
 		this.goalTime = goalTime;
-	}
-	public int getUserDis() {
-		return userDis;
-	}
-	public void setUserDis(int userDis) {
-		this.userDis = userDis;
-	}
-	public int getUserTime() {
-		return userTime;
-	}
-	public void setUserTime(int userTime) {
-		this.userTime = userTime;
 	}
 	public int getWeekDis() {
 		return weekDis;
@@ -83,8 +69,7 @@ public class Goal {
 
 	@Override
 	public String toString() {
-		return "Goal [goalNo=" + goalNo + ", goalDis=" + goalDis + ", goalTime=" + goalTime + ", userDis=" + userDis
-				+ ", userTime=" + userTime + ", weekDis=" + weekDis + ", weekTime=" + weekTime + ", goalCheck="
+		return "Goal [goalNo=" + goalNo + ", goalDis=" + goalDis + ", goalTime=" + goalTime + ", weekDis=" + weekDis + ", weekTime=" + weekTime + ", goalCheck="
 				+ goalCheck + ", goalId=" + goalId + ", goalDate=" + goalDate + "]";
 	}
 }

@@ -7,11 +7,12 @@ public class PetDiary {
 	private int diaryNo;
 	private String diaryTitle;
 	private String diaryContent;
-	private String diaryMap;
 	private String diaryId;
 	private String diaryDate;
 	private String diaryPhoto;
-	private ArrayList<Goal> goal;
+	private int diaryDis;
+	private int diaryTime;
+	
 	
 	public PetDiary() {}
 	
@@ -41,14 +42,6 @@ public class PetDiary {
 		this.diaryContent = diaryContent;
 	}
 
-	public String getDiaryMap() {
-		return diaryMap;
-	}
-
-	public void setDiaryMap(String diaryMap) {
-		this.diaryMap = diaryMap;
-	}
-
 	public String getDiaryId() {
 		return diaryId;
 	}
@@ -73,18 +66,26 @@ public class PetDiary {
 		this.diaryPhoto = diaryPhoto;
 	}
 
-	public ArrayList<Goal> getGoal() {
-		return goal;
+	public int getDiaryDis() {
+		return diaryDis;
 	}
 
-	public void setGoal(ArrayList<Goal> goal) {
-		this.goal = goal;
+	public void setDiaryDis(int diaryDis) {
+		this.diaryDis = diaryDis;
+	}
+
+	public int getDiaryTime() {
+		return diaryTime;
+	}
+
+	public void setDiaryTime(int diaryTime) {
+		this.diaryTime = diaryTime;
 	}
 
 	@Override
 	public String toString() {
 		return "PetDiary [diaryNo=" + diaryNo + ", diaryTitle=" + diaryTitle + ", diaryContent=" + diaryContent
-				+ ", diaryMap=" + diaryMap + ", diaryId=" + diaryId + ", diaryDate=" + diaryDate + ", diaryPhoto="
-				+ diaryPhoto + ", goal=" + goal + "]";
+				+ ", diaryId=" + diaryId + ", diaryDate=" + diaryDate + ", diaryPhoto="
+				+ diaryPhoto + "]";
 	}
 }
