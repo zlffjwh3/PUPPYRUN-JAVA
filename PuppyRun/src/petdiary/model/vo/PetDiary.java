@@ -1,14 +1,13 @@
 package petdiary.model.vo;
 
-import java.util.Date;
-import java.util.ArrayList;
+import java.sql.Date;
 
 public class PetDiary {
 	private int diaryNo;
 	private String diaryTitle;
 	private String diaryContent;
 	private String diaryId;
-	private String diaryDate;
+	private Date diaryDate;
 	private String diaryPhoto;
 	private int diaryDis;
 	private int diaryTime;
@@ -50,11 +49,11 @@ public class PetDiary {
 		this.diaryId = diaryId;
 	}
 
-	public String getDiaryDate() {
+	public Date getDiaryDate() {
 		return diaryDate;
 	}
 
-	public void setDiaryDate(String diaryDate) {
+	public void setDiaryDate(Date diaryDate) {
 		this.diaryDate = diaryDate;
 	}
 
