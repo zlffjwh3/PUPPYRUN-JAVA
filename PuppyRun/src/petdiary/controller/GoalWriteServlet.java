@@ -18,6 +18,7 @@ public class GoalWriteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// saveUserGoal 부르는 서블릿 - 결과는 int result 
+		// SELECT * FROM GOAL WHERE '210417' >= TO_CHAR(GOAL_DATE, 'YYMMDD') AND '210417' < (TO_CHAR(GOAL_DATE + 7, 'YYMMDD'));
 		int result = 0;
 		
 		if(result > 0) {
