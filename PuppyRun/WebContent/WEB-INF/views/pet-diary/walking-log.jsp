@@ -26,7 +26,7 @@
     <script src="<%= request.getContextPath() %>/assets/js/walking-log.js"></script>
 	<!-- 차트 api -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="/path/to/jquery.easy-pie-chart.js"></script>
+    <script src="<%= request.getContextPath() %>/assets/js/jquery.easy-pie-chart.js"></script>
 	<title>퍼피런 :: 산책일기</title>
 </head>
 <body>
@@ -131,19 +131,57 @@
                     <h3>산책기록</h3>
                     <p>지금까지 달성한 목표를 확인해보세요!</p>
                 </div>
-	   			<div class="chart" data-percent="55">
-	   				<span class="title">chart1</span>
-	   			</div> <!-- percent 계산해서 넣어주기 -->
-	   			<div id="stamp-box">
-	   				<p>지난 목표</p>
-	   				<div>
-	   					<% for(int i=0; i<3; i++) {
-	   						for(int j=0; j<3; j++) { %>
-	   							<img src="">
-	   						<% }
-	   					} %>
-	   				</div>
-	   			</div>
+                
+                <div id="goal-stamp-box">
+                	<div id="goal-stamp-box-left">
+                		<div id="left-title">현재 목표</div>
+                		<div id="left-chart">
+				   			<div class="chart char1" data-percent="55">
+				   				<span class="title">
+				   					<img id="dog-image-box" src="/assets/img/dog-img.png" onclick="location.href='/user/myInfo'">		
+									<% if(user.getUserPhoto() != null) { %>
+			                        	<script>$('#dog-image-box').attr('src','/upload/<%=user.getUserPhoto()%>');</script>
+			                       	<% } else { %>
+			                        	<script>$('#dog-image-box').attr('src','/assets/img/user-no-img.png');</script>
+			                       	<% } %>
+								</span>
+				   			</div> <!-- percent 계산해서 넣어주기 -->
+                		</div>
+                		<div id="left-time">
+                			<span class="user-time">170</span>
+                			<span class="time-set"> / </span>
+                			<span class="goal-time time-set">210</span>
+                			<span class="time-set">분</span>
+                		</div>
+                	</div>
+                	<div id="p-hr"></div>
+                	<div id="goal-stamp-box-right">
+			   			<div id="stamp-box"></div>
+			   				<div id="right-title">지난 목표</div>
+			   				<div id="right-stamp">
+			   					<% for(int i=0; i<3; i++) { %>
+			   					<div id="stamp-div<%= i %>">
+			   						<% for(int j=0; j<3; j++) { %>
+			   						<!-- 목표를 성공했다면 (이미지 변경) --------------------------------------------------------------------------------->
+			   							<% if(1 > 0) { %>
+			   								<img class="goal-stamp goal-stamp<%= j %>" src="/assets/img/user-no-img.png"">
+			   							<% } else { %>
+			   								<img class="goal-stamp goal-stamp<%= j %>" src="/assets/img/user-no-img.png"">
+			   							<% } %>
+			   						<% } %>
+		   						</div>
+			   					<%} %>
+			   				</div>
+			   				<!-- 페이징  -------------------------------------------------------------------------------------------------------------------->
+			   				<div id="right-page">
+			   					<p> << < 1 2 3 4 5  > >> </p>
+			   					
+			   					
+			   				</div>
+			   			
+                		
+                	</div>
+                </div>
 	   		</div>
 	   		<!-- 메인 끝 ---------------------------------------------------------------------------------------------------------->
         <footer>

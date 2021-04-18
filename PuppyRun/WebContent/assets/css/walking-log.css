@@ -11,6 +11,8 @@
 	margin-bottom : 100px;
 }
 
+
+
 /* 타이틀 */
 #nbb-top {
     text-align: center;
@@ -28,13 +30,131 @@
 	    color : #868686;
 	}
 	
-/* 차트 */
+/* 전체 박스 */
+#goal-stamp-box {
+	width : 1024px;
+	height : 523px;
+	background: pink;
+	margin : 50px auto;
+	border-radius : 30px;
+}
+	
+/* 박스 - 왼쪽영역 */
+#goal-stamp-box-left {
+		width : 39%;
+		height : 100%;
+		float : left;
+}
+
+	#left-title {
+		width : 100%;
+		height : 20%;
+	    text-align: center;
+	    line-height: 9;
+	    font-size: 18px;
+	    color: #FEB415;
+	}
+	
+	#left-chart {
+		width : 100%;
+		height : 50%;
+	}
+	
+
+/* 왼쪽 - 차트 */
 .chart {
 	float: left;
 	width: 33.33%;
 	height: 230px;
 	text-align: center;
+	position: relative;
+    top: -167px;
+    left: 100px;
 }
 
-/* 도장 */
+	.chart > canvas {
+		position: relative;
+    	z-index: 3;
+	}
+
+	#dog-image-box {
+	    width: 190px;
+	    position: relative;
+	    z-index: 1;
+	    top: 89px;
+	    left: 5px;
+	}
+
+.chart span.title {
+	position: relative; 
+	display: block; 
+	width: 100%; 
+	text-align: center; 
+	top: 110px;
+}
+
+/* 왼쪽 - 시간 */
+#left-time {
+	width : 100%;
+	height : 30%;
+	text-align: center;
+}
+	.user-time {
+		font-size : 35px;
+		color : #FEB415;
+		font-weight: 600;
+	}
+	
+	.time-set {
+		font-size : 28px;
+		color : #A8A8A8;
+	}
+
+	.goal-time {
+		color : black;
+		font-weight: 500;
+	}
+	
+	
+/* 박스 - 가운데 */
+#p-hr {
+		width : 1%;
+		height : 100%;
+		background : silver;
+		float : left;
+}
+
+/* 오른쪽 박스 영역 */
+#goal-stamp-box-right {
+		width : 60%;
+		height : 100%;
+		float : left;
+}
+
+	#right-title {
+		width : 100%;
+		height : 20%;
+		text-align: center;
+	    line-height: 9;
+	    font-size: 18px;
+	    color: #FEB415;
+	}
+	
+	#right-stamp {
+		width : 100%;
+		height : 65%;
+	    text-align: -webkit-center;text-align: center;
+	    padding: 15px 0 0 0;
+	}
+
+		.goal-stamp {
+			width: 88px;
+	    	margin: 0 10px 0 10px;
+		}
+		
+	#right-page {
+		width : 100%;
+		height : 15%;
+		text-align: center;
+	}
 

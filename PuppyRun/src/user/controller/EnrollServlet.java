@@ -33,7 +33,7 @@ public class EnrollServlet extends HttpServlet {
 		User user = new User();
 //		Dog dog = new Dog();
 		String birth = request.getParameter("user-birth-year") + request.getParameter("user-birth-month") + request.getParameter("user-birth-day");
-		String address = request.getParameter("zip") + request.getParameter("addr1") + request.getParameter("addr2");
+		String address = request.getParameter("zip") + "/" + request.getParameter("addr1") + "/" + request.getParameter("addr2");
 		
 		user.setUserId(request.getParameter("user-id"));
 		user.setUserPw(request.getParameter("user-pwd"));

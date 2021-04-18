@@ -35,7 +35,7 @@
                     <div id="id-area" class="area-div">
                         <p class="subtitle">아이디</p>
                         <div id="id-input" class="input-div">
-                            <input value="<%= user.getUserId() %>" type="text" name="user-id" id="user-id" placeholder="아이디 입력(영문 대소문자와 숫자, 5~11자)">
+                            <input value="<%= user.getUserId() %>" type="text" name="user-id" id="user-id" placeholder="아이디 입력(영문 대소문자와 숫자, 5~11자)" readonly>
                         </div>
                         <span class="id-error-msg error-msg"></span>
                     </div>
@@ -53,13 +53,13 @@
                     <div id="nickname-area" class="area-div">
                         <p class="subtitle">닉네임</p>
                         <div id="nickname-input" class="input-div">
-                            <input value="<%= user.getUserNick() %>" type="text" name="user-nickname" id="user-nickname" placeholder="닉네임">
+                            <input value="<%= user.getUserNick() %>" type="text" name="user-nickname" id="user-nickname" placeholder="닉네임" readonly>
                         </div><span class="nickname-error-msg error-msg"></span>
                     </div>
                     <div id="name-area" class="area-div">
                         <p class="subtitle">이름</p>
                         <div id="name-input" class="input-div">
-                            <input value="<%= user.getUserName() %>" type="text" name="user-name" id="user-name" placeholder="이름">
+                            <input value="<%= user.getUserName() %>" type="text" name="user-name" id="user-name" placeholder="이름"  readonly>
                         </div><span class="name-error-msg error-msg"></span>
                     </div>
                     <div id="phone-area" class="area-div">
@@ -97,18 +97,21 @@
                             <input value="<%= user.getUserBirth().substring(6,8) %>" type="text" name="user-birth-day" id="user-birth-day" placeholder="일">
                         </div>
                     </div>
-
+					
+					<%
+						String date[] = user.getUserAddr().split("/");
+					%>
                     <div id="addr-area" class="area-div">
                         <p class="subtitle">집주소</p>
                         <div id="zip-input" class="input-div">
-                            <input type="text" id="zip" name="zip" placeholder="우편번호">
+                            <input value="<%= date[0] %>" type="text" id="zip" name="zip" placeholder="우편번호">
                         </div>
                         <button id="addr-search-btn" type="button" style="width:60px; height:32px;" onclick="openZipSearch()">입력</button>
                         <div id="aadr1-input" class="input-div">
-                            <input type="text" name="addr1" id="addr1" placeholder="기본주소" readonly>
+                            <input value="<%= date[1] %>" type="text" name="addr1" id="addr1" placeholder="기본주소" readonly>
                         </div>
                         <div id="addr2-input" class="input-div">
-                            <input type="text" name="addr2" id="addr2" placeholder="상세주소">
+                            <input value="<%= date[2] %>" type="text" name="addr2" id="addr2" placeholder="상세주소">
                         </div>
                     </div>
                  
