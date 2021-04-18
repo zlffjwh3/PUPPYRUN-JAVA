@@ -1,3 +1,4 @@
+<%@page import="petdiary.model.vo.Goal"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="petdiary.model.vo.PetDiary"%>
@@ -10,6 +11,7 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<PetDiary> pList = (ArrayList<PetDiary>)request.getAttribute("pList");
 	PetDiary petDiary = (PetDiary)request.getAttribute("petDiary");
+	Goal goal = (Goal)request.getAttribute("goal");
 	String day = request.getParameter("date");
 	/* 목표 설정했는지 여부 가져오기....! */
 	
@@ -410,6 +412,7 @@
 						</div>
 						<div id="goal-box2">
 		           			<form action="/goal/write" method="get" id="goal-submit">
+		           				<input type = "hidden" name = "goal-date" value = "<%= petDiary.getDiaryDate().substring(0, 10) %>">
 			           			산책거리<input id="goal-input1" type="text" name="walk-dis" placeholder="숫자만 입력해주세요">m<br>
 			           			산책시간<input id="goal-input2" type="text" name="walk-time" placeholder="숫자만 입력해주세요">분<br>
 			           			<input type="button" id="goal-write" value="저장">

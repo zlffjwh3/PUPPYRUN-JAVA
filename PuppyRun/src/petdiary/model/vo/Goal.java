@@ -9,8 +9,8 @@ public class Goal {
 	private int weekDis;
 	private int weekTime;
 	private char goalCheck;
-	private int goalId;
-	private Date goalDate;
+	private String goalId;
+	private String goalDate;
 	
 	public Goal() {}
 	
@@ -54,16 +54,16 @@ public class Goal {
 	public void setGoalCheck(char goalCheck) {
 		this.goalCheck = goalCheck;
 	}
-	public int getGoalId() {
+	public String getGoalId() {
 		return goalId;
 	}
-	public void setGoalId(int goalId) {
+	public void setGoalId(String goalId) {
 		this.goalId = goalId;
 	}
-	public Date getGoalDate() {
+	public String getGoalDate() {
 		return goalDate;
 	}
-	public void setGoalDate(Date goalDate) {
+	public void setGoalDate(String goalDate) {
 		this.goalDate = goalDate;
 	}
 

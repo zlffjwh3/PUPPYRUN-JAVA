@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import petdiary.model.service.GoalService;
 import petdiary.model.service.PetDiaryService;
+import petdiary.model.vo.Goal;
 import petdiary.model.vo.PetDiary;
 import user.model.vo.User;
 
@@ -40,13 +42,15 @@ public class PetDiaryDetailServlet extends HttpServlet {
 	 	}
 	 	String tempDate = year+"-"+month+"-"+date;
 	 	Date diaryDate = Date.valueOf(tempDate);
-	 	
+	 	String goalDate = year+"/"+month+"/"+date;
 	 	
 	 	PetDiary petDiary = new  PetDiaryService().selectOneDiary(diaryDate, diaryId);
 	 	ArrayList<PetDiary> pList = new PetDiaryService().selectAllDiary(diaryId);
+	 	Goal goal = new GoalService().weekGoal(diaryId, goalDate);
 	 	
  		request.setAttribute("petDiary", petDiary);
  		request.setAttribute("pList", pList);
+ 		request.setAttribute("goal", goal);
  		request.getRequestDispatcher("/WEB-INF/views/pet-diary/pet-diary.jsp").forward(request, response);
 	}
 
