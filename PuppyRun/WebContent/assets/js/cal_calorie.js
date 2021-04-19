@@ -7,7 +7,10 @@ function calorieResult() {
     if(dogWeight == null || dogWeight == '' || dogWeight.length == 0){
         alert('강아지의 몸무게를 입력해주세요! :-)');
         return;
-    }
+    } else if (selectedVal == '0') {
+		alert('반려견 상태를 선택해 주세요');
+		return;
+	}
     
     var selectedVal = $('#dog_jisu option:selected').val();
     var rerVal = Math.ceil(70 * Math.pow(dogWeight, 0.75));

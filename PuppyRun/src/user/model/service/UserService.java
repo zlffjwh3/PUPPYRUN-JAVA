@@ -136,31 +136,6 @@ public class UserService {
 		return result;
 	}
 	
-//	public int updateUser(User user) {
-//		int result = 0;
-//		Connection conn = null;
-//		
-//		try {
-//			conn = factory.createConnection();
-//			result = new UserDAO().updateUser(conn, user);
-//			System.out.println("결과값 : " + result);
-//			if(result > 0) {
-//				JDBCTemplate.commit(conn);
-//			} else {
-//				JDBCTemplate.rollback(conn);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//	         JDBCTemplate.close(conn);
-//	      }
-//		return result;
-//	}
-	
-//	public User findUser(String userId) { // findUserId / findUserPwd 분리하는게 나을것같아서 주석
-//		return null;
-//	}
-
 
 	// 유저ID찾기
 	public User findUserId(String userName, String userEmail) {
@@ -247,6 +222,27 @@ public class UserService {
 		return result;
 	}
 
+	// 관리자 유저 도그 체크
+	public ArrayList<User> dogCheckY(char dogCheck) {
+		Connection conn = null;
+		ArrayList<User> dogCheckList = null;
+		
+		try {
+			conn = factory.createConnection();
+			dogCheckList = new UserDAO().selectDogCheckY(conn, dogCheck);
+			if(dogCheckList != null) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return dogCheckList;
+	}
 
 
 
