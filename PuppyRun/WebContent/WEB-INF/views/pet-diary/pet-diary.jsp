@@ -200,7 +200,7 @@
                     <p>친구와의 추억을 기록해요!</p>
                 </div>
 	   			<!-- Goal ----------------------------------------------------------------------------------------->
-	   			                <div id="mWalkInfo">
+	   			<div id="mWalkInfo">
                 	<% if(user != null) { %>
                     <div id="walkcontent-box">
                         <p id="text01">
