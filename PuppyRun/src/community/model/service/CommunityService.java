@@ -26,7 +26,7 @@ public class CommunityService {
 			cp.setcList(new CommunityDAO().selectAllCommunity(conn, currentPage));
 			// 게시글 페이지
 			cp.setPageNavi(new CommunityDAO().getPageNavi(conn, currentPage));
-			System.out.println("서비스 완료");
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -165,8 +165,22 @@ public class CommunityService {
 		return result;
 	}
 	
-	public int printSearchList(String search, int currentPage) {
-		return 0;
+	public CommunityPage printSearchList(String search, int currentPage) {
+		Connection conn = null;
+		CommunityPage communityPage = new CommunityPage();
+		
+		try {
+			conn = factory.createConnection();
+			communityPage.setcList(new CommunityDAO().selectSearchList(conn, search, currentPage));
+			communityPage.setPageNavi(new CommunityDAO().getSearchPageNavi(conn, search, currentPage));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return communityPage;
 	}
 
 

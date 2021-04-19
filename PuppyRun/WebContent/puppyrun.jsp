@@ -10,6 +10,8 @@
 	if(user != null) {
 		weekGoal = (Goal)request.getAttribute("weekGoal");
 	}
+	
+	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -44,10 +46,10 @@
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	<form action="" method="get">
-		                    	<input class="search-input" type="text" placeholder="search">
-		                    	<input id="search-btn" type="submit" value="">
-	                    	</form>
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="searchKeyword">
+                                <input id="search-btn" type="submit" value="">
+                            </form>
 	                    </div>
                 	</div>
 	                <!-- 헤더 메인 로고 -->
@@ -218,21 +220,29 @@
                 <div class="free-board-box">
                     <div id="fbb-top">
                         <p>멍멍이야기</p>
-                        <a href="#">
+                        <a href="/community/list">
                             <i class="xi-plus-thin"></i>
                         </a>
                         <p>NEW</p>
                     </div>
                     <div id="fbb-bottom">
-                    	
+                    	<%
+                    	if(cList != null) {
+                    		for(int i = 0; i < 4; i++) {
+                    	%>
+                    	<a href="/community/detail?comNo=<%=cList.get(i).getComNo() %>">
                         <dl class="fbb-cotent">
-                            <dt>데이터</dt>
-                            <dd>타이틀</dd>
-                            <dd>내용</dd>
+                            <dt><%=cList.get(i).getComDate() %></dt>
+                            <dd><%=cList.get(i).getComTitle() %></dd>
+                            <dd><%=cList.get(i).getComContent() %></dd>
                             <div class="profile-image"></div>
-                            <dt>닉네임</dt>
+                            <dt><%=cList.get(i).getUserNick() %></dt>
                         </dl>
-                       
+                        </a>
+                        <%
+                        	}
+                        }
+                        %>
                     </div>
                 </div>
                 <!-- 산책친구 -->
