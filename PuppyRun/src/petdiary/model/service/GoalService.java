@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import petdiary.model.dao.GoalDAO;
 import petdiary.model.vo.Goal;
+import petdiary.model.vo.GoalPage;
 import petdiary.model.vo.PetDiary;
 
 public class GoalService {
@@ -78,12 +79,21 @@ public class GoalService {
 	}
 	
 	// 전체 기록 불러오는 메소드 - GoalStampServlet
-	public ArrayList<Goal> goalList(String goalId) {
-		return null;
-	}
-	
-	// 아이디별로 목표 달성 몇개했는지 카운트해서 가져오는 메소드 - GoalStampServlet
-	public int countGoal(String goalId) {
-		return 0;
+	public GoalPage goalList(String goalId, int currentPage) {
+		Connection conn = null;
+		GoalPage gp = new GoalPage();
+		
+		try {
+			conn = factory.createConnection();
+			
+			gp.setgList(new GoalDAO().goalList(conn, goalId, currentPage));
+			gp.setPageNavi(new GoalDAO().getPageNavi(conn, goalId, currentPage));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return gp;
 	}
 }

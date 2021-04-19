@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
@@ -121,14 +122,126 @@ public class GoalDAO {
 		return result;
 	}
 	
-	// 전체 기록 불러오는 메소드
-	// -- 그냥 전체 불러와서 확인할 수 있도록 할까나,,,?
-	public ArrayList<Goal> goalList(Connection conn, String goalId) {
-		return null;
+	// 전체 기록
+	public ArrayList<Goal> goalList(Connection conn, String goalId, int currentPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY GOAL_DATE ASC) AS NUM, GOAL_NO, GOAL_DIS, GOAL_TIME, GOAL_CHECK, GOAL_DATE, GOAL_ID, WEEK_DIS, WEEK_TIME FROM GOAL WHERE GOAL_ID = ?) WHERE NUM BETWEEN ? AND ?";
+		ArrayList<Goal> gList = null;
+		
+		int recordCountPage = 9;
+		int start = currentPage * recordCountPage - (recordCountPage - 1);
+		int end = currentPage * recordCountPage;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, goalId);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			
+			if(rset != null) {
+				gList = new ArrayList<Goal>();
+				
+				while(rset.next()) {
+					Goal goal = new Goal();
+					
+					goal.setGoalNo(rset.getInt("GOAL_NO"));
+					goal.setGoalDis(rset.getInt("GOAL_DIS"));
+					goal.setGoalTime(rset.getInt("GOAL_TIME"));
+					goal.setGoalCheck(rset.getString("GOAL_CHECK").charAt(0));
+					goal.setGoalDate(rset.getString("GOAL_DATE"));
+					goal.setGoalId(rset.getString("GOAL_ID"));
+					goal.setWeekDis(rset.getInt("WEEK_DIS"));
+					goal.setWeekTime(rset.getInt("WEEK_TIME"));
+					
+					gList.add(goal);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return gList;
 	}
 	
-	// 아이디별로 목표 달성 몇개했는지 카운트해서 가져오는 메소드
-	public int countGoal(Connection conn, String goalId) {
-		return 0;
+	// 전체 기록 - 페이지 네비게이션
+	public String getPageNavi(Connection conn, String goalId, int currentPage) {
+		int recordTotalCount = totalCount(conn, goalId);
+		int recordCountPerPage = 9;
+		int pageTotalCount = 0;
+		
+		if((recordTotalCount % recordCountPerPage) > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		} else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		
+		// 오류방지 코드
+		if(currentPage < 1) {
+			currentPage = 1;
+		} else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int naviCountPerPage = 10;
+		int startNavi = ((currentPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		
+		// 오류방지 코드
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a href='/goal/stmap?currentPage=" + (startNavi - 1) + "' id='page-prev'> < </a>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			sb.append("<a href='/goal/stamp?currentPage=" + i + "'>" + i + "</a>");
+		}
+		if(needNext) {
+			sb.append("<a href='/goal/stmap?currentPage=" + (endNavi + 1) + "' id='page-next'> > </a>");
+		}
+		
+		return sb.toString();
+	}
+	
+	// 공지사항 리스트 - 총 게시물 수 계산
+	public int totalCount(Connection conn, String goalId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM GOAL WHERE GOAL_ID = ?";
+		
+		int recordTotalCount = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, goalId);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				recordTotalCount = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return recordTotalCount;
 	}
 }

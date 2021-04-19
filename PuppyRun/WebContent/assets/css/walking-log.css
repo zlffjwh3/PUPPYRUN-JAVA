@@ -1,21 +1,14 @@
 @charset "UTF-8";
 
-#wrap {
- 	background-image : url(/assets/img/pet-diary-bg.png);
-    background-repeat: round;
-    background-size : cover;
-}
-
 #main-content {
 	margin-top : 50px;
-	margin-bottom : 100px;
+	margin-bottom : 150px;
 }
-
-
 
 /* 타이틀 */
 #nbb-top {
     text-align: center;
+   	padding : 30px 0 30px 0;
 }
 
 	#nbb-top h3 {
@@ -34,16 +27,17 @@
 #goal-stamp-box {
 	width : 1024px;
 	height : 523px;
-	background: pink;
 	margin : 50px auto;
 	border-radius : 30px;
+	box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 	
 /* 박스 - 왼쪽영역 */
 #goal-stamp-box-left {
-		width : 39%;
-		height : 100%;
-		float : left;
+	width : 39%;
+	height : 100%;
+	float : left;
+	margin-right: 10px;
 }
 
 	#left-title {
@@ -115,15 +109,22 @@
 		font-weight: 500;
 	}
 	
+	#left-time p {
+		color : #c9c9c9;
+		margin-bottom : 15px;
+	}
 	
-/* 박스 - 가운데 */
-#p-hr {
-		width : 1%;
-		height : 100%;
-		background : silver;
-		float : left;
-}
-
+	.goal-btn {
+		width : 100px;
+	    height : 40px;
+	    text-align: center;
+	    line-height: 40px;
+	    background-color:#FBB41D;
+	    color : #ffffff;
+	    border-radius: 30px;
+	    display: inline-block;
+	}
+	
 /* 오른쪽 박스 영역 */
 #goal-stamp-box-right {
 		width : 60%;
@@ -143,18 +144,53 @@
 	#right-stamp {
 		width : 100%;
 		height : 65%;
-	    text-align: -webkit-center;text-align: center;
-	    padding: 15px 0 0 0;
+	    text-align: -webkit-center;
+	    text-align: center;
+	    border-left : 1px solid silver;
 	}
 
 		.goal-stamp {
-			width: 88px;
+			width: 110px;
 	    	margin: 0 10px 0 10px;
+	    	cursor : pointer;
 		}
+		
+		.goal-stamp:hover {
+			filter : brightness(90%);
+		}
+		
+		.goal-stamp:active {
+			filter : brightness(70%);
+		}
+		
+		#no-goal-stamp {
+			margin : 20px auto;
+			width : 80%;
+			height : 95%;
+			border : 3px solid #FBB41D;
+			border-radius : 30px;
+		}
+		
+			#no-goal-stamp img {
+				margin-top : 10px;
+				width : 50%;
+			}
+			
+			#no-goal-stamp p {
+				margin : 10px 0 20px 0;
+			}
 		
 	#right-page {
 		width : 100%;
 		height : 15%;
 		text-align: center;
+	}
+
+	#right-page a {
+	    padding : 2px 8px;
+	}
+	
+	#right-page a:visited {
+	    color : #FBB41D;
 	}
 

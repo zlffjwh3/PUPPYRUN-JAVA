@@ -1,7 +1,15 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="petdiary.model.vo.Goal"%>
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% User user = (User)session.getAttribute("user"); %>
+<%
+	User user = (User)session.getAttribute("user");
+
+	Goal weekGoal = (Goal)request.getAttribute("weekGoal");
+	ArrayList<Goal> gList = (ArrayList<Goal>)request.getAttribute("gList");
+	String pageNavi = (String)request.getAttribute("pageNavi");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -135,51 +143,80 @@
                 <div id="goal-stamp-box">
                 	<div id="goal-stamp-box-left">
                 		<div id="left-title">현재 목표</div>
+                		<% if(weekGoal != null) { 
+                			double percent = (double)weekGoal.getWeekTime() / (double)weekGoal.getGoalTime() * 100;
+                		%>
                 		<div id="left-chart">
-				   			<div class="chart char1" data-percent="55">
+				   			<div class="chart char1" data-percent="<%= percent %>">
 				   				<span class="title">
 				   					<img id="dog-image-box" src="/assets/img/dog-img.png" onclick="location.href='/user/myInfo'">		
 									<% if(user.getUserPhoto() != null) { %>
 			                        	<script>$('#dog-image-box').attr('src','/upload/<%=user.getUserPhoto()%>');</script>
 			                       	<% } else { %>
-			                        	<script>$('#dog-image-box').attr('src','/assets/img/user-no-img.png');</script>
+			                        	<script>$('#dog-image-box').attr('src','/assets/img/user-no-img2.png');</script>
 			                       	<% } %>
 								</span>
-				   			</div> <!-- percent 계산해서 넣어주기 -->
+				   			</div>
                 		</div>
                 		<div id="left-time">
-                			<span class="user-time">170</span>
+                			<span class="user-time"><%= weekGoal.getWeekTime() %></span>
                 			<span class="time-set"> / </span>
-                			<span class="goal-time time-set">210</span>
+                			<span class="goal-time time-set"><%= weekGoal.getGoalTime() %></span>
                 			<span class="time-set">분</span>
                 		</div>
+                		<% } else { %>
+                		<div id="left-chart">
+				   			<div class="chart char1" data-percent="0">
+				   				<span class="title">
+				   					<img id="dog-image-box" src="/assets/img/dog-img.png" onclick="location.href='/user/myInfo'">		
+									<% if(user.getUserPhoto() != null) { %>
+			                        	<script>$('#dog-image-box').attr('src','/upload/<%=user.getUserPhoto()%>');</script>
+			                       	<% } else { %>
+			                        	<script>$('#dog-image-box').attr('src','/assets/img/user-no-img2.png');</script>
+			                       	<% } %>
+								</span>
+				   			</div>
+                		</div>
+                		<div id="left-time">
+                			<p>현재 목표가 없습니다 !</p>
+                			<a class="goal-btn" href="/petdiary/list">목표 설정</a>
+                		</div>
+                		<% } %>
                 	</div>
-                	<div id="p-hr"></div>
                 	<div id="goal-stamp-box-right">
 			   			<div id="stamp-box"></div>
 			   				<div id="right-title">지난 목표</div>
+			   				<% if(!gList.isEmpty()) { %>
 			   				<div id="right-stamp">
-			   					<% for(int i=0; i<3; i++) { %>
-			   					<div id="stamp-div<%= i %>">
+			   					<% int n = 0;
+			   					for(int i=0; i<3; i++) { %>
+			   					<div id="stamp-div">
 			   						<% for(int j=0; j<3; j++) { %>
-			   						<!-- 목표를 성공했다면 (이미지 변경) --------------------------------------------------------------------------------->
-			   							<% if(1 > 0) { %>
-			   								<img class="goal-stamp goal-stamp<%= j %>" src="/assets/img/user-no-img.png"">
-			   							<% } else { %>
-			   								<img class="goal-stamp goal-stamp<%= j %>" src="/assets/img/user-no-img.png"">
+			   							<% if(n < gList.size()) { %>
+					   						<!-- 목표를 성공했다면 (이미지 변경) -->
+			   								<% if(gList.get(n).getGoalCheck() == 'Y') { %>
+				   								<img class="goal-stamp" src="/assets/img/user-no-img3.png">
+			   								<% } else { %>
+			   									<img class="goal-stamp" src="/assets/img/user-no-img2.png">
+			   								<% } %>
 			   							<% } %>
-			   						<% } %>
+			   						<% n++; } %>
 		   						</div>
-			   					<%} %>
+		   						<% } %>
 			   				</div>
-			   				<!-- 페이징  -------------------------------------------------------------------------------------------------------------------->
+			   				<% } else { %>
+			   				<div id="right-stamp">
+			   					<div id="no-goal-stamp">
+			   						<img src="/assets/img/main_logo.png">
+					   				<p>목표를 설정해주세요</p>
+					   				<a class="goal-btn" href="/petdiary/list">목표 설정</a>
+			   					</div>
+			   				</div>
+			   				<% } %>
+			   				<!-- 페이징 -->
 			   				<div id="right-page">
-			   					<p> << < 1 2 3 4 5  > >> </p>
-			   					
-			   					
+			   					<p><%= pageNavi %></p>
 			   				</div>
-			   			
-                		
                 	</div>
                 </div>
 	   		</div>
