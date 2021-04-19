@@ -244,6 +244,22 @@ public class UserService {
 		return dogCheckList;
 	}
 
+	public UserPage selectSearchUserList(String search, int currentPage) {
+		Connection conn = null;
+		UserPage userPage = new UserPage();
+		
+		try {
+			conn = factory.createConnection();
+			userPage.setuList(new UserDAO().selectSearchJUserList(conn, search, currentPage));
+			userPage.setPageNavi(new UserDAO().getSearchPageNavi(conn, search, currentPage));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return userPage;
+	}
+
 
 
 	
