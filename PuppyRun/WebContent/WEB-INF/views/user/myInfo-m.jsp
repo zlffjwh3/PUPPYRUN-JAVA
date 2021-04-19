@@ -1,3 +1,4 @@
+<%@page import="user.controller.DogCheckServlet"%>
 <%@page import="matching.model.vo.Matching"%>
 <%@page import="notice.model.vo.Notice"%>
 <%@page import="user.model.vo.User"%>
@@ -9,6 +10,8 @@
 	String pageNavi = (String)request.getAttribute("pageNavi");
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
+	ArrayList<User> dogCheckList = (ArrayList<User>)request.getAttribute("dogCheckList");
+	System.out.println(dogCheckList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -121,10 +124,8 @@
                			<div class="list-bottom-top">
                				<div class="select">
 		               			반려견
-		               			<select id="dog-check">
-		               				<option value="Y">유</option>
-		               				<option value="N">무</option>
-		               			</select>
+		               				<a href="/user/dogcheck?dogCheck" id="Y">유</a>
+		               				<a href="/user/dogcheck?dogCheck" id="N">무</a>
 	               			</div>
 	               			<div class="search">
 	               				<select id="user-choice">

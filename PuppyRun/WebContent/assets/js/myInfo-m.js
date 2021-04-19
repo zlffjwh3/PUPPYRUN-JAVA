@@ -12,6 +12,13 @@ $(document).ready(function() {
 		$('#matching-list').css('display', 'block');
 	});
 	
-	
+	$('#Y').click(function() {
+		$('#Y').css('display', 'block');
+		$('#N').css('display', 'none');
+	});
+	$('#N').click(function() {
+		$('#Y').css('display', 'none');
+		$('#N').css('display', 'block');
+	});
 	
 });

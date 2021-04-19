@@ -452,7 +452,43 @@ public class UserDAO {
 		} finally {
 			JDBCTemplate.close(pstmt1);
 		}
-		
 		return result;
 	}
+
+	// 관리자 유저 도그 체크 (유)
+	public ArrayList<User> selectDogCheckY(Connection conn, char dogCheck) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM USERTBL WHERE DOG_CHECK IN ?";
+		ArrayList<User> dogCheckList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dogCheck + "");
+			rset = pstmt.executeQuery();
+			if(rset != null) {
+				dogCheckList = new ArrayList<User>();
+				while(rset.next()) {
+					User user = new User();
+					user.setUserId(rset.getString("USER_ID"));
+					user.setUserNick(rset.getString("USER_NICK"));
+					user.setUserName(rset.getString("USER_NAME"));
+					user.setPhone(rset.getString("PHONE"));
+					user.setEmail(rset.getString("EMAIL"));
+					user.setUserBirth(rset.getString("USER_BIRTH"));
+					user.setUserAddr(rset.getString("USER_ADDR"));
+					user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
+					user.setEnrollDate(rset.getDate("ENROLL_DATE"));
+					dogCheckList.add(user);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return dogCheckList;
+	}
+	
 }
