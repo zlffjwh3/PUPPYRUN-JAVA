@@ -1,27 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
 
-/* font-family: 'Noto Sans KR', sans-serif; */
 /* 산책짝꿍 */
-
-* {
-  font-family: "Noto Sans KR", sans-serif;
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
 
 #nbb-top {
   margin: 100px 0 50px 0;
@@ -71,12 +51,11 @@ a:visited {
 
 #main-content {
     width: 100%;
-    height: 1300px;
 }
 
 #Box1 {
-    height: inherit;
     margin: 0 auto;
+    margin-bottom : 100px;
 }
 
 /* 게시글 리스트 */
@@ -85,58 +64,40 @@ form {
   border-radius: 20px;
 }
 
+#all-content-box {
+	border-bottom : 1px solid #ffedc6;
+	padding-bottom : 20px;
+	margin-bottom : 30px;
+}
+
 .content-box {
     width: 350px;
-    height: 450px;
+    height: 480px;
     border-radius: 20px;
     box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
     margin: 0 auto;
-  }
-  
-  #all-content-box > ul {
-    
-  }
-  
-  #all-content-box > ul > li {
-    /* 혹시모를 경우 33.333...퍼센트로 바꾸기 */
-    /* width: 350px;  */
-    border-radius: 20px;
-    width: 30%;
-    height: 450px;
-    margin: 0 20px 30px 20px;
-    padding: 0;
-    list-style: none;
-    float: left;
-    background-color: white;
+    cursor : pointer;
+    background-color : #ffffff;
+    display : inline-block;
+    margin : 40px 23px 40px 23px;
 }
-#all-content-box > ul > li > a { 
-    display: block;
-    background-color: #FFFFFF;
-    border-radius: 20px;
-}
-/* 게시글 리스트 > 이미지영역 */
 
 .list-img-area {
-    width: 350px;
-    height: 350px;
-    margin: 0 auto;
+    height: 73%;
 }
 
 .list-img-area > img {
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
     object-fit: cover; /*사이즈에 안맞는 이미지 자르게 처리*/
     /* object-fit: contain; */
     border-radius: 20px 20px 0 0;
-    margin: 0px 0;
+    margin : 0;
 }
 
 /*  게시글 리스트 > 아래제목(내용) 영역 */
 .list-content-area {
-    width: 350px;
-    height: 100px;
-    margin: 0 auto;
-    border-radius: 0 0 20px 20px;
+    height: 27%;
 }
 
 .list-content-area > div:nth-child(1) {
@@ -147,12 +108,11 @@ form {
 }
 
 .user-profile-img-div {
-    /* background-color: red; */
     float: left;
 }
 
 .list-content-area > div:nth-child(1) > .user-addr {
-    /* float: right; */
+    float: right;
     margin: 0px 0px 0px 38%;
 }
 
@@ -170,19 +130,17 @@ form {
 .list-content-area > div:nth-child(2) {
     /* width: 330px; */
     margin: 8px auto 0 auto;
+    position : relative;
 }
 
-/* 핑크색 뜨던곳 */
+/* 게시물 내용 */
 .user-mini-content {
     overflow : hidden;
     width: 250px;
     display: inline-block;
     height: 50px;
-    margin-left: 5px;
+    margin-left: 20px;
 }
-
-
-
 
 /* 채팅버튼 */
 .chat-btn {
@@ -195,6 +153,9 @@ form {
     text-align-last: center;
     line-height: 30px;
     color: white;
+    position : absolute;
+    top : 26px;
+    right : 13px;
 }
 
 .chat-btn:hover { 

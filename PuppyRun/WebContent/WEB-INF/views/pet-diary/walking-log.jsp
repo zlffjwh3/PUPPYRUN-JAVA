@@ -187,22 +187,24 @@
 			   			<div id="stamp-box"></div>
 			   				<div id="right-title">지난 목표</div>
 			   				<% if(!gList.isEmpty()) { %>
-			   				<div id="right-stamp">
-			   					<% int n = 0;
-			   					for(int i=0; i<3; i++) { %>
-			   					<div id="stamp-div">
-			   						<% for(int j=0; j<3; j++) { %>
-			   							<% if(n < gList.size()) { %>
-					   						<!-- 목표를 성공했다면 (이미지 loca변경) -->
-			   								<% if(gList.get(n).getGoalCheck() == 'Y') { %>
-				   								<img class="goal-stamp" src="/assets/img/user-no-img3.png" onclick="location.href='/goal/detail?goalDate=<%= gList.get(n).getGoalDate() %>'">
-			   								<% } else { %>
-			   									<img class="goal-stamp" src="/assets/img/user-no-img2.png" onclick="location.href='/goal/detail?goalDate=<%= gList.get(n).getGoalDate() %>'">
-			   								<% } %>
-			   							<% } %>
-			   						<% n++; } %>
-		   						</div>
-		   						<% } %>
+			   				<div id="stamp-wrap">
+				   				<div id="right-stamp">
+				   					<% int n = 0;
+				   					for(int i=0; i<3; i++) { %>
+				   					<div id="stamp-div">
+				   						<% for(int j=0; j<3; j++) { %>
+				   							<% if(n < gList.size()) { %>
+						   						<!-- 목표를 성공했다면 (이미지 변경) -->
+				   								<% if(gList.get(n).getGoalCheck() == 'Y') { %>
+					   								<img class="goal-stamp" src="/assets/img/user-no-img3.png" onclick="location.href='/goal/detail?goalDate=<%= gList.get(n).getGoalDate() %>'">
+				   								<% } else { %>
+				   									<img class="goal-stamp" src="/assets/img/user-no-img2.png" onclick="location.href='/goal/detail?goalDate=<%= gList.get(n).getGoalDate() %>'">
+				   								<% } %>
+				   							<% } %>
+				   						<% n++; } %>
+			   						</div>
+			   						<% } %>
+				   				</div>
 			   				</div>
 			   				<% } else { %>
 			   				<div id="right-stamp">

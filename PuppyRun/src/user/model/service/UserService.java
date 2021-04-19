@@ -72,6 +72,22 @@ public class UserService {
 		return up;
 	}
 	
+	// 유저 전체 -2
+	public ArrayList<User> selectAllUserList2() {
+		ArrayList<User> uList = null;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			uList = new UserDAO().selectAllUserList2(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return uList;
+	}
+	
 	// 회원가입 (강아지 없음)
 	public int insertUser(User user) {
 		int result = 0; // 이 result는 DAO에서 나오는 결과 값을 받아서 servlet으로 보내기 위해 사용

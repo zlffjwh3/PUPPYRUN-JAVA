@@ -21,7 +21,6 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
-        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/notice.css"> -->
         <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css">
         <link rel="stylesheet" type="text/css" href="/assets/css/petMate.css">
         <!-- 파비콘 이미지 가져오기 -->
@@ -35,6 +34,7 @@
     </head>
     <body>
         <header>
+        <div id="wrap">
                 <!-- 헤더-->
                 <div id="header">
                     <div id="tleft">
@@ -123,58 +123,66 @@
                     <div id="nbb-top">
                         <h3>산책짝꿍</h3>
                         <p>산책짝꿍에서 산책 같이할 친구를 찾아요!</p>
-                        <!-- 태그 박스
-                        <div id="tag-box">
-                            <i class="fas fa-border-all"></i>
-                        </div> -->
                     </div>
                     <div id="nbb-bottom">
                         <div id="all-content-box">
-                            <ul>
-                                <!-- 게시글1 -->
-                                <% 
-                                	for(int i=0; i<mList.size(); i++) {
-                                %>
-                                <li>
-                                    <a href="/matching/detail?matNo=<%= mList.get(i).getMatNo()%>"> <!-- 게시글 확인용 a-->
-                                    
-                                        <div class="content-box">
-                                            <div class="list-img-area">
-                                                <img src="/upload/<%=mList.get(i).getMatPhoto() %>" alt="게시글 대표이미지">
-                                            </div>
-                                            <div class="list-content-area">
-                                                <div>
-                                                    <div class="user-profile-img-div">
-                                                        <img src="" alt="프로필 이미지" class="user-profile-img">
-                                                    </div>
-                                                    <span class="user-name"><%=mList.get(i).getUserNick() %></span>
-                                                    <span class="user-addr"><%=mList.get(i).getMatAddr() %></span>
-                                                </div>
-                                                <div>
-                                                    <span class="user-mini-content"><%=mList.get(i).getMatContent() %></span> <!-- 클래스 생성하고 수정함 -->
-                                                    <!-- <input type="submit" value="채팅하기" class="chat-btn"> -->
-                                                    <a href = "/matching/detail?matNo=<%= mList.get(i).getMatNo()%>" class="chat-btn">채팅하기</a>
-                                                </div>
-                                            </div>
+                        <% 
+                        int n = 0;
+            			for(int i=0; i<3; i++) {
+                        %>
+                            <!-- 게시물 3개씩 묶어두는 박스 -->
+                   			<div class="line-box">
+                            <% for(int j=0; j<3; j++) {
+                       			if(n < mList.size()) { %>
+                                	<!-- 게시글 하나 -->
+                                    <div class="content-box" onclick="location.href='/matching/detail?matNo=<%= mList.get(n).getMatNo()%>'">
+                                    	<!-- 게시글 사진 -->
+                                        <div class="list-img-area">
+                                       	<% if(mList.get(n).getMatPhoto() != null) { %>
+                                            <img src="/upload/<%=mList.get(n).getMatPhoto() %>" alt="게시글 대표이미지">
+                                        <% } else { %>
+                                            <img src="/assets/img/no-img.jpg">
+                                        <% } %>
                                         </div>
-                                    
-                                    </a>
-                                </li>
+                                        <!-- 게시글 내용 -->
+                                        <div class="list-content-area">
+                                            <div>
+                                            	<!-- 프로필 사진 -->
+                                            	<div class="user-profile-img-div">
+                                            	<% if(user.getUserPhoto() != null) { %>
+	                            					<img src="/upload/<%= user.getUserPhoto() %>" class="user-profile-img">
+		                       					<% } else { %>
+	                            					<img src="/assets/img/user-no-img.png" class="user-profile-img">
+		                        				<% } %>
+                                        		</div>
+                                                <!-- 닉네임 / 주소 -->
+                                               	<span class="user-name"><%=mList.get(n).getUserNick() %></span>
+                                               	<% if(mList.get(n).getMatAddr() != null) { %>
+                                               	<span class="user-addr"><%=mList.get(n).getMatAddr() %></span>
+                                               	<% } %>
+                                            </div>
+                                         	<div>
+                                         		<% if(mList.get(n).getMatContent() != null) { %>
+                                                <span class="user-mini-content"><%=mList.get(n).getMatContent() %></span>
+                                                <% } else { %>
+                                                <span class="user-mini-content"></span>
+                                                <% } %>
+                                                <a href="/matching/detail?matNo=<%= mList.get(n).getMatNo()%>" class="chat-btn">채팅하기</a>
+                                            </div>
+                                       </div>
+                                  </div>
                                 <% 
-                                }
+                                	}
+                       				n++;
+                              	}
                                 %>
-                                <!-- 게시글1 끝 -->
-                                
-                                
-                            </ul>
                         </div>
+                    <% } %>
                     </div>
                     
                     <!-- 글쓰기 버튼 -->
                     <div id="post-wrap">
-                     
                             <a href="/matching/write" class="link-post">글쓰기</a>
-                     
                     </div>
                     <!-- 여기에 페이징 번호 -->
                     <div class="pagin-box">
@@ -206,5 +214,6 @@
                 </div>
             </footer>
         </div>
+    </div>
     </body>
 </html>

@@ -1,28 +1,23 @@
-var goalCheckFlag1 = false;
-var goalCheckFlag2 = false;
+var goalCheckFlag = false;
 	           			
 $(document).ready(function() {
 	var goalExp = /^[0-9]*$/;
 	
-	$('#goal-input1').on('keyup', function() {
-        if(!goalExp.test($('#goal-input1').val())) {
-         	$('#goal-input1').css('border', '1px solid #FF0000');
-            goalCheckFlag1 = false;
-        } else {
-         	$('#goal-input1').css('border', '1px solid silver');
-            goalCheckFlag1 = true;
-        }
-    });
-	
 	$('#goal-input2').on('keyup', function() {
         if(!goalExp.test($('#goal-input2').val())) {
          	$('#goal-input2').css('border', '1px solid #FF0000');
-            goalCheckFlag2 = false;
+            goalCheckFlag = false;
         } else {
          	$('#goal-input2').css('border', '1px solid silver');
-            goalCheckFlag2 = true;
+            goalCheckFlag = true;
         }
     });
+
+	$('#dis-check').off('click').on('click', function() {
+		var walkTime = $('#goal-input2').val();
+		var distance = walkTime * 67;
+		$('#goal-input1').val(distance);
+	})
 	
 	$('.goal-btn').click(function() {
 		$('#goal-box').css('display','block');
@@ -36,7 +31,7 @@ $(document).ready(function() {
 	});
 	
 	$('#goal-write').click(function() {
-		if(goalCheckFlag1 && goalCheckFlag2) {
+		if(goalCheckFlag) {
 			$('#goal-submit').submit();
 		}
 	});

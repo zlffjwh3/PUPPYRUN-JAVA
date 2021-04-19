@@ -67,7 +67,7 @@ public class GoalDAO {
 				char goalCheck = goal.getGoalCheck();
 				
 				if(weekDis >= goalDis && weekTime >= goalTime && goalCheck == 'N') {
-					new GoalDAO().addStamp(conn, goal.getGoalId());
+					new GoalDAO().addStamp(conn, goal.getGoalNo());
 				}
 			}
 		} catch (SQLException e) {
@@ -80,14 +80,14 @@ public class GoalDAO {
 	}
 	
 		// 달성 스탬프 찍기
-		public int addStamp(Connection conn, String goalId) {
+		public int addStamp(Connection conn, int goalNo) {
 			PreparedStatement pstmt = null;
 			int result = 0;
-			String query = "UPDATE GOAL SET GOAL_CHECK = 'Y' WHERE GOAL_ID = ?";
+			String query = "UPDATE GOAL SET GOAL_CHECK = 'Y' WHERE GOAL_NO = ?";
 			
 			try {
 				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, goalId);
+				pstmt.setInt(1, goalNo);
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -219,7 +219,7 @@ public class GoalDAO {
 		return sb.toString();
 	}
 	
-	// 공지사항 리스트 - 총 게시물 수 계산
+	// 전체 기록 - 총 게시물 수 계산
 	public int totalCount(Connection conn, String goalId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

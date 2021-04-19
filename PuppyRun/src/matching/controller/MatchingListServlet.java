@@ -13,6 +13,8 @@ import matching.model.service.MatchingService;
 import matching.model.vo.Matching;
 import matching.model.vo.MatchingPage;
 import notice.model.vo.NoticePage;
+import user.model.service.UserService;
+import user.model.vo.User;
 
 @WebServlet("/matching/list")
 public class MatchingListServlet extends HttpServlet {
@@ -33,6 +35,9 @@ public class MatchingListServlet extends HttpServlet {
 		MatchingPage np = new MatchingService().printAllMatching(currentPage);
 		ArrayList<Matching> mList = np.getmList();
 		String pageNavi = np.getPageNavi();
+		
+		// 프로필 사진 가져와야 함
+		
 		
 		if(!mList.isEmpty()) {
 			request.setAttribute("mList", mList);

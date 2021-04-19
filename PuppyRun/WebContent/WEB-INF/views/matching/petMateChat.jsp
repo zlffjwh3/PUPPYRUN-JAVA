@@ -84,7 +84,6 @@
 		                    </div>
 		                    <% } %>
 	                    </div>
-	                    <!-- index.js로 옮김 -->
             		</div>
            		</div>
             </header>
@@ -129,101 +128,97 @@
                     <div id="nbb-top">
                         <h3>산책짝꿍</h3>
                         <p>같이 산책할 친구 찾아요 !</p>
-                        <!-- 태그 박스
-                        <div id="tag-box">
-                            <i class="fas fa-border-all"></i>
-                        </div> -->
                     </div>
-                    <div id="nbb-bottom"></div>
-                        <!-- 채팅창 -->
-            <div id="chat-box">
-                <div id="chat-box-left">
-               		
-                    <div id="chat-img-box">
-                        <!-- 사용자 게시물 첨부사진 -->
-                        <img src="/upload/<%= matching.getMatPhoto() %>" alt="사용자 첨부파일">
-                    </div>
-                    <div id="chat-profile-box">
-                                <div class="chat-content-area">
-                                    <div>
-                                        <div class="user-profile-img-div">
-                                            <!-- 프로필사진 -->
-                                            <% if(user.getUserPhoto() != null) { %>
-                                            <img src="/upload/<%= user.getUserPhoto() %>" class="user-profile-img">
-                                            <% } else { %>
-                                            <img src="/assets/img/user-no-img.png">
+                    <!-- 채팅창 -->
+		            <div id="chat-box">
+		                <div id="chat-box-left">
+		                    <div id="chat-img-box">
+		                        <% if(matching.getMatPhoto() != null) { %>
+                                    <img src="/upload/<%=matching.getMatPhoto() %>" alt="게시글 대표이미지">
+                                <% } else { %>
+                                    <img src="/assets/img/no-img.jpg">
+                                <% } %>
+		                    </div>
+		                    <div id="chat-profile-box">
+	                             <div class="chat-content-area">
+	                                 <div>
+	                                     <div class="user-profile-img-div">
+	                                         <!-- 프로필사진 -->
+	                                         <% if(matching.getMatPhoto() != null) { %>
+	                                         <img src="/upload/<%= matching.getMatPhoto() %>" class="user-profile-img">
+	                                         <% } else { %>
+	                                         <img src="/assets/img/user-no-img.png">
+	                       					<% } %>
+	                                     </div>
+	                                     <div class="user-profile-name-div">
+	                                     	<span class="user-name"><%= matching.getUserNick() %></span>
+	                                     </div>
+	                                     <div class="user-profile-addr-div">
+	                                      <span class="user-addr"><%= matching.getMatAddr() %></span>
+	                                     </div>
+	                                 </div>
+	                                 <div>
+	                                     <!-- 글내용이 길어지면 자동으로 스크롤바가 생김 -->
+	                                     <p id="user-write-content"><%= matching.getMatContent() %></p>
+	                                 </div>
+	                             </div>
+	                             <a href="/matching/modify?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn1" style="color: white;">수정하기</a>
+	                             <a href="/matching/delete?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn2" style="color: white;" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+		                    </div>
+		                </div>
+		                <div id="chat-box-right"> <!-- 오른쪽(채팅창) 부분 -->
+		                    <div id="chat-close">
+		                        <a href="#">
+		                            <img src="/assets/img/x_mark.png" alt="창 제거 이미지">
+		                        </a>
+		                    </div>
+		                    <!-- 채팅창 보는 영역 + 속 내용이 길어지면 스크롤 자동생성 설정해놈(overflow : auto) -->
+		                    <div id="chat-area">
+		                    <% if(matChat != null) { 
+		                    		for(int i = 0; i < matChat.size(); i++) {
+		                    			if(matChat.get(i).getSendId().equals(user.getUserId())) {
+		                    %>
+		                        <!-- 나 -->
+		                        <div class="my-user">
+		                            <div class="my-chat-block"> <!-- 내 채팅창 -->
+		                                <p class="my-chat-content">
+		                                    <%= matChat.get(i).getContent() %>
+		                                </p>
+		                            </div>
+		                        </div>
+		                        <% }
+		                    	if(matChat.get(i).getRcvId() != null) {
+		                        if(!(matChat.get(i).getSendId().equals(user.getUserId()))) {%>
+		                        <!-- 상대 -->
+		                        <div class="other-user">
+		                            <img class="other-profile-img" src="" alt="상대프로필이미지">
+		                            <div class="other-chat-block"> <!-- 상대 채팅창 -->
+		                                <p class="other-chat-content">
+		                                    <%= matChat.get(i).getContent() %>
+		                                </p>
+		                            </div>
+		                        </div>
 		                        			<% } %>
-                                        </div>
-                                        <div class="user-profile-name-div">
-			                        		<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
-	                                       <%-- <span class="user-name"><%= matching.getUserNick() %></span> --%>
-                                        </div>
-                                        <div class="user-profile-addr-div">
-	                                        <span class="user-addr"><%= matching.getMatAddr() %></span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <!-- 글내용이 길어지면 자동으로 스크롤바가 생김 -->
-                                        <p id="user-write-content"><%= matching.getMatContent() %></p>
-                                    </div>
-                                </div>
-                                <a href="/matching/modify?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn1" style="color: white;">수정하기</a>
-                                <a href="/matching/delete?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn2" style="color: white;" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
-                    </div>
-                </div>
-                <div id="chat-box-right"> <!-- 오른쪽(채팅창) 부분 -->
-                    <div id="chat-close">
-                        <a href="#">
-                            <img src="/assets/img/x_mark.png" alt="창 제거 이미지">
-                        </a>
-                    </div>
-                    <!-- 채팅창 보는 영역 + 속 내용이 길어지면 스크롤 자동생성 설정해놈(overflow : auto) -->
-                    <div id="chat-area">
-                    <% if(matChat != null) { 
-                    		for(int i = 0; i < matChat.size(); i++) {
-                    			if(matChat.get(i).getSendId().equals(user.getUserId())) {
-                    %>
-                        <!-- 나 -->
-                        <div class="my-user">
-                            <div class="my-chat-block"> <!-- 내 채팅창 -->
-                                <p class="my-chat-content">
-                                    <%= matChat.get(i).getContent() %>
-                                </p>
-                            </div>
-                        </div>
-                        <% }
-                    	if(matChat.get(i).getRcvId() != null) {
-                        if(!(matChat.get(i).getSendId().equals(user.getUserId()))) {%>
-                        <!-- 상대 -->
-                        <div class="other-user">
-                            <img class="other-profile-img" src="" alt="상대프로필이미지">
-                            <div class="other-chat-block"> <!-- 상대 채팅창 -->
-                                <p class="other-chat-content">
-                                    <%= matChat.get(i).getContent() %>
-                                </p>
-                            </div>
-                        </div>
-                        			<% } %>
-                        		<% } %>
-                        	<% } %>
-                        <% } %>
-                        
-                    </div>
-                    <!-- 채팅작성 -->
-                    <div id="chat-write-area">
-                        <form action="/matching/detail" method="post">
-                       		<input type="hidden" name="send-id" value="<%= user.getUserId()%>">
-               				<input type="hidden" name="rcv-id" value="<%= matching.getMatId()%>">
-               				<input type="hidden" name="matching-no" value="<%= matching.getMatNo()%>">
-                            <div>
-                                <textarea name="chat-content" id="" cols="50" rows="20"></textarea>
-                                <input type="submit" value="보내기">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- 채팅창 끝 -->
+		                        		<% } %>
+		                        	<% } %>
+		                        <% } %>
+		                        
+		                    </div>
+		                    <!-- 채팅작성 -->
+		                    <div id="chat-write-area">
+		                        <form action="/matching/detail" method="post">
+		                       		<input type="hidden" name="send-id" value="<%= user.getUserId()%>">
+		               				<input type="hidden" name="rcv-id" value="<%= matching.getMatId()%>">
+		               				<input type="hidden" name="matching-no" value="<%= matching.getMatNo()%>">
+		                            <div>
+		                                <textarea name="chat-content" id="" cols="50" rows="20"></textarea>
+		                                <input type="submit" value="보내기">
+		                            </div>
+		                        </form>
+		                    </div>
+		                </div>
+		            </div>
+		            <!-- 채팅창 끝 -->
                     
                 </div>
             </div>
