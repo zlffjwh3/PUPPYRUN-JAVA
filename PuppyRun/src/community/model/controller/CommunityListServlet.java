@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import community.model.service.CommentService;
 import community.model.service.CommunityService;
+import community.model.service.LikeService;
 import community.model.vo.Community;
 import community.model.vo.CommunityPage;
 
@@ -26,6 +27,8 @@ public class CommunityListServlet extends HttpServlet {
 		String userId = null; // 세션에서 받아오기
 		int tag = 5;
 		int currentPage = 0; // getparameter로 받아오기
+		
+	
 		
 		if(request.getParameter("currentPage") == null) {
 			currentPage = 1;
@@ -47,11 +50,15 @@ public class CommunityListServlet extends HttpServlet {
 			
 			// 댓글 수 구하는 객체
 			ArrayList<int[]> cnt = new CommentService().cnt();
+			
+			// 좋아요 수 구하는 객체
+			ArrayList<int[]> cntLike = new LikeService().cnt();
 						
 			if(!cList.isEmpty()) {
 				request.setAttribute("cList", cList);
 				request.setAttribute("pageNavi", pageNavi);
 				request.setAttribute("cnt", cnt);
+				request.setAttribute("cntLike", cntLike);
 					
 				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
 			} else {
@@ -66,18 +73,21 @@ public class CommunityListServlet extends HttpServlet {
 			// 댓글 수 구하는 객체
 			ArrayList<int[]> cnt = new CommentService().cnt();
 			
+			// 좋아요 수 구하는 객체
+			ArrayList<int[]> cntLike = new LikeService().cnt();
+			
 			if(!cList.isEmpty()) {
 				request.setAttribute("cList", cList);
 				request.setAttribute("pageNavi", pageNavi);
 				request.setAttribute("cnt", cnt);
+				request.setAttribute("cntLike", cntLike);
+				
 				request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
 				
 			} else {
 				System.out.println("List 오류다");
 			}
 		}
-		
-		
 		
 		
 		

@@ -16,17 +16,18 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
-        <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
         <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> -->
-        <link rel="stylesheet" type="text/css" href="/assets/css/communityWrite.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/communityWrite.css">
 
         <!-- <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css"> -->
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="/assets/img/Favicon/favicon.ico">
         <!-- JS 파일 가져오기 -->
-        <script src="./assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/index.js"></script>
         <title>퍼피런 :: 멍멍이야기</title>
     </head>
     <body>
@@ -36,8 +37,9 @@
                 <div id="header">
                     <div id="tleft">
                     	<div id="search">
-                            <form action="">
-                                <input class="search-input" id="" type="text" placeholder="search">
+                             <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="searchKeyword">
+                                <input id="search-btn" type="submit" value="">
                             </form>
                         </div></div>
                     <!-- 헤더 메인 로고 -->
@@ -45,25 +47,56 @@
                         <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
-                        <div id="login">
-                            <a href="/user/myInfo">
-                                <img src="#"> <!-- 사진어케 가져와 -->
-                           		</a>
-                            	<a href="/user/myInfo" id="login-content"><%= user.getUserNick() %></a>
-                        </div>
-                    </div>
+                        <div id="tright">
+	                	<div id="tright-wrapper">
+		                    <div id="login">
+		                    	<% if(user == null) { %>
+		                        	<a href="/login.jsp">
+		                            	<i class="xi-face xi-2x"></i>
+		                       		</a>
+		                        	<a href="/login.jsp" id="login-content">로그인</a>
+		                        <% } else { %>
+		                        	<% if(user.getUserPhoto() != null) { %>
+	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
+		                       		<% } else { %>
+	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
+		                        	<% } %>
+		                        	<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
+		                        <% } %>
+		                    </div>
+		                    <% if(user != null) { %>
+		                    <div id="pop-up" style="display:none">
+		                    	<p id="show-id"><%= user.getUserId() %></p>
+		                    	<% if(user.getAdminCheck() == 'N') { %>
+		                    	<p><a href="/user/myInfo">마이페이지</a></p>
+		                    	<% } else { %>
+		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<% } %>
+		                    	<p><a href="/user/logout">로그아웃</a></p>
+		                    </div>
+		                    <% } %>
+	                    </div>
+	                    <!-- index.js로 옮김 -->
+            		</div>
                 </div>
             </header>
             <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
-                        <li class="main-navi-li">
-                            <a href="#">산책일기</a>
+                    <!-- 로그인 못하면 접근 불가한 카테고리들  -->
+                    <%
+                    if(user == null) {
+                    %>
+                      <li class="main-navi-li">
+                            <a href="/petdiary/list">산책일기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">산책짝꿍</a>
+                            <a href="/matching/list">산책짝꿍</a>
                         </li>
+                    <%
+                    }
+                    %>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
                         </li>
@@ -71,7 +104,7 @@
                             <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">반려견계산기</a>
+                            <a href="/calculator/age">반려견계산기</a>
                         </li>
                     </ul>
                 </div>

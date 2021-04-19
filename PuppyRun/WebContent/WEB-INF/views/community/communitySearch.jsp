@@ -9,6 +9,7 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
 	String pageNavi = (String)request.getAttribute("pageNavi");
+	
 	ArrayList<int[]> cnt = (ArrayList<int[]>)request.getAttribute("cnt");
 	int[] array = null;
 	
@@ -49,7 +50,7 @@
                       <div id="tleft">
                     	<div id="search">
                             <form action="/community/search" method>
-                                <input class="search-input" id="" type="text" name="searchKeyword" placeholder="검색">
+                                <input class="search-input" id="" type="text" placeholder="searchKeyword">
                                 <input id="search-btn" type="submit" value="">
                             </form>
                         </div>

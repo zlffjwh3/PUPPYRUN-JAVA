@@ -35,23 +35,6 @@ public class NoticeService {
 		return np;
 	}
 	
-	// 공지사항 리스트2 - 최신순으로 3개만 출력 (배너용)
-	public ArrayList<Notice> selectThreeNotice() {
-		Connection conn = null;
-		ArrayList<Notice> nList = null;
-		
-		try {
-			conn = factory.createConnection();
-			nList = new NoticeDAO().selectThreeNotice(conn);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		
-		return nList;
-	}
-	
 	// 공지사항 조회
 	public Notice selectOneNotice(int noticeNo) {
 		Connection conn = null;

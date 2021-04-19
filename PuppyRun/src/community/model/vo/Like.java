@@ -2,8 +2,8 @@ package community.model.vo;
 
 public class Like {
 	private int comNo;
-	private int likeId;
-	private char likeStatus;
+	private String likeId;
+	private String likeStatus;
 	
 	public Like() {}
 	
@@ -16,19 +16,19 @@ public class Like {
 		this.comNo = comNo;
 	}
 
-	public int getLikeId() {
+	public String getLikeId() {
 		return likeId;
 	}
 
-	public void setLikeId(int likeId) {
+	public void setLikeId(String likeId) {
 		this.likeId = likeId;
 	}
 
-	public char getLikeStatus() {
+	public String getLikeStatus() {
 		return likeStatus;
 	}
 
-	public void setLikeStatus(char likeStatus) {
+	public void setLikeStatus(String likeStatus) {
 		this.likeStatus = likeStatus;
 	}
 

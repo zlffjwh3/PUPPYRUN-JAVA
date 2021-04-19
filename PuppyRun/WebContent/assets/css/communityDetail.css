@@ -74,6 +74,28 @@
 	
 }
 
+/* 좋아요 부분 */
+#like-box {
+	width : 60px;
+	margin : 30px auto;
+}
+
+#like-box > #like-botton {
+	text-align: center;
+}
+
+/* 좋아요를 누르면  */
+
+#like-non-cliek {
+	color : rgb(199, 199, 199);
+	margin-right : 4px;
+} 
+
+#like-click{
+	color : rgb(248, 89, 182);
+	margin-right : 4px;
+}
+
 /* 댓글 */
 #comment-wrap > p {
     border-bottom : 1px solid black;

@@ -140,46 +140,6 @@ public class MatchingDAO {
 		return recordTotalCount;
 	}
 	
-	// 게시물 순서대로 3개만 가져오기 (index용)
-	public ArrayList<Matching> selectFourMatching(Connection conn) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY MAT_NO DESC) AS NUM, MAT_NO, MAT_ID, MAT_TITLE, MAT_CONTENT, MAT_ADDR, MAT_DATE, MAT_CHECK, MAT_PHOTO, USER_NICK FROM MATCHING) WHERE NUM BETWEEN 1 AND 4";
-		ArrayList<Matching> mList = null;
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			rset = pstmt.executeQuery();
-			
-			if(rset != null) {
-				mList = new ArrayList<Matching>();
-				
-				while(rset.next()) {
-					Matching matching = new Matching();
-					
-					matching.setMatNo(rset.getInt("MAT_NO"));
-					matching.setMatId(rset.getString("MAT_ID"));
-					matching.setMatTitle(rset.getString("MAT_TITLE"));
-					matching.setMatContent(rset.getString("MAT_CONTENT"));
-					matching.setMatAddr(rset.getString("MAT_ADDR"));
-					matching.setMatDate(rset.getDate("MAT_DATE"));
-					matching.setMatCheck(rset.getString("MAT_CHECK").charAt(0));
-					matching.setMatPhoto(rset.getString("MAT_PHOTO"));
-					matching.setUserNick(rset.getNString("USER_NICK"));
-					
-					mList.add(matching);
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		
-		return mList;
-	}
 	
 	// 게시글 한개 보기
 	public Matching printOneMatching(Connection conn, int matchingNo) {

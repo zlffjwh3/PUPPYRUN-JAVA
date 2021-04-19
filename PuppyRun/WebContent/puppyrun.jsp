@@ -10,14 +10,14 @@
 	User user = (User)session.getAttribute("user");
 
 	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList"); // 유저 전체 정보
-	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList"); // 공지사항(3개)
+	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList"); // 공지사항
+	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList"); // 커뮤니티
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList"); // 산책짝꿍
 	// 산책기록
 	Goal weekGoal = null;
 	if(user != null) {
 		weekGoal = (Goal)request.getAttribute("weekGoal");
 	}
-	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -52,10 +52,10 @@
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	<form action="" method="get">
-		                    	<input class="search-input" type="text" placeholder="search">
-		                    	<input id="search-btn" type="submit" value="">
-	                    	</form>
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="search">
+                                <input id="search-btn" type="submit" value="">
+                            </form>
 	                    </div>
                 	</div>
 	                <!-- 헤더 메인 로고 -->
@@ -136,7 +136,7 @@
                     <div id="mContent-Box1">
                         <div id="banner">
                             <div class="image">
-                                <img src="./assets/img/slide01.jpg" alt="메인베너1" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(0).getNoticeNo() %>'">
+                                <img src="/assets/img/banner-1.png" alt="메인베너1" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(0).getNoticeNo() %>'">
                                 <img src="./assets/img/slide02.jpg" alt="메인베너2" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(1).getNoticeNo() %>'">
                                 <img src="./assets/img/slide03.jpg" alt="메인베너3" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(2).getNoticeNo() %>'">
                             </div>
@@ -231,15 +231,36 @@
                         <p>NEW</p>
                     </div>
                     <div id="fbb-bottom">
-                    	
+                    	<%
+                    	if(cList != null) {
+                    		for(int i = 0; i < 4; i++) {
+                    	%>
+                    	<a href="/community/detail?comNo=<%=cList.get(i).getComNo() %>">
                         <dl class="fbb-cotent">
-                            <dt>데이터</dt>
-                            <dd>타이틀</dd>
-                            <dd>내용</dd>
-                            <div class="profile-image"></div>
-                            <dt>닉네임</dt>
+                            <dt><%=cList.get(i).getComDate() %></dt>
+                            <dd><%=cList.get(i).getComTitle() %></dd>
+                            <dd><%=cList.get(i).getComContent() %></dd>
+                            <div class="profile-image">
+                            <% int n = 0;
+                            for(int j=0; j<uList.size(); j++) {
+                            	if(uList.get(j).getUserId().equals(cList.get(i).getComId())) {
+                        			n = j;
+                        			break;
+                            	}
+                            }
+                            if(uList.get(n).getUserPhoto() != null) { %>
+                				<img src="/upload/<%= uList.get(n).getUserPhoto() %>">
+            				<% } else { %>
+                				<img src="/assets/img/user-no-img.png">
+             				<% } %>
+                            </div>
+                            <dt><%=cList.get(i).getUserNick() %></dt>
                         </dl>
-                       
+                        </a>
+                        <%
+                        	}
+                        }
+                        %>
                     </div>
                 </div>
                 <!-- 산책짝꿍 -->
@@ -254,18 +275,18 @@
                         <p>NEW</p>
                     </div>
                     <div id="fbb-bottom">
-                    	<% for(Matching mat : mList) { %>
+                    	<% for(int i=0; i<4; i++) { %>
 	                    	<% if(user != null) { %>
-	                        <dl class="fbb-cotent" onclick="location.href='/matching/detail?matNo=<%= mat.getMatNo() %>'">
-	                        	<dt><%= mat.getMatDate() %></dt>
-	                            <dd><%= mat.getMatTitle() %></dd>
-	                            <dd><%= mat.getMatContent() %></dd>
+	                        <dl class="fbb-cotent" onclick="location.href='/matching/detail?matNo=<%= mList.get(i).getMatNo() %>'">
+	                        	<dt><%= mList.get(i).getMatDate() %></dt>
+	                            <dd><%= mList.get(i).getMatTitle() %></dd>
+	                            <dd><%= mList.get(i).getMatContent() %></dd>
 	                        </dl>
 	                        <% } else { %>
 	                        <a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')" >
 	                        <dl class="fbb-cotent">
-	                            <dt><%= mat.getMatDate() %></dt>
-	                            <dd><%= mat.getMatTitle() %></dd>
+	                            <dt><%= mList.get(i).getMatDate() %></dt>
+	                            <dd><%= mList.get(i).getMatTitle() %></dd>
 	                            <dd>회원전용 게시물입니다.</dd>
 	                        </dl>
 	                        </a>
