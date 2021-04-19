@@ -26,11 +26,11 @@ public class AgeCalculatorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String calc_type = request.getParameter("calc_type");
 		if("2".equals(calc_type)) {
-			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorCalorie.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/calculator/calorie.jsp").forward(request, response);
 		}else if("3".equals(calc_type)) {
-			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorObesity.jsp").forward(request, response);
+//			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorObesity.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorAge.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/calculator/age.jsp").forward(request, response);
 		}
 	}
 

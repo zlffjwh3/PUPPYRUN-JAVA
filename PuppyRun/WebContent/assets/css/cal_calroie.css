@@ -37,7 +37,7 @@
     }
     	.age-cal > a {
     		display : block;
-    		width : 100%;
+    		width: 100%;
     		color : white;
     	}
     	
@@ -51,7 +51,7 @@
     }
     	.calorie-cal > a {
     		display : block;
-    		width : 100%;
+    		width: 100%;
     		color : white;
     	}
     	
@@ -118,7 +118,7 @@
     padding: 3px 3px 3px 3px;
     float: left;
 }
-    #dog_age_date {
+    .input-div > input[type=text] {
         border : none;
         outline: none;
         width: 380px;
@@ -137,7 +137,7 @@
     }
 
 /* 몸무게 선택 */
-.dog-weight {
+.dog-condition {
     width: 500px;
     height: 130px;
     margin: 0 auto;
@@ -239,4 +239,75 @@
         box-shadow: 0px 2px 3px  #C9C9C9;
     }
     
-    
+/* 반려견 상태 */
+.dog-condition > span {
+    margin: 10px 10px 10px 00px;
+}
+
+.cal_choice {
+    background-color: white;
+    border: 1px solid #C9C9C9;
+    width: 350px;
+    height: 48px;
+    border-radius: 32px;
+    /* margin: 10px 0 0 0; */
+    padding: 3px 3px 3px 3px;
+    float: left;
+}
+    #dog_jisu {
+        border : none;
+        outline: none;
+        width: 300px;
+        margin: 8px 25px 0px 15px;
+    }
+
+/* 결과보기 **********************/
+.cal_img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: #FFBD32;
+}
+
+.result-img-box {
+    width: 50%;
+    height: 200px;
+    float: left;
+    text-align: -webkit-center;
+}
+    .result-img-box  dt {
+        color: #AEAEAE;
+    }
+    .result-img-box  dd {
+        font-size: 22px;
+        font-weight: 600;
+        color: #FFBD32;
+    }
+
+.cal_txt {
+    text-align: center;
+    margin-bottom: 35px;
+}
+    .cal_txt .txt_b {
+        color: #FFBD32;
+    }
+    .cal_txt .txt_c {
+        color: #AEAEAE;
+    }
+
+/* 다시하기 버튼 */
+.cal_btn {
+    margin: 0 0 0 310px;
+}
+    .cal_btn > .cal_result {
+        border: none;
+        color: white;
+        width: inherit;
+        background-color: #FEB415;
+        width: 120px;
+        height: 38px;
+        border-radius: 25px;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0px 2px 3px  #C9C9C9;
+    }

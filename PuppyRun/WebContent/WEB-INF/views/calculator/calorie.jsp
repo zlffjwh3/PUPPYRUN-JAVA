@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/cal_age.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/cal_calroie.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/bg-middle.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/slider.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
@@ -30,7 +30,7 @@
         <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/index.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/cal_age.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/cal_calorie.js"></script>
         <title>퍼피런 - 친구와 산책 나가요</title>
     </head>
     <body>
@@ -122,15 +122,15 @@
             <div id="main-content">
                     
                     
-                    <!-- 계산기박스 ------------------------------------>
+                 <!-- 계산기박스 ------------------------------------>
                  <div id="calcu_box">
                     <div id="top-menu">
-                        <div class="age-cal menu-click">
+                        <div class="age-cal">
                         	<a href="?calc_type=1">
 								나이계산기
 							</a>
                        	</div>
-                        <div class="calorie-cal">
+                        <div class="calorie-cal menu-click">
 							<a href="?calc_type=2">
 								권장칼로리
 							</a>
@@ -143,36 +143,42 @@
                     </div>
 
                     <div class="box-in-title">
-                        <h3>나이 계산기</h3>
+                        <h3>권장 칼로리</h3>
                         <p class="p-hr"></p>
-                        <span>내 반려견의 나이 사람이라면 몇살일까요?</span>
+                        <span>내 반려견의 권장 칼로리는 얼마일까요?</span>
                     </div>
+                    
+                    <!-- 결과창부분 -->
 
                     <div class="box-in-content">
                         <div class="dog-birth">
-                            <span class="sub-title birth-title">생년월일</span>
-                            <div id="age-input-box" class="input-div">
-                                <input type="text" name="dog_age_date" id="dog_age_date"  pattern="[0-9]*" inputmode="numeric" maxlength="10" placeholder="ex) 20201210">
+                            <span class="sub-title birth-title">몸무게</span>
+                            <div id="weight-input-box" class="input-div">
+                                <input type="text" name="dog_weight" id="dog_weight"  pattern="[0-9]*" inputmode="numeric" maxlength="10" placeholder="kg 단위로 입력">
                             </div>
                         </div>
-                        <div class="dog-weight">
-                            <span class="sub-title">몸무게 선택</span>
+                        <div class="dog-condition">
+                            <span class="sub-title">반려견 상태</span>
                             <div class="cal_choice">
-                                <input type="button" class="dog_type dog_type0 cal_checked"
-                                    onclick="typeChoice(1)" value="소(~9kg)">
-                                <input type="button" class="dog_type dog_type1" onclick="typeChoice(2)" value="중(9~23kg)">
-                                <input type="button" class="dog_type dog_type2" onclick="typeChoice(3)" value="대(24kg이상)">
+                                <select name="dog_jisu" id="dog_jisu">
+                                    <option value>반려견 상태선택</option>
+                                    <option value="1">생후 4개월 미만 반려견</option>
+                                    <option value="2">중성화한 반려견</option>
+                                    <option value="3">중성화하지 않은 반려견</option>
+                                    <option value="4">비만 상태인 성견</option>
+                                    <option value="5">활동량이 많은 성견</option>
+                                    <option value="6">활동량이 많지 않은 성견</option>
+                                </select>
                             </div>
+                          
 
                         </div>
 
                         <div id="submitBtn" class="submitBtn">
-                            <input type="button"  onclick="weight_choice(); return false;" value="결과보기">
+                            <input type="button"   onclick="calorieResult()" value="결과보기">
                         </div>
 
-                        <input id='dogTypeVal' type='hidden' value="1" style='display: none;'">
-                        <input id='peopleAgeResultTxt' type='hidden' style='display: none;'">
-                        <input id='puppyAgeResultTxt' type='hidden' style='display: none;'">
+                        <input type="hidden" id="calResultValue" style="display: none">
                     </div>
 
 
