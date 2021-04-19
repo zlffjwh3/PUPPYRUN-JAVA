@@ -35,6 +35,16 @@
 
 /* ------------------------------------------------------------------ */
 
+
+
+#prun-story-list{
+	display : none;
+}
+
+#matching-list{
+	display : none;
+}
+
 .list {
 	clear : both;
 	width : 100%;
