@@ -1,3 +1,5 @@
+<%@page import="matching.model.vo.Matching"%>
+<%@page import="notice.model.vo.Notice"%>
 <%@page import="petdiary.model.vo.Goal"%>
 <%@page import="community.model.vo.Community"%>
 <%@page import="java.util.ArrayList"%>
@@ -6,10 +8,16 @@
 	pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
+
+	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList"); // 유저 전체 정보
+	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList"); // 공지사항(3개)
+	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList"); // 산책짝꿍
+	// 산책기록
 	Goal weekGoal = null;
 	if(user != null) {
 		weekGoal = (Goal)request.getAttribute("weekGoal");
 	}
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -83,7 +91,6 @@
 		                    </div>
 		                    <% } %>
 	                    </div>
-	                    <!-- index.js로 옮김 -->
             		</div>
            		</div>
             </header>
@@ -129,9 +136,9 @@
                     <div id="mContent-Box1">
                         <div id="banner">
                             <div class="image">
-                                <img src="./assets/img/slide01.jpg" alt="메인베너1">
-                                <img src="./assets/img/slide02.jpg" alt="메인베너2">
-                                <img src="./assets/img/slide03.jpg" alt="메인베너3">
+                                <img src="./assets/img/slide01.jpg" alt="메인베너1" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(0).getNoticeNo() %>'">
+                                <img src="./assets/img/slide02.jpg" alt="메인베너2" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(1).getNoticeNo() %>'">
+                                <img src="./assets/img/slide03.jpg" alt="메인베너3" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(2).getNoticeNo() %>'">
                             </div>
                             <ul class="control">
                                 <li></li>
@@ -218,7 +225,7 @@
                 <div class="free-board-box">
                     <div id="fbb-top">
                         <p>멍멍이야기</p>
-                        <a href="#">
+                        <a href="/community/list">
                             <i class="xi-plus-thin"></i>
                         </a>
                         <p>NEW</p>
@@ -235,38 +242,38 @@
                        
                     </div>
                 </div>
-                <!-- 산책친구 -->
+                <!-- 산책짝꿍 -->
                 <div class="free-board-box">
                     <div id="fbb-top">
-                        <p>산책친구</p>
-                        <a href="#">
-                            <i class="xi-plus-thin"></i>
-                        </a>
+                        <p>산책짝꿍</p>
+                        <% if(user != null) { %>
+                        <a href="/matching/list"><i class="xi-plus-thin"></i></a>
+                       	<% } else { %>
+                       	<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')"><i class="xi-plus-thin"></i></a>
+                        <% } %>
                         <p>NEW</p>
                     </div>
                     <div id="fbb-bottom">
-                        <dl class="fbb-cotent">
-                            <dt>2021-04-06</dt>
-                            <dd>같이 산책하실 분~</dd>
-                            <dd>비밀글입니다.</dd>
-                        </dl>
-                        <dl class="fbb-cotent">
-                            <dt>2021-04-06</dt>
-                            <dd>애견 사진 교환해요</dd>
-                            <dd>비빔면입니다.</dd>
-                        </dl>
-                        <dl class="fbb-cotent">
-                            <dt>2021-04-05</dt>
-                            <dd>모임 구해요.</dd>
-                            <dd>비밀글입니다?</dd>
-                        </dl>
-                        <dl class="fbb-cotent">
-                            <dt>2021-04-05</dt>
-                            <dd>제 강아지 볼 사람</dd>
-                            <dd>비밀글입니다.</dd>
-                        </dl>
+                    	<% for(Matching mat : mList) { %>
+	                    	<% if(user != null) { %>
+	                        <dl class="fbb-cotent" onclick="location.href='/matching/detail?matNo=<%= mat.getMatNo() %>'">
+	                        	<dt><%= mat.getMatDate() %></dt>
+	                            <dd><%= mat.getMatTitle() %></dd>
+	                            <dd><%= mat.getMatContent() %></dd>
+	                        </dl>
+	                        <% } else { %>
+	                        <a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')" >
+	                        <dl class="fbb-cotent">
+	                            <dt><%= mat.getMatDate() %></dt>
+	                            <dd><%= mat.getMatTitle() %></dd>
+	                            <dd>회원전용 게시물입니다.</dd>
+	                        </dl>
+	                        </a>
+	                        <% }
+                        } %>
                     </div>
                 </div>
+                <div id="space"></div>
             </div>
             <footer>
                 <!-- 푸터 -->

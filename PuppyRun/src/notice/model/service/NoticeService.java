@@ -2,6 +2,7 @@ package notice.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import notice.model.dao.NoticeDAO;
@@ -32,6 +33,23 @@ public class NoticeService {
 		}
 		
 		return np;
+	}
+	
+	// 공지사항 리스트2 - 최신순으로 3개만 출력 (배너용)
+	public ArrayList<Notice> selectThreeNotice() {
+		Connection conn = null;
+		ArrayList<Notice> nList = null;
+		
+		try {
+			conn = factory.createConnection();
+			nList = new NoticeDAO().selectThreeNotice(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return nList;
 	}
 	
 	// 공지사항 조회

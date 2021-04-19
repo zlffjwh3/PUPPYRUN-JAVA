@@ -8,8 +8,3 @@ function showPopup() {
 	}
 	return false;
 }
-
-$(document).ready(function(){
-	// fadeToggle() 사용하려고 했지만 포기...
-	
-});

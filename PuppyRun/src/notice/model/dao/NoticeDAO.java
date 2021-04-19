@@ -132,6 +132,43 @@ public class NoticeDAO {
 		return recordTotalCount;
 	}
 	
+	// 공지사항 리스트 2 - 최신순으로 3개만 출력 (배너용)
+	public ArrayList<Notice> selectThreeNotice(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_VIEW, NOTICE_DATE, NOTICE_PHOTO FROM NOTICE) WHERE NUM BETWEEN 1 AND 3";
+		ArrayList<Notice> nList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			if(rset != null) {
+				nList = new ArrayList<Notice>();
+				
+				while(rset.next()) {
+					Notice notice = new Notice();
+					
+					notice.setNoticeNo(rset.getInt("NOTICE_NO"));
+					notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+					notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+					notice.setNoticeView(rset.getInt("NOTICE_VIEW"));
+					notice.setNoticeDate(rset.getDate("NOTICE_DATE"));
+					notice.setNoticePhoto(rset.getString("NOTICE_PHOTO"));
+					
+					nList.add(notice);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return nList;
+	}
+	
 	// 공지사항 조회
 	public Notice selectOneNotice(Connection conn, int noticeNo) {
 		PreparedStatement pstmt = null;

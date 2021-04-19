@@ -95,6 +95,8 @@ header {
    border : none;
    background : none;
    width : 78%;
+   position : relative;
+   top : -3px;
 }
 
 #search-btn {
@@ -103,6 +105,7 @@ header {
 	background-image : url('/assets/img/search-icon.png');
     width: 20px;
     cursor:pointer;
+   	margin-top : 4px;
 }
 
 #tright-wrapper {
@@ -113,6 +116,10 @@ header {
     margin-top : 15px;
     margin-left : 10px;
     float: right;
+}
+
+#login i {
+	font-size : 26px;
 }
 
 #login-content {
@@ -207,11 +214,15 @@ nav {
     box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 
+#mContent-Box1 .image {
+	cursor : pointer;
+}
+
 /* 메인 날씨 */
 #mWeather {
     width : 300px;
     height : 400px;
-    border-radius: 60px; 
+    border-radius: 45px; 
     background-color : #e9ecf0;
     margin-top : 80px;
     float : right;
@@ -225,6 +236,7 @@ nav {
     font-weight: 700;
     text-align: center;
     padding : 50px 0 50px 0;
+    color : #ffffff;
 }
 
 #mWeather .Currlcon  {
@@ -232,10 +244,13 @@ nav {
     margin : 0 auto;
     padding-bottom : 20px;
     text-align: center;
+    color : #ffffff;
+    text-shadow: 0 0 30px rgb(255, 226, 162);
 }
 
 #mWeather .CurrTemp {
     text-align: center;
+    color : #ffffff;
 }
 
 #mWeather .CurrTemp span:nth-child(1) {
@@ -453,7 +468,7 @@ nav {
 
 #fbb-bottom .fbb-cotent dt {
     font-size : 12px;
-    color : #4e9cd7;
+    color : #FFBD32;
     font-weight: bold;
     overflow: hidden;
 }
@@ -492,6 +507,10 @@ nav {
     margin-top : 23px;
     margin-right : 5px;
     border-radius: 30px;
+}
+
+#space {
+	height : 80px;
 }
 
 /* 푸터------------------------------------------------------------------------------ */

@@ -36,6 +36,22 @@ public class MatchingService {
 		}
 		return mp;
 	}
+	
+	// 게시물 4개 (인덱스용)
+	public ArrayList<Matching> printFourMatching() {
+		Connection conn = null;
+		ArrayList<Matching> mList = null;
+		
+		try {
+			conn = factory.createConnection();
+			mList = new MatchingDAO().selectFourMatching(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return mList;
+	}
 
 	// 산책짝궁 게시글 한개 보기
 	public Matching printOneMatching(int matchingNo) {

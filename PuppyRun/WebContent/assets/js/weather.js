@@ -12,6 +12,18 @@ $(document).ready(function(){
         '50' : 'fas fa-smog'
     };
 
+	let weatherBack = {
+        '01' : 'weather-sunny', // 태양
+        '02' : 'weather-cloudy',
+        '03' : 'weather-cloudy',
+        '04' : 'weather-cloudy',
+        '09' : 'weather-cloudy',
+        '10' : 'weather-cloudy', // 비구름
+        '11' : 'weather-sunny',
+        '13' : 'weather-sunny',
+        '50' : 'weather-sunny'
+    };
+
     $.ajax({
         url : 'http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=9f79b4b7b5bb7ec20b98862a5abafae2&units=metric',
         dataType : 'json',
@@ -23,8 +35,9 @@ $(document).ready(function(){
 
             $('.Currlcon').append('<i class="' + weatherIcon[$Icon] + '"></i>');
             $('.CurrTemp').prepend('<span>' + $Temp + '</span> <span>°C<sapn>');
+			$('#mWeather').css('background-image', 'url(/assets/img/' + weatherBack[$Icon] + '.jpg)');
         
-            $('.City').append('<p>서울광역시</p>');
+            $('.City').append('<p>서울시</p>');
         }
     })
 });
