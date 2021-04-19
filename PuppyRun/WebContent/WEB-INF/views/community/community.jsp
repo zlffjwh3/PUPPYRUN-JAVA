@@ -12,6 +12,8 @@
 	ArrayList<int[]> cnt = (ArrayList<int[]>)request.getAttribute("cnt");
 	int[] array = null;
 	
+	ArrayList<int[]> cntLike = (ArrayList<int[]>)request.getAttribute("cntLike");
+	int[] array2 = null;
 %>
 
 <!DOCTYPE html>
@@ -153,8 +155,15 @@
                                         }
                                         %>
                                         <!-- 제목 -->
-                                        <a class="title" href="/community/detail?comNo=<%= cList.get(i).getComNo() %>"><%= cList.get(i).getComTitle() %></a>
-                                     
+                                        <% if(user != null)  { %>
+                                        	<a class="title" href="/community/detail?comNo=<%= cList.get(i).getComNo() %>&userId=<%= user.getUserId() %>"><%= cList.get(i).getComTitle() %></a>
+                                       	<% 
+                      					} else {
+                                        %>
+                                        	<a class="title" href="/community/detail?comNo=<%= cList.get(i).getComNo() %>"><%= cList.get(i).getComTitle() %></a>
+                                     	<%
+                      					}
+                                     	%>
                                         <!-- 내용 -->
                                         <div class="post-content"><p><%= cList.get(i).getComContent() %></p></div>
                                         <div class="post-info">
@@ -192,7 +201,27 @@
                                                 <!-- 조회수 -->
                                                 <span>조회수 <%= cList.get(i).getComview() %></span>
                                                 <!-- 좋아요-->
-                                                <span><%= cList.get(i).getLikeCount() %>)</span>
+                                                  <%
+                                               /* 객체가 존재하면  */
+                                               if(cntLike != null) { 
+                                            	   /* 임시 저장소 */
+                                               		array2 = new int[2];
+                                            	   /* 게시물 번호와 같은게 있으면 */
+                                               		for(int j = 0; j < cntLike.size(); j++) {
+                                               			/* 임시 저장소에 j번째 배열리스트 저장
+                                               			(배열리스트에 저장되어있는 배열을 직접 열 수 없어서 저장하는거임)
+                                               			임시 저장소에 저장된 배열에는 게시물 번호(0)와 댓글 수(1)이 존재*/
+                                               			array2 = cntLike.get(j).clone();
+                                               			/* 게시물 번호가 서로 같으면  */
+                                               			if(cList.get(i).getComNo() == array2[0]) {
+                                               %>
+                                               <!-- 좋아요 출력 -->
+                                                <span>좋아요 <%= array2[1]  %></span>
+                                                <% 
+                                               			}
+                                               		}
+                                               	}
+                                               %>
                                             </div>
                                         </div>
                                     </div>

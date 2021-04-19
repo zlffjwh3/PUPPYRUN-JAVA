@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import community.model.dao.CommentDAO;
 import community.model.dao.LikeDAO;
 import community.model.vo.Community;
+import community.model.vo.Like;
 
 public class LikeService {
 	
@@ -17,47 +19,96 @@ public class LikeService {
 	}
 	
 	// 좋아요 상태 받아오는 메소드
-	public char likeStatus(int comNo, String userId) {
+	public Like likeStatus(int comNo, String userId) {
 		Connection conn = null;
-		char origin = 0;
+		Like like = null;
 		
 		try {
 			conn = factory.createConnection();
-			origin = new LikeDAO().likeStatus(conn, comNo, userId);
+			like = new LikeDAO().likeStatus(conn, comNo, userId);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.commit(conn);
 		}
 		
-		return origin;
+		return like;
 	}
 	
-	// 좋아요 버튼 누르면 상태 바꿔주는 메소드
-	public int changeStatus(int comNo, String userId, char after) {
+	// 좋아요 등록
+	public int registerStatus(int comNo, String userId, String likeStatus) {
+		Connection conn = null;
+		int eroll = 0;
+		
+		try {
+			conn = factory.createConnection();
+			eroll = new LikeDAO().insertStatus(conn, comNo, userId, likeStatus);
+			
+			if(eroll > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(conn);
+		}
+		
+		return eroll;
+	}
+	
+	// 좋아요 취소
+	public int cancelStatus(int comNo, String userId) {
+		Connection conn = null;
+		int eroll = 0;
+		
+		try {
+			conn = factory.createConnection();
+			eroll = new LikeDAO().deleteStatus(conn, comNo, userId);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return eroll;
+	}
+	
+	public int countLike(int comNo) {
 		Connection conn = null;
 		int result = 0;
 		
 		try {
 			conn = factory.createConnection();
-			result = new LikeDAO().changeStatus(conn, comNo, userId, after);
+			result = new LikeDAO().countStatus(conn, comNo);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
 		}
 		
 		return result;
 	}
-	
-	// 좋아요한 게시글 리스트
-	public ArrayList<Community> likeList(String userId) {
+
+	public ArrayList<int[]> cnt() {
 		Connection conn = null;
-		ArrayList<Community> userLikes = null;
+		ArrayList<int[]> cnt = null;
 		
 		try {
 			conn = factory.createConnection();
-			userLikes = new LikeDAO().likeList(conn, userId);
+			cnt = new LikeDAO().addReadCount(conn);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
 		}
 		
-		return userLikes;
+		return cnt;
 	}
 }

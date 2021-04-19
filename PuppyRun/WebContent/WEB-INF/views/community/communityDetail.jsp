@@ -1,3 +1,4 @@
+<%@page import="community.model.vo.Like"%>
 <%@page import="community.model.vo.Comment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
@@ -9,6 +10,9 @@
 	Community community = (Community)request.getAttribute("community");
 	User user = (User)session.getAttribute("user");
 	ArrayList<Comment> cList = (ArrayList<Comment>)request.getAttribute("cList");
+	Like beforeLike = (Like)request.getAttribute("beforeLike");
+	int countLike = (int)request.getAttribute("countLike");
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,6 +36,7 @@
         <!-- JS 파일 가져오기 -->
         <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/communityDetail-Like.js"></script>
         <title>퍼피런 :: 멍멍이야기</title>
     </head>
     <body>
@@ -129,6 +134,30 @@
                                     <p><%= community.getComContent() %></p>
                                 </div>
                             </div>
+                            <div id="like-box">
+                            	<div id="like-button">
+                            		<!-- 좋아요 아이콘 -->
+                            		<% if(user != null)  {%>
+                            		<!-- 처음 좋아요를 누를 때 -->
+                            		<%  if(beforeLike.getComNo() == 0) {%>
+                            			<a href="/like/change?userId=<%= user.getUserId() %>&comNo=<%= community.getComNo() %>&userId=<%= user.getUserId() %>&check=<%= beforeLike.getLikeStatus() %>">
+                            				<i id="like-non-cliek" class="fas fa-heart fa-2x"></i>
+                    					</a>
+                    				<% 	}else if(beforeLike.getComNo() != 0) {%>
+                    					<a href="/like/change?userId=<%= user.getUserId() %>&comNo=<%= community.getComNo() %>&userId=<%= user.getUserId() %>&check=<%= beforeLike.getLikeStatus() %>">
+                            				<i id="like-click" class="fas fa-heart fa-2x"></i>
+                    					</a>
+                    					<% } %>
+                    					
+									<% }else { %>
+										<a href="#">
+                            				<i class="fas fa-heart fa-2x"></i>
+                    					</a>
+                    				<% } %>
+                            		<!-- 좋아요 총 갯수  -->
+                            		<span> <%= countLike %> </span>
+                            	</div>
+                        	</div>
                             <div id="comment-wrap">
                             <%
                             if(cList != null) {
