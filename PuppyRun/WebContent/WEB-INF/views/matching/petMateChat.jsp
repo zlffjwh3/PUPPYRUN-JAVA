@@ -9,6 +9,8 @@
 	User user = (User)session.getAttribute("user");
 	Matching matching = (Matching)request.getAttribute("matching");
 	ArrayList<MatchingChat> matChat = (ArrayList<MatchingChat>)request.getAttribute("matChat");
+	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList");
+	
 	System.out.println(matching.getMatId());
 %>
 
@@ -143,18 +145,27 @@
 	                             <div class="chat-content-area">
 	                                 <div>
 	                                     <div class="user-profile-img-div">
-	                                         <!-- 프로필사진 -->
-	                                         <% if(matching.getMatPhoto() != null) { %>
-	                                         <img src="/upload/<%= matching.getMatPhoto() %>" class="user-profile-img">
-	                                         <% } else { %>
-	                                         <img src="/assets/img/user-no-img.png">
-	                       					<% } %>
+	                                         <% int m = 0;
+                                            	for(int u=0; u<uList.size(); u++) { 
+                                            		if(uList.get(u).getUserId().equals(matching.getMatId())) {
+                                            			m = u;
+                                            			break;
+                                            		}
+                                            	} %>
+                                           	<% if(uList.get(m).getUserPhoto() != null) { %>
+                            					<img src="/upload/<%= uList.get(m).getUserPhoto() %>" class="user-profile-img">
+	                       					<% } else { %>
+                            					<img src="/assets/img/user-no-img.png" class="user-profile-img">
+	                        				<% } %>
 	                                     </div>
 	                                     <div class="user-profile-name-div">
 	                                     	<span class="user-name"><%= matching.getUserNick() %></span>
 	                                     </div>
 	                                     <div class="user-profile-addr-div">
-	                                      <span class="user-addr"><%= matching.getMatAddr() %></span>
+	                                      <span class="user-addr"></span>
+	                                      <% if(matching.getMatAddr() != null) { %>
+                                          <span class="user-addr"><%= matching.getMatAddr() %></span>
+                                          <% } %>
 	                                     </div>
 	                                 </div>
 	                                 <div>
@@ -162,13 +173,16 @@
 	                                     <p id="user-write-content"><%= matching.getMatContent() %></p>
 	                                 </div>
 	                             </div>
+	                             <!-- 수정 또는 삭제 -->
+	                             <% if(user.getUserId().equals(matching.getMatId())) { %>
 	                             <a href="/matching/modify?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn1" style="color: white;">수정하기</a>
 	                             <a href="/matching/delete?matNo=<%= matching.getMatNo() %>" class="matching-btn matching-btn2" style="color: white;" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+	                             <% } %>
 		                    </div>
 		                </div>
 		                <div id="chat-box-right"> <!-- 오른쪽(채팅창) 부분 -->
 		                    <div id="chat-close">
-		                        <a href="#">
+		                        <a href="/matching/list">
 		                            <img src="/assets/img/x_mark.png" alt="창 제거 이미지">
 		                        </a>
 		                    </div>
@@ -191,8 +205,14 @@
 		                        if(!(matChat.get(i).getSendId().equals(user.getUserId()))) {%>
 		                        <!-- 상대 -->
 		                        <div class="other-user">
-		                            <img class="other-profile-img" src="" alt="상대프로필이미지">
-		                            <div class="other-chat-block"> <!-- 상대 채팅창 -->
+		                        	<!-- 상대 프로필 이미지 -->
+		                            <% if(uList.get(m).getUserPhoto() != null) { %>
+                       				<img src="/upload/<%= uList.get(m).getUserPhoto() %>" class="other-profile-img">
+                   					<% } else { %>
+                       				<img src="/assets/img/user-no-img.png" class="user-profile-img">
+                      				<% } %>
+                      				<!-- 상대 채팅창 -->
+		                            <div class="other-chat-block">
 		                                <p class="other-chat-content">
 		                                    <%= matChat.get(i).getContent() %>
 		                                </p>

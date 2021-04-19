@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import matching.model.service.MatchingService;
 import matching.model.vo.Matching;
 import matching.model.vo.MatchingChat;
+import user.model.service.UserService;
+import user.model.vo.User;
 
 @WebServlet("/matching/detail")
 public class MatchingDetailServlet extends HttpServlet {
@@ -27,11 +29,12 @@ public class MatchingDetailServlet extends HttpServlet {
       
       Matching matching = new MatchingService().printOneMatching(matchingNo);
       ArrayList<MatchingChat> matChat = new MatchingService().viewMsg(matchingNo);
-      
-      
+      // 프로필 사진 가져와야 함
+   	  ArrayList<User> uList = new UserService().selectAllUserList2();
       
       if(matching != null) {
     	  request.setAttribute("matching", matching);
+    	  request.setAttribute("uList", uList);
     	  if(matChat != null) {
     		  request.setAttribute("matChat", matChat);
     		  request.getRequestDispatcher("/WEB-INF/views/matching/petMateChat.jsp").forward(request, response);

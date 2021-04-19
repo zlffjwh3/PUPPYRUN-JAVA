@@ -8,6 +8,7 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
 	String pageNavi = (String)request.getAttribute("pageNavi");
+	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -149,8 +150,15 @@
                                             <div>
                                             	<!-- 프로필 사진 -->
                                             	<div class="user-profile-img-div">
-                                            	<% if(user.getUserPhoto() != null) { %>
-	                            					<img src="/upload/<%= user.getUserPhoto() %>" class="user-profile-img">
+                                            	<% int m = 0;
+                                            	for(int u=0; u<uList.size(); u++) { 
+                                            		if(uList.get(u).getUserId().equals(mList.get(n).getMatId())) {
+                                            			m = u;
+                                            			break;
+                                            		}
+                                            	} %>
+                                            	<% if(uList.get(m).getUserPhoto() != null) { %>
+	                            					<img src="/upload/<%= uList.get(m).getUserPhoto() %>" class="user-profile-img">
 		                       					<% } else { %>
 	                            					<img src="/assets/img/user-no-img.png" class="user-profile-img">
 		                        				<% } %>

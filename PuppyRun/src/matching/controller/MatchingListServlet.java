@@ -35,13 +35,13 @@ public class MatchingListServlet extends HttpServlet {
 		MatchingPage np = new MatchingService().printAllMatching(currentPage);
 		ArrayList<Matching> mList = np.getmList();
 		String pageNavi = np.getPageNavi();
-		
 		// 프로필 사진 가져와야 함
-		
+		ArrayList<User> uList = new UserService().selectAllUserList2();
 		
 		if(!mList.isEmpty()) {
 			request.setAttribute("mList", mList);
 			request.setAttribute("pageNavi", pageNavi);
+			request.setAttribute("uList", uList);
 			request.getRequestDispatcher("/WEB-INF/views/matching/petMate.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/matching/matchingError.html").forward(request, response);

@@ -41,8 +41,7 @@ div#chat-box {
 
 #chat-box-left {
     width: 45%;
-    height: inherit;
-    /* background-color: lightsalmon; */
+    height: 100%;
     float: left;
     border-radius: 40px 0 0 40px;
 }
@@ -58,6 +57,7 @@ div#chat-box {
     width: inherit;
     height: inherit;
     object-fit: cover;
+    border-radius : 20px;
 }
 
 /* 작성자 프로필 이미지 */
@@ -68,8 +68,9 @@ div#chat-box {
 }
 
 .user-profile-img-div > img {
-	width: inherit;
-    height: inherit;
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* 작성자 프로필 이름 */
@@ -80,8 +81,9 @@ div#chat-box {
 
 /* 작성자 프로필 주소 */
 .user-profile-addr-div {
-	float: left;
+	float: right;
     width: 120px;
+    text-align : right;
 }
 
 /* 작성자가 쓴 내용 */
@@ -89,7 +91,7 @@ div#chat-box {
     width: 350px;
     height: 100px;
     margin: 0 auto;
-    border-radius: 0 0 20px 20px;
+    /* border-radius: 0 0 20px 20px; */
 }
 
 .chat-content-area > div:nth-child(1) {
@@ -107,6 +109,9 @@ div#chat-box {
 
 .chat-content-area > div:nth-child(2) > #user-write-content {
     float: left;
+    margin-top : 10px;
+    border-top : 1px solid #e9e9e9;
+    padding-top : 10px;
 }
 
 #user-write-content {
@@ -125,7 +130,7 @@ div#chat-box {
     border-radius: 50px;
     background: #FEB415;
     color: white;
-    margin: 10px 5px 0 235px;
+    margin: 10px 5px 0 245px;
     text-align: center;
     line-height: 1.8;
 }
@@ -147,7 +152,7 @@ div#chat-box {
 }
 
 .matching-btn1 {
-	    margin-left: 200px;
+	margin-left: 200px;
 }
 
 /* 
@@ -191,6 +196,7 @@ div#chat-box {
 #chat-box-right > #chat-close {
     width: 100%;
     height: 5%;
+    margin-top : 10px;
 }
 
 #chat-close > a {
@@ -209,7 +215,7 @@ div#chat-box {
 /* 채팅 보는곳 */
 #chat-box-right > #chat-area {
     width: 100%;
-    height: 80%;
+    height: 78%;
     background-color: white;
     overflow: auto;
 }
@@ -290,7 +296,6 @@ div#chat-box {
 #chat-box-right > #chat-write-area {
     width: 100%;
     height: 15%;
-    background-color: white;
     border-radius : 0 0 40px 0
 }
 
@@ -306,6 +311,7 @@ div#chat-box {
     width: 400px;
     height: 70px;
     margin: 5px 5px 5px 5px;
+    padding : 10px;
 }
 
 #chat-write-area > form > div > input[type=submit] {
@@ -317,4 +323,5 @@ div#chat-box {
     background: #FEB415;
     color: white;
     margin: 35px 5px 0 5px;
+    cursor : pointer;
 }
