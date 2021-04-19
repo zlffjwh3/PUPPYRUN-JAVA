@@ -1,8 +1,16 @@
+<%@page import="petdiary.model.vo.PetDiary"%>
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
+	PetDiary petDiary = (PetDiary)request.getAttribute("petDiary");
+	
+	String date = petDiary.getDiaryDate();
+	String year = date.substring(2, 4);
+	String month = date.substring(5, 7);
+	String day = date.substring(8, 10);
+	String diaryDate = year + "/" + month + "/" + day;
 %>
 
 <!DOCTYPE html>
@@ -133,11 +141,12 @@
                     <!-- 작업해야할 부분 -->
                     <div id="write-wrap">
                         <div id="write-box">
-                            <form action="/notice/write" method="post" enctype="multipart/form-data">
+                            <form id="write-check" action="/petdiary/update?diaryDate=<%= diaryDate %>&photoCheck=N" method="post" enctype="multipart/form-data">
+                            	<input type="hidden" id="diary-date" value="<%= diaryDate %>">
                                 <div id="title">
                                     <p class="write-p-tag">제 목</p>  
                                     <div class="input-box">
-                                        <input type="text" id="title-input" name="title" maxlength="50">
+                                        <input type="text" id="title-input" name="title" maxlength="50" value="<%= petDiary.getDiaryTitle() %>">
                                     </div>
                                 </div>
                                 <div id="content">
@@ -151,15 +160,36 @@
                                 <div id="content">
                                     <p class="write-p-tag">내 용</p>
                                     <div class="input-box" id="textarea-box">
-                                             <textarea id="content" name="content"></textarea>
+                                        <textarea id="content" name="content"><%= petDiary.getDiaryContent() %></textarea>
                                     </div>
                                 </div>
                                 <div id="file">
                                     <p class="write-p-tag">첨부 파일</p>
-                                    <div class="input-box">
-                                        <input type="file" id="file-input" name="upFile">
-                                    </div>
+                                    <% if(petDiary.getDiaryPhoto() != null) { %>
+                                    <div class="input-box" id="file-wrapper">
+                                    	<div id="file-update-box">
+	                                        <span><%= petDiary.getDiaryPhoto() %></span>
+                                    		<input type="button" id="file-update" value="수정하기">
+                                    	</div>
+                                    	<div id="file-update-box2">
+	                                       	<input type="file" id="file-input" name="upFile">
+	                                    </div>
+	                                </div>
+                                    <% } else { %>
+	                                    <div class="input-box">
+	                                        <input type="file" id="file-input" name="upFile">
+	                                    </div>
+                                    <% } %>
                                 </div>
+                                <script>
+	                               	$('#file-update').click(function() {
+	                               		$('#file-update-box').css('display','none');
+	                               		$('#file-update-box2').css('display','inline-block');
+	                               		var diaryDate = $('#diary-date').val();
+	                               		var url = '/petdiary/update?diaryDate=' + diaryDate + '&photoCheck=Y';
+	                               		$('#write-check').attr('action', url);
+	                               	});
+                                </script>
                                 <div id="btn-box">
                                     <input type="submit" id="submit-input" value="수정">
                                     <a href="/petdiary/list"><p>취소</p></a>

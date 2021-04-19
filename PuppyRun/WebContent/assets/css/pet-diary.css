@@ -302,7 +302,6 @@
 		
 		#goal-box input[type=button] {
 			border : none;
-			background-color : #FBB41D;
 			border-radius: 40px;
 		    cursor : pointer;
 		    width : 90px;
@@ -311,4 +310,12 @@
 		    line-height : 35px;
 		    color : white;
 		    margin-top :15px;
+		}
+		
+		#goal-box #dis-check {
+			background-color : #FFD883;
+		}
+		
+		#goal-box #goal-write {
+			background-color : #FBB41D;
 		}

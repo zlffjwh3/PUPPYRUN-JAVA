@@ -138,7 +138,7 @@
                             <form id="write-check" action="/notice/update?noticeNo=<%= notice.getNoticeNo() %>&photoCheck=N" method="post" enctype="multipart/form-data">
                             	<input id="notice-num" type="hidden" name="noticeNo" value="<%= notice.getNoticeNo() %>">
                                 <div id="title">
-                                    <p class="write-p-tag">제 목</p>  
+                                    <p class="write-p-tag">제 목</p>
                                     <div class="input-box">
                                         <input type="text" id="title-input" name="title" maxlength="50" value="<%= notice.getNoticeTitle() %>">
                                     </div>

@@ -199,6 +199,43 @@ public class UserDAO {
 		return recordTotalCount;
 	}
 	
+	// 회원 리스트 2 - 페이지 없는 버전
+	public ArrayList<User> selectAllUserList2(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<User> list = null;
+		String query = "SELECT * FROM USERTBL";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<User>();
+			while(rset.next()) {
+				User user = new User();
+				user = new User();
+				user.setUserId(rset.getString("USER_ID"));
+				user.setUserPw(rset.getString("USER_PW"));
+				user.setUserNick(rset.getString("USER_NICK"));
+				user.setUserName(rset.getString("USER_NAME"));
+				user.setPhone(rset.getString("PHONE"));
+				user.setEmail(rset.getString("EMAIL"));
+				user.setUserBirth(rset.getString("USER_BIRTH"));
+				user.setUserAddr(rset.getString("USER_ADDR"));
+				user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
+				user.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				user.setAdminCheck(rset.getString("ADMIN_CHECK").charAt(0));
+				user.setUserPhoto(rset.getString("USER_PHOTO"));
+				list.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+	
 	// 회원가입 (강아지 없음)
 	public int insertUser(Connection conn, User user) {
 		PreparedStatement pstmt = null;
@@ -490,5 +527,46 @@ public class UserDAO {
 		}
 		return dogCheckList;
 	}
-	
+
+	public ArrayList<User> selectSearchJUserList(Connection conn, String search, int currentPage) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT USER_ID=?, USER_NAME=?, USER_NICK=?, PHONE=?, EMAIL=?, USER_BIRTH=?, USER_ADDR=?, DOG_CHECK=?, ENROLL_DATE=? FROM USERTBL WHERE USER_ID LIKE ?";
+		ArrayList<User> userList = null;
+		int recordCountPerPage = 10;
+		int start = currentPage * recordCountPerPage - (recordCountPerPage - 1);
+		int end = currentPage * recordCountPerPage;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + search + "%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			userList = new ArrayList<User>();
+			while(rset.next()) {
+				User user = new User();
+				user.setUserId(rset.getString("USERID"));
+				user.setUserName(rset.getString("USERNAME"));
+				user.setUserNick(rset.getString("USERNICK"));
+				user.setPhone(rset.getString("PHONE"));
+				user.setEmail(rset.getString("EMAIL"));
+				user.setUserBirth(rset.getString("USERBIRTH"));
+				user.setUserAddr(rset.getString("USERADDR"));
+				user.setDogCheck(rset.getString("DOGCHECK").charAt(0));
+				user.setEnrollDate(rset.getDate("ENROLLDATE"));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return userList;
+	}
+
+	public String getSearchPageNavi(Connection conn, String search, int currentPage) {
+		return null;
+	}
 }

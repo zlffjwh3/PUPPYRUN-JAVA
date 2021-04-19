@@ -1,14 +1,12 @@
 package petdiary.model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
-import notice.model.vo.Notice;
 import petdiary.model.vo.PetDiary;
 
 public class PetDiaryDAO {
@@ -76,7 +74,6 @@ public class PetDiaryDAO {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(rset);
@@ -110,7 +107,28 @@ public class PetDiaryDAO {
 	}
 	
 	public int updateDiary(Connection conn, PetDiary petDiary) {
-		return 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE DIARY SET DIARY_TITLE=?, DIARY_CONTENT=?, DIARY_PHOTO=?, DIARY_DIS=?, DIARY_TIME=? WHERE DIARY_NO=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, petDiary.getDiaryTitle());
+			pstmt.setString(2, petDiary.getDiaryContent());
+			pstmt.setString(3, petDiary.getDiaryPhoto());
+			pstmt.setInt(4, petDiary.getDiaryDis());
+			pstmt.setInt(5, petDiary.getDiaryTime());
+			pstmt.setInt(6, petDiary.getDiaryNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 	
 	public int deleteDiary(Connection conn, int diaryNo) {
@@ -123,17 +141,11 @@ public class PetDiaryDAO {
 			pstmt.setInt(1, diaryNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
 		
 		return result;
-	}
-	
-	
-	public int addReadCount(Connection conn, int diaryNo) {
-		return 0;
 	}
 }

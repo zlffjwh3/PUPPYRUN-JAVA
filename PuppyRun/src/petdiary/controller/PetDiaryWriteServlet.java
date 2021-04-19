@@ -3,10 +3,8 @@ package petdiary.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -33,7 +31,6 @@ public class PetDiaryWriteServlet extends HttpServlet {
        
     public PetDiaryWriteServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String year = request.getParameter("year");
@@ -68,16 +65,24 @@ public class PetDiaryWriteServlet extends HttpServlet {
 		String goalDate = multi.getParameter("goalDate");
 		String petdiaryTitle = multi.getParameter("title");
 		String petdiaryContent = multi.getParameter("content");
-		int goaldis = Integer.parseInt(multi.getParameter("distance"));
-		int goalwalk = Integer.parseInt(multi.getParameter("walkkTime"));
+		String tempDis = multi.getParameter("distance");
+		int diaryDis = 0;
+		if(!tempDis.equals("")) {
+			diaryDis = Integer.parseInt(tempDis);
+		}
+		String tempTime = multi.getParameter("walkkTime");
+		int diaryTime = 0;
+		if(!tempTime.equals("")) {
+			diaryTime = Integer.parseInt(tempTime);
+		}
 		
 		PetDiary petdiary = new PetDiary();
 		petdiary.setDiaryId(diaryId);
 		petdiary.setDiaryTitle(petdiaryTitle);
 		petdiary.setDiaryContent(petdiaryContent);
 		petdiary.setDiaryDate(diaryDate);
-		petdiary.setDiaryDis(goaldis);
-		petdiary.setDiaryTime(goalwalk);
+		petdiary.setDiaryDis(diaryDis);
+		petdiary.setDiaryTime(diaryTime);
 		
 		int photoResult = 0;
 		if(multi.getFilesystemName("upFile") != null) {

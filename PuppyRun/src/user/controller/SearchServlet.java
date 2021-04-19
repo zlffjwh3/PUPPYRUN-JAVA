@@ -1,4 +1,4 @@
-package matching.controller;
+package user.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import matching.model.service.MatchingService;
-import matching.model.vo.Matching;
-import matching.model.vo.MatchingPage;
-import notice.model.vo.NoticePage;
 import user.model.service.UserService;
 import user.model.vo.User;
+import user.model.vo.UserPage;
 
-@WebServlet("/matching/list")
-public class MatchingListServlet extends HttpServlet {
+@WebServlet("/admin/search")
+public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MatchingListServlet() {
+    public SearchServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int currentPage = 0;
 		if(request.getParameter("currentPage") == null) {
 			currentPage = 1;
@@ -32,19 +30,16 @@ public class MatchingListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		MatchingPage np = new MatchingService().printAllMatching(currentPage);
-		ArrayList<Matching> mList = np.getmList();
-		String pageNavi = np.getPageNavi();
-		// 프로필 사진 가져와야 함
-		ArrayList<User> uList = new UserService().selectAllUserList2();
-		
-		if(!mList.isEmpty()) {
-			request.setAttribute("mList", mList);
+		String search = request.getParameter("searchKeyword");
+		UserPage userPage = new UserService().selectSearchUserList(search, currentPage);
+		ArrayList<User> userList = userPage.getuList();
+		String pageNavi = userPage.getPageNavi();
+		if(!userList.isEmpty()) {
+			request.setAttribute("userList", userList);
 			request.setAttribute("pageNavi", pageNavi);
-			request.setAttribute("uList", uList);
-			request.getRequestDispatcher("/WEB-INF/views/matching/petMate.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/myInfo-m.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/matching/matchingError.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 	}
 
@@ -53,4 +48,3 @@ public class MatchingListServlet extends HttpServlet {
 	}
 
 }
-

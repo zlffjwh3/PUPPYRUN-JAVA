@@ -10,6 +10,9 @@
 	
 	double disPercent = (double)goal.getWeekDis() / (double)goal.getGoalDis() * 100;
 	double timePercent = (double)goal.getWeekTime() / (double)goal.getGoalTime() * 100;
+	
+	int disPercentI = (int)Math.floor(disPercent);
+	int timePercentI = (int)Math.floor(timePercent);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -194,15 +197,19 @@
 									<div id="chart2">
 										<div class="chart2" data-percent="<%= disPercent %>"></div>
 										<div class="chart-p">
+											<p><%= disPercentI %> %</p>
 											<p><%= goal.getWeekDis() %></p>
-											<p><%= goal.getGoalDis() %></p>
+											<p><%= goal.getGoalDis() %> m</p>
+											<p>거리</p>
 										</div>
 									</div>
 									<div id="chart3">
 										<div class="chart2" data-percent="<%= timePercent %>"></div>
 										<div class="chart-p">
+											<p><%= timePercentI %> %</p>
 											<p><%= goal.getWeekTime() %></p>
-											<p><%= goal.getGoalTime() %></p>
+											<p><%= goal.getGoalTime() %> 분</p>
+											<p>시간</p>
 										</div>
 									</div>
 								</div>

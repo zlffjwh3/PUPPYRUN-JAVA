@@ -308,13 +308,15 @@
 				   		</div>
 				   		<div class="diary-content">
 				   			<span>
-				   				<%= petDiary.getDiaryContent()%>
+				   				<% if(petDiary.getDiaryContent() != null) { %>
+				   					<%= petDiary.getDiaryContent()%>
+				   				<% } %>
 				   			</span>
 				   		</div>
 				   	</div>
 				   	<div id="function-btn">
                    		<div class="br">
-                            <a href="/petdiary/update?diaryDate=<%= petDiary.getDiaryDate().substring(0, 10) %>&diaryNo=<%= petDiary.getDiaryNo() %>" ><span>수정</span></a>
+                            <a href="/petdiary/update?diaryDate=<%= petDiary.getDiaryDate().substring(0, 10) %>"  onclick="return confirm('수정하면 산책기록이 변경됩니다. 정말 수정하시겠습니까?')"><span>수정</span></a>
                             <a href="/petdiary/delete?diaryDate=<%= petDiary.getDiaryDate().substring(0, 10) %>&diaryNo=<%= petDiary.getDiaryNo() %>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                        	</div>
                     </div>
@@ -445,8 +447,9 @@
 						</div>
 						<div id="goal-box2">
 		           			<form action="/goal/write?year=<%=year%>&month=<%=month%>&date=<%=day%>" method="post" id="goal-submit">
-			           			산책거리<input id="goal-input1" type="text" name="walk-dis" placeholder="숫자만 입력해주세요">m<br>
 			           			산책시간<input id="goal-input2" type="text" name="walk-time" placeholder="숫자만 입력해주세요">분<br>
+			           			산책거리<input id="goal-input1" type="text" name="walk-dis" placeholder="시간 입력 후 계산" readonly>m<br>
+			           			<input type="button" id="dis-check" value="계산">
 			           			<input type="button" id="goal-write" value="저장">
 		           			</form>
 						</div>
