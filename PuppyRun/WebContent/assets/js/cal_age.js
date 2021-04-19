@@ -1,5 +1,5 @@
 function restartCalc(){
-			location.href="<%= request.getContextPath() %>/calculator/age";
+			location.href="age";
 }
 
 function typeChoice(typeVal) {
@@ -66,7 +66,7 @@ function weight_choice() { // 무게계산
             <div class="age_circle">
                 <div class="age_img age_img1">
                     <img
-                    src="<%= request.getContextPath() %>/assets/img/dog-outline-chasing-balloons.png"
+                    src="/assets/img/dog-outline-chasing-balloons.png"
                     alt="강아지이미지">
                     <span class="age_num" id="dog_age">
                         `+result_puppyAge+`살
@@ -78,7 +78,7 @@ function weight_choice() { // 무게계산
             <div class="age_circle">
                 <div class="age_img age_img2">
                     <img
-                    src="<%= request.getContextPath() %>/assets/img/user.png"
+                    src="/assets/img/user.png"
                     alt="사람">
                     <span class="age_num" id="age_cal">
                         `+result_peopleAge+`살

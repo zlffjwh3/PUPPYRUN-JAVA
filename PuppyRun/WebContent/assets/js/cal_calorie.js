@@ -1,5 +1,5 @@
 function restartCalc(){
-    location.href="<%= request.getContextPath() %>/calculator/age?calc_type=2";
+    location.href="age?calc_type=2";
 }
 
 function calorieResult() {
