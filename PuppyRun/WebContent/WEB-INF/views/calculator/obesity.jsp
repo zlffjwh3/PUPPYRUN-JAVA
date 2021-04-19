@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/cal_calroie.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/cal_obesity.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/bg-middle.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/slider.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
@@ -30,7 +30,7 @@
         <script src="<%= request.getContextPath() %>/assets/js/slider.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/index.js"></script>
-        <script src="<%= request.getContextPath() %>/assets/js/cal_calorie.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/cal_obesity.js"></script>
         <title>퍼피런 - 친구와 산책 나가요</title>
     </head>
     <body>
@@ -122,20 +122,20 @@
             <div id="main-content">
                     
                     
-                 <!-- 계산기박스 ------------------------------------>
-                 <div id="calcu_box">
+                   <!-- 계산기박스 ------------------------------------>
+                 <div id="calcu_box" class="calcu_box">
                     <div id="top-menu">
                         <div class="age-cal">
                         	<a href="?calc_type=1">
 								나이계산기
 							</a>
                        	</div>
-                        <div class="calorie-cal menu-click">
+                        <div class="calorie-cal ">
 							<a href="?calc_type=2">
 								권장칼로리
 							</a>
 						</div>
-                        <div class="body-cal">
+                        <div class="body-cal menu-click">
                         	<a href="?calc_type=3">
 								비만도게산기
 							</a>
@@ -143,59 +143,89 @@
                     </div>
 
                     <div class="box-in-title">
-                        <h3>권장 칼로리</h3>
+                        <h3>비만도 계산기</h3>
                         <p class="p-hr"></p>
-                        <span>내 반려견의 권장 칼로리는 얼마일까요?</span>
+                        <span>내 반려견의 비만도 계산 결과는?</span>
                     </div>
-                    
-                    <!-- 결과창부분 -->
 
                     <div class="box-in-content">
-                        <div class="dog-birth">
-                            <span class="sub-title birth-title">몸무게</span>
-                            <div id="weight-input-box" class="input-div">
-                                <input type="text" name="dog_weight" id="dog_weight"  pattern="[0-9]*" inputmode="numeric" maxlength="10" placeholder="kg 단위로 입력">
-                            </div>
-                        </div>
-                        <div class="dog-condition">
-                            <span class="sub-title">반려견 상태</span>
+                        <!-- <div class="dog-weight">
+                            <span class="sub-title">몸무게 선택</span>
                             <div class="cal_choice">
-                                <select name="dog_jisu" id="dog_jisu">
-                                    <option value="0" disabled>반려견 상태선택</option>
-                                    <option value="1">생후 4개월 미만 반려견</option>
-                                    <option value="2">중성화한 반려견</option>
-                                    <option value="3">중성화하지 않은 반려견</option>
-                                    <option value="4">비만 상태인 성견</option>
-                                    <option value="5">활동량이 많은 성견</option>
-                                    <option value="6">활동량이 많지 않은 성견</option>
-                                </select>
+                                <input type="button" class="dog_type dog_type0 cal_checked"
+                                    onclick="typeChoice(1)" value="소(~9kg)">
+                                <input type="button" class="dog_type dog_type1" onclick="typeChoice(2)" value="중(9~23kg)">
+                                <input type="button" class="dog_type dog_type2" onclick="typeChoice(3)" value="대(24kg이상)">
                             </div>
-                          
+
+                        </div> -->
+
+                        <div class="dog-condition">
+                            <span class="sub-title">체형 선택</span><br>
+                            <div class="cal_BCS cal_BCS_sm">
+                                <input type="hidden" id="bcs_type" name="bcs_type" value=>
+                                <ul id="bcs_sel_0_img" style="display: block;">
+                                    <li onclick="bcs_sel(0)" class="bcs_type_0 BSC_click_on">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_01_on.png" alt="BCS_s01">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(1)" class="bcs_type_1">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_02_on.png" alt="BCS_s02">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(2)" class="bcs_type_2">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_03_on.png" alt="BCS_s03">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(3)" class="bcs_type_3">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_04_on.png" alt="BCS_s04">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(4)" class="bcs_type_4">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_05_on.png" alt="BCS_s05">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(5)" class="bcs_type_5">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_06_on.png" alt="BCS_s06">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(6)" class="bcs_type_6">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_07_on.png" alt="BCS_s07">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(7)" class="bcs_type_7">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_08_on.png" alt="BCS_s08">
+                                        </a>
+                                    </li>
+                                    <li onclick="bcs_sel(8)" class="bcs_type_8">
+                                        <a>
+                                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/BCS_s_09_on.png" alt="BCS_s09">
+                                        </a>
+                                    </li>
+                                
+                                </ul>
+                            </div>
 
                         </div>
 
                         <div id="submitBtn" class="submitBtn">
-                            <input type="button"   onclick="calorieResult()" value="결과보기">
+                            <input type="button"   onclick="obesityResult();" value="결과보기">
                         </div>
 
-                        <input type="hidden" id="calResultValue" style="display: none">
+
                     </div>
 
 
                 </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                <input id="obsesitySelectedVal" type="hidden" style="display: none;">
                     
                     
                     

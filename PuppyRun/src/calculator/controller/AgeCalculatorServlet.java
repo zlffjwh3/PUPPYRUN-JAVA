@@ -28,7 +28,7 @@ public class AgeCalculatorServlet extends HttpServlet {
 		if("2".equals(calc_type)) {
 			request.getRequestDispatcher("/WEB-INF/views/calculator/calorie.jsp").forward(request, response);
 		}else if("3".equals(calc_type)) {
-//			request.getRequestDispatcher("/WEB-INF/views/calculator/calculatorObesity.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/calculator/obesity.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/calculator/age.jsp").forward(request, response);
 		}

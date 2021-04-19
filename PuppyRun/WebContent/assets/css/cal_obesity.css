@@ -5,11 +5,20 @@
     position : relative;
 }
 
-#calcu_box {
+.calcu_box {
     width: 800px;
-    height: 650px;
+    height: 900px;
     box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
-    margin: 160px auto 0 auto;
+    margin: 130px auto 0 auto;
+    border-radius: 40px;
+    background-color: white;
+}
+
+.result_calcu_box {
+    width: 800px;
+    height: 630px;
+    box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
+    margin: 150px auto 0 auto;
     border-radius: 40px;
     background-color: white;
 }
@@ -37,7 +46,7 @@
     }
     	.age-cal > a {
     		display : block;
-    		width : 100%;
+    		width: 100%;
     		color : white;
     	}
     	
@@ -51,7 +60,7 @@
     }
     	.calorie-cal > a {
     		display : block;
-    		width : 100%;
+    		width: 100%;
     		color : white;
     	}
     	
@@ -137,10 +146,10 @@
     }
 
 /* 몸무게 선택 */
-.dog-weight {
+.dog-condition {
     width: 500px;
-    height: 100px;
-    margin: 10px auto;
+    height: 530px;
+    margin: 0 auto;
 }
     .dog_type {
         margin: 0 10px;
@@ -178,54 +187,110 @@
     box-shadow: 0px 2px 3px  #C9C9C9;
 }
 
-/* 나이계산 결과 ***********************************************/
-.age_circle {
-    width: 50%;
-    height: 300px;
-    float: left;
+
+
+
+.dog-weight {
+    width: 500px;
+    height: 80px;
+    margin: 10px auto;
+}
+    .dog_type {
+        margin: 0 10px;
+        border-radius: 100px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 15px;
+        color: #616060;
+        background: #FECF67;
+        text-align: center;
+        padding: 1px 15px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .cal_checked {
+        color: #fff;
+        background: #ff9c00;
+    }
+
+/* BCS결과 */
+.cal_BCS {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 2% 0;
+    
+    
+}
+    .cal_BCS li:first-child {
+        margin: 2% 0 0 0;
+    }
+    .cal_BCS li a img {
+        width: 100%;
+        
+        filter: grayscale(100%);
+        opacity: 0.6;
+    }
+    .cal_BCS li {
+        list-style: none;
+        float: left;
+        width: 32%;
+        margin: 2% 0 0 2%;
+        border: 1px solid #ececec;
+        background: #fafafa;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+
+    .cal_BCS li:hover {
+        border: 1px solid rgb(185, 185, 185);
+        background: rgba(163, 163, 163, 0.247);
+    }
+
+    .cal_BCS li:nth-child(4n+0) {
+        margin: 2% 0 0 0;
+    }
+    .cal_BCS li:nth-child(7n+0) {
+        margin: 2% 2% 0 0;
+    }
+    
+    .cal_BCS li.bcs_on{
+        border: 1px solid #ffc83c;
+        background-color: rgba(253, 240, 169, 0.123);
+    }
+
+/* 체형선택 */
+#bcs_sel_0_img li a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+}
+    
+/* 결과창  **********************/
+.cal_txt {
+    height: 240px;
+    margin-bottom: 10px;
     text-align: center;
 }
-.age_img1 {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-    background: rgba(254, 207, 103, 0.33);
-    float: left;
-    margin: 0 0 0 145px;
-}
-    .age_img1 > img {
-        width: 110px;
-        height: 110px;
-        margin: 25px 40px 5px 40px;
+    .cal_txt > p {
+        font-size: 24px;
+        margin : 10px 0;
+        color: #FBB41D;
+        font-weight: 400;
     }
-    .age_img1 > span {
-        color: #FEB415;
-        font-size: 16px;
-        font-weight: 600;
+    .cal_txt > span {
+        font-size: 18px;
+        display: inline-block;
+        font-weight: 300;
+        line-height: 2;
     }
 
-.age_img2 {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-    background: rgba(254, 207, 103, 0.33);
-    float: left;
-    margin: 0 0 0 45px;
-}
-    .age_img2 > img {
-        width: 70px;
-        height: 70px;
-        margin: 55px 60px 15px 60px;
-    }
-    .age_img2 > span {
-        color: #FEB415;
-        font-size: 16px;
-        font-weight: 600;
-    }
 
-    .cal_btn {
-        margin: 0 0 0 310px;
-    }
+.cal_btn {
+    margin: 0 0 0 310px;
+}
     .cal_btn > .cal_result {
         border: none;
         color: white;
@@ -238,5 +303,4 @@
         cursor: pointer;
         box-shadow: 0px 2px 3px  #C9C9C9;
     }
-    
-    
+
