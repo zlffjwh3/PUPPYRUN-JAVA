@@ -268,7 +268,7 @@ nav {
     font-family: 'Nanum Gothic', sans-serif;
     position: absolute;
     top : 120px;
-    left : 260px;
+    left : 300px;
 }
 
 #mWalkInfo #walkcontent-box #text01 > b {
@@ -322,24 +322,24 @@ nav {
 }
 
 #info-wrap {
-    width : 700px;
+    width : 400px;
+    height : 120px;
     position: relative;
-    top : 280px;
-    left : 100px;
+    top : 250px;
+    left : 180px;
+    /* padding-top : 10px;
+    border-top : 1px solid black; */
 }
 
 .info-content {
-    float : left;
     text-align: center;
-    
+    float : right;
+    /* margin-right : 50px; */
 }
 
-.info-content:nth-child(1) {
-    margin-right : 50px;
-}
-
-.info-content:nth-child(2) {
-    margin-right : 50px;
+.info-content1 {
+	float : right;
+	margin-right : 50px;
 }
 
 .set-info {
@@ -361,6 +361,11 @@ nav {
     font-family: 'Noto Sans KR', sans-serif;
     font-size : 20px;
 }
+
+#info-wrap img {
+	cursor : pointer;
+}
+
 
 /* 멍멍이야기 * 산책친구 ---------------------------*/
 .free-board-box {

@@ -11,7 +11,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/assets/css/reset.css">
         <link rel="stylesheet" href="/assets/css/login.css">
-        <title>로그인</title>
+        <!-- 파비콘 이미지 가져오기 -->
+        <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
+        <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
+        <title>퍼피런 :: 로그인</title>
     </head>
     <body>
         <div id="wrap">
@@ -37,7 +40,7 @@
                     </form>
                 </div>
                 <div id="join-find-id-pwd">
-                    <a href="#" >아이디 · 비밀번호 찾기</a>
+                    <a href="/id-pw-inquiry.jsp" >아이디 · 비밀번호 찾기</a>
                     <a href="/join.jsp">회원가입</a>
                 </div>
             </div>

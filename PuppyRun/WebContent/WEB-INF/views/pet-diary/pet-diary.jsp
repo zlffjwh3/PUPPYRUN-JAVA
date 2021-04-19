@@ -200,11 +200,11 @@
                     <p>친구와의 추억을 기록해요!</p>
                 </div>
 	   			<!-- Goal ----------------------------------------------------------------------------------------->
-	   			<div id="mWalkInfo">
+	   			                <div id="mWalkInfo">
                 	<% if(user != null) { %>
                     <div id="walkcontent-box">
                         <p id="text01">
-                        	이번주 <b><%= user.getUserNick() %></b>님의 기록을 확인하세요!
+                        	<b><%= user.getUserNick() %></b> 님의 기록을 확인하세요!
                         </p>
                         <img id="dog-image-box" onclick="location.href='/user/myInfo'">
                         	<% if(user.getUserPhoto() != null) { %>
@@ -219,19 +219,19 @@
                         <div id="info-wrap">
                             <p>이번주</p>
                             <div class="info-content">
-                                <span class="set-info"><%= weekGoal.getWeekDis() %></span>
-                                <span class="text">m</span>
-                                <p class="text">총 산책거리</p>
-                            </div>
-                            <div class="info-content">
                                 <span class="set-info"><%= weekGoal.getWeekTime() %></span>
                                 <span class="text">분</span>
                                 <p class="text">총 산책시간</p>
                             </div>
+                            <div class="info-content info-content1">
+                                <span class="set-info"><%= weekGoal.getWeekDis() %></span>
+                                <span class="text">m</span>
+                                <p class="text">총 산책거리</p>
+                            </div>
                         </div>
                         <% } else { %>
                        <div id="info-wrap">
-                       		이번주 목표를 등록해주세요 (사진으로 하는 게 좋을 듯)
+                       		<img src="/assets/img/no-goal.png" onclick="location.href='/petdiary/list'">
                        </div>
                         <% } %>
                     </div>
@@ -240,25 +240,21 @@
                         <p id="text01">산책 정보를 확인하려면
                             <b>로그인</b>
                             해주세요.</p>
-                        <div id="dog-image-box"></div>
+                        <img id="dog-image-box" src="/assets/img/dog-img.png" onclick="location.href='/login.jsp'">
                         <div id="login-wrap">
                             <a href="/login.jsp" class="link-login">로그인</a>
                         </div>
                         <div id="info-wrap">
-                            <div class="info-content">
-                                <span class="set-info">0</span>
-                                <span class="text">/ 7</span>
-                                <p class="text">이번주 총 산책 횟수</p>
-                            </div>
-                            <div class="info-content">
-                                <span class="set-info">0</span>
-                                <span class="text">km</span>
-                                <p class="text">총 산책거리</p>
-                            </div>
+                            <p>이번주</p>
                             <div class="info-content">
                                 <span class="set-info">0</span>
                                 <span class="text">분</span>
                                 <p class="text">총 산책시간</p>
+                            </div>
+                            <div class="info-content info-content1">
+                                <span class="set-info">0</span>
+                                <span class="text">m</span>
+                                <p class="text">총 산책거리</p>
                             </div>
                         </div>
                     </div>
@@ -290,13 +286,18 @@
 				   		</div>
 				   		<div class="diary-today-goal">
 				   			<p>오늘의 결과</p>
-				   			<span>거리</span> : <%= petDiary.getDiaryDis() %> m(미터)
-				   			<span>시간</span> : <%= petDiary.getDiaryTime() %> m(분)
+				   			<p>
+				   				거리 <b><%= petDiary.getDiaryDis() %></b> m &nbsp;&nbsp;
+				   				시간 <b><%= petDiary.getDiaryTime() %></b> 분
+				   			</p>
 				   		</div>
 				   		<div class="diary-goal">
 				   			<% if(goal != null) { %>
 				   				<p id="goal-p">이번주 목표</p>
-				   				<%= goal.getGoalDis() %>m / <%= goal.getGoalTime() %>분
+				   				<p>
+				   					거리 <b><%= goal.getGoalDis() %></b> m &nbsp;&nbsp;
+				   					시간 <b><%= goal.getGoalTime() %></b> 분
+				   				</p>
 				   			<% } else if(goal == null && sunCheck == 1) { %>
 				   				<p id="no-goal-p">
 				   					이번주 목표가 없어요!<br>

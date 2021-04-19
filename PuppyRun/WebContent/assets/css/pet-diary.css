@@ -105,8 +105,7 @@
 		background: #FFF9EB;
 	    width: 310px;
 	    height: 160px;
-	    border-radius: 30px;
-	    border : 1px solid rgb(255, 216, 131);
+	    border-radius: 20px;
 	}
 	
 		.diary-content > span {
@@ -122,10 +121,24 @@
 		width: 310px;
 	    height: 80px;
 	    background: #FFF9EB;
-	    border-radius: 30px;
+	    border-radius: 20px;
+	    padding-top : 2px;
 	}
-	
-	
+		
+		.diary-today-goal p:first-child, .diary-goal p:first-child{
+			 color : #FEB415;
+			 font-weight : border;
+		}
+		
+		.diary-today-goal p:last-child, .diary-goal p:last-child {
+			margin-top : 5px;
+		}
+		
+		.diary-today-goal b, .diary-goal b{
+			font-size : 20px;
+			color : #FEB415;
+		}
+		
 		/* 목표 설정 버튼 */
 		.diary-goal .goal-btn {
 			border : none;
