@@ -275,7 +275,7 @@ $(document).ready(function() {
             }*/
 	
             frm.method = "post";
-            frm.action = '/user/modify?userId =' + idNum;
+            frm.action = '/user/modify?userId='+idNum+"&dogCheck=N";
 		}   else if (mode == "02") {
 				/*if(userIdCheckFlag == false) {
                 	return;
@@ -328,7 +328,7 @@ $(document).ready(function() {
 				}*/
 			
 			frm.method = "post";
-            frm.action = '/user/modify?userId =' + idNum;
+            frm.action = '/user/modify?userId='+idNum+"&dogCheck=Y";
 		}
             frm.submit(); // 실행
     }

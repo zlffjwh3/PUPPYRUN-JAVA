@@ -397,25 +397,59 @@ public class UserDAO {
 		return user;
 	}
 
-	// 회원정보 수정
+	// 회원정보 수정 (강아지 없음)
 	public int updateUser(Connection conn, User user) {
+		// 반려견 있음 -> 없음
+		// 현재 유저의 이전 정보를 받은 다음, 강아지 유무체크를 먼저 확인
+		User beforeUser = selectOneUserIdOnly(conn, user.getUserId());
+		
 		int result = 0;
-		PreparedStatement pstmt = null;
-		String query = "UPDATE USERTBL SET USER_PW = ?, PHONE = ?, EMAIL = ?, USER_BIRTH = ?, USER_ADDR = ? WHERE USER_ID= ?";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, user.getUserPw());
-			pstmt.setString(2, user.getPhone());
-			pstmt.setString(3, user.getEmail());
-			pstmt.setString(4, user.getUserBirth());
-			pstmt.setString(5, user.getUserAddr());
-			pstmt.setNString(6, user.getUserId());
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(pstmt);
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		String query1 = "UPDATE USERTBL SET USER_PW = ?, PHONE = ?, EMAIL = ?, USER_BIRTH = ?, USER_ADDR = ? WHERE USER_ID= ?"; // 원래 없음
+		String query2 = "UPDATE USERTBL SET USER_PW = ?, PHONE = ?, EMAIL = ?, USER_BIRTH = ?, USER_ADDR = ? DOG_CHECK='N' WHERE USER_ID= ?"; // 유->무
+		String query3 = "delete dog where DOG_ID = ?;"; // 반려견 제거
+		
+		if(beforeUser.getDogCheck() == 'Y') { // 강아지가 있다가 없음
+			try {
+				pstmt2 = conn.prepareStatement(query2);
+				pstmt2.setString(1, user.getUserPw());
+				pstmt2.setString(2, user.getPhone());
+				pstmt2.setString(3, user.getEmail());
+				pstmt2.setString(4, user.getUserBirth());
+				pstmt2.setString(5, user.getUserAddr());
+				pstmt2.setNString(6, user.getUserId());
+				
+				pstmt3 = conn.prepareStatement(query3);
+				pstmt3.setString(1, user.getUserId());
+				result = pstmt2.executeUpdate();
+				result = pstmt3.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(pstmt3);
+			}
+			
+		} else if(beforeUser.getDogCheck() == 'N') { // 강아지 원래부터 없었음!
+			try {
+				pstmt1 = conn.prepareStatement(query1);
+				pstmt1.setString(1, user.getUserPw());
+				pstmt1.setString(2, user.getPhone());
+				pstmt1.setString(3, user.getEmail());
+				pstmt1.setString(4, user.getUserBirth());
+				pstmt1.setString(5, user.getUserAddr());
+				pstmt1.setNString(6, user.getUserId());
+				result = pstmt1.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(pstmt1);
+			}
+			
 		}
+		
+		
 		return result;
 	}
 
@@ -454,7 +488,8 @@ public class UserDAO {
 		
 		return user;
 	}
-
+	
+	// 강아지 있음 수정!!
 	public int updateDog(Connection conn, User user, Dog dog) {
 		int result = 0;
 		PreparedStatement pstmt1 = null;
@@ -471,8 +506,6 @@ public class UserDAO {
 			pstmt1.setString(5, user.getUserAddr());
 			pstmt1.setString(6, "Y");
 			pstmt1.setNString(7, user.getUserId());
-			result = pstmt1.executeUpdate();
-			System.out.println("제대로 오나? : " + result);
 			
 			
 			pstmt2 = conn.prepareStatement(query2);
@@ -482,6 +515,9 @@ public class UserDAO {
 			pstmt2.setInt(4, dog.getDogAge());
 			pstmt2.setFloat(5, dog.getDogWeight());
 			pstmt2.setString(6, user.getUserId());
+			
+			result = pstmt1.executeUpdate();
+			System.out.println("제대로 오나? : " + result);
 			result = pstmt2.executeUpdate();
 			System.out.println("제대로 오나? 2 : " + result);
 		} catch (SQLException e) {

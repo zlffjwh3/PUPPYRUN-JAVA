@@ -222,13 +222,18 @@ public class UserService {
 		return result;
 	}
 	
-	public int updateDog(User user, Dog dog) { // 수정예정@@@@@@@@@@@@@!!
+	public int updateDog(User user, Dog dog) { 
 		int result = 0;
 		Connection conn = null;
 		
 		try {
 			conn = factory.createConnection();
 			result = new UserDAO().updateDog(conn, user, dog);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

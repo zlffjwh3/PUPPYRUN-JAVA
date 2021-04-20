@@ -44,6 +44,8 @@ public class ModifyServlet extends HttpServlet {
 		
 		String userId = request.getParameter("userId") ;
 		User userBefore = new UserService().selectOneUserIdOnly(userId); // 기존정보
+		char dogCheck = request.getParameter("dogCheck").charAt(0);
+		
 		
 		// DB 업데이트
 		String pwd = request.getParameter("user-pwd");

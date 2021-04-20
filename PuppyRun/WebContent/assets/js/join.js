@@ -265,7 +265,7 @@ $(document).ready(function() {
             }
 	
             frm.method = "post";
-            frm.action = "/user/enroll";
+            frm.action = "/user/enroll?dogCheck=N";
 		}   else if (mode == "02") {
 				if(userIdCheckFlag == false) {
                 	return;
@@ -318,7 +318,7 @@ $(document).ready(function() {
 				}
 			
 			frm.method = "post";
-            frm.action = "/user/enrollDog";
+            frm.action = "/user/enroll?dogCheck=Y";
 		}
             frm.submit(); // 실행
     }
