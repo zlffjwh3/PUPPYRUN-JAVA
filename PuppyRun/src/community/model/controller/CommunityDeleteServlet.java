@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import community.model.service.CommentService;
 import community.model.service.CommunityService;
 import community.model.vo.Community;
 import photo.model.service.PhotoService;
@@ -27,8 +28,10 @@ public class CommunityDeleteServlet extends HttpServlet {
 		Community community = new CommunityService( ).selectOneCommunity(communityNo);
 		String communityPhoto = community.getComPhoto();
 		String communityUserId = community.getComId();
+		int commentResult = 0;
 		int result = 0;
 		
+		commentResult = new CommentService().deleteCommunity2(communityNo);
 		result = new CommunityService().deleteCommunity(communityNo);
 		
 		int photoResult = 1;
@@ -39,7 +42,10 @@ public class CommunityDeleteServlet extends HttpServlet {
 			file.delete(); //위에 가져온 파일 경로와 동일한 파일 삭제
 		}
 		
-		if(result > 0 && photoResult > 0) {
+		System.out.println(result);
+		System.out.println(commentResult);
+		
+		if(result > 0 && photoResult > 0 && commentResult > 0) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('게시글이 삭제되었습니다.'); location.href='/community/list';</script>");

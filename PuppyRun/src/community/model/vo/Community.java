@@ -1,7 +1,6 @@
 package community.model.vo;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class Community {
 	private int comNo;
@@ -12,8 +11,8 @@ public class Community {
 	private int comview;
 	private Date comDate;
 	private String comPhoto;
-	private int likeCount;
-	private ArrayList<Comment> comment;
+	/* private int likeCount; */
+	/* private ArrayList<Comment> comment; */
 	private String userNick;
 	
 	public Community() {}
@@ -67,20 +66,16 @@ public class Community {
 	public void setComPhoto(String comPhoto) {
 		this.comPhoto = comPhoto;
 	}
-	public int getLikeCount() {
-		return likeCount;
-	}
+	/*
+	 * public int getLikeCount() { return likeCount; }
+	 * 
+	 * public void setLikeCount(int likeCount) { this.likeCount = likeCount; }
+	 */
 
-	public void setLikeCount(int likeCount) {
-		this.likeCount = likeCount;
-	}
-
-	public ArrayList<Comment> getComment() {
-		return comment;
-	}
-	public void setComment(ArrayList<Comment> comment) {
-		this.comment = comment;
-	}
+	/*
+	 * public ArrayList<Comment> getComment() { return comment; } public void
+	 * setComment(ArrayList<Comment> comment) { this.comment = comment; }
+	 */
 
 	public String getUserNick() {
 		return userNick;
@@ -90,10 +85,4 @@ public class Community {
 		this.userNick = userNick;
 	}
 
-	@Override
-	public String toString() {
-		return "Community [comNo=" + comNo + ", comId=" + comId + ", tagNo=" + tagNo + ", comTitle=" + comTitle
-				+ ", comContent=" + comContent + ", comview=" + comview + ", comDate=" + comDate + ", comPhoto="
-				+ comPhoto + ", likeCount=" + likeCount + ", comment=" + comment + "]";
-	}
 }

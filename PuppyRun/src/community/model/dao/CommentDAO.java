@@ -50,14 +50,6 @@ public class CommentDAO {
 		return cList;
 	}
 	
-	public int totalCount(Connection conn) {
-		return 0;
-	}
-	
-	public Comment selectOneCommunity(Connection conn, int commentNo) {
-		return null;
-	}
-	
 	public int insertComment(Connection conn, Comment comment) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -80,10 +72,6 @@ public class CommentDAO {
 		return result;
 	}
 	
-	public int updateComment(Connection conn, Comment comment) {
-		return 0;
-	}
-	
 	// 댓글 삭제
 	public int deleteComment(Connection conn, int commentNo) {
 		PreparedStatement pstmt = null;
@@ -93,6 +81,25 @@ public class CommentDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, commentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int deleteComment2(Connection conn, int communityNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM COMMENTTBL WHERE COM_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, communityNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

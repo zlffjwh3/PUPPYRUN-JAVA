@@ -1,6 +1,7 @@
 package community.model.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,8 @@ import community.model.service.CommunityService;
 import community.model.service.LikeService;
 import community.model.vo.Community;
 import community.model.vo.CommunityPage;
+import user.model.service.UserService;
+import user.model.vo.User;
 
 @WebServlet("/community/search")
 public class CommunitySearchServlet extends HttpServlet {
@@ -46,6 +49,9 @@ public class CommunitySearchServlet extends HttpServlet {
 		// 좋아요 수 구하는 객체
 		ArrayList<int[]> cntLike = new LikeService().cnt();
 		
+		// 회원정보 모두 가져오기 (닉네임 옆에 사진때매)
+		ArrayList<User> uList = new UserService().selectAllUserList2();
+		request.setAttribute("uList", uList);
 		
 		if(!cList.isEmpty()) {
 			request.setAttribute("cList", cList);
@@ -54,7 +60,10 @@ public class CommunitySearchServlet extends HttpServlet {
 			request.setAttribute("cntLike", cntLike);
 			request.getRequestDispatcher("/WEB-INF/views/community/communitySearch.jsp").forward(request, response);
 		}else {
-			System.out.println("검색 서블릿/cList 객체 없음");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('검색어가 존재하지 않습니다!'); location.href='/community/list';</script>");
+			out.flush();
 		}
 	}
 

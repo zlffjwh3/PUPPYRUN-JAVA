@@ -17,7 +17,7 @@ public class CommunityDAO {
 	public ArrayList<Community> selectAllCommunity(Connection conn, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT, USER_NICK FROM COMMUNITY) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, USER_NICK FROM COMMUNITY) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Community> cList = null;
 		
 		// 한 페이지에 보여줄 게시물의 수
@@ -44,7 +44,6 @@ public class CommunityDAO {
 					community.setComview(rset.getInt("COM_VIEW"));
 					community.setComDate(rset.getDate("COM_DATE"));
 					community.setComPhoto(rset.getString("COM_PHOTO"));
-					community.setLikeCount(rset.getInt("LIKE_COUNT"));
 					community.setUserNick(rset.getString("USER_NICK"));
 					
 					cList.add(community);
@@ -218,7 +217,7 @@ public class CommunityDAO {
 	public ArrayList<Community> selectTagList(Connection conn, int currentPage, int tag) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT, USER_NICK FROM COMMUNITY WHERE TAG_NO = ?) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT, COM_VIEW, COM_DATE, COM_PHOTO, USER_NICK FROM COMMUNITY WHERE TAG_NO = ?) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Community> cList = null;
 		
 		int recordCountPage = 10;
@@ -245,7 +244,6 @@ public class CommunityDAO {
 					community.setComview(rset.getInt("COM_VIEW"));
 					community.setComDate(rset.getDate("COM_DATE"));
 					community.setComPhoto(rset.getString("COM_PHOTO"));
-					community.setLikeCount(rset.getInt("LIKE_COUNT"));
 					community.setUserNick(rset.getString("USER_NICK"));
 					
 					cList.add(community);
@@ -283,7 +281,6 @@ public class CommunityDAO {
 				community.setComview(rset.getInt("COM_VIEW"));
 				community.setComDate(rset.getDate("COM_DATE"));
 				community.setComPhoto(rset.getString("COM_PHOTO"));
-				community.setLikeCount(rset.getInt("LIKE_COUNT"));
 				community.setUserNick(rset.getString("USER_NICK"));
 			}
 		} catch (SQLException e) {
@@ -300,7 +297,7 @@ public class CommunityDAO {
 	// 글 등록
 	public int insertCommunity(Connection conn, Community community) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO COMMUNITY VALUES(SEQ_COMNO.NEXTVAL, ?, ?, ?, ?, 0, SYSDATE, ?, 0, ?)";
+		String query = "INSERT INTO COMMUNITY VALUES(SEQ_COMNO.NEXTVAL, ?, ?, ?, ?, 0, SYSDATE, ?, ?)";
 		int result = 0;
 		
 		try {
@@ -388,7 +385,7 @@ public class CommunityDAO {
 	public ArrayList<Community> selectSearchList(Connection conn, String search, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT,COM_VIEW, COM_DATE, COM_PHOTO, LIKE_COUNT, USER_NICK  FROM COMMUNITY WHERE COM_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT,COM_VIEW, COM_DATE, COM_PHOTO, USER_NICK  FROM COMMUNITY WHERE COM_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Community> cList = null;
 		
 		int recordCountPerPage = 10;
@@ -413,7 +410,6 @@ public class CommunityDAO {
 				community.setComview(rset.getInt("COM_VIEW"));
 				community.setComDate(rset.getDate("COM_DATE"));
 				community.setComPhoto(rset.getString("COM_PHOTO"));
-				community.setLikeCount(rset.getInt("LIKE_COUNT"));
 				community.setUserNick(rset.getString("USER_NICK"));
 				
 				cList.add(community);

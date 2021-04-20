@@ -95,6 +95,30 @@ public class CommentService {
 		
 	}
 	
+	public int deleteCommunity2(int communityNo) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CommentDAO().deleteComment2(conn, communityNo);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
+		
+	}
+	
 	// 댓글 수
 	public ArrayList<int[]> cnt() {
 		Connection conn = null;
