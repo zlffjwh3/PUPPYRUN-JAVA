@@ -41,12 +41,14 @@ public class ListServlet extends HttpServlet {
 		UserPage up = new UserService().selectAllUserList(currentPage);
 		// 전체 보기일 경우
 		if(dogCheck.equals("all")) {
+			System.out.println("전체 검색");
 			ArrayList<User> uList = up.getuList();
 			System.out.println(dogCheck);
 			request.setAttribute("uList", uList);
 		} else if(dogCheck.equals("N")) {
-			ArrayList<User> uList = new UserService().adminDogCheckList(dogCheck);
-			request.setAttribute("uList", uList);
+			System.out.println("부분 검색");
+			ArrayList<User> allUser = new UserService().adminDogCheckList(dogCheck);
+			request.setAttribute("allUser", allUser);
 		}
 		
 		// 퍼피런 이야기 전체 정보 가져오기

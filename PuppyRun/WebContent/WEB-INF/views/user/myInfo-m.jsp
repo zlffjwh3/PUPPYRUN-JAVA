@@ -7,11 +7,10 @@
 	pageEncoding="UTF-8"%>
 <%
 	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList");
+	ArrayList<User> allUser = (ArrayList<User>)request.getAttribute("allUser");
 	String pageNavi = (String)request.getAttribute("pageNavi");
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
-	ArrayList<User> dogCheckList = (ArrayList<User>)request.getAttribute("dogCheckList");
-	ArrayList<User> userList = (ArrayList<User>)request.getAttribute("userList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
