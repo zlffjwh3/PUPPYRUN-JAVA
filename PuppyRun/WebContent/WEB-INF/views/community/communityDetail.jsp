@@ -13,6 +13,7 @@
 	Like beforeLike = (Like)request.getAttribute("beforeLike");
 	int countLike = (int)request.getAttribute("countLike");
 	
+	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList"); // 유저 전체 정보
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -45,10 +46,10 @@
             <header>
                 <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft">
-                        <div id="search">
-                             <form action="/community/search" method>
-                                <input class="search-input" id="" type="text" placeholder="searchKeyword">
+                      <div id="tleft">
+                    	<div id="search">
+                            <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" name="searchKeyword" placeholder="search">
                                 <input id="search-btn" type="submit" value="">
                             </form>
                         </div>
@@ -90,15 +91,23 @@
             		</div>
                 </div>
             </header>
-            <nav>
+           <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <a href="/petdiary/list">산책일기</a>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="/matching/list">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
@@ -142,8 +151,12 @@
                             </div>
                             <div id="notice-content">
                                 <div class="write-div">
+	                            	<% if(community.getComPhoto() != null) { %>
                                 	<div><img id="imgTag" src="/upload/<%=community.getComPhoto()%>"></div>
+	                                <% } %>
+	                                <% if(community.getComContent() != null) { %>
                                     <p><%= community.getComContent() %></p>
+                                    <% } %>
                                 </div>
                             </div>
                             <div id="like-box">
@@ -210,7 +223,20 @@
                                     <% 		}else { %>
                                         <li class="comment">
                                     <% 		} %>
-                                        <div class="profile-image"></div>
+                                        <div class="profile-image">
+                                        	<% int n = 0;
+				                            for(int j=0; j<uList.size(); j++) {
+				                            	if(uList.get(j).getUserId().equals(cList.get(i).getCommentId())) {
+				                        			n = j;
+				                        			break;
+				                            	}
+				                            }
+				                            if(uList.get(n).getUserPhoto() != null) { %>
+				                				<img src="/upload/<%= uList.get(n).getUserPhoto() %>">
+				            				<% } else { %>
+				                				<img src="/assets/img/user-no-img.png">
+				             				<% } %>
+                                        </div>
 
                                         <div class="info">
                                             <div class="nickname">
@@ -220,7 +246,7 @@
                                                 <span><%=cList.get(i).getCommentDate() %></span>
                                      <% if(user != null && cList != null && user.getUserId().equals(cList.get(i).getCommentId())) { %>
                                                 <span><a href="/comment/delete?commentNo=<%=cList.get(i).getCommentNo() %>&comNo=<%=community.getComNo() %>">삭제</a></span>
-                                                <span><a>수정</a></span>
+                                                <span></span>
                                                 <% } else { %>
                                                 <span></span>
                                                 <span></span>
@@ -255,7 +281,7 @@
                             if(user.getUserId().equals(community.getComId())) {
                             %>
                                 <a href="/community/update?communityNo=<%= community.getComNo()%>&communityTagNo=<%= community.getTagNo() %>"><span>수정</span></a>
-                                <a href="/community/delete?communityNo=<%= community.getComNo()%>"><span>삭제</span></a>
+                                <a href="/community/delete?communityNo=<%= community.getComNo()%>" onclick="return confirm('정말 삭제하시겠습니까?')"><span>삭제</span></a>
                             <%
                             }
                             %>

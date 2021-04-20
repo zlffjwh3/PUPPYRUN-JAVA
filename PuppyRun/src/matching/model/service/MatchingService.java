@@ -155,5 +155,20 @@ public class MatchingService {
 		}
 		return matChat;
 	}
+	
+	// 아이디별로 채팅 리스트 가져오기
+	public ArrayList<MatchingChat> viewList(String userId) {
+		Connection conn = null;
+		ArrayList<MatchingChat> matChat = null;
+		
+		try {
+			conn = factory.createConnection();
+			matChat = new MatchingDAO().viewList(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return matChat;
+	}
 
 }

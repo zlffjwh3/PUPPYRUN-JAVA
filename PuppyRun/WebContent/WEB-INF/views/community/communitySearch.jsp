@@ -15,6 +15,8 @@
 	
 	ArrayList<int[]> cntLike = (ArrayList<int[]>)request.getAttribute("cntLike");
 	int[] array2 = null;
+	
+	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList"); // 유저 전체 정보
 %>
 
 <!DOCTYPE html>
@@ -45,12 +47,12 @@
     <body>
         <div id="wrap">
             <header>
-                <!-- 헤더-->
+<!-- 헤더-->
                 <div id="header">
                       <div id="tleft">
                     	<div id="search">
-                            <form action="/community/search" method>
-                                <input class="search-input" id="" type="text" placeholder="searchKeyword">
+                            <form action="/community/search" method="get">
+                                <input class="search-input" id="" type="text" name="searchKeyword" placeholder="search">
                                 <input id="search-btn" type="submit" value="">
                             </form>
                         </div>
@@ -92,15 +94,23 @@
             		</div>
                 </div>
             </header>
-            <nav>
+           <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <a href="/petdiary/list">산책일기</a>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="/matching/list">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
@@ -144,12 +154,12 @@
                                 <% 
                                 	for(int i=0; i<cList.size(); i++) {
                                 %>
-                                <li class="post">
+                                <li class="post" onclick="location.href='/community/detail?comNo=<%= cList.get(i).getComNo() %>&userId=<%= user.getUserId() %>'">
                                     <div class="img-area">
                                 	<% if(cList.get(i).getComPhoto() != null) {%>
                                     	<img src="/upload/<%=cList.get(i).getComPhoto()%>">
                                     <% } else { %>
-                                    	<img src="/assets/img/no-img.jpg">
+                                    	<img src="/assets/img/user-no-img2.png">
                                     <% } %>
                                     </div>
                                     <div class="text-area">
@@ -188,7 +198,20 @@
                                         <div class="post-info">
                                             <!-- 프로필 이미지 -->
                                             <div class="profile">
-                                                <div class="img"></div>
+                                                <div class="img">
+                                                	<% int n = 0;
+						                            for(int j=0; j<uList.size(); j++) {
+						                            	if(uList.get(j).getUserId().equals(cList.get(i).getComId())) {
+						                        			n = j;
+						                        			break;
+						                            	}
+						                            }
+						                            if(uList.get(n).getUserPhoto() != null) { %>
+						                				<img src="/upload/<%= uList.get(n).getUserPhoto() %>">
+						            				<% } else { %>
+						                				<img src="/assets/img/user-no-img.png">
+						             				<% } %>
+                                                </div>
                                                 <!-- 닉네임 -->
                                                 <p class="post-nickname"><%= cList.get(i).getUserNick() %></p>
                                             </div>

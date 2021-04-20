@@ -16,11 +16,9 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
-        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/reset.css"> -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/communityWrite.css">
-
-        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/scroll.css"> -->
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="/assets/img/Favicon/favicon.ico">
@@ -35,19 +33,19 @@
             <header>
                 <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft">
+                      <div id="tleft">
                     	<div id="search">
-                             <form action="/community/search" method>
-                                <input class="search-input" id="" type="text" placeholder="searchKeyword">
+                            <form action="/community/search" method="get">
+                                <input class="search-input" id="" type="text" name="searchKeyword" placeholder="search">
                                 <input id="search-btn" type="submit" value="">
                             </form>
-                        </div></div>
+                        </div>
+                    </div>
                     <!-- 헤더 메인 로고 -->
                     <div id="header-logo">
                         <a href="/index.jsp" id="logo"></a>
                     </div>
                     <div id="tright">
-                        <div id="tright">
 	                	<div id="tright-wrapper">
 		                    <div id="login">
 		                    	<% if(user == null) { %>
@@ -80,23 +78,24 @@
             		</div>
                 </div>
             </header>
-            <nav>
+           <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
-                    <!-- 로그인 못하면 접근 불가한 카테고리들  -->
-                    <%
-                    if(user == null) {
-                    %>
-                      <li class="main-navi-li">
-                            <a href="/petdiary/list">산책일기</a>
+                        <li class="main-navi-li">
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="/matching/list">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
-                    <%
-                    }
-                    %>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
                         </li>
@@ -113,7 +112,7 @@
             <div class="scroll-wrap">
                <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
                <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
-            </div> -->
+            </div>
             <!-- 메인 -->
             <div id="main-content">
                 <div id="Box1">
@@ -124,7 +123,8 @@
                     <div id="write-wrap">
                         <div id="write-box">
                             <form action="/community/write" method="post" enctype="multipart/form-data">
-                             <div id="tag">
+                            	<div id="tag">
+                            		<p class="write-p-tag">태 그</p>  
                                     <select name="tags" id="tegs">
                                         <option value="">태그를 선택해주세요</option>
                                         <option value="0">자유</option>
@@ -153,7 +153,7 @@
                                 </div>
                                 <div id="btn-box">
                                     <input type="submit" id="submit-input" value="등록">
-                                    <a href="/html/free-board.html"><p>취소</p></a>
+                                    <a href="/community/list"><p>취소</p></a>
                                 </div>
                             </form>
                         </div>
