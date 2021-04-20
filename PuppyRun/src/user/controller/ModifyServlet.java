@@ -69,15 +69,15 @@ public class ModifyServlet extends HttpServlet {
 //			user.setUserBirth(birth);
 //			user.setUserAddr(address);
 //			user.setDogCheck('Y');
-		String dogName = request.getParameter("dog-name");
-		String dogBreed = request.getParameter("dog-kind");
-		char dogGender = request.getParameter("dog-gender").charAt(0);
-		int dogAge = Integer.parseInt(request.getParameter("dog-age"));
-		float dogWeight = Float.parseFloat(request.getParameter("dog-weight"));
 		
 		
 		// 수정할 때 반려견 있음 표시!!!
 		if(modifyDogCheck == 'Y') {
+			String dogName = request.getParameter("dog-name");
+			String dogBreed = request.getParameter("dog-kind");
+			char dogGender = request.getParameter("dog-gender").charAt(0);
+			int dogAge = Integer.parseInt(request.getParameter("dog-age"));
+			float dogWeight = Float.parseFloat(request.getParameter("dog-weight"));
 			
 			User user = new User();
 			String birth = year + month + day;
@@ -97,9 +97,13 @@ public class ModifyServlet extends HttpServlet {
 			dog.setDogAge(dogAge);
 			dog.setDogWeight(dogWeight);
 			dog.setDogId(userId);
+			System.out.println("도그아이디 : " + dog.getDogId() + "도그이름" + dog.getDogName() +
+					"개성별" + dog.getDogGender() + "개나이 " + dog.getDogAge() + "도그무게 " + dog.getDogWeight());
 			
 			userResult = new UserService().updateUser(user);
 			dogResult = new UserService().updateDog(dog);
+			System.out.println("유저값" + userResult);
+			System.out.println("도그리저트" + dogResult);
 			
 			if(userResult > 0 && dogResult > 0) {
 				response.setContentType("text/html; charset=UTF-8");
