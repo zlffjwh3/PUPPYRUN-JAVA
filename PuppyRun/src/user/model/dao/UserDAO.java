@@ -240,7 +240,7 @@ public class UserDAO {
 	public int insertUser(Connection conn, User user) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query2 = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?, SYSDATE, 'N', null)";
+		String query2 = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,'N', SYSDATE, 'N', null)";
 		try {
 			pstmt = conn.prepareStatement(query2);
 			pstmt.setString(1, user.getUserId());
@@ -251,7 +251,6 @@ public class UserDAO {
 			pstmt.setString(6, user.getEmail());
 			pstmt.setString(7, user.getUserBirth());
 			pstmt.setString(8, user.getUserAddr());
-			pstmt.setString(9, user.getDogCheck() + "");
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -264,28 +263,40 @@ public class UserDAO {
 	}
 	
 	// 회원가입 (강아지 있음)
-	public int insertDog(Connection conn, Dog dog) {
-		PreparedStatement pstmt = null;
+	public int insertDog(Connection conn, User user, Dog dog) {
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
 		int result = 0;
 		char dogCheck = 0;
-		String query = "INSERT INTO DOG VALUES(SEQ_DOGCODE.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+		String query1 = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,'Y', SYSDATE, 'N', null)";
+		String query2 = "INSERT INTO DOG VALUES(SEQ_DOGCODE.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 		
 		try {
+			pstmt1 = conn.prepareStatement(query1);
+			pstmt1.setString(1, user.getUserId());
+			pstmt1.setString(2, user.getUserPw());
+			pstmt1.setString(3, user.getUserName());
+			pstmt1.setString(4, user.getUserNick());
+			pstmt1.setString(5, user.getPhone());
+			pstmt1.setString(6, user.getEmail());
+			pstmt1.setString(7, user.getUserBirth());
+			pstmt1.setString(8, user.getUserAddr());
 			
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, dog.getDogName());
-			pstmt.setString(2, dog.getDogBreed());
-			pstmt.setString(3, dog.getDogGender()+ "");
-			pstmt.setInt(4, dog.getDogAge());
-			pstmt.setFloat(5, dog.getDogWeight());
-			pstmt.setString(6, dog.getDogId());
-			result = pstmt.executeUpdate();
+			pstmt2 = conn.prepareStatement(query2);
+			pstmt2.setString(1, dog.getDogName());
+			pstmt2.setString(2, dog.getDogBreed());
+			pstmt2.setString(3, dog.getDogGender()+ "");
+			pstmt2.setInt(4, dog.getDogAge());
+			pstmt2.setFloat(5, dog.getDogWeight());
+			pstmt2.setString(6, dog.getDogId());
+			result = pstmt1.executeUpdate();
+			result = pstmt2.executeUpdate();
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(pstmt1);
 		}
 		return result;
 	}
@@ -308,31 +319,7 @@ public class UserDAO {
 		return result;
 	}
 	
-//	public int updateUser(Connection conn, User user) {
-//		 PreparedStatement pstmt = null;
-//	      int result = 0;
-//	      String query = "UPDATE USERTBL SET USER_PW=?, USER_NICK=?, PHONE=?, EMAIL=?, DOG_CHECK=?, DOG_NAME=?, DOG_BREED=?, DOG_GENDER=?, DOG_AGE=?, DOG_WEIGHT=?  WHERE USER_ID=?";
-//	      
-//	      try {
-//			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, user.getUserPw());
-//			pstmt.setString(2, user.getUserNick());
-//			pstmt.setString(3, user.getPhone());
-//			pstmt.setString(4, user.getEmail());
-//			pstmt.setString(5, user.getUserPw());
-//			pstmt.setString(6, String.valueOf(user.getDogCheck()));
-//			pstmt.setString(7, user.getDogName());
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	      return 0;
-//	}
-	
-//	public User findUser(Connection conn, String userId) { // findUserId - findUserPwd 분리로 주석처리
-//		return null;
-//	}
+
 
 	public User findUserId(Connection conn, String userName, String userEmail) {
 		User user = null;
@@ -537,10 +524,12 @@ public class UserDAO {
 	}
 
 
+	
 	public ArrayList<User> selectSearchJUserList(Connection conn, String search, int currentPage) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		// id랑 name 따로 검색하는거야~~!
 		String query = "SELECT USER_ID=?, USER_NAME=?, USER_NICK=?, PHONE=?, EMAIL=?, USER_BIRTH=?, USER_ADDR=?, DOG_CHECK=?, ENROLL_DATE=? FROM USERTBL WHERE USER_ID LIKE ?";
 		ArrayList<User> userList = null;
 		

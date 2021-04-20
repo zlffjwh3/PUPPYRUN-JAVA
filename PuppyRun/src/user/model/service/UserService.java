@@ -110,12 +110,12 @@ public class UserService {
 		return result;
 	}
 	
-	public int insertDog(Dog dog) {
+	public int insertDog(User user, Dog dog) {
 		int result = 0;
 		Connection conn = null;
 		try {
 			conn = factory.createConnection();
-			result = new UserDAO().insertDog(conn, dog);
+			result = new UserDAO().insertDog(conn, user, dog);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
 			} else {
