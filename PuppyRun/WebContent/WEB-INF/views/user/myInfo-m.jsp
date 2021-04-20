@@ -185,7 +185,7 @@
                			<div class="list-bottom-top">
                				<div class="select">
 		               			<!-- 게시글 종류 -->
-		               			<select id="content-kind">
+		               			<select id="content-kind" onchange="selectChange()">
 		               				<option value="puppy-story">퍼피런 이야기</option>
 		               				<option value="puppy-mate">산책짝꿍</option>
 		               			</select>

@@ -243,27 +243,6 @@ public class UserService {
 		return result;
 	}
 
-	// 관리자 유저 도그 체크
-	public ArrayList<User> dogCheckY(char dogCheck) {
-		Connection conn = null;
-		ArrayList<User> dogCheckList = null;
-		
-		try {
-			conn = factory.createConnection();
-			dogCheckList = new UserDAO().selectDogCheckY(conn, dogCheck);
-			if(dogCheckList != null) {
-				JDBCTemplate.commit(conn);
-			}else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		
-		return dogCheckList;
-	}
 
 	public UserPage selectSearchUserList(String search, int currentPage) {
 		Connection conn = null;
@@ -272,7 +251,6 @@ public class UserService {
 		try {
 			conn = factory.createConnection();
 			userPage.setuList(new UserDAO().selectSearchJUserList(conn, search, currentPage));
-			userPage.setPageNavi(new UserDAO().getSearchPageNavi(conn, search, currentPage));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
