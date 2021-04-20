@@ -11,6 +11,7 @@
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
 	ArrayList<User> dogCheckList = (ArrayList<User>)request.getAttribute("dogCheckList");
+	ArrayList<User> userList = (ArrayList<User>)request.getAttribute("userList");
 	System.out.println(dogCheckList);
 %>
 <!DOCTYPE html>

@@ -567,6 +567,71 @@ public class UserDAO {
 	}
 
 	public String getSearchPageNavi(Connection conn, String search, int currentPage) {
-		return null;
+		int recordCountPerPage = 10;
+		int naviCountPerPage = 10;
+		int recordTotalCount = searchTotalCount(conn, search);
+		int pageTotalCount = 0;
+		
+		if(recordTotalCount % recordCountPerPage > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		} else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		
+		// 안전장치
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		int startNavi = ((currentPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		// 누적
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a href='/admin/search?searchKeyword=" + search + "&currentPage=" + (startNavi-1) + "'> 이전  </a>");
+		}
+		for(int i  = startNavi; i <= endNavi; i++) {
+			sb.append("<a href='/admin/search?searchKeyword="+ search + "&currentPage=" + i + "'>" + i + "</a>");
+		}
+		if(needNext) {
+	         sb.append("<a href='/admin/search?searchKeyword=" + search + "&currentPage=" + (endNavi+1) + "'>  다음  </a>");
+	      }
+		
+	      return sb.toString();
+	}
+
+	private int searchTotalCount(Connection conn, String search) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM USERTBL WHERE USER_ID LIKE ?";
+		int recordTotalCount = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + search + "%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				recordTotalCount = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return recordTotalCount;
 	}
 }
