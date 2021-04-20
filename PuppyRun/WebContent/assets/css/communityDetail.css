@@ -16,7 +16,7 @@
     /* border : 1px solid black; */
     padding : 20px 30px 20px 30px;
     border-radius: 30px;
-    box-shadow: 1px 1px 10px 3px #fde5b2;
+    box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 
 #nbb-top h3 { 
@@ -122,6 +122,7 @@
     width: 40px;
     height : 20px;
     margin : 2px 5px;
+    cursor : pointer;
 }
 
 .list {

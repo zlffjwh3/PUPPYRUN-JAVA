@@ -58,6 +58,21 @@ textarea:focus {
     margin : 0 auto;
 }
 
+/* 태그 전체 박스 */
+#tag {
+	margin : 0 0 20px 30px;
+}
+
+/* 태그 selectbox 감싸고 있는 박스 */
+#tag select {
+	padding : 0 16px;
+    display: inline-block;
+    width : 180px;
+    height : 35px;
+    border-radius: 30px;
+    border : 1px solid #C9C9C9;
+}
+
 /* 제목 전체 박스 */
 #write-box #title {
     text-align: center;

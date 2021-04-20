@@ -288,4 +288,38 @@ public class MatchingDAO {
 		return matChatList;
 		
 	}
+
+	// 아이디별로 채팅 리스트 전부 보내주기
+	public ArrayList<MatchingChat> viewList(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MESSAGE WHERE MAT_NO=? ORDER BY RCV_ID DESC";
+		ArrayList<MatchingChat> matChatList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset != null) {
+				matChatList = new ArrayList<MatchingChat>();
+				while(rset.next()) {
+					MatchingChat matChat = new MatchingChat();
+					matChat.setMatNo(rset.getInt("MAT_NO"));
+					matChat.setMsgNo(rset.getInt("MSG_NO"));
+					matChat.setRcvId(rset.getString("RCV_ID"));
+					matChat.setSendId(rset.getString("SEND_ID"));
+					matChat.setContent(rset.getString("MSG_CONTENT"));
+					matChatList.add(matChat);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return matChatList;
+	}
+	
 }

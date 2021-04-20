@@ -45,7 +45,7 @@ a:visited {
   margin : 50px auto;
   /* border : 1px solid #fbb41d; */
   border-radius: 30px;
-  box-shadow: 1px 2px 10px 2px rgb(255, 237, 199);
+  box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
   
 }
 
@@ -98,6 +98,8 @@ a:visited {
 .post .img-area img {
   width : 100%;
   height : 100%;
+  border-radius : 20px;
+  object-fit: cover;
 }
 
 .post .text-area {
@@ -140,11 +142,15 @@ a:visited {
 }
 
 .profile .img {
-  background-color : black;
   width : 24px;
   height : 24px;
   border-radius: 100%;
   margin-right : 5px;
+}
+
+.profile img {
+	width :100%;
+	object-fit: cover;
 }
 
 .profile .post-nickname {

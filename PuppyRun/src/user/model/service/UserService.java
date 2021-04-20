@@ -259,7 +259,22 @@ public class UserService {
 		return userPage;
 	}
 
+	public ArrayList<User> adminDogCheckList(String dogCheck) {
+		Connection conn = null;
+		ArrayList<User> allUser = null;
+		try {
+			conn = factory.createConnection();
+			allUser = new UserDAO().adminDogCheckList(conn, dogCheck);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return allUser;
+	}
 
+	
+	
 
 	
 }
