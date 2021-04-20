@@ -16,6 +16,7 @@ import community.model.service.LikeService;
 import community.model.vo.Comment;
 import community.model.vo.Community;
 import community.model.vo.Like;
+import user.model.service.UserService;
 import user.model.vo.User;
 
 @WebServlet("/community/detail")
@@ -39,6 +40,10 @@ public class CommunityDetailServlet extends HttpServlet {
 		
 		request.setAttribute("beforeLike", beforeLike);
 		request.setAttribute("countLike", countLike);
+		
+		// 회원정보 모두 가져오기 (닉네임 옆에 사진때매)
+		ArrayList<User> uList = new UserService().selectAllUserList2();
+		request.setAttribute("uList", uList);
 	
 		// -----------------------------
 		if(result > 0) {

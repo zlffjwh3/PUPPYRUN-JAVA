@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -17,9 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import community.model.service.CommentService;
 import community.model.service.CommunityService;
-import community.model.vo.Comment;
 import community.model.vo.Community;
 import photo.model.service.PhotoService;
 import photo.model.vo.Photo;

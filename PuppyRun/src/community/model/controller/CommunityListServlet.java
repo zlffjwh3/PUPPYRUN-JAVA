@@ -14,6 +14,8 @@ import community.model.service.CommunityService;
 import community.model.service.LikeService;
 import community.model.vo.Community;
 import community.model.vo.CommunityPage;
+import user.model.service.UserService;
+import user.model.vo.User;
 
 @WebServlet("/community/list")
 public class CommunityListServlet extends HttpServlet {
@@ -53,6 +55,10 @@ public class CommunityListServlet extends HttpServlet {
 			
 			// 좋아요 수 구하는 객체
 			ArrayList<int[]> cntLike = new LikeService().cnt();
+			
+			// 회원정보 모두 가져오기 (닉네임 옆에 사진때매)
+			ArrayList<User> uList = new UserService().selectAllUserList2();
+			request.setAttribute("uList", uList);
 						
 			if(!cList.isEmpty()) {
 				request.setAttribute("cList", cList);
@@ -75,6 +81,10 @@ public class CommunityListServlet extends HttpServlet {
 			
 			// 좋아요 수 구하는 객체
 			ArrayList<int[]> cntLike = new LikeService().cnt();
+			
+			// 회원정보 모두 가져오기 (닉네임 옆에 사진때매)
+			ArrayList<User> uList = new UserService().selectAllUserList2();
+			request.setAttribute("uList", uList);
 			
 			if(!cList.isEmpty()) {
 				request.setAttribute("cList", cList);
