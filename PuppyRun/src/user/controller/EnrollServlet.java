@@ -33,8 +33,9 @@ public class EnrollServlet extends HttpServlet {
 		char dogCheck = request.getParameter("dogCheck").charAt(0);
 		System.out.println(dogCheck); // 강아지 N Y 정보를 받음
 		int userResult = 0;
+		int dogResult = 0;
 		
-		// 반려견 있음 체크
+		// 반려견 있음 체크!!
 		if(dogCheck == 'Y') {
 			User user = new User();
 			String birth = request.getParameter("user-birth-year") + request.getParameter("user-birth-month") + request.getParameter("user-birth-day");
@@ -57,10 +58,20 @@ public class EnrollServlet extends HttpServlet {
 			dog.setDogWeight(Float.parseFloat(request.getParameter("dog-weight")));
 			dog.setDogId(request.getParameter("user-id"));
 			
-			userResult = new UserService().insertDog(user, dog);
+			userResult = new UserService().insertUser(user);
+			dogResult = new UserService().insertDog(dog);
 			System.out.println("값이 나오나 테스트 : " + userResult);
 			
+			if(userResult > 0 && dogResult > 0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('퍼피런 회원 등록이 완료되었습니다!'); location.href='/index.jsp';</script>");
+				out.flush();
+			}else {
+				request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
+			}
 			
+		// 반려견 없음 체크!!
 		} else if(dogCheck == 'N') {
 			User user = new User();
 			String birth = request.getParameter("user-birth-year") + request.getParameter("user-birth-month") + request.getParameter("user-birth-day");
@@ -76,17 +87,21 @@ public class EnrollServlet extends HttpServlet {
 			user.setDogCheck('N');
 			
 			userResult = new UserService().insertUser(user);
+			
+			// 결과값 출력
+			if(userResult > 0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('퍼피런 회원 등록이 완료되었습니다!'); location.href='/index.jsp';</script>");
+				out.flush();
+			}else {
+				request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
+			}
+			
+			
 		}
 		  
-		// 결과값 출력
-		if(userResult > 0) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('퍼피런 회원 등록이 완료되었습니다!'); location.href='/index.jsp';</script>");
-			out.flush();
-		}else {
-			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
-		}
+		
 				
 		
 		
