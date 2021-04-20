@@ -137,8 +137,8 @@
                         <div id="banner">
                             <div class="image">
                                 <img src="/assets/img/banner-1.png" alt="메인베너1" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(0).getNoticeNo() %>'">
-                                <img src="./assets/img/slide02.jpg" alt="메인베너2" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(1).getNoticeNo() %>'">
-                                <img src="./assets/img/slide03.jpg" alt="메인베너3" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(2).getNoticeNo() %>'">
+                                <img src="/assets/img/banner-2.png"" alt="메인베너2" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(1).getNoticeNo() %>'">
+                                <img src="/assets/img/banner-3.png" alt="메인베너3" onclick="location.href='/notice/detail?noticeNo=<%= nList.get(2).getNoticeNo() %>'">
                             </div>
                             <ul class="control">
                                 <li></li>
