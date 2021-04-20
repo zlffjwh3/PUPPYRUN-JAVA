@@ -12,7 +12,6 @@
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
 	ArrayList<User> dogCheckList = (ArrayList<User>)request.getAttribute("dogCheckList");
 	ArrayList<User> userList = (ArrayList<User>)request.getAttribute("userList");
-	System.out.println(dogCheckList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -61,7 +60,7 @@
 		                    </div>
 		                    <div id="pop-up" style="display:none">
 		                    	<p id="show-id">admin</p>
-		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
 		                    	<p><a href="/user/logout">로그아웃</a></p>
 		                    </div>
 	                    </div>
@@ -75,9 +74,6 @@
 	                    				popUp.style.display = 'none';
 	                    			}
 		                    	}
-	                    		
-	                    		
-	                    			
 	                    </script> 
             		</div>
            		</div>
@@ -125,8 +121,9 @@
                			<div class="list-bottom-top">
                				<div class="select">
 		               			반려견
-		               				<a href="/user/dogcheck?dogCheck" id="Y">유</a>
-		               				<a href="/user/dogcheck?dogCheck" id="N">무</a>
+		               				<a href="/user/list?dogCheck=Y" id="Y">유</a>
+		               				<a href="/user/list?dogCheck=N" id="N">무</a>
+		               				<a href="/user/list?dogCheck=all" id="all">전체</a>
 	               			</div>
 	               			<div class="search">
 	               				<select id="user-choice">
