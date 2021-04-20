@@ -37,8 +37,17 @@ public class ListServlet extends HttpServlet {
 		} else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		String dogCheck = request.getParameter("dogCheck");
 		UserPage up = new UserService().selectAllUserList(currentPage);
-		ArrayList<User> uList = up.getuList();
+		// 전체 보기일 경우
+		if(dogCheck.equals("all")) {
+			ArrayList<User> uList = up.getuList();
+			System.out.println(dogCheck);
+			request.setAttribute("uList", uList);
+		} else if(dogCheck.equals("N")) {
+			ArrayList<User> uList = new UserService().adminDogCheckList(dogCheck);
+			request.setAttribute("uList", uList);
+		}
 		
 		// 퍼피런 이야기 전체 정보 가져오기
 		NoticePage pd = new NoticeService().selectAllNotice(currentPage);
@@ -54,7 +63,6 @@ public class ListServlet extends HttpServlet {
 		
 		// 게시글 전체정보 가져오기 - 산책짝꿍 / 멍멍이야기
 		
-		request.setAttribute("uList", uList);
 		request.setAttribute("nList", nList);
 		request.setAttribute("mList", mList);
 		request.setAttribute("pageNavi", pageNavi);

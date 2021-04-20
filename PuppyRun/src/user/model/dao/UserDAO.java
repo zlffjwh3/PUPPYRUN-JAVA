@@ -513,6 +513,39 @@ public class UserDAO {
 		}
 		return result;
 	}
+	// 관리자 페이지에서 강아지 유무 확인
+	public ArrayList<User> adminDogCheckList(Connection conn, String dogCheck) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM USERTBL WHERE DOG_CHECK IN ?";
+		ArrayList<User> allUser = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dogCheck);
+			rset = pstmt.executeQuery();
+			allUser = new ArrayList<User>();
+			while(rset.next()) {
+				User user = new User();
+				user.setUserId(rset.getString("USERID"));
+				user.setUserName(rset.getString("USERNAME"));
+				user.setUserNick(rset.getString("USERNICK"));
+				user.setPhone(rset.getString("PHONE"));
+				user.setEmail(rset.getString("EMAIL"));
+				user.setUserBirth(rset.getString("USERBIRTH"));
+				user.setUserAddr(rset.getString("USERADDR"));
+				user.setDogCheck(rset.getString("DOGCHECK").charAt(0));
+				user.setEnrollDate(rset.getDate("ENROLLDATE"));
+				allUser.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return allUser;
+	}
 
 
 	public ArrayList<User> selectSearchJUserList(Connection conn, String search, int currentPage) {
@@ -547,5 +580,7 @@ public class UserDAO {
 		}
 		return userList;
 	}
+
+	
 
 }
