@@ -58,17 +58,17 @@ public class DogCheckServlet extends HttpServlet {
 				request.setAttribute("mList", mList);
 				request.setAttribute("pageNavi", pageNavi);
 				
-				// 회원 강아지 유무 체크
-				char dogCheck = request.getParameter("dogCheck").charAt(0);
-				ArrayList<User> dogCheckList = null;
-				
-				if(dogCheck == 'Y') {
-					dogCheckList = new UserService().dogCheckY('Y');
-					
-				}else {
-					dogCheckList = new UserService().dogCheckY('N');
-				}
-				request.setAttribute("dogCheckList", dogCheckList);
+//				// 회원 강아지 유무 체크
+//				char dogCheck = request.getParameter("dogCheck").charAt(0);
+//				ArrayList<User> dogCheckList = null;
+//				
+//				if(dogCheck == 'Y') {
+//					dogCheckList = new UserService().dogCheckY('Y');
+//					
+//				}else {
+//					dogCheckList = new UserService().dogCheckY('N');
+//				}
+//				request.setAttribute("dogCheckList", dogCheckList);
 				request.getRequestDispatcher("/WEB-INF/views/user/myInfo-m.jsp").forward(request, response);
 	}
 

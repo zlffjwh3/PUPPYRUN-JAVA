@@ -168,7 +168,7 @@
 	               			</table>
                			</div>
             			<div class="page-navi">
-            				<%= pageNavi %></td>
+            				<td><%= pageNavi %></td>
             			</div>
 	               	</div>
 	               	<div class="list-btn">
@@ -185,9 +185,9 @@
                			<div class="list-bottom-top">
                				<div class="select">
 		               			<!-- 게시글 종류 -->
-		               			<select id="content-kind" onchange="selectChange()">
-		               				<option value="puppy-story">퍼피런 이야기</option>
-		               				<option value="puppy-mate">산책짝꿍</option>
+		               			<select id="content-kind" class="content-kind-puppy">
+		               				<option value="puppy-story" class="puppy1">퍼피런 이야기</option>
+		               				<option value="puppy-mate" class="puppy2">산책짝꿍</option>
 		               			</select>
 	               			</div>
 	               			<div class="search">
@@ -222,7 +222,7 @@
 	               			</table>
                			</div>
             			<div class="page-navi">
-            				<%= pageNavi %></td>
+            				<td><%= pageNavi %></td>
             			</div>
 	               	</div>
 	               	<div class="list-btn">
@@ -232,7 +232,7 @@
 	             <!-- 퍼피런 게시글 끝 ----------------------------------------------------->
 	             
 	             <!-- 산책짝꿍 게시글 ----------------------------------------------------->
-	             <div class="list" id="matching-list">
+	             <div class="list" id="matching-list" style="display:none;">
                		<div class="list-top">
                			게시판 목록
                		</div>
@@ -240,9 +240,9 @@
                			<div class="list-bottom-top">
                				<div class="select">
 		               			<!-- 게시글 종류 -->
-		               			<select id="content-kind">
-		               				<option value="puppy-story">퍼피런 이야기</option>
-		               				<option value="puppy-mate">산책짝꿍</option>
+		               			<select id="content-kind" class="content-kind-match">
+		               				<option value="puppy-story" class="match1">퍼피런 이야기</option>
+		               				<option value="puppy-mate" class="match2">산책짝꿍</option>
 		               			</select>
 	               			</div>
 	               			<div class="search">
