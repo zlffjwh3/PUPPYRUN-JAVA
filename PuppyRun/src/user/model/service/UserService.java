@@ -222,13 +222,13 @@ public class UserService {
 		return result;
 	}
 	
-	public int updateDog(User user, Dog dog) { 
+	public int updateDog(Dog dog) { 
 		int result = 0;
 		Connection conn = null;
 		
 		try {
 			conn = factory.createConnection();
-			result = new UserDAO().updateDog(conn, user, dog);
+			result = new UserDAO().updateDog(conn, dog);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
 			} else {

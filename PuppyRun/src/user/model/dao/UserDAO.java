@@ -490,40 +490,26 @@ public class UserDAO {
 	}
 	
 	// 강아지 있음 수정!!
-	public int updateDog(Connection conn, User user, Dog dog) {
+	public int updateDog(Connection conn, Dog dog) {
 		int result = 0;
-		PreparedStatement pstmt1 = null;
-		PreparedStatement pstmt2 = null;
-		String query1 = "UPDATE USERTBL SET USER_PW = ?, PHONE = ?, EMAIL = ?, USER_BIRTH = ?, USER_ADDR = ?, DOG_CHECK = ? WHERE USER_ID= ?";
-		String query2 = "UPDATE DOG SET DOG_NAME = ?, DOG_BREED = ?, DOG_GENDER = ?, DOG_AGE = ?, DOG_WEIGHT = ? WHERE DOG_ID= ?";
+		PreparedStatement pstmt = null;
+		String query = "UPDATE DOG SET DOG_NAME = ?, DOG_BREED = ?, DOG_GENDER = ?, DOG_AGE = ?, DOG_WEIGHT = ? WHERE DOG_ID= ?";
 		
 		try {
-			pstmt1 = conn.prepareStatement(query1);
-			pstmt1.setString(1, user.getUserPw());
-			pstmt1.setString(2, user.getPhone());
-			pstmt1.setString(3, user.getEmail());
-			pstmt1.setString(4, user.getUserBirth());
-			pstmt1.setString(5, user.getUserAddr());
-			pstmt1.setString(6, "Y");
-			pstmt1.setNString(7, user.getUserId());
 			
-			
-			pstmt2 = conn.prepareStatement(query2);
-			pstmt2.setString(1, dog.getDogName());
-			pstmt2.setString(2, dog.getDogBreed());
-			pstmt2.setString(3, String.valueOf(dog.getDogGender()));
-			pstmt2.setInt(4, dog.getDogAge());
-			pstmt2.setFloat(5, dog.getDogWeight());
-			pstmt2.setString(6, user.getUserId());
-			
-			result = pstmt1.executeUpdate();
-			System.out.println("제대로 오나? : " + result);
-			result = pstmt2.executeUpdate();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dog.getDogName());
+			pstmt.setString(2, dog.getDogBreed());
+			pstmt.setString(3, String.valueOf(dog.getDogGender()));
+			pstmt.setInt(4, dog.getDogAge());
+			pstmt.setFloat(5, dog.getDogWeight());
+			pstmt.setString(6, dog.getDogId());
+			result = pstmt.executeUpdate();
 			System.out.println("제대로 오나? 2 : " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(pstmt1);
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}

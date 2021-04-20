@@ -119,14 +119,14 @@
                     <!-- 강아지가 있거나 없는경우 -->
                     <% if(user.getDogCheck() == 'Y') { %>
                     <div id="pet-select-area" class="area-div">
-                        <span class="pet-ques">반려견이 있나요? </span>
+                       <!--  <span class="pet-ques">반려견이 있나요? </span> -->
                         <div class="pet-result">
-                            <label for="pet-selectY">
+                            <!-- <label for="pet-selectY">
                                 예 <input type="radio" name="pet-select" id="pet-selectY" class="pet-select" value="yes">
                             </label>
                             <label for="pet-selectN">
                                 아니요 <input type="radio" name="pet-select" id="pet-selectN" class="pet-select" value="no">
-                            </label>
+                            </label> -->
                             <script>
                             	$(document).ready(function() {
 	                            	$('#pet-selectY').attr('checked', 'checked');

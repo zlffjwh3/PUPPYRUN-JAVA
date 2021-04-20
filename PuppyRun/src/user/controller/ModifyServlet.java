@@ -42,10 +42,12 @@ public class ModifyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String userId = request.getParameter("userId") ;
+		int userResult = 0; // 결과값을 받아온다
+		int dogResult = 0;
+		String userId = request.getParameter("userId");
+		char modifyDogCheck = request.getParameter("dogCheck").charAt(0); // 수정할때 반려견 체크
 		User userBefore = new UserService().selectOneUserIdOnly(userId); // 기존정보
-		char dogCheck = request.getParameter("dogCheck").charAt(0);
-		
+		System.out.println("강아지유무 체크" + modifyDogCheck);
 		
 		// DB 업데이트
 		String pwd = request.getParameter("user-pwd");
@@ -57,49 +59,86 @@ public class ModifyServlet extends HttpServlet {
 		String zip = request.getParameter("zip");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
+//			User user = new User();
+//			String birth = request.getParameter("user-birth-year") + request.getParameter("user-birth-month") + request.getParameter("user-birth-day");
+//			String address = request.getParameter("zip") + "/" + request.getParameter("addr1") + "/" + request.getParameter("addr2");
+//			user.setUserId(request.getParameter("user-id"));
+//			user.setUserPw(request.getParameter("user-pwd"));
+//			user.setPhone(request.getParameter("user-phone"));
+//			user.setEmail(request.getParameter("user-email"));
+//			user.setUserBirth(birth);
+//			user.setUserAddr(address);
+//			user.setDogCheck('Y');
+		String dogName = request.getParameter("dog-name");
+		String dogBreed = request.getParameter("dog-kind");
+		char dogGender = request.getParameter("dog-gender").charAt(0);
+		int dogAge = Integer.parseInt(request.getParameter("dog-age"));
+		float dogWeight = Float.parseFloat(request.getParameter("dog-weight"));
 		
 		
-		
-		
-		User user = new User(); // 정보 수정할 때 데이터 넘어옴
-		user.setUserId(userId);
-		user.setUserPw(pwd);
-		user.setPhone(phone);
-		user.setEmail(email);
-		user.setUserBirth(year + month + day);
-		user.setUserAddr(zip + "/" + addr1 + "/" + addr2);
-		
-		// 반려견 이름이 입력되어 있다면...
-		// 수정예정 (강아지 없다가 생김 / 강아지 있다가 없어짐 )---------------------------------------------------------------------------!!
-		int dogResult = 0;
-		if(request.getParameter("dog-name") != "") {
-			String dogName = request.getParameter("dog-name");
-			String dogBreed = request.getParameter("dog-kind");
-			String dogGender = request.getParameter("dog-gender");
-			String dogAge = request.getParameter("dog-age");
-			String dogWeight = request.getParameter("dog-weight");
+		// 수정할 때 반려견 있음 표시!!!
+		if(modifyDogCheck == 'Y') {
 			
-			System.out.println("ㅎㅎㅎ"); // 테스트
+			User user = new User();
+			String birth = year + month + day;
+			String address = zip + "/" + addr1 + "/" + addr2;
+			user.setUserId(userId);
+			user.setUserPw(pwd);
+			user.setPhone(phone);
+			user.setEmail(email);
+			user.setUserBirth(birth);
+			user.setUserAddr(address);
+			user.setDogCheck('Y');
+			
 			Dog dog = new Dog();
-			dog.setDogName(request.getParameter("dog-name"));
-			dog.setDogBreed(request.getParameter("dog-kind"));
-			dog.setDogGender(request.getParameter("dog-gender").charAt(0));
-			dog.setDogAge(Integer.parseInt(request.getParameter("dog-age")));
-			dog.setDogWeight(Float.parseFloat(request.getParameter("dog-weight")));
+			dog.setDogName(dogName);
+			dog.setDogBreed(dogBreed);
+			dog.setDogGender(dogGender);
+			dog.setDogAge(dogAge);
+			dog.setDogWeight(dogWeight);
+			dog.setDogId(userId);
 			
-			dogResult = new UserService().updateDog(user, dog);
+			userResult = new UserService().updateUser(user);
+			dogResult = new UserService().updateDog(dog);
+			
+			if(userResult > 0 && dogResult > 0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('회원정보가 수정되었습니다.'); location.href='/user/myInfo'; </script>");
+			} else if (userResult == 0) {
+				
+			}else {
+				response.sendRedirect("/views/user/error.html");
+			}
+			
+			// 강아지가 없습니다!!
+		} else if(modifyDogCheck == 'N') {
+			
+			User user = new User();
+			String birth = request.getParameter("user-birth-year") + request.getParameter("user-birth-month") + request.getParameter("user-birth-day");
+			String address = request.getParameter("zip") + "/" + request.getParameter("addr1") + "/" + request.getParameter("addr2");
+			user.setUserId(request.getParameter("user-id"));
+			user.setUserPw(request.getParameter("user-pwd"));
+			user.setPhone(request.getParameter("user-phone"));
+			user.setEmail(request.getParameter("user-email"));
+			user.setUserBirth(birth);
+			user.setUserAddr(address);
+			user.setDogCheck('N');
+			
+			userResult = new UserService().updateUser(user);
+			
+			if(userResult > 0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('회원정보가 수정되었습니다.'); location.href='/user/myInfo'; </script>");
+			} else if (userResult == 0) {
+				
+			}else {
+				response.sendRedirect("/views/user/error.html");
+			}
 		}
 		
-		int result = new UserService().updateUser(user);
-		if(result > 0) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원정보가 수정되었습니다.'); location.href='/user/myInfo'; </script>");
-		} else if (result == 0) {
-			
-		}else {
-			response.sendRedirect("/views/user/error.html");
-		}
+		
 		
 		
 	}
