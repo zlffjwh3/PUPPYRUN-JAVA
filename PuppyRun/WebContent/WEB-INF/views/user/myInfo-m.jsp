@@ -152,7 +152,7 @@
 	               					<th>등록일</th>
 	               				</tr>
 	               				<% for(User user : uList) { %>
-	               				<tr>
+	               				<tr>   
 	               					<td><input type="checkbox" value="<%= user.getUserId() %>"></td>
 	               					<td><%= user.getUserId() %></td>
 	               					<td><%= user.getUserName() %></td>
