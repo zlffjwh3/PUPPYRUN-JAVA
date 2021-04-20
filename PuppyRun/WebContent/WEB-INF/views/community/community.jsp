@@ -153,7 +153,7 @@
                                 <% 
                                 	for(int i=0; i<cList.size(); i++) {
                                 %>
-                                <li class="post" onclick="location.href='/community/detail?comNo=<%= cList.get(i).getComNo() %>&userId=<%= user.getUserId() %>'">
+                                <li class="post" onclick="location.href='/community/detail?comNo=<%= cList.get(i).getComNo() %>'">
                                     <div class="img-area">
                                 	<% if(cList.get(i).getComPhoto() != null) {%>
                                     	<img src="/upload/<%=cList.get(i).getComPhoto()%>">
