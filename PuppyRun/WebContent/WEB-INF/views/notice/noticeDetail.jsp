@@ -20,7 +20,8 @@
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-detail.css">
- <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-write.css">         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
+ 		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/notice-write.css">
+ 		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
@@ -32,15 +33,15 @@
     </head>
 	<body>
 		<div id="wrap">
-            <header>
+<header>
                 <!-- 헤더-->
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	<form action="" method="get">
-		                    	<input class="search-input" type="text" placeholder="search">
-		                    	<input id="search-btn" type="submit" value="">
-	                    	</form>
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="search">
+                                <input id="search-btn" type="submit" value="">
+                            </form>
 	                    </div>
                 	</div>
 	                <!-- 헤더 메인 로고 -->
@@ -50,7 +51,7 @@
 	                <div id="tright">
 	                	<div id="tright-wrapper">
 		                    <div id="login">
-	                        	<% if(user == null) { %>
+		                    	<% if(user == null) { %>
 		                        	<a href="/login.jsp">
 		                            	<i class="xi-face xi-2x"></i>
 		                       		</a>
@@ -61,7 +62,7 @@
 		                       		<% } else { %>
 	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
 		                        	<% } %>
-		                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
+		                        	<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
 		                        <% } %>
 		                    </div>
 		                    <% if(user != null) { %>
@@ -70,7 +71,7 @@
 		                    	<% if(user.getAdminCheck() == 'N') { %>
 		                    	<p><a href="/user/myInfo">마이페이지</a></p>
 		                    	<% } else { %>
-		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
 		                    	<% } %>
 		                    	<p><a href="/user/logout">로그아웃</a></p>
 		                    </div>
@@ -123,7 +124,11 @@
             <!-- 스크롤 메뉴 -->
             <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
-                <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% if( user != null) { %>
+                <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } else { %>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } %>
             </div>
             <!-- 메인 ---------------------------------------------------------------------------------------------------------->
  			 <div id="main-content">
