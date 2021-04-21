@@ -144,6 +144,29 @@ public class UserService {
 			} else {
 				JDBCTemplate.rollback(conn);
 			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	
+	// 반려견 보도 함께 삭제함
+	public int deleteDog(String userId) {
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			result = new UserDAO().deleteDog(conn, userId);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -293,6 +316,8 @@ public class UserService {
 		}
 		return allUser;
 	}
+	
+
 
 	
 

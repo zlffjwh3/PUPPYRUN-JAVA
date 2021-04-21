@@ -172,7 +172,7 @@
                			<!--------------------------------------------->
                			<div id="info3">
                				<a href="/user/modify?userId=<%= user.getUserId() %>" id="modify-btn">프로필 수정</a>
-               				<a href="/user/delete" id="delete-btn" onclick="return confirm('정말 탈퇴하시겠습니까?')">회원탈퇴</a>
+               				<a href="/user/delete?dogCheck=<%= user.getDogCheck() %>" id="delete-btn" onclick="return confirm('정말 탈퇴하시겠습니까?')">회원탈퇴</a>
                			</div>
 	               	</div>
 	               	<a href="#">

@@ -308,6 +308,24 @@ public class UserDAO {
 		return result;
 	}
 	
+	public int deleteDog(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM DOG WHERE DOG_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	
+	}
+	
 
 
 	public User findUserId(Connection conn, String userName, String userEmail) {
@@ -567,6 +585,8 @@ public class UserDAO {
 		
 		return uList;
 	}
+
+
 
 	
 
