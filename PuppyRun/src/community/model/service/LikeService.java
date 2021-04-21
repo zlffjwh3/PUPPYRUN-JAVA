@@ -113,4 +113,21 @@ public class LikeService {
 		
 		return cnt;
 	}
+	
+	// 아이디별로 좋아요한거 가져오는 메소드
+	public ArrayList<Like> printUserLikes(String userId) {
+		Connection conn = null;
+		ArrayList<Like> lList = null;
+		
+		try {
+			conn = factory.createConnection();
+			lList = new LikeService().printUserLikes(userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return lList;
+	}
 }

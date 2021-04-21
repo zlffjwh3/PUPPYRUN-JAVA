@@ -1,3 +1,5 @@
+<%@page import="matching.model.vo.Matching"%>
+<%@page import="community.model.vo.Comment"%>
 <%@page import="community.model.vo.Community"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.Dog"%>
@@ -9,6 +11,8 @@
 	Dog dog = (Dog)request.getAttribute("dog");
 	
 	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
+	ArrayList<Comment> comList = (ArrayList<Comment>)request.getAttribute("comList");
+	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
 %>
 <!DOCTYPE html>
 <html lang="ko">

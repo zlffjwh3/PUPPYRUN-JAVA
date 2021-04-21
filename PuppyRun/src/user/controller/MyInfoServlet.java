@@ -14,6 +14,8 @@ import community.model.service.CommentService;
 import community.model.service.CommunityService;
 import community.model.vo.Comment;
 import community.model.vo.Community;
+import matching.model.service.MatchingService;
+import matching.model.vo.Matching;
 import user.model.service.UserService;
 import user.model.vo.Dog;
 import user.model.vo.User;
@@ -42,9 +44,12 @@ public class MyInfoServlet extends HttpServlet {
 		ArrayList<Comment> comList = new CommentService().printUserComment(userId);
 		
 		// 산책일기 글 가져오기
-		
+		ArrayList<Matching> mList = new MatchingService().printUserMatching(userId);
 		
 		request.setAttribute("dog", dog);
+		request.setAttribute("cList", cList);
+		request.setAttribute("comList", comList);
+		request.setAttribute("mList", mList);
 		request.getRequestDispatcher("/WEB-INF/views/user/myInfo.jsp").forward(request, response);
 	}
 
