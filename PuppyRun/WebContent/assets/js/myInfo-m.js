@@ -58,4 +58,11 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#userDelete').click(function() {
+		var change = $('input[type=checkbox]:checked').val();
+		var url = "/user/delete?userId=" + change;
+		$('#uDelete').attr('action', url);
+		$('#userDelete').submit();
+	})
+	
 });

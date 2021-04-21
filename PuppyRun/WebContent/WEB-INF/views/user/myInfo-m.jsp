@@ -173,9 +173,12 @@
             				<td><%= pageNavi %></td>
             			</div> --%>
 	               	</div>
+	               	
+	               	<form action="/user/delete?userId=" method="get" id="uDelete"></form>
 	               	<div class="list-btn">
-	               		<a href="/user/delete?userId=">삭제</a>
+	               		<input type="submit" value="삭제" id="userDelete">
 	               	</div>
+	               	
 	            </div>
 	            <!-- 퍼피런 게시글 ----------------------------------------------------->
 	            <div class="list" id="prun-story-list">
