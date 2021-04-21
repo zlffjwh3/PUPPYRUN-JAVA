@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="matching.model.vo.Matching" project="PuppyRun" 
-    file="/PuppyRun/src/matching/model/vo/Matching.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="101" y="359"/>    
+  <class id="1" language="java" name="common.JDBCTemplate" project="PuppyRun" 
+    file="/PuppyRun/src/common/JDBCTemplate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="659" y="146"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="matching.model.vo.MatchingChat" project="PuppyRun" 
-    file="/PuppyRun/src/matching/model/vo/MatchingChat.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="316" y="504"/>    
+  <class id="2" language="java" name="matching.model.vo.Matching" project="PuppyRun" 
+    file="/PuppyRun/src/matching/model/vo/Matching.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="161" y="305"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,34 +21,34 @@
   </class>  
   <class id="3" language="java" name="matching.model.vo.MatchingPage" project="PuppyRun" 
     file="/PuppyRun/src/matching/model/vo/MatchingPage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="343" y="224"/>    
+    <position height="-1" width="-1" x="364" y="117"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="matching.model.dao.MatchingDAO" project="PuppyRun" 
-    file="/PuppyRun/src/matching/model/dao/MatchingDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="757" y="485"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="matching.model.service.MatchingService" project="PuppyRun" 
+  <class id="4" language="java" name="matching.model.service.MatchingService" project="PuppyRun" 
     file="/PuppyRun/src/matching/model/service/MatchingService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="878" y="184"/>    
+    <position height="-1" width="-1" x="661" y="407"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="matching.controller.MyChattingListServlet" project="PuppyRun" 
-    file="/PuppyRun/src/matching/controller/MyChattingListServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1165" y="137"/>    
+  <class id="5" language="java" name="matching.model.dao.MatchingDAO" project="PuppyRun" 
+    file="/PuppyRun/src/matching/model/dao/MatchingDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="403" y="407"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="matching.controller.MatchingDetailServlet" project="PuppyRun" 
+    file="/PuppyRun/src/matching/controller/MatchingDetailServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1254" y="142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,80 +57,66 @@
   </class>  
   <class id="7" language="java" name="matching.controller.MatchingWriteServlet" project="PuppyRun" 
     file="/PuppyRun/src/matching/controller/MatchingWriteServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1168" y="284"/>    
+    <position height="-1" width="-1" x="957" y="294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="matching.controller.MatchingUpdateServlet" project="PuppyRun" 
-    file="/PuppyRun/src/matching/controller/MatchingUpdateServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1171" y="433"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="matching.controller.MatchingListServlet" project="PuppyRun" 
+  <class id="8" language="java" name="matching.controller.MatchingListServlet" project="PuppyRun" 
     file="/PuppyRun/src/matching/controller/MatchingListServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1469" y="434"/>    
+    <position height="-1" width="-1" x="955" y="144"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="matching.controller.MatchingDetailServlet" project="PuppyRun" 
-    file="/PuppyRun/src/matching/controller/MatchingDetailServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1460" y="138"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="matching.controller.MatchingDeleteServlet" project="PuppyRun" 
+  <class id="9" language="java" name="matching.controller.MatchingDeleteServlet" project="PuppyRun" 
     file="/PuppyRun/src/matching/controller/MatchingDeleteServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1464" y="282"/>    
+    <position height="-1" width="-1" x="1257" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="common.JDBCTemplate" project="PuppyRun" 
-    file="/PuppyRun/src/common/JDBCTemplate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="604" y="187"/>    
+  <class id="10" language="java" name="matching.controller.MatchingUpdateServlet" project="PuppyRun" 
+    file="/PuppyRun/src/matching/controller/MatchingUpdateServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="958" y="443"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="13">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="14" name="instance"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="16">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="17" name="mList"/>      
-      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
+  <association id="11">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="12" name="instance">        
+        <position height="0" width="0" x="55" y="-41"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="55" y="-41"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="19">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="20" name="factory"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
+  <association id="14">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="15" name="mList"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="18" name="factory"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

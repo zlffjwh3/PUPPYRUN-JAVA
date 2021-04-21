@@ -75,10 +75,6 @@ public class MatchingDetailServlet extends HttpServlet {
 	   
 	   int result = new MatchingChatService().sendMsg(matChat);
 	   
-	   
-	   System.out.println(result);///////////////////////////
-	   System.out.println(matResult);///////////////////
-	   
 	   if(result > 0 && matResult > 0) {
 		   response.sendRedirect("/matching/detail?matNo=" + matchingNo);
 	   } else {
