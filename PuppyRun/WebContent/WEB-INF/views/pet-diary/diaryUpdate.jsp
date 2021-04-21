@@ -40,64 +40,64 @@
    <body>
 	<div id="wrap">
 		<header>
-              <!-- 헤더-->
-              <div id="header">
-                  <div id="tleft">
-                   <div id="search">
-                   	<form action="" method="get">
-                    	<input class="search-input" type="text" placeholder="search">
-                    	<input id="search-btn" type="submit" value="">
-                   	</form>
-                   </div>
-              	</div>
-               <!-- 헤더 메인 로고 -->
-               <div id="header-logo">
-                   <a href="/index.jsp" id="logo"></a>
-               </div>
-               <div id="tright">
-               	<div id="tright-wrapper">
-                    <div id="login">
-                       	<% if(user == null) { %>
-                        	<a href="/login.jsp">
-                            	<i class="xi-face xi-2x"></i>
-                       		</a>
-                        	<a href="/login.jsp" id="login-content">로그인</a>
-                        <% } else { %>
-                        	<% if(user.getUserPhoto() != null) { %>
-                           	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
-                       		<% } else { %>
-                           	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
-                        	<% } %>
-                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
-                        <% } %>
-                    </div>
-                    <% if(user != null) { %>
-                    <div id="pop-up" style="display:none">
-                    	<p id="show-id"><%= user.getUserId() %></p>
-                    	<% if(user.getAdminCheck() == 'N') { %>
-                    	<p><a href="/user/myInfo">마이페이지</a></p>
-                    	<% } else { %>
-                    	<p><a href="/user/list">관리자페이지</a></p>
-                    	<% } %>
-                    	<p><a href="/user/logout">로그아웃</a></p>
-                    </div>
-                    <% } %>
-                   </div>
-                   <script>
-                   		function showPopup() {
-                   			var popUp = document.getElementById("pop-up");
-                   			
-                   			if(popUp.style.display == 'none') {
-                   				popUp.style.display = 'block';
-                   			}else {
-                   				popUp.style.display = 'none';
-                   			}
-                    	}
-                   </script> 
-          		</div>
-         		</div>
-          </header>
-           <nav>
+                <!-- 헤더-->
+                <div id="header">
+                    <div id="tleft">
+	                    <div id="search">
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="search">
+                                <input id="search-btn" type="submit" value="">
+                            </form>
+	                    </div>
+                	</div>
+	                <!-- 헤더 메인 로고 -->
+	                <div id="header-logo">
+	                    <a href="/index.jsp" id="logo"></a>
+	                </div>
+	                <div id="tright">
+	                	<div id="tright-wrapper">
+		                    <div id="login">
+		                    	<% if(user == null) { %>
+		                        	<a href="/login.jsp">
+		                            	<i class="xi-face xi-2x"></i>
+		                       		</a>
+		                        	<a href="/login.jsp" id="login-content">로그인</a>
+		                        <% } else { %>
+		                        	<% if(user.getUserPhoto() != null) { %>
+	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
+		                       		<% } else { %>
+	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
+		                        	<% } %>
+		                        	<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
+		                        <% } %>
+		                    </div>
+		                    <% if(user != null) { %>
+		                    <div id="pop-up" style="display:none">
+		                    	<p id="show-id"><%= user.getUserId() %></p>
+		                    	<% if(user.getAdminCheck() == 'N') { %>
+		                    	<p><a href="/user/myInfo">마이페이지</a></p>
+		                    	<% } else { %>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
+		                    	<% } %>
+		                    	<p><a href="/user/logout">로그아웃</a></p>
+		                    </div>
+		                    <% } %>
+	                    </div>
+	                    <script>
+	                    		function showPopup() {
+	                    			var popUp = document.getElementById("pop-up");
+	                    			
+	                    			if(popUp.style.display == 'none') {
+	                    				popUp.style.display = 'block';
+	                    			}else {
+	                    				popUp.style.display = 'none';
+	                    			}
+		                    	}
+	                    </script> 
+            		</div>
+           		</div>
+            </header>
+            <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
@@ -130,7 +130,11 @@
             <!-- 스크롤 메뉴 -->
             <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
-                <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% if( user != null) { %>
+                <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } else { %>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } %>
             </div>
            <!-- 메인 ---------------------------------------------------------------------------------------------------------->
             <div id="main-content">

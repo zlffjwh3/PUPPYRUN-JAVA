@@ -172,19 +172,24 @@
 		
 		#no-goal-stamp {
 			margin : 20px auto;
-			width : 80%;
-			height : 95%;
+			width : 100%;
+			height : 63%;
 			border : 3px solid #FBB41D;
 			border-radius : 30px;
 		}
 		
 			#no-goal-stamp img {
-				margin-top : 10px;
+				margin : 35px 0 0 100px;
 				width : 50%;
 			}
 			
 			#no-goal-stamp p {
-				margin : 10px 0 20px 0;
+				margin : 10px;
+				text-align : center;
+			}
+			
+			#no-goal-stamp a {
+				margin-left : 150px;
 			}
 			
 	#right-page {
