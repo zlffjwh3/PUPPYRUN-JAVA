@@ -34,6 +34,7 @@
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/bg-middle.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/slider.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
         <link rel="icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
@@ -80,7 +81,7 @@
 		                        <% } %>
 		                    </div>
 		                    <% if(user != null) { %>
-		                    <div id="pop-up" style="display:none">
+		                    <div id="pop-up" class="animate__animated animate__fadeIn animate__delay-la" style="display:none">
 		                    	<p id="show-id"><%= user.getUserId() %></p>
 		                    	<% if(user.getAdminCheck() == 'N') { %>
 		                    	<p><a href="/user/myInfo">마이페이지</a></p>

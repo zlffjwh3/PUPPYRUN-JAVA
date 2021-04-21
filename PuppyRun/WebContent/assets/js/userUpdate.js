@@ -240,95 +240,71 @@ $(document).ready(function() {
 		var idNum = userId.val();
 		
         if(mode== "01") { // 반려견 없음
-			/*if(userIdCheckFlag == false) {
-                return;
-            }*/
-            if(userPwdCheckFlag == false) {
+            if(document.querySelector('#user-pwd').value  == "") {
 				alert("수정할 비밀번호를 입력해주세요");
                 return;
             }
-            /*
-            if(userNicknameCheckFlag == false) {
+			if(document.querySelector('#user-email').value == "") {
+				alert('이메일을 입력해주세요')
                 return;
             }
-            if(userNameCheckFlag == false) {
+			if(document.querySelector('#user-phone').value == "") {
+				alert("핸드폰 번호를 입력해주세요");
                 return;
             }
-            if(userPhoneCheckFlag == false) {
-                return;
-            }
-            if(userEamilCheckFlag == false) {
-                return;
-            }
-            if(userYearCheckFlag == false) {
-                return;
-            }
-            if($('#user-birth-month').val() == null) {
-                return;
-            }
-            if(userDayCheckFlag == false) {
-                return;
-            }
+
             if($('#zip').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == '') {
+				alert("주소를 입력해주세요")
                 return;
-            }*/
+            }
+
 	
             frm.method = "post";
             frm.action = '/user/modify?userId='+idNum+"&dogCheck=N";
 		}   else if (mode == "02") {
-				/*if(userIdCheckFlag == false) {
-                	return;
-	            }*/
-	            if(userPwdCheckFlag == false) {
+			
+	            if(document.querySelector('#user-pwd').value  == "") {
 					alert("수정할 비밀번호를 입력해주세요");
 	                return;
 	            }
-	            /*
-	            if(userNicknameCheckFlag == false) {
+
+	          	if(document.querySelector('#user-email').value == "") {
+					alert('이메일을 입력해주세요')
 	                return;
 	            }
-	            if(userNameCheckFlag == false) {
-	                return;
-	            }*/
-
-
-	          /*  if(userPhone.val() == null) {
+				if(document.querySelector('#user-phone').value == "") {
 					alert("핸드폰 번호를 입력해주세요");
 	                return;
-	            }*/
+	            }
 
-
-	           /* if(userEamilCheckFlag == false) {
-	                return;
-	            }
-	            if(userYearCheckFlag == false) {
-	                return;
-	            }*/
-	           /* if($('#user-birth-month').val() == null) {
-	                return;
-	            }
-	            if(userDayCheckFlag == false) {
-	                return;
-	            }
 	            if($('#zip').val() == '' || $('#addr1').val() == '' || $('#addr2').val() == '') {
+					alert("주소를 입력해주세요")
 	                return;
 	            }
 				// 강아지
-				if(dogNameCheckFlag == false) {
+				if($('#dog-name').val() == "") {
+					alert("반려견 이름을 입력해주세요");
 					return;
 				}
-				if(dogKindCheckFlag == false) {
+				
+				if($('#dog-kind').val90 == "") {
+					alert("반려견 종을 입력해주세요");
 					return;
 				}
+				
 				if($('#dog-gender').val() == null) {
+					alert('반려견 성별을 선택해주세요');
 					return;
 				}
-				if(dogAgeCheckFlag == false) {
+				
+				if($('#dog-age').val() == "") {
+					alert('반려견 나이를 입력해주세요');
 					return;
 				}
-				if(dogWeightCheckFlag == false) {
+				if($('#dog-weight').val() == "") {
+					alert('반려견 무게를 입력해주세요');
 					return;
-				}*/
+				}
 			
 			frm.method = "post";
             frm.action = '/user/modify?userId='+idNum+"&dogCheck=Y";

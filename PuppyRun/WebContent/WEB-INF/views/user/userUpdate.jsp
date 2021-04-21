@@ -43,7 +43,7 @@
                     <div id="pwd-area" class="area-div">
                         <p class="subtitle">수정할 비밀번호</p>
                         <div id="pwd-input" class="input-div">
-                            <input type="password" name="user-pwd" id="user-pwd" placeholder="비밀번호 (숫자, 영문, 특수문자 조합 최소 8글자)" pattern="/^[a-zA-Z0-9|!@#&]{8,}$/">
+                            <input type="password" name="user-pwd" id="user-pwd" placeholder="비밀번호 (숫자, 영문, 특수문자 조합 최소 8글자)">
                         </div>
                         <span class="pwd-error-msg error-msg"></span>
                        <!--  <div id="pwd-re-input" class="input-div">
