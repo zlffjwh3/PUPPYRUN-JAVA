@@ -38,8 +38,8 @@
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	 <form action="/community/search" method="get">
-                                <input class="search-input" id="" name="searchKeyword" type="text" placeholder="search">
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="search">
                                 <input id="search-btn" type="submit" value="">
                             </form>
 	                    </div>
@@ -71,12 +71,23 @@
 		                    	<% if(user.getAdminCheck() == 'N') { %>
 		                    	<p><a href="/user/myInfo">마이페이지</a></p>
 		                    	<% } else { %>
-		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
 		                    	<% } %>
 		                    	<p><a href="/user/logout">로그아웃</a></p>
 		                    </div>
 		                    <% } %>
 	                    </div>
+	                    <script>
+	                    		function showPopup() {
+	                    			var popUp = document.getElementById("pop-up");
+	                    			
+	                    			if(popUp.style.display == 'none') {
+	                    				popUp.style.display = 'block';
+	                    			}else {
+	                    				popUp.style.display = 'none';
+	                    			}
+		                    	}
+	                    </script> 
             		</div>
            		</div>
             </header>
@@ -113,7 +124,11 @@
             <!-- 스크롤 메뉴 -->
             <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
+                <% if( user != null) { %>
                 <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } else { %>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } %>
             </div>
             <!-- 메인 -->
             <div id="main-content">
@@ -129,6 +144,7 @@
 	               					<th>보낸사람</th>
 	               					<th>내용</th>
 	               				</tr>
+	               				<% if(!matChat.isEmpty()) { %>
 	               				<% for(MatchingChat mChat : matChat) { %>
 	               				<tr onclick="location.href='/matching/detail?matNo=<%= mChat.getMatNo() %>'">
 	               					<td><%= mChat.getMsgNo() %></td>
@@ -140,6 +156,11 @@
 	               					} %>
 	               					<td><%= uList.get(n).getUserNick() %></td>
 	               					<td><%= mChat.getContent() %></td>
+	               				</tr>
+	               				<% } 
+	               				} else { %>
+	               				<tr>
+	               					<td colspan="3">메세지가 없습니다!</td>
 	               				</tr>
 	               				<% } %>
 	               			</table>

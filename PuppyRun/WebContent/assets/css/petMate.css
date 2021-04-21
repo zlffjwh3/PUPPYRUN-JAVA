@@ -113,7 +113,7 @@ form {
 
 .list-content-area > div:nth-child(1) > .user-addr {
     float: right;
-    margin: 0px 0px 0px 38%;
+    /* margin: 0px 0px 0px 38%; */
 }
 
 /* 사용자 프로필 사진 */

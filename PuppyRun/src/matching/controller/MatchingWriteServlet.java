@@ -97,13 +97,13 @@ public class MatchingWriteServlet extends HttpServlet {
 			photo.setBoardType('M');
 			
 			photoResult = new PhotoService().registerPhotoInfo(photo);
+		} else {
+			photoResult = 1;
 		}
 		
-		// File이 없다면
 		int matchingResult = new MatchingService().registerMatching(matching);
-//		System.out.println(photoResult);
-//		System.out.println(matchingResult);
-		// 결과 확인 (File 업로드 안하면 무조건 오류 뜸 // 나중에 수정할거야~~!)
+		System.out.println(photoResult);//////////////////////
+		System.out.println(matchingResult);/////////////////////////
 		if(matchingResult > 0 && photoResult > 0) {
 			response.sendRedirect("/matching/list");
 		} else {

@@ -37,7 +37,6 @@ public class MatchingUpdateServlet extends HttpServlet {
 		
 		if(matching != null) {
 			request.setAttribute("matching", matching);
-			// 수정 페이지로 가기
 			request.getRequestDispatcher("/WEB-INF/views/matching/matchingUpdate.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/matching/matchingError.html").forward(request, response);
@@ -95,14 +94,19 @@ public class MatchingUpdateServlet extends HttpServlet {
 	    	}
 		} else {
 			photoResult = 1;
+			matchingPhoto = matchingBefore.getMatPhoto();
 		}
 		
 		// Matching DB 업데이트
+		String addr1 = multi.getParameter("addr1");
+		String addr2 = multi.getParameter("addr2");
+		String addr = addr1 + " " + addr2;
 		String matchingTitle = multi.getParameter("title");
 		String matchingContent = multi.getParameter("content");
 		
 		Matching matching = new Matching();
 		matching.setMatNo(matchingNo);
+		matching.setMatAddr(addr);
 		matching.setMatTitle(matchingTitle);
 		matching.setMatContent(matchingContent);
 		matching.setMatPhoto(matchingPhoto);

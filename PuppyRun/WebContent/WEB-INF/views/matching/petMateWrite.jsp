@@ -1,5 +1,7 @@
+<%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% User user = (User)session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -12,7 +14,6 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/notice.css"> -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/petMateWrite.css">
         <!-- 파비콘 이미지 가져오기 -->
@@ -22,61 +23,107 @@
         <script src="./assets/js/jquery-3.4.1.min.js"></script>
         <script src="/assets/js/slider.js"></script>
         <script src="/assets/js/scroll.js"></script>
-        <title>산책짝꿍</title>
+        <title>퍼피런 :: 산책짝꿍</title>
     </head>
     <body>
         <div id="wrap">
-            <header>
+			<header>
                 <!-- 헤더-->
                 <div id="header">
-                    <div id="tleft"></div>
-                    <!-- 헤더 메인 로고 -->
-                    <div id="header-logo">
-                        <a href="/index.html" id="logo"></a>
-                    </div>
-                    <div id="tright">
-                        <div id="search">
-                            <form action="">
+                    <div id="tleft">
+	                    <div id="search">
+	                    	 <form action="/community/search" method>
                                 <input class="search-input" id="" type="text" placeholder="search">
+                                <input id="search-btn" type="submit" value="">
                             </form>
-                        </div>
-                        <div id="login">
-                            <a href="#">
-                                <i class="xi-face xi-2x"></i>
-                            </a>
-                            <a href="#" id="login-content">로그인</a>
-                        </div>
-                    </div>
-                </div>
+	                    </div>
+                	</div>
+	                <!-- 헤더 메인 로고 -->
+	                <div id="header-logo">
+	                    <a href="/index.jsp" id="logo"></a>
+	                </div>
+	                <div id="tright">
+	                	<div id="tright-wrapper">
+		                    <div id="login">
+		                    	<% if(user == null) { %>
+		                        	<a href="/login.jsp">
+		                            	<i class="xi-face xi-2x"></i>
+		                       		</a>
+		                        	<a href="/login.jsp" id="login-content">로그인</a>
+		                        <% } else { %>
+		                        	<% if(user.getUserPhoto() != null) { %>
+	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
+		                       		<% } else { %>
+	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
+		                        	<% } %>
+		                        	<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
+		                        <% } %>
+		                    </div>
+		                    <% if(user != null) { %>
+		                    <div id="pop-up" style="display:none">
+		                    	<p id="show-id"><%= user.getUserId() %></p>
+		                    	<% if(user.getAdminCheck() == 'N') { %>
+		                    	<p><a href="/user/myInfo">마이페이지</a></p>
+		                    	<% } else { %>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
+		                    	<% } %>
+		                    	<p><a href="/user/logout">로그아웃</a></p>
+		                    </div>
+		                    <% } %>
+	                    </div>
+	                    <script>
+	                    		function showPopup() {
+	                    			var popUp = document.getElementById("pop-up");
+	                    			
+	                    			if(popUp.style.display == 'none') {
+	                    				popUp.style.display = 'block';
+	                    			}else {
+	                    				popUp.style.display = 'none';
+	                    			}
+		                    	}
+	                    </script> 
+            		</div>
+           		</div>
             </header>
             <nav>
                 <!-- 메뉴 -->
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                            <a href="#">산책일기</a>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">멍멍이야기</a>
+                            <a href="/community/list">멍멍이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="/notice.html">퍼피런이야기</a>
+                            <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">반려견계산기</a>
+                            <a href="/calculator/age">반려견계산기</a>
                         </li>
                     </ul>
                 </div>
             </nav>
             <!-- 스크롤 메뉴 -->
-            <!-- <div class="scroll-wrap">
+            <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
-                <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
-            </div> -->
-            <!-- 메인 -->
+                <% if( user != null) { %>
+                <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } else { %>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } %>
+            </div>
             <div id="main-content">
                 <div id="Box1">
                     <div id="nbb-top">
@@ -116,7 +163,7 @@
                                 </div>
                                 <div id="btn-box">
                                     <input type="submit" id="submit-input" value="등록">
-                                    <a href="/html/free-board.html"><p>취소</p></a>
+                                    <a href="/matching/list"><p>취소</p></a>
                                 </div>
                             </form>
                         </div>

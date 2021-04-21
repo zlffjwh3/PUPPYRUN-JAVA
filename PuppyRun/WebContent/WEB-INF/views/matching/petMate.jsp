@@ -31,19 +31,20 @@
         <script src="./assets/js/jquery-3.4.1.min.js"></script>
         <script src="/assets/js/slider.js"></script>
         <script src="/assets/js/scroll.js"></script>
-        <title>산책짝꿍 - 산책친구 찾기</title>
+        <title>퍼피런 :: 산책짝꿍</title>
     </head>
     <body>
         <header>
         <div id="wrap">
+                <header>
                 <!-- 헤더-->
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	<form action="" method="get">
-		                    	<input class="search-input" type="text" placeholder="search">
-		                    	<input id="search-btn" type="submit" value="">
-	                    	</form>
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="search">
+                                <input id="search-btn" type="submit" value="">
+                            </form>
 	                    </div>
                 	</div>
 	                <!-- 헤더 메인 로고 -->
@@ -73,13 +74,23 @@
 		                    	<% if(user.getAdminCheck() == 'N') { %>
 		                    	<p><a href="/user/myInfo">마이페이지</a></p>
 		                    	<% } else { %>
-		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
 		                    	<% } %>
 		                    	<p><a href="/user/logout">로그아웃</a></p>
 		                    </div>
 		                    <% } %>
 	                    </div>
-	                    <!-- index.js로 옮김 -->
+	                    <script>
+	                    		function showPopup() {
+	                    			var popUp = document.getElementById("pop-up");
+	                    			
+	                    			if(popUp.style.display == 'none') {
+	                    				popUp.style.display = 'block';
+	                    			}else {
+	                    				popUp.style.display = 'none';
+	                    			}
+		                    	}
+	                    </script> 
             		</div>
            		</div>
             </header>
@@ -108,7 +119,7 @@
                             <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">반려견계산기</a>
+                            <a href="/calculator/age">반려견계산기</a>
                         </li>
                     </ul>
                 </div>
@@ -116,7 +127,11 @@
             <!-- 스크롤 메뉴 -->
             <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
-                <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% if( user != null) { %>
+                <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } else { %>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } %>
             </div>
             <!-- 메인 -->
             <div id="main-content">

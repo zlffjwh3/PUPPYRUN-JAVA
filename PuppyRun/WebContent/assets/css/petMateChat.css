@@ -82,7 +82,7 @@ div#chat-box {
 /* 작성자 프로필 주소 */
 .user-profile-addr-div {
 	float: right;
-    width: 120px;
+    /* width: 120px; */
     text-align : right;
 }
 

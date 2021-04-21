@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import matching.model.service.MatchingChatService;
 import matching.model.service.MatchingService;
 import matching.model.vo.Matching;
 import matching.model.vo.MatchingChat;
@@ -28,7 +29,7 @@ public class MatchingDetailServlet extends HttpServlet {
       
       
       Matching matching = new MatchingService().printOneMatching(matchingNo);
-      ArrayList<MatchingChat> matChat = new MatchingService().viewMsg(matchingNo);
+      ArrayList<MatchingChat> matChat = new MatchingChatService().viewMsg(matchingNo);
       // 프로필 사진 가져와야 함
    	  ArrayList<User> uList = new UserService().selectAllUserList2();
       
@@ -62,7 +63,7 @@ public class MatchingDetailServlet extends HttpServlet {
 	   matChat.setRcvId(rcvId);
 	   matChat.setContent(matchingContent);
 	   
-	   int result = new MatchingService().sendMsg(matChat);
+	   int result = new MatchingChatService().sendMsg(matChat);
 	   
 	   
 	   if(result > 0) {

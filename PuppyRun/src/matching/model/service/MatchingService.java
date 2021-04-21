@@ -3,12 +3,10 @@ package matching.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import matching.model.dao.MatchingDAO;
 import matching.model.vo.Matching;
-import matching.model.vo.MatchingChat;
 import matching.model.vo.MatchingPage;
 
 public class MatchingService {
@@ -97,6 +95,7 @@ public class MatchingService {
 		return result;
 	}
 	
+	// 산책짝꿍 삭제
 	public int deleteMatching(int matNo) {
 		Connection conn = null;
 		int result = 0;
@@ -116,59 +115,4 @@ public class MatchingService {
 		}
 		return result;
 	}
-
-	public int sendMsg(MatchingChat matChat) {
-		Connection conn = null;
-		int result = 0;
-		try {
-			conn = factory.createConnection ();
-			result = new MatchingDAO().insertMsg(conn, matChat);
-			if(result > 0) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(conn);
-		}
-		return result;
-		
-	}
-
-	public ArrayList<MatchingChat> viewMsg(int matchingNo) {
-		Connection conn = null;
-		ArrayList<MatchingChat> matChat = null;
-		try {
-			conn = factory.createConnection ();
-			matChat = new MatchingDAO().selectAllMsg(conn, matchingNo);
-			if(matChat != null) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(conn);
-		}
-		return matChat;
-	}
-	
-	// 아이디별로 채팅 리스트 가져오기
-	public ArrayList<MatchingChat> viewList(String userId) {
-		Connection conn = null;
-		ArrayList<MatchingChat> matChat = null;
-		
-		try {
-			conn = factory.createConnection();
-			matChat = new MatchingDAO().viewList(conn, userId);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return matChat;
-	}
-
 }

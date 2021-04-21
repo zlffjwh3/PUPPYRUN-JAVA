@@ -10,8 +10,6 @@
 	Matching matching = (Matching)request.getAttribute("matching");
 	ArrayList<MatchingChat> matChat = (ArrayList<MatchingChat>)request.getAttribute("matChat");
 	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList");
-	
-	System.out.println(matching.getMatId());
 %>
 
 
@@ -27,7 +25,6 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <!-- <link rel="stylesheet" type="text/css" href="/assets/css/notice.css"> -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/petMate.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/petMateChat.css">
@@ -38,19 +35,19 @@
         <script src="./assets/js/jquery-3.4.1.min.js"></script>
         <script src="/assets/js/slider.js"></script>
         <script src="/assets/js/scroll.js"></script>
-        <title>산책짝꿍 - 산책친구 찾기</title>
+        <title>퍼피런 :: 산책짝꿍</title>
     </head>
     <body>
         <div id="wrap">
-            <header>
+			<header>
                 <!-- 헤더-->
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	<form action="" method="get">
-		                    	<input class="search-input" type="text" placeholder="search">
-		                    	<input id="search-btn" type="submit" value="">
-	                    	</form>
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" type="text" placeholder="search">
+                                <input id="search-btn" type="submit" value="">
+                            </form>
 	                    </div>
                 	</div>
 	                <!-- 헤더 메인 로고 -->
@@ -80,12 +77,23 @@
 		                    	<% if(user.getAdminCheck() == 'N') { %>
 		                    	<p><a href="/user/myInfo">마이페이지</a></p>
 		                    	<% } else { %>
-		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
 		                    	<% } %>
 		                    	<p><a href="/user/logout">로그아웃</a></p>
 		                    </div>
 		                    <% } %>
 	                    </div>
+	                    <script>
+	                    		function showPopup() {
+	                    			var popUp = document.getElementById("pop-up");
+	                    			
+	                    			if(popUp.style.display == 'none') {
+	                    				popUp.style.display = 'block';
+	                    			}else {
+	                    				popUp.style.display = 'none';
+	                    			}
+		                    	}
+	                    </script> 
             		</div>
            		</div>
             </header>
@@ -122,7 +130,11 @@
             <!-- 스크롤 메뉴 -->
             <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
-                <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% if( user != null) { %>
+                <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } else { %>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } %>
             </div>
             <!-- 메인 -->
             <div id="main-content">
@@ -228,7 +240,11 @@
 		                    <div id="chat-write-area">
 		                        <form action="/matching/detail" method="post">
 		                       		<input type="hidden" name="send-id" value="<%= user.getUserId()%>">
+		                       		<% if(!matChat.isEmpty() && user.getUserId().equals(matching.getMatId())) { %>
+									<input type="hidden" name="rcv-id" value="<%= matChat.get(0).getSendId() %>">
+		               				<% } else { %>
 		               				<input type="hidden" name="rcv-id" value="<%= matching.getMatId()%>">
+		               				<% } %>
 		               				<input type="hidden" name="matching-no" value="<%= matching.getMatNo()%>">
 		                            <div>
 		                                <textarea name="chat-content" id="" cols="50" rows="20"></textarea>

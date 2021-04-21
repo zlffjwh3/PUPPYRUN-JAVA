@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import matching.model.service.MatchingService;
+import matching.model.service.MatchingChatService;
 import matching.model.vo.MatchingChat;
 import user.model.service.UserService;
 import user.model.vo.User;
@@ -28,7 +28,7 @@ public class MyChattingListServlet extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		String userId = user.getUserId();
 		
-		ArrayList<MatchingChat> matChat = new MatchingService().viewList(userId);
+		ArrayList<MatchingChat> matChat = new MatchingChatService().viewList(userId);
 		// 프로필 사진 가져와야 함
 	   	ArrayList<User> uList = new UserService().selectAllUserList2();
 	      
