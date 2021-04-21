@@ -214,7 +214,7 @@
 	               				</tr>
 	               				<% for(Notice notice : nList) { %>
 	               				<tr>
-	               					<td><input type="checkbox" value=""></td>
+	               					<td><input type="checkbox" class="notice-input-box" value="<%= notice.getNoticeNo() %>" ></td>
 	               					<td><%= notice.getNoticeNo() %></td>
 	               					<td><%= notice.getNoticeTitle() %></td>
 	               					<td><%= notice.getNoticeContent()  %></td>
@@ -228,9 +228,15 @@
             				<td><%= pageNavi %></td>
             			</div> --%>
 	               	</div>
-	               	<div class="list-btn">
+	               	<form action=""  method="post" id="nDelete">
+	               			<div class="list-btn">
+	               				<input type="submit" value="삭제" id="noticeDelete">
+	               			</div>
+	               		</form>
+	               		
+	               <!-- 	<div class="list-btn">
 	               		<a href="">삭제</a>
-	               	</div>
+	               	</div> -->
 	            </div>
 	             <!-- 퍼피런 게시글 끝 ----------------------------------------------------->
 	             
@@ -272,7 +278,7 @@
 	               				</tr>
 	               				<% for(Matching matching : mList) { %>
 	               				<tr>
-	               					<td><input type="checkbox" value=""></td>
+	               					<td><input type="checkbox" value="<%=matching.getMatNo() %>"></td>
 	               					<td><%= matching.getMatNo() %></td>
 	               					<td><%= matching.getMatTitle() %></td>
 	               					<td><%= matching.getMatId()  %></td>
@@ -286,6 +292,7 @@
             			<%-- <div class="page-navi">
             				<%= pageNavi %></td>
             			</div> --%>
+            		
 	               	</div>
 	               	<div class="list-btn">
 	               		<a href="">삭제</a>

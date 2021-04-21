@@ -60,11 +60,19 @@ $(document).ready(function() {
 	
 	/*input[type=checkbox]*/
 	$('#userDelete').click(function() {
-		var change = $('input[type=checkbox]:checked').val();
+		var change = $('.user-input-box:checked').val();
 		var url = "/user/delete?userId=" + change;
 		
 		$('#uDelete').attr('action', url);
 		$('#userDelete').submit();
+	})
+	
+	$('#noticeDelete').click(function() {
+		var change = $('.notice-input-box:checked').val();
+		var url = "/user/delete?noticeNo=" + change;
+		
+		$('#nDelete').attr('action', url);
+		$('#noticeDelete').submit();
 	})
 	
 });

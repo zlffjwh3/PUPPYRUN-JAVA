@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import community.model.service.CommentService;
 import community.model.service.CommunityService;
 import community.model.service.LikeService;
+import notice.model.service.NoticeService;
 import user.model.service.UserService;
 import user.model.vo.User;
 
@@ -71,44 +72,58 @@ public class DeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 어드민 회원 강제 탈퇴
 		String userId = request.getParameter("userId");
+		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		
 		int userResult = 0;
 		int dogResult = 0;
 		int communityResult = 0;
 		int commentResult = 0;
 		int likeResult = 0;
 		
+		System.out.println(noticeNo);
+		if(noticeNo != 0) {
+			int result = new NoticeService().deleteNotice(noticeNo);
+			
+			if(result > 0) {
+				response.sendRedirect("/WEB-INF/views/user/myinfo-m.jsp");
+			}
+			
+			// 여기서 삭제 하나 더 해줘야함
+		}
+		
+		
 		System.out.println("userId 받아왔니 : " + userId);
-		
 		User user = new UserService().selectOneUserIdOnly(userId);
-		
-		if(user.getDogCheck() == 'N') {
-			// 회원 삭제할 때, 게시물과 댓글, 좋아요도 삭제
-			likeResult = new LikeService().deleteLike(userId); 
-			commentResult = new CommentService().deleteCommunity(userId);
-			communityResult = new CommunityService().deleteCommunity(userId);
-			userResult = new UserService().deleteUser(userId);
+		if(userId != null) {
+			if(user.getDogCheck() == 'N') {
+				// 회원 삭제할 때, 게시물과 댓글, 좋아요도 삭제
+				likeResult = new LikeService().deleteLike(userId); 
+				commentResult = new CommentService().deleteCommunity(userId);
+				communityResult = new CommunityService().deleteCommunity(userId);
+				userResult = new UserService().deleteUser(userId);
 			
-			if(userResult > 0 ) {
-				response.sendRedirect("/WEB-INF/views/user/myinfo-m.jsp");
-			}else {
-				System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck == N)");
-			}
+				if(userResult > 0 ) {
+					response.sendRedirect("/WEB-INF/views/user/myinfo-m.jsp");
+				}else {
+					System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck == N)");
+				}
 			// 아래 부분 오류 있음 (자식 레코드)
-		}else if(user.getDogCheck() == 'Y'){
-			likeResult = new LikeService().deleteLike(userId);
-			commentResult = new CommentService().deleteCommunity(userId);
-			communityResult = new CommunityService().deleteCommunity(userId);
-			dogResult = new UserService().deleteDog(userId);
-			userResult = new UserService().deleteUser(userId);
+			}else if(user.getDogCheck() == 'Y'){
+				likeResult = new LikeService().deleteLike(userId);
+				commentResult = new CommentService().deleteCommunity(userId);
+				communityResult = new CommunityService().deleteCommunity(userId);
+				dogResult = new UserService().deleteDog(userId);
+				userResult = new UserService().deleteUser(userId);
 			
 			
-			if(userResult > 0 && dogResult > 0) {
-				response.sendRedirect("/WEB-INF/views/user/myinfo-m.jsp");
+				if(userResult > 0 && dogResult > 0) {
+					response.sendRedirect("/WEB-INF/views/user/myinfo-m.jsp");
+				}else {
+					System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck == Y)");
+				}
 			}else {
-				System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck == Y)");
+				System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck 값 가져올 수 없음");
 			}
-		}else {
-			System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck 값 가져올 수 없음");
 		}
 
 	}
