@@ -31,6 +31,11 @@ public class UserPhotoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user"); // 유저를 받아옴
@@ -95,11 +100,6 @@ public class UserPhotoServlet extends HttpServlet {
 		} else {
 			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
-		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

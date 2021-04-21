@@ -153,9 +153,17 @@
                				<div><img src="/assets/img/user-no-img.png"></div>
                			<% } %>
                				<img src="/assets/img/change-photo.png" id="change-photo-btn">
-               				<form action="/user/photo" method="post" id="change-photo">
+               				<form action="/user/photo" method="post" id="change-photo" enctype="multipart/form-data">
+               				<% if(user.getUserPhoto() != null) { %>
 	               				<input type="file" id="user-photo" name="upFile">
 	               				<input type="submit" value="수정">
+								
+               				
+               				<% } else { %>
+	               				<input type="file" id="user-photo" name="upFile">
+	               				<input type="submit" value="수정">
+               				
+               				<% } %>
                				</form>
                			</div>
                			<!--------------------------------------------->
