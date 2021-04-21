@@ -187,7 +187,7 @@
 	clear : both;
 	width : 100%;
 	/* height : 1000px; */
-	margin : 150px 0 70px 0;
+	margin : 150px 0 150px 0;
 	border-radius : 50px;
 	box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
@@ -232,12 +232,12 @@
 		overflow : auto;
 	}
 	
-	#list-bottom .table {
+	.table {
 		border-collapse: collapse;
 		text-align: left;
 		line-height: 1.5;
-		margin: 40px auto 40px auto;
-		width : 95%;
+		margin: 20px auto 40px auto;
+		width : 1100px;
 	}
 	
 		#list-bottom tr {
@@ -246,6 +246,30 @@
 		
 		#list-bottom td {
 			padding : 20px;
+		}
+		
+		.table td:first-child {
+			width : 50px;
+		}
+		
+		.table td:nth-child(2) {
+			width : 150px;
+			color : #F0A300;
+		}
+		
+		.table td:nth-child(3) {
+			width : 100px;
+		}
+		
+		.table td:nth-child(4) {
+			cursor : pointer;
+			width : 650px;
+			font-weight : bolder;
+		}
+		
+		input[type=checkbox] {
+			width : 15px;
+			height : 15px;
 		}
 	
 		#like-list {
@@ -278,6 +302,8 @@
 		    display: inline-block;
 		    color : white;
 		    line-height : 30px;
+		    border : none;
+		    font-size : 17px;
 		}
 		
 		

@@ -233,7 +233,7 @@
                						}
                					}
                				%>
-               				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
+               				<tr>
                					<td><input type="checkbox" class="checkbox" value="<%= like.getComNo() %>"></td>
                					<td>멍멍이야기</td>
                					<% switch(allCList.get(n).getTagNo()) { 
@@ -246,7 +246,7 @@
                					case 3 : %><td>자랑</td>
                					<% break;
                					} %>
-               					<td><%= allCList.get(n).getComTitle() %></td>
+               					<td onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'"><%= allCList.get(n).getComTitle() %></td>
                					<td><%= allCList.get(n).getComDate() %></td>
                				</tr>
                				<% } %>
@@ -254,6 +254,7 @@
 	               		<table id="post-list" class="table">
 	               			<% for(int i=0; i<cList.size(); i++) { %>
                				<tr>
+               					<td><input type="checkbox" class="checkbox" value="<%= cList.get(i).getComNo() %>"></td>
                					<td>멍멍이야기</td>
                					<% switch(cList.get(i).getTagNo()) { 
                					case 0 :%> <td>자유</td>
@@ -273,6 +274,7 @@
                			<table id="post-list2" class="table">
 	               			<% for(Matching mat : mList) { %>
                				<tr onclick="href.location='/matching/detail?matNo=<%= mat.getMatNo() %>'">
+               					<td><input type="checkbox" class="checkbox" value="<%= mat.getMatNo() %>"></td>
                					<td>산책짝꿍</td>
                					<td></td>
                					<td><%= mat.getMatContent() %></td>
@@ -284,7 +286,6 @@
                				<% for(Comment com : comList) { 
                					int n = 0;
                					for(int i=0; i<allCList.size(); i++) {
-             					System.out.println(i);
                						if(allCList.get(i).getComNo() == com.getComNo()) {
                							n = i;
                							break;
@@ -292,6 +293,7 @@
                					}
                				%>
                				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
+               					<td><input type="checkbox" class="checkbox" value="<%= allCList.get(n).getComNo() %>"></td>
                					<td>멍멍이야기</td>
                					<% switch(allCList.get(n).getTagNo()) { 
                					case 0 :%> <td>자유</td>
@@ -309,9 +311,9 @@
                				<% } %>
                			</table>
 	               	</div>
-	            </div>
-	            <div id="btns">
-	            	<input type="button" value="삭제" id="change">
+	               	<div id="btns">
+	            		<input type="button" value="삭제" id="change">
+	            	</div>
 	            </div>
 	     	</div> <!-- main -->
             <!-- 메인 끝 ! ---------------------------------------------------------------------------------------------------------------------->
