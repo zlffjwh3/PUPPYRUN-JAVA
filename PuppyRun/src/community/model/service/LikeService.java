@@ -121,7 +121,7 @@ public class LikeService {
 		
 		try {
 			conn = factory.createConnection();
-			lList = new LikeService().printUserLikes(userId);
+			lList = new LikeDAO().printUserLikes(conn, userId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

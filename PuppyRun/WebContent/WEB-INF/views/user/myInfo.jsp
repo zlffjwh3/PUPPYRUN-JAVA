@@ -1,3 +1,4 @@
+<%@page import="community.model.vo.Like"%>
 <%@page import="matching.model.vo.Matching"%>
 <%@page import="community.model.vo.Comment"%>
 <%@page import="community.model.vo.Community"%>
@@ -10,9 +11,11 @@
 	User user = (User)session.getAttribute("user");
 	Dog dog = (Dog)request.getAttribute("dog");
 	
+	ArrayList<Like> lList = (ArrayList<Like>)request.getAttribute("lList");
 	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
 	ArrayList<Comment> comList = (ArrayList<Comment>)request.getAttribute("comList");
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
+	ArrayList<Community> allCList = (ArrayList<Community>)request.getAttribute("allCList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -221,37 +224,88 @@
                		</div>
                		<div id="list-bottom">
                			<table id="like-list">
-               				<tr>
+               				<% for(Like like : lList) { 
+               					int n = 0;
+               					for(int i=0; i<allCList.size(); i++) {
+               						if(like.getComNo() == allCList.get(i).getComNo()) {
+               							n = i;
+               							break;
+               						}
+               					}
+               				%>
+               				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
                					<td>멍멍이야기</td>
-               					<td>자유</td>
-               					<td>오늘은 이상하네요~</td>
-               					<td>20시간 전</td>
+               					<% switch(allCList.get(n).getTagNo()) { 
+               					case 0 :%> <td>자유</td>
+               					<% break;
+               					case 1 : %><td>나눔</td>
+               					<% break;
+               					case 2 : %><td>질문</td>
+               					<% break;
+               					case 3 : %><td>자랑</td>
+               					<% break;
+               					} %>
+               					<td><%= allCList.get(n).getComTitle() %></td>
+               					<td><%= allCList.get(n).getComDate() %></td>
                				</tr>
-               				<tr>
-               					<td colspan="4">페이징</td>
-               				</tr>
+               				<% } %>
                			</table>
 	               		<table id="post-list">
+	               			<% for(int i=0; i<cList.size(); i++) { %>
                				<tr>
                					<td>멍멍이야기</td>
-               					<td>자유</td>
-               					<td>오늘은 이상하네요~</td>
-               					<td>20시간 전</td>
+               					<% switch(cList.get(i).getTagNo()) { 
+               					case 0 :%> <td>자유</td>
+               					<% break;
+               					case 1 : %><td>나눔</td>
+               					<% break;
+               					case 2 : %><td>질문</td>
+               					<% break;
+               					case 3 : %><td>자랑</td>
+               					<% break;
+               					} %>
+               					<td><%= cList.get(i).getComContent() %></td>
+               					<td><%= cList.get(i).getComDate() %></td>
                				</tr>
-               				<tr>
-               					<td colspan="4">페이징</td>
+               				<% } %>
+               			</table>
+               			<table id="post-list2">
+	               			<% for(Matching mat : mList) { %>
+               				<tr onclick="href.location='/matching/detail?matNo=<%= mat.getMatNo() %>'">
+               					<td>산책짝꿍</td>
+               					<td></td>
+               					<td><%= mat.getMatContent() %></td>
+               					<td><%= mat.getMatDate() %></td>
                				</tr>
+               				<% } %>
                			</table>
                			<table id="comment-list">
-               				<tr>
+               				<% for(Comment com : comList) { 
+               					int n = 0;
+               					for(int i=0; i<allCList.size(); i++) {
+             					System.out.println(i);
+               						if(allCList.get(i).getComNo() == com.getComNo()) {
+               							n = i;
+               							break;
+               						}
+               					}
+               				%>
+               				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
                					<td>멍멍이야기</td>
-               					<td>자유</td>
-               					<td>오늘은 이상하네요~</td>
-               					<td>20시간 전</td>
+               					<% switch(allCList.get(n).getTagNo()) { 
+               					case 0 :%> <td>자유</td>
+               					<% break;
+               					case 1 : %><td>나눔</td>
+               					<% break;
+               					case 2 : %><td>질문</td>
+               					<% break;
+               					case 3 : %><td>자랑</td>
+               					<% break;
+               					} %>
+               					<td><%= com.getCommentContents() %></td>
+               					<td><%= allCList.get(n).getComDate() %></td>
                				</tr>
-               				<tr>
-               					<td colspan="4">페이징</td>
-               				</tr>
+               				<% } %>
                			</table>
 	               	</div>
 	            </div>

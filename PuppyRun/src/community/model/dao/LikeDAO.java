@@ -151,23 +151,20 @@ public class LikeDAO {
 	public ArrayList<Like> printUserLikes(Connection conn, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM LIKETBL WHERE LIKE_ID = ?";
-		ArrayList<Like> lList = null;
+		String query = "SELECT * FROM LIKETBL WHERE LIKE_ID = ? AND LIKE_STATUS = 'Y'";
+		ArrayList<Like> lList = new ArrayList<Like>();
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, userId);
 			rset = pstmt.executeQuery();
 			
-			if(rset != null) {
-				lList = new ArrayList<Like>();
-				
-				while(rset.next()) {
-					Like like = new Like();
-					like.setComNo(rset.getInt("COM_NO"));
-					like.setLikeId(userId);
-					like.setLikeStatus(rset.getString("LIKE_STATUS"));
-				}
+			while(rset.next()) {
+				Like like = new Like();
+				like.setComNo(rset.getInt("COM_NO"));
+				like.setLikeId(rset.getString("LIKE_ID"));
+				like.setLikeStatus(rset.getString("LIKE_STATUS"));
+				lList.add(like);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
