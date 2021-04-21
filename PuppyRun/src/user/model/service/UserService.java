@@ -265,6 +265,28 @@ public class UserService {
 		
 		return result;
 	}
+	
+	// 사진정보수정
+	public int updatePhoto(User user) {
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			conn = factory.createConnection();
+			result = new UserDAO().updatePhoto(conn, user);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	
 
 
 //	public UserPage selectSearchUserList(String search, int currentPage) {

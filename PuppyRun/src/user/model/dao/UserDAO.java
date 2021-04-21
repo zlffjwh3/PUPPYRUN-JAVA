@@ -408,6 +408,25 @@ public class UserDAO {
 		
 		return result;
 	}
+	// 프로필 사진 수정
+
+	public int updatePhoto(Connection conn, User user) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE USERTBL SET PHOTO_NAME = ? WHERE USER_ID= ?";
+		
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, user.getUserPhoto());
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(pstmt);
+			}
+		
+		return result;
+	}
 
 	// 회원가입 정보 수정하기 전 조회
 	public User selectOneUserIdOnly(Connection conn, String userId) {
@@ -585,6 +604,7 @@ public class UserDAO {
 		
 		return uList;
 	}
+
 
 
 
