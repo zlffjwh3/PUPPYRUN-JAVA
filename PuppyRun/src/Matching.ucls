@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="matching.model.dao.MatchingDAO" project="PuppyRun" 
     file="/PuppyRun/src/matching/model/dao/MatchingDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="610" y="269"/>    
+    <position height="-1" width="-1" x="757" y="485"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="matching.model.service.MatchingService" project="PuppyRun" 
     file="/PuppyRun/src/matching/model/service/MatchingService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="883" y="262"/>    
+    <position height="-1" width="-1" x="878" y="184"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -100,12 +100,37 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="12">    
+  <class id="12" language="java" name="common.JDBCTemplate" project="PuppyRun" 
+    file="/PuppyRun/src/common/JDBCTemplate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="604" y="187"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="13">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="14" name="instance"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="16">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="13" name="mList"/>      
-      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
+      <attribute id="17" name="mList"/>      
+      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="19">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="20" name="factory"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
