@@ -1,6 +1,7 @@
 package user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +37,12 @@ public class FindIdServlet extends HttpServlet {
 			view.forward(request, response);
 			
 		} else {
-			request.getRequestDispatcher("/id-pw-inquiry.jsp").forward(request, response);
+//			request.getRequestDispatcher("/id-pw-inquiry.jsp").forward(request, response);
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('아이디 혹은 이메일 정보가 없습니다'); location.href='/id-pw-inquiry.jsp';</script>");
+			out.flush();
 		}
 		
 	}
