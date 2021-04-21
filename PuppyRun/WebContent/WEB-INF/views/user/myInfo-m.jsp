@@ -166,7 +166,7 @@
 	               					<td><%= user.getEnrollDate() %></td>
 	               				</tr>
 	               				<% } %>
-	               				<% } %>
+	               				<% } %>    
 	               			</table>
                			</div>
             			<%-- <div class="page-navi">
