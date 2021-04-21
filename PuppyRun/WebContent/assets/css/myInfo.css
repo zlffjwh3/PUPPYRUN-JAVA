@@ -186,14 +186,14 @@
 #info-bottom {
 	clear : both;
 	width : 100%;
-	height : 1000px;
+	/* height : 1000px; */
 	margin : 150px 0 70px 0;
 	border-radius : 50px;
 	box-shadow: 0px 4px 50px 10px rgba(255, 226, 162, 0.3);
 }
 
 	#list-top {
-		height : 7%;
+		height : 70px;
 		border-radius : 50px 50px 0 0;
 	}
 	
@@ -227,9 +227,26 @@
 	
 	#list-bottom {
 		background-color : #ffffff;
-		height : 93%;
+		height : 90%;
 		border-radius : 0 0 50px 50px;
+		overflow : auto;
 	}
+	
+	#list-bottom .table {
+		border-collapse: collapse;
+		text-align: left;
+		line-height: 1.5;
+		margin: 40px auto 40px auto;
+		width : 95%;
+	}
+	
+		#list-bottom tr {
+			border-bottom : 1px solid #c9c9c9;
+		}
+		
+		#list-bottom td {
+			padding : 20px;
+		}
 	
 		#like-list {
 			
@@ -245,6 +262,22 @@
 		
 		#comment-list {
 			display : none;
+		}
+		
+	#btns {
+		margin : 40px 20px;
+		float : right;
+	}
+	
+		#btns #change {
+			background-color : #fdcc63;
+			text-align: center;
+		    width : 80px;
+		    height: 33px;
+		    border-radius: 10px;
+		    display: inline-block;
+		    color : white;
+		    line-height : 30px;
 		}
 		
 		

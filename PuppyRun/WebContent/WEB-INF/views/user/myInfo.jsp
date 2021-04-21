@@ -223,7 +223,7 @@
                			<div id="comment">MY댓글</div>
                		</div>
                		<div id="list-bottom">
-               			<table id="like-list">
+               			<table id="like-list" class="table">
                				<% for(Like like : lList) { 
                					int n = 0;
                					for(int i=0; i<allCList.size(); i++) {
@@ -234,6 +234,7 @@
                					}
                				%>
                				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
+               					<td><input type="checkbox" class="checkbox" value="<%= like.getComNo() %>"></td>
                					<td>멍멍이야기</td>
                					<% switch(allCList.get(n).getTagNo()) { 
                					case 0 :%> <td>자유</td>
@@ -250,7 +251,7 @@
                				</tr>
                				<% } %>
                			</table>
-	               		<table id="post-list">
+	               		<table id="post-list" class="table">
 	               			<% for(int i=0; i<cList.size(); i++) { %>
                				<tr>
                					<td>멍멍이야기</td>
@@ -269,7 +270,7 @@
                				</tr>
                				<% } %>
                			</table>
-               			<table id="post-list2">
+               			<table id="post-list2" class="table">
 	               			<% for(Matching mat : mList) { %>
                				<tr onclick="href.location='/matching/detail?matNo=<%= mat.getMatNo() %>'">
                					<td>산책짝꿍</td>
@@ -279,7 +280,7 @@
                				</tr>
                				<% } %>
                			</table>
-               			<table id="comment-list">
+               			<table id="comment-list" class="table">
                				<% for(Comment com : comList) { 
                					int n = 0;
                					for(int i=0; i<allCList.size(); i++) {
@@ -308,6 +309,9 @@
                				<% } %>
                			</table>
 	               	</div>
+	            </div>
+	            <div id="btns">
+	            	<input type="button" value="삭제" id="change">
 	            </div>
 	     	</div> <!-- main -->
             <!-- 메인 끝 ! ---------------------------------------------------------------------------------------------------------------------->

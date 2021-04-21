@@ -137,7 +137,6 @@ public class MatchingService {
 		}
 		return result;
 	}
-<<<<<<< HEAD
 
 	// 관리자 페이지에서 산책짝꿍 검색
 	public MatchingPage selectSearchMatchingList(String matchingSearch, String matchingChoice) {
@@ -153,7 +152,7 @@ public class MatchingService {
 			JDBCTemplate.close(conn);
 		}
 		return matchingPage;
-=======
+	}
 	
 	// 아이디별로 산책짝꿍 게시글 보내주기
 	public ArrayList<Matching> printUserMatching(String userId) {
@@ -168,6 +167,5 @@ public class MatchingService {
 		}
 		
 		return mList;
->>>>>>> branch 'main' of https://github.com/Dog-Rice-Team/PUPPYRUN-JAVA.git
 	}
 }
