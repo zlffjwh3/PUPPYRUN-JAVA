@@ -1,3 +1,8 @@
+<%@page import="community.model.vo.Like"%>
+<%@page import="matching.model.vo.Matching"%>
+<%@page import="community.model.vo.Comment"%>
+<%@page import="community.model.vo.Community"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.Dog"%>
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +10,12 @@
 <%
 	User user = (User)session.getAttribute("user");
 	Dog dog = (Dog)request.getAttribute("dog");
+	
+	ArrayList<Like> lList = (ArrayList<Like>)request.getAttribute("lList");
+	ArrayList<Community> cList = (ArrayList<Community>)request.getAttribute("cList");
+	ArrayList<Comment> comList = (ArrayList<Comment>)request.getAttribute("comList");
+	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
+	ArrayList<Community> allCList = (ArrayList<Community>)request.getAttribute("allCList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,19 +39,19 @@
         <script src="<%= request.getContextPath() %>/assets/js/jquery-3.4.1.min.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/scroll.js"></script>
         <script src="<%= request.getContextPath() %>/assets/js/myInfo.js"></script>
-		<title>퍼피런 - 마이페이지</title>
+		<title>퍼피런 :: 마이페이지</title>
 	</head>
 	<body>
 		<div id="wrap">
-            <header>
+			<header>
                 <!-- 헤더-->
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	<form action="" method="get">
-		                    	<input class="search-input" type="text" placeholder="search">
-		                    	<input id="search-btn" type="submit" value="">
-	                    	</form>
+	                    	 <form action="/community/search" method>
+                                <input class="search-input" id="" name="searchKeyword" type="text" placeholder="search">
+                                <input id="search-btn" type="submit" value="">
+                            </form>
 	                    </div>
                 	</div>
 	                <!-- 헤더 메인 로고 -->
@@ -50,20 +61,27 @@
 	                <div id="tright">
 	                	<div id="tright-wrapper">
 		                    <div id="login">
-	                        	<% if(user.getUserPhoto() != null) { %>
-                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
-	                       		<% } else { %>
-                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
-	                        	<% } %>
-	                        	<a href="javascript:showPopup()" id="login-content"><%= user.getUserNick() %></a>
+		                    	<% if(user == null) { %>
+		                        	<a href="/login.jsp">
+		                            	<i class="xi-face xi-2x"></i>
+		                       		</a>
+		                        	<a href="/login.jsp" id="login-content">로그인</a>
+		                        <% } else { %>
+		                        	<% if(user.getUserPhoto() != null) { %>
+	                            	<img src="/upload/<%= user.getUserPhoto() %>" onclick="showPopup()">
+		                       		<% } else { %>
+	                            	<img src="/assets/img/user-no-img.png" onclick="showPopup()">
+		                        	<% } %>
+		                        	<a href="javascript:showPopup()" id="login-content" class="logining-userName"><%= user.getUserNick() %></a>
+		                        <% } %>
 		                    </div>
 		                    <% if(user != null) { %>
-		                    <div id="pop-up" style="display:none">
+		                    <div id="pop-up" class="animate__animated animate__fadeIn animate__delay-la" style="display:none">
 		                    	<p id="show-id"><%= user.getUserId() %></p>
 		                    	<% if(user.getAdminCheck() == 'N') { %>
 		                    	<p><a href="/user/myInfo">마이페이지</a></p>
 		                    	<% } else { %>
-		                    	<p><a href="/user/list">관리자페이지</a></p>
+		                    	<p><a href="/user/list?dogCheck=all">관리자페이지</a></p>
 		                    	<% } %>
 		                    	<p><a href="/user/logout">로그아웃</a></p>
 		                    </div>
@@ -79,7 +97,7 @@
 	                    				popUp.style.display = 'none';
 	                    			}
 		                    	}
-	                    </script> 
+	                    </script>
             		</div>
            		</div>
             </header>
@@ -88,10 +106,18 @@
                 <div id="main-menu">
                     <ul id="main-navi-ul">
                         <li class="main-navi-li">
-                        	<a href="/petdiary/list">산책일기</a>
+                        	<% if(user != null) { %>
+                        		<a href="/petdiary/list">산책일기</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책일기</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
-                        	<a href="/matching/list">산책짝꿍</a>
+                        	<% if(user != null) { %>
+                        		<a href="/matching/list">산책짝꿍</a>
+                        	<% } else { %>
+                        		<a href="/login.jsp" onclick="return alert('로그인이 필요합니다.')">산책짝꿍</a>
+                        	<% } %>
                         </li>
                         <li class="main-navi-li">
                             <a href="/community/list">멍멍이야기</a>
@@ -100,7 +126,7 @@
                             <a href="/notice/list">퍼피런이야기</a>
                         </li>
                         <li class="main-navi-li">
-                            <a href="#">반려견계산기</a>
+                            <a href="/calculator/age">반려견계산기</a>
                         </li>
                     </ul>
                 </div>
@@ -108,7 +134,11 @@
             <!-- 스크롤 메뉴 -->
             <div class="scroll-wrap">
                 <a href="#" class="top"><div><i class="fas fa-chevron-up"></i></div>Top</a>
-                <a href="#" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% if( user != null) { %>
+                <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } else { %>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <% } %>
             </div>
             <!-- 메인 ---------------------------------------------------------------------------------------------------------------------->
             <div id="main-content">
@@ -194,37 +224,88 @@
                		</div>
                		<div id="list-bottom">
                			<table id="like-list">
-               				<tr>
+               				<% for(Like like : lList) { 
+               					int n = 0;
+               					for(int i=0; i<allCList.size(); i++) {
+               						if(like.getComNo() == allCList.get(i).getComNo()) {
+               							n = i;
+               							break;
+               						}
+               					}
+               				%>
+               				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
                					<td>멍멍이야기</td>
-               					<td>자유</td>
-               					<td>오늘은 이상하네요~</td>
-               					<td>20시간 전</td>
+               					<% switch(allCList.get(n).getTagNo()) { 
+               					case 0 :%> <td>자유</td>
+               					<% break;
+               					case 1 : %><td>나눔</td>
+               					<% break;
+               					case 2 : %><td>질문</td>
+               					<% break;
+               					case 3 : %><td>자랑</td>
+               					<% break;
+               					} %>
+               					<td><%= allCList.get(n).getComTitle() %></td>
+               					<td><%= allCList.get(n).getComDate() %></td>
                				</tr>
-               				<tr>
-               					<td colspan="4">페이징</td>
-               				</tr>
+               				<% } %>
                			</table>
 	               		<table id="post-list">
+	               			<% for(int i=0; i<cList.size(); i++) { %>
                				<tr>
                					<td>멍멍이야기</td>
-               					<td>자유</td>
-               					<td>오늘은 이상하네요~</td>
-               					<td>20시간 전</td>
+               					<% switch(cList.get(i).getTagNo()) { 
+               					case 0 :%> <td>자유</td>
+               					<% break;
+               					case 1 : %><td>나눔</td>
+               					<% break;
+               					case 2 : %><td>질문</td>
+               					<% break;
+               					case 3 : %><td>자랑</td>
+               					<% break;
+               					} %>
+               					<td><%= cList.get(i).getComContent() %></td>
+               					<td><%= cList.get(i).getComDate() %></td>
                				</tr>
-               				<tr>
-               					<td colspan="4">페이징</td>
+               				<% } %>
+               			</table>
+               			<table id="post-list2">
+	               			<% for(Matching mat : mList) { %>
+               				<tr onclick="href.location='/matching/detail?matNo=<%= mat.getMatNo() %>'">
+               					<td>산책짝꿍</td>
+               					<td></td>
+               					<td><%= mat.getMatContent() %></td>
+               					<td><%= mat.getMatDate() %></td>
                				</tr>
+               				<% } %>
                			</table>
                			<table id="comment-list">
-               				<tr>
+               				<% for(Comment com : comList) { 
+               					int n = 0;
+               					for(int i=0; i<allCList.size(); i++) {
+             					System.out.println(i);
+               						if(allCList.get(i).getComNo() == com.getComNo()) {
+               							n = i;
+               							break;
+               						}
+               					}
+               				%>
+               				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
                					<td>멍멍이야기</td>
-               					<td>자유</td>
-               					<td>오늘은 이상하네요~</td>
-               					<td>20시간 전</td>
+               					<% switch(allCList.get(n).getTagNo()) { 
+               					case 0 :%> <td>자유</td>
+               					<% break;
+               					case 1 : %><td>나눔</td>
+               					<% break;
+               					case 2 : %><td>질문</td>
+               					<% break;
+               					case 3 : %><td>자랑</td>
+               					<% break;
+               					} %>
+               					<td><%= com.getCommentContents() %></td>
+               					<td><%= allCList.get(n).getComDate() %></td>
                				</tr>
-               				<tr>
-               					<td colspan="4">페이징</td>
-               				</tr>
+               				<% } %>
                			</table>
 	               	</div>
 	            </div>

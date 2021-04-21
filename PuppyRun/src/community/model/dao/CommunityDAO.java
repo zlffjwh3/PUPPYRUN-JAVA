@@ -60,6 +60,45 @@ public class CommunityDAO {
 		return cList;
 	}
 	
+	// 전체 게시물 보기 - 페이지 없는 버전 
+	public ArrayList<Community> selectAllCommunity2(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM COMMUNITY";
+		ArrayList<Community> cList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			if(rset != null) {
+				cList = new ArrayList<Community>();
+				
+				while(rset.next()) {
+					Community community = new Community();
+					community.setComNo(rset.getInt("COM_NO"));
+					community.setComId(rset.getString("COM_ID"));
+					community.setTagNo(rset.getInt("TAG_NO"));
+					community.setComTitle(rset.getString("COM_TITLE"));
+					community.setComContent(rset.getString("COM_CONTENT"));
+					community.setComview(rset.getInt("COM_VIEW"));
+					community.setComDate(rset.getDate("COM_DATE"));
+					community.setComPhoto(rset.getString("COM_PHOTO"));
+					community.setUserNick(rset.getString("USER_NICK"));
+					
+					cList.add(community);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return cList;
+	}
+	
 	// 페이지 네비게이션
 	public String getPageNavi(Connection conn, int currentPage) {
 		int recordTotalCount = totalCount(conn);
@@ -387,7 +426,7 @@ public class CommunityDAO {
 	public ArrayList<Community> selectSearchList(Connection conn, String search, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT,COM_VIEW, COM_DATE, COM_PHOTO, USER_NICK  FROM COMMUNITY WHERE COM_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS NUM, COM_NO, COM_ID, TAG_NO, COM_TITLE, COM_CONTENT,COM_VIEW, COM_DATE, COM_PHOTO, USER_NICK FROM COMMUNITY WHERE COM_TITLE LIKE ?) WHERE NUM BETWEEN ? AND ?";
 		ArrayList<Community> cList = null;
 		
 		int recordCountPerPage = 10;
@@ -402,19 +441,22 @@ public class CommunityDAO {
 			rset = pstmt.executeQuery();
 			cList = new ArrayList<Community>();
 			
-			while(rset.next()) {
-				Community community = new Community();
-				community.setComNo(rset.getInt("COM_NO"));
-				community.setComId(rset.getString("COM_ID"));
-				community.setTagNo(rset.getInt("TAG_NO"));
-				community.setComTitle(rset.getString("COM_TITLE"));
-				community.setComContent(rset.getString("COM_CONTENT"));
-				community.setComview(rset.getInt("COM_VIEW"));
-				community.setComDate(rset.getDate("COM_DATE"));
-				community.setComPhoto(rset.getString("COM_PHOTO"));
-				community.setUserNick(rset.getString("USER_NICK"));
+			if(rset != null) {
+				while(rset.next()) {
+					Community community = new Community();
+					community.setComNo(rset.getInt("COM_NO"));
+					community.setComId(rset.getString("COM_ID"));
+					community.setTagNo(rset.getInt("TAG_NO"));
+					community.setComTitle(rset.getString("COM_TITLE"));
+					community.setComContent(rset.getString("COM_CONTENT"));
+					community.setComview(rset.getInt("COM_VIEW"));
+					community.setComDate(rset.getDate("COM_DATE"));
+					community.setComPhoto(rset.getString("COM_PHOTO"));
+					community.setUserNick(rset.getString("USER_NICK"));
+					
+					cList.add(community);
+				}
 				
-				cList.add(community);
 			}
 			
 		} catch (SQLException e) {
@@ -506,5 +548,41 @@ public class CommunityDAO {
 	       JDBCTemplate.close(pstmt);
 	    }
 	    return recordTotalCount;
+	}
+
+	public ArrayList<Community> printUserCommunity(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		String query = "SELECT * FROM COMMUNITY WHERE COM_ID=? ORDER BY COM_DATE DESC";
+		ResultSet rset = null;
+		ArrayList<Community> cList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			cList = new ArrayList<Community>();
+			
+			while(rset.next()) {
+				Community community = new Community();
+				community.setComNo(rset.getInt("COM_NO"));
+				community.setComId(rset.getString("COM_ID"));
+				community.setTagNo(rset.getInt("TAG_NO"));
+				community.setComTitle(rset.getString("COM_TITLE"));
+				community.setComContent(rset.getString("COM_CONTENT"));
+				community.setComview(rset.getInt("COM_VIEW"));
+				community.setComDate(rset.getDate("COM_DATE"));
+				community.setComPhoto(rset.getString("COM_PHOTO"));
+				community.setUserNick(rset.getString("USER_NICK"));
+				
+				cList.add(community);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return cList;
 	}
 }

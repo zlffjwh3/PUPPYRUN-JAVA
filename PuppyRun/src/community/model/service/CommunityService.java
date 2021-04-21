@@ -2,6 +2,7 @@ package community.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import community.model.dao.CommunityDAO;
@@ -34,6 +35,23 @@ public class CommunityService {
 		}
 		
 		return cp;
+	}
+	
+	// 전체 게시물 페이지 없음 버전
+	public ArrayList<Community> selectAllCommunity2() {
+		Connection conn = null;
+		ArrayList<Community> allCList = null;
+		
+		try {
+			conn = factory.createConnection();
+			allCList = new CommunityDAO().selectAllCommunity2(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return allCList;
 	}
 	
 	// 태그별로 다르게 보이게 해주는 메소드
@@ -182,8 +200,22 @@ public class CommunityService {
 		
 		return communityPage;
 	}
-
-
-
+	
+	// 유저당 커뮤니티 게시물 가져오기
+	public ArrayList<Community> printUserCommunity(String userId) {
+		Connection conn = null;
+		ArrayList<Community> cList = null;
+		
+		try {
+			conn = factory.createConnection();
+			cList = new CommunityDAO().printUserCommunity(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return cList;
+	}
 
 }

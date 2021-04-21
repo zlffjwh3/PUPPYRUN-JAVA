@@ -146,4 +146,33 @@ public class LikeDAO {
 		
 		return cnt;
 	}
+	
+	// 아이디별로 좋아요한거 가져오는 메소드
+	public ArrayList<Like> printUserLikes(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM LIKETBL WHERE LIKE_ID = ? AND LIKE_STATUS = 'Y'";
+		ArrayList<Like> lList = new ArrayList<Like>();
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Like like = new Like();
+				like.setComNo(rset.getInt("COM_NO"));
+				like.setLikeId(rset.getString("LIKE_ID"));
+				like.setLikeStatus(rset.getString("LIKE_STATUS"));
+				lList.add(like);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return lList;
+	}
 }

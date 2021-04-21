@@ -13,6 +13,7 @@ $(document).ready(function() {
 		
 		$('#like-list').css('display', 'block');
 		$('#post-list').css('display', 'none');
+		$('#post-list2').css('display', 'none');
 		$('#comment-list').css('display', 'none');
 	});
 	
@@ -23,6 +24,7 @@ $(document).ready(function() {
 		
 		$('#like-list').css('display', 'none');
 		$('#post-list').css('display', 'block');
+		$('#post-list2').css('display', 'block');
 		$('#comment-list').css('display', 'none');
 	});
 	
@@ -33,6 +35,7 @@ $(document).ready(function() {
 		
 		$('#like-list').css('display', 'none');
 		$('#post-list').css('display', 'none');
+		$('#post-list2').css('display', 'none');
 		$('#comment-list').css('display', 'block');
 	});
 });

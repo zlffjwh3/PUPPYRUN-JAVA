@@ -53,8 +53,8 @@
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	 <form action="/community/search" method>
-                                <input class="search-input" id="" type="text" placeholder="search">
+	                    	 <form action="/community/search" method="get">
+                                <input class="search-input" id="" type="text" placeholder="search" name="searchKeyword">
                                 <input id="search-btn" type="submit" value="">
                             </form>
 	                    </div>

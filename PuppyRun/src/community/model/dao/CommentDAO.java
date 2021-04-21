@@ -147,4 +147,41 @@ public class CommentDAO {
 		return cnt;
 	}
 	
+	// 아이디로 댓글 전부 가져오기
+	public ArrayList<Comment> printUserComment(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM COMMENTTBL WHERE COMMENT_ID = ? ORDER BY COMMENT_NO DESC";
+		ArrayList<Comment> cList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			if(rset != null) {
+				cList = new ArrayList<Comment>();
+				
+				while(rset.next()) {
+					Comment comment = new Comment();
+					comment.setCommentNo(rset.getInt("COMMENT_NO"));
+					comment.setComNo(rset.getInt("COM_NO"));
+					comment.setCommentId(rset.getString("COMMENT_ID"));
+					comment.setCommentContents(rset.getString("COMMENT_CONTENTS"));
+					comment.setCommentDate(rset.getDate("COMMENT_DATE"));
+					comment.setUserNick(rset.getString("COMMENT_USER_NICK"));
+					
+					cList.add(comment);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return cList;
+	}
+	
 }

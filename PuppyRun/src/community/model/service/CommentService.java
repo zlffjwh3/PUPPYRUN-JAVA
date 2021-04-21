@@ -136,4 +136,27 @@ public class CommentService {
 		
 		return cnt;
 	}
+	
+	// 아이디로 댓글 전부 가져오기
+	public ArrayList<Comment> printUserComment(String userId) {
+		Connection conn = null;
+		ArrayList<Comment> comList = null;
+		
+		try {
+			conn = factory.createConnection();
+			comList = new CommentDAO().printUserComment(conn, userId);
+			
+			if(comList != null) {
+				JDBCTemplate.commit(conn);
+			}else { 
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return comList;
+	}
 }

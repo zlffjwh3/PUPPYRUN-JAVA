@@ -252,8 +252,46 @@ public class MatchingDAO {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
-		}
+		} 
 		return result;
+	}
+	
+	// 아이디별로 산책짝꿍 게시글 보내주기
+	public ArrayList<Matching> printUserMatching(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MATCHING WHERE MAT_ID = ?";
+		ArrayList<Matching> mList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			if(rset != null) {
+				mList = new ArrayList<Matching>();
+				
+				while(rset.next()) {
+					Matching matching = new Matching();
+					
+					matching.setMatNo(rset.getInt("MAT_NO"));
+					matching.setMatId(rset.getString("MAT_ID"));
+					matching.setMatTitle(rset.getString("MAT_TITLE"));
+					matching.setMatContent(rset.getString("MAT_CONTENT"));
+					matching.setMatAddr(rset.getString("MAT_ADDR"));
+					matching.setMatDate(rset.getDate("MAT_DATE"));
+					matching.setMatCheck(rset.getString("MAT_CHECK").charAt(0));
+					matching.setMatPhoto(rset.getString("MAT_PHOTO"));
+					matching.setUserNick(rset.getNString("USER_NICK"));
+					
+					mList.add(matching);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return mList;
 	}
 
 	// 관리자 페이지에서 산책짝꿍 검색
