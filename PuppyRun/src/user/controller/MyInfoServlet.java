@@ -38,10 +38,8 @@ public class MyInfoServlet extends HttpServlet {
 		}
 		
 		// 커뮤니티 게시판 글 가져오기
-		/*
-		 * ArrayList<Community> cList = new CommunityService(); ArrayList<Comment>
-		 * comList = new CommentService()
-		 */
+		ArrayList<Community> cList = new CommunityService().printUserCommunity(userId);
+		ArrayList<Comment> comList = new CommentService().printUserComment(userId);
 		
 		// 산책일기 글 가져오기
 		

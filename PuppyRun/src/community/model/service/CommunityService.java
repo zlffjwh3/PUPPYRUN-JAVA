@@ -185,22 +185,20 @@ public class CommunityService {
 	}
 	
 	// 유저당 커뮤니티 게시물 가져오기
-//	public ArrayList<Community> printUserCommunity(String userId) {
-//		Connection conn = null;
-//		ArrayList<Community> cList = null;
-//		
-//		try {
-//			conn = factory.createConnection();
-//			cList = new CommunityDAO().printUserCommunity(conn, userId)
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(conn);
-//		}
-//		
-//		return cList;
-//	}
-	//ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-
+	public ArrayList<Community> printUserCommunity(String userId) {
+		Connection conn = null;
+		ArrayList<Community> cList = null;
+		
+		try {
+			conn = factory.createConnection();
+			cList = new CommunityDAO().printUserCommunity(conn, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return cList;
+	}
 
 }
