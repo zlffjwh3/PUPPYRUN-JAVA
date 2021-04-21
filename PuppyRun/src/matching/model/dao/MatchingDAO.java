@@ -256,4 +256,38 @@ public class MatchingDAO {
 		return result;
 	}
 
+	// 관리자 페이지에서 산책짝꿍 검색
+	public ArrayList<Matching> selectSearchMatchingList(Connection conn, String matchingSearch, String matchingChoice) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Matching> mList = null;
+		String query = "SELECT MAT_NO, MAT_TITLE, MAT_ID, MAT_CONTENT, MAT_ADDR, MAT_DATE FROM MATCHING WHERE " + matchingChoice + " LIKE '%" + matchingSearch + "%' ORDER BY MAT_DATE DESC";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset != null) {
+				mList = new ArrayList<Matching>();
+				
+				while(rset.next()) {
+					Matching matching = new Matching();
+					matching.setMatNo(rset.getInt("MAT_NO"));
+					matching.setMatTitle(rset.getString("MAT_TITLE"));
+					matching.setMatId(rset.getString("MAT_ID"));
+					matching.setMatContent(rset.getString("MAT_CONTENT"));
+					matching.setMatAddr(rset.getString("MAT_ADDR"));
+					matching.setMatDate(rset.getDate("MAT_DATE"));
+					mList.add(matching);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return mList;
+	}
+
 }

@@ -11,6 +11,7 @@
 	String pageNavi = (String)request.getAttribute("pageNavi");
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
+	System.out.println("jsp에서 확인 중" + mList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -42,7 +43,7 @@
                     <div id="tleft">
 	                    <div id="search">
 	                    	<form action="" method="get">
-		                    	<input class="search-input" type="text" placeholder="search">
+		                    	<input class="search-input" name="searchKeyword" type="text" placeholder="search">
 		                    	<input id="search-btn" type="submit" value="">
 	                    	</form>
 	                    </div>
@@ -150,6 +151,7 @@
 	               					<th>반려견 유무</th>
 	               					<th>등록일</th>
 	               				</tr>
+	               				<% if(uList != null) { %>
 	               				<% for(User user : uList) { %>
 	               				<tr>   
 	               					<td><input type="checkbox" value="<%= user.getUserId() %>"></td>
@@ -164,14 +166,14 @@
 	               					<td><%= user.getEnrollDate() %></td>
 	               				</tr>
 	               				<% } %>
+	               				<% } %>
 	               			</table>
                			</div>
-            			<div class="page-navi">
+            			<%-- <div class="page-navi">
             				<td><%= pageNavi %></td>
-            			</div>
+            			</div> --%>
 	               	</div>
 	               	<div class="list-btn">
-	               		<a href="/user/modify?userId=">수정</a>
 	               		<a href="/user/delete?userId=">삭제</a>
 	               	</div>
 	            </div>
@@ -190,13 +192,13 @@
 		               			</select>
 	               			</div>
 	               			<div class="search">
-	               				<form action="/admin/search" method="get">
+	               				<form action="/admin/notice" method="get">
 	               					<select id="user-choice" name="contentChoice">
-	               						<option value="title">제목</option>
-	               						<option value="content">주소</option>
+	               						<option value="puppyTitle">제목</option>
+	               						<option value="puppyContent">내용</option>
 	               					</select>
                						<input type="text" id="user-search" name="searchKeyword">
-	               					<input type="button" value="검색" id="user-search-btn">
+	               					<input type="submit" value="검색" id="user-search-btn">
 	               				</form>
 	               			</div>
                			</div>
@@ -222,9 +224,9 @@
 	               				<% } %>
 	               			</table>
                			</div>
-            			<div class="page-navi">
+            			<%-- <div class="page-navi">
             				<td><%= pageNavi %></td>
-            			</div>
+            			</div> --%>
 	               	</div>
 	               	<div class="list-btn">
 	               		<a href="">삭제</a>
@@ -247,13 +249,13 @@
 		               			</select>
 	               			</div>
 	               			<div class="search">
-	               				<form action="/admin/search" method="get">
-	               					<select id="user-choice" name="contentChoice">
-	               						<option value="title">제목</option>
-	               						<option value="content">내용</option>
+	               				<form action="/admin/matching" method="get">
+	               					<select id="user-choice" name="matchingChoice">
+	               						<option value="matchingTitle">제목</option>
+	               						<option value="matchingContent">내용</option>
 	               					</select>
                						<input type="text" id="user-search" name="searchKeyword">
-	               					<input type="button" value="검색" id="user-search-btn">
+	               					<input type="submit" value="검색" id="user-search-btn">
 	               				</form>
 	               			</div>
                			</div>
@@ -281,9 +283,9 @@
 	               				<% } %>
 	               			</table>
                			</div>
-            			<div class="page-navi">
+            			<%-- <div class="page-navi">
             				<%= pageNavi %></td>
-            			</div>
+            			</div> --%>
 	               	</div>
 	               	<div class="list-btn">
 	               		<a href="">삭제</a>

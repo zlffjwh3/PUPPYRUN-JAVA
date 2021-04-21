@@ -30,12 +30,14 @@ public class ListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Notice> noticeList = (ArrayList<Notice>)request.getAttribute("noticeList");
+		ArrayList<Matching> matchingList = (ArrayList<Matching>)request.getAttribute("matchingList");
 		
 		// 유저 검색하기
 		String userChoice = request.getParameter("userChoice");
 		String search = request.getParameter("searchKeyword");
-		
 		System.out.println(userChoice);
+		
 		// 회원 전체정보 가져오기
 		int currentPage = 0;
 		if(request.getParameter("currentPage") == null) {
@@ -46,8 +48,8 @@ public class ListServlet extends HttpServlet {
 		String dogCheck = request.getParameter("dogCheck");
 		UserPage up = new UserService().selectAllUserList(currentPage);
 		
-		
-		if(userChoice == null) {
+		if(userChoice == null && noticeList == null && matchingList == null) {
+
 		// 전체 보기일 경우
 			if(dogCheck.equals("all")) {
 				ArrayList<User> uList = up.getuList();
@@ -56,7 +58,7 @@ public class ListServlet extends HttpServlet {
 				ArrayList<User> uList = new UserService().adminDogCheckList(dogCheck);
 				request.setAttribute("uList", uList);
 			}
-		}else {
+		}else if (userChoice != null && noticeList == null && matchingList == null) {
 			if(userChoice.equals("userId")) {
 				userChoice = "USER_ID";
 			}else {
@@ -78,15 +80,26 @@ public class ListServlet extends HttpServlet {
 		// 산책짝꿍 전체 정보 가져오기
 		MatchingPage np = new MatchingService().printAllMatching(currentPage);
 		ArrayList<Matching> mList = np.getmList();
+		
 		String pageNavi = up.getPageNavi();
 		
+		System.out.println(noticeList);
 		
+		// 멍멍이야기
+		if(noticeList == null) {
+			request.setAttribute("nList", nList);
+		}else {
+			request.setAttribute("nList", noticeList);
+		}
 		
-		
-		// 게시글 전체정보 가져오기 - 산책짝꿍 / 멍멍이야기
-		
-		request.setAttribute("nList", nList);
-		request.setAttribute("mList", mList);
+		// 산책짝꿍
+		if(matchingList == null) {
+			System.out.println("1번");
+			request.setAttribute("mList", mList);
+		}else {
+			System.out.println("2번");
+			request.setAttribute("mList", matchingList);
+		}
 		request.setAttribute("pageNavi", pageNavi);
 		request.getRequestDispatcher("/WEB-INF/views/user/myInfo-m.jsp").forward(request, response);
 	}

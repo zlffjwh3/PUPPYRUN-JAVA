@@ -511,39 +511,39 @@ public class UserDAO {
 
 
 	
-	public ArrayList<User> selectSearchJUserList(Connection conn, String search, int currentPage) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		// id랑 name 따로 검색하는거야~~!
-		String query = "SELECT USER_ID=?, USER_NAME=?, USER_NICK=?, PHONE=?, EMAIL=?, USER_BIRTH=?, USER_ADDR=?, DOG_CHECK=?, ENROLL_DATE=? FROM USERTBL WHERE USER_ID LIKE ?";
-		ArrayList<User> userList = null;
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "%" + search + "%");
-			userList = new ArrayList<User>();
-			while(rset.next()) {
-				User user = new User();
-				user.setUserId(rset.getString("USERID"));
-				user.setUserName(rset.getString("USERNAME"));
-				user.setUserNick(rset.getString("USERNICK"));
-				user.setPhone(rset.getString("PHONE"));
-				user.setEmail(rset.getString("EMAIL"));
-				user.setUserBirth(rset.getString("USERBIRTH"));
-				user.setUserAddr(rset.getString("USERADDR"));
-				user.setDogCheck(rset.getString("DOGCHECK").charAt(0));
-				user.setEnrollDate(rset.getDate("ENROLLDATE"));
-				userList.add(user);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return userList;
-	}
+//	public ArrayList<User> selectSearchJUserList(Connection conn, String search, int currentPage) {
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		// id랑 name 따로 검색하는거야~~!
+//		String query = "SELECT USER_ID=?, USER_NAME=?, USER_NICK=?, PHONE=?, EMAIL=?, USER_BIRTH=?, USER_ADDR=?, DOG_CHECK=?, ENROLL_DATE=? FROM USERTBL WHERE USER_ID LIKE ?";
+//		ArrayList<User> userList = null;
+//		
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, "%" + search + "%");
+//			userList = new ArrayList<User>();
+//			while(rset.next()) {
+//				User user = new User();
+//				user.setUserId(rset.getString("USERID"));
+//				user.setUserName(rset.getString("USERNAME"));
+//				user.setUserNick(rset.getString("USERNICK"));
+//				user.setPhone(rset.getString("PHONE"));
+//				user.setEmail(rset.getString("EMAIL"));
+//				user.setUserBirth(rset.getString("USERBIRTH"));
+//				user.setUserAddr(rset.getString("USERADDR"));
+//				user.setDogCheck(rset.getString("DOGCHECK").charAt(0));
+//				user.setEnrollDate(rset.getDate("ENROLLDATE"));
+//				userList.add(user);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			JDBCTemplate.close(rset);
+//			JDBCTemplate.close(pstmt);
+//		}
+//		return userList;
+//	}
 
 	public ArrayList<User> selectSearchJUserList(Connection conn, String search, String userChoice) {
 		Statement stmt = null;

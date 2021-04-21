@@ -244,4 +244,37 @@ public class NoticeDAO {
 		
 		return result;
 	}
+
+	public ArrayList<Notice> selectSearchNoticeList(Connection conn, String noticeSearch, String contentChoice) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Notice> nList = null;
+		String query = "SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_VIEW, NOTICE_DATE FROM NOTICE WHERE " + contentChoice + " LIKE '%" + noticeSearch + "%' ORDER BY NOTICE_DATE DESC"; 
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset != null) {
+				nList = new ArrayList<Notice>();
+				
+				while(rset.next()) {
+					Notice notice = new Notice();
+					notice.setNoticeNo(rset.getInt("NOTICE_NO"));
+					notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+					notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+					notice.setNoticeView(rset.getInt("NOTICE_VIEW"));
+					notice.setNoticeDate(rset.getDate("NOTICE_DATE"));
+					nList.add(notice);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		
+		return nList;
+	}
 }

@@ -143,4 +143,23 @@ public class NoticeService {
 		
 		return result;
 	}
+
+	// 관리자 페이지에서 퍼피런 이야기 검색
+	public NoticePage selectSearchNoticeList(String noticeSearch, String contentChoice) {
+		Connection conn = null;
+		NoticePage noticePage = new NoticePage();
+		
+		try {
+			conn = factory.createConnection();
+			noticePage.setnList(new NoticeDAO().selectSearchNoticeList(conn, noticeSearch, contentChoice));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return noticePage;
+	}
+	
+	
+	
 }

@@ -13,42 +13,36 @@ import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 import notice.model.vo.NoticePage;
 
-@WebServlet("/notice/list")
-public class NoticeListServlet extends HttpServlet {
+@WebServlet("/admin/notice")
+public class AdminNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public NoticeListServlet() {
+
+	public AdminNoticeServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 관리자 페이지에서 퍼피런이야기 검색
+		String contentChoice = request.getParameter("contentChoice");
+		String noticeSearch = request.getParameter("searchKeyword");
 		
-		
-		
-		int currentPage = 0;
-		
-		if(request.getParameter("currentPage") == null) {
-			currentPage = 1;
+		if(contentChoice.equals("puppyTitle")) {
+			contentChoice = "NOTICE_TITLE";
 		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			contentChoice = "NOTICE_CONTENT";
 		}
+		NoticePage noticePage = new NoticeService().selectSearchNoticeList(noticeSearch, contentChoice);
+		ArrayList<Notice> noticeList = noticePage.getnList();
 		
-		NoticePage pd = new NoticeService().selectAllNotice(currentPage);
-		ArrayList<Notice> nList = pd.getnList();
-		String pageNavi = pd.getPageNavi();
-		
-		if(!nList.isEmpty()) {
-			request.setAttribute("nList", nList);
-			request.setAttribute("pageNavi", pageNavi);
-			request.getRequestDispatcher("/WEB-INF/views/notice/notice.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/views/notice/noticeError.html").forward(request, response);
+		if(!noticeList.isEmpty()) {
+			request.setAttribute("noticeList", noticeList);
+			request.getRequestDispatcher("/user/list").forward(request, response);
 		}
-		
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

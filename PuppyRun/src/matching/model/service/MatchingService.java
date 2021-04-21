@@ -136,4 +136,20 @@ public class MatchingService {
 		}
 		return result;
 	}
+
+	// 관리자 페이지에서 산책짝꿍 검색
+	public MatchingPage selectSearchMatchingList(String matchingSearch, String matchingChoice) {
+		Connection conn = null;
+		MatchingPage matchingPage = new MatchingPage();
+		
+		try {
+			conn = factory.createConnection();
+			matchingPage.setmList(new MatchingDAO(). selectSearchMatchingList(conn, matchingSearch, matchingChoice));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return matchingPage;
+	}
 }
