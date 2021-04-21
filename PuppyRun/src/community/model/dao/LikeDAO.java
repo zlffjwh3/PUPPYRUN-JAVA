@@ -175,4 +175,25 @@ public class LikeDAO {
 		
 		return lList;
 	}
+
+	public int deleteLike(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM LIKETBL WHERE LIKE_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 }
+

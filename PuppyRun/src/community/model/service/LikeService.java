@@ -126,8 +126,24 @@ public class LikeService {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(conn);
-		}
+		} 
 		
 		return lList;
+	}
+
+	public int deleteLike(String userId) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new LikeDAO().deleteLike(conn, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
 	}
 }

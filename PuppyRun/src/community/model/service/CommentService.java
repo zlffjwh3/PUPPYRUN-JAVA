@@ -159,4 +159,20 @@ public class CommentService {
 		
 		return comList;
 	}
+
+	public int deleteCommunity(String userId) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new CommentDAO().deleteComment(conn, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 }

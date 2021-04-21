@@ -183,5 +183,25 @@ public class CommentDAO {
 		
 		return cList;
 	}
-	
+
+	public int deleteComment(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM COMMENTTBL WHERE COMMENT_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

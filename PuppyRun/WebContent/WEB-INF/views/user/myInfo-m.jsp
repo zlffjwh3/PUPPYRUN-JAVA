@@ -11,7 +11,6 @@
 	String pageNavi = (String)request.getAttribute("pageNavi");
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
 	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
-	System.out.println("jsp에서 확인 중" + mList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -137,47 +136,45 @@
 	               				</form>
 	               			</div>
                			</div>
-               			<div class="list-bottom-bottom">
-               				<table>
-	               				<tr>
-	               					<th>선택</th>
-	               					<th>아이디</th>
-	               					<th>이름</th>
-	               					<th>닉네임</th>
-	               					<th>휴대전화</th>
-	               					<th>이메일</th>
-	               					<th>생년월일</th>
-	               					<th>집주소</th>
-	               					<th>반려견 유무</th>
-	               					<th>등록일</th>
-	               				</tr>
-	               				<% if(uList != null) { %>
-	               				<% for(User user : uList) { %>
-	               				<tr>   
-	               					<td><input type="checkbox" value="<%= user.getUserId() %>"></td>
-	               					<td><%= user.getUserId() %></td>
-	               					<td><%= user.getUserName() %></td>
-	               					<td><%= user.getUserNick()  %></td>
-	               					<td><%= user.getPhone() %></td>
-	               					<td><%= user.getEmail() %></td>
-	               					<td><%= user.getUserBirth() %></td>
-	               					<td><%= user.getUserAddr() %></td>
-	               					<td><%= user.getDogCheck() %></td>
-	               					<td><%= user.getEnrollDate() %></td>
-	               				</tr>
-	               				<% } %>
-	               				<% } %>    
-	               			</table>
-               			</div>
-            			<%-- <div class="page-navi">
-            				<td><%= pageNavi %></td>
-            			</div> --%>
+               				<div class="list-bottom-bottom">
+               					<table>
+	               					<tr>
+	               						<th>선택</th>
+	               						<th>아이디</th>
+	               						<th>이름</th>
+	               						<th>닉네임</th>
+	               						<th>휴대전화</th>
+	               						<th>이메일</th>
+	               						<th>생년월일</th>
+	               						<th>집주소</th>
+	               						<th>반려견 유무</th>
+	               						<th>등록일</th>
+	               					</tr>
+	               					<% if(uList != null) { %>
+	               					<% for(User user : uList) { %>
+	               					<tr>   
+	               						<td><input type="checkbox"  class="user-input-box" value="<%= user.getUserId() %>"></td>
+	               						<td><%= user.getUserId() %></td>
+	               						<td><%= user.getUserName() %></td>
+	               						<td><%= user.getUserNick()  %></td>
+	               						<td><%= user.getPhone() %></td>
+	               						<td><%= user.getEmail() %></td>
+	               						<td><%= user.getUserBirth() %></td>
+	               						<td><%= user.getUserAddr() %></td>
+	               						<td><%= user.getDogCheck() %></td>
+	               						<td><%= user.getEnrollDate() %></td>
+	               					</tr>
+	               					<% } %>
+	               					<% } %>    
+	               				</table>
+               				</div>
+	               		<form action=""  method="post" id="uDelete">
+	               			<div class="list-btn">
+	               				<input type="submit" value="삭제" id="userDelete">
+	               			</div>
+	               		</form>
 	               	</div>
 	               	
-	               	<form action="/user/delete?userId=" method="get" id="uDelete"></form>
-	               	<div class="list-btn">
-	               		<input type="submit" value="삭제" id="userDelete">
-	               	</div>
 	               	
 	            </div>
 	            <!-- 퍼피런 게시글 ----------------------------------------------------->
