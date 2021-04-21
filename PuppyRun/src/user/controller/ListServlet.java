@@ -30,6 +30,7 @@ public class ListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// 회원 전체정보 가져오기
 		int currentPage = 0;
 		if(request.getParameter("currentPage") == null) {
@@ -41,15 +42,14 @@ public class ListServlet extends HttpServlet {
 		UserPage up = new UserService().selectAllUserList(currentPage);
 		// 전체 보기일 경우
 		if(dogCheck.equals("all")) {
-			System.out.println("전체 검색");
 			ArrayList<User> uList = up.getuList();
 			System.out.println(dogCheck);
 			request.setAttribute("uList", uList);
-		} else if(dogCheck.equals("N")) {
-			System.out.println("부분 검색");
-			ArrayList<User> allUser = new UserService().adminDogCheckList(dogCheck);
-			request.setAttribute("allUser", allUser);
+		} else {
+			ArrayList<User> uList = new UserService().adminDogCheckList(dogCheck);
+			request.setAttribute("uList", uList);
 		}
+		
 		
 		// 퍼피런 이야기 전체 정보 가져오기
 		NoticePage pd = new NoticeService().selectAllNotice(currentPage);

@@ -26,8 +26,6 @@ public class LikeChange extends HttpServlet {
 		int comNo = Integer.parseInt(request.getParameter("comNo"));
 		String check = request.getParameter("check");
 	
-		
-		System.out.println(check);
 		// 좋아요를 누른 적이 없을 경우 (등록하기)
 		if(check.equals("null")) {
 			String likeStatus = "Y";
@@ -49,7 +47,6 @@ public class LikeChange extends HttpServlet {
 				System.out.println("좋아요 삭제 오류");
 			}
 		}
-		
 		
 	}
 
