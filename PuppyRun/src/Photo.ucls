@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="common.JDBCTemplate" project="PuppyRun" 
     file="/PuppyRun/src/common/JDBCTemplate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="378" y="174"/>    
+    <position height="-1" width="-1" x="571" y="177"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="photo.model.service.PhotoService" project="PuppyRun" 
     file="/PuppyRun/src/photo/model/service/PhotoService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="378" y="414"/>    
+    <position height="-1" width="-1" x="571" y="417"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,52 +30,33 @@
   </class>  
   <class id="4" language="java" name="photo.model.dao.PhotoDAO" project="PuppyRun" 
     file="/PuppyRun/src/photo/model/dao/PhotoDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="692" y="421"/>    
+    <position height="-1" width="-1" x="351" y="416"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="photo.controller.PhotoListServlet" project="PuppyRun" 
-    file="/PuppyRun/src/photo/controller/PhotoListServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1014" y="120"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="photo.controller.PhotoRemoveServlet" project="PuppyRun" 
-    file="/PuppyRun/src/photo/controller/PhotoRemoveServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1016" y="265"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="photo.controller.PhotoUploadServlet" project="PuppyRun" 
-    file="/PuppyRun/src/photo/controller/PhotoUploadServlet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1014" y="418"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="8">    
+  <association id="5">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="9" name="instance"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
+      <attribute id="6" name="instance">        
+        <position height="0" width="0" x="193" y="3"/>      
+      </attribute>      
+      <multiplicity id="7" minimum="0" maximum="1">        
+        <position height="0" width="0" x="193" y="3"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="11">    
+  <association id="8">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="12" name="factory"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
+      <attribute id="9" name="factory">        
+        <position height="0" width="0" x="193" y="3"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="193" y="3"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
