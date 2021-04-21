@@ -26,7 +26,6 @@ $(document).ready(function(){
 
 /*weather-sunny*/
 /*weather-cloudy*/
-
     $.ajax({
         url : 'http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=9f79b4b7b5bb7ec20b98862a5abafae2&units=metric',
         dataType : 'json',
