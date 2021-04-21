@@ -139,6 +139,10 @@ textarea:focus {
     margin-left : 10px;
 }
 
+#file-update-box2 {
+	display : none;
+}
+
 /* 내용 작성 박스 */
 #write-box #content {
     text-align: center;

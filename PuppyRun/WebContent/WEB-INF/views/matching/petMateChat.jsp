@@ -220,11 +220,20 @@
 		                        <!-- 상대 -->
 		                        <div class="other-user">
 		                        	<!-- 상대 프로필 이미지 -->
-		                            <% if(uList.get(m).getUserPhoto() != null) { %>
-                       				<img src="/upload/<%= uList.get(m).getUserPhoto() %>" class="other-profile-img">
+		                        	<% int y = 0;
+                                   	for(int u=0; u<uList.size(); u++) { 
+                                   		if(uList.get(u).getUserId().equals(matChat.get(i).getSendId())) {
+                                   			y = u;
+                                   			break;
+                                   		}
+                                   	} %>
+		                            <% if(uList.get(y).getUserPhoto() != null) { %>
+                       				<img src="/upload/<%= uList.get(y).getUserPhoto() %>" class="other-profile-img">
                    					<% } else { %>
                        				<img src="/assets/img/user-no-img.png" class="user-profile-img">
                       				<% } %>
+                      				<!-- 상대 닉네임 -->
+                      				<%= uList.get(y).getUserNick() %>
                       				<!-- 상대 채팅창 -->
 		                            <div class="other-chat-block">
 		                                <p class="other-chat-content">

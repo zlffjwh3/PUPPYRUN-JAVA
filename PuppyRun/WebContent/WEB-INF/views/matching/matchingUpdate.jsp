@@ -185,6 +185,17 @@
                                     <input type="button" id="submit-input" value="수정">
                                     <a href="/matching/detail?matNo=<%= matching.getMatNo() %>"><p>취소</p></a>
                                 </div>
+                                <script>
+                                    $(document).ready(function() {
+                                    	$('#file-update').click(function() {
+                                    		$('#file-update-box').css('display','none');
+                                    		$('#file-update-box2').css('display','inline-block');
+                                    		var matchingNum = $('#matching-num').val();
+                                    		var url = '/matching/update?matNo=' + matchingNum + '&photoCheck=Y';
+                                    		$('#submit-input').attr('action', url);
+                                    	});
+                                    });
+                            	</script>
                             </form>
                         </div>
                     </div>
