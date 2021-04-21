@@ -205,7 +205,7 @@
                				<a href="/user/delete?dogCheck=<%= user.getDogCheck() %>" id="delete-btn" onclick="return confirm('정말 탈퇴하시겠습니까?')">회원탈퇴</a>
                			</div>
 	               	</div>
-	               	<a href="#">
+	               	<a href="/calculator/age">
                		<div id="info-cal">
 	               			<p id="cal-text">
 	               				나이, 칼로리, 비만도<br>
@@ -266,18 +266,18 @@
                					case 3 : %><td>자랑</td>
                					<% break;
                					} %>
-               					<td><%= cList.get(i).getComContent() %></td>
+               					<td onclick="location.href='/matching/detail?matNo=<%%>'"><%= cList.get(i).getComContent() %></td>
                					<td><%= cList.get(i).getComDate() %></td>
                				</tr>
                				<% } %>
                			</table>
                			<table id="post-list2" class="table">
 	               			<% for(Matching mat : mList) { %>
-               				<tr onclick="href.location='/matching/detail?matNo=<%= mat.getMatNo() %>'">
+               				<tr>
                					<td><input type="checkbox" class="checkbox" value="<%= mat.getMatNo() %>"></td>
                					<td>산책짝꿍</td>
                					<td></td>
-               					<td><%= mat.getMatContent() %></td>
+               					<td onclick="href.location='/matching/detail?matNo=<%= mat.getMatNo() %>'"><%= mat.getMatTitle() %></td>
                					<td><%= mat.getMatDate() %></td>
                				</tr>
                				<% } %>
@@ -292,7 +292,7 @@
                						}
                					}
                				%>
-               				<tr onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'">
+               				<tr>
                					<td><input type="checkbox" class="checkbox" value="<%= allCList.get(n).getComNo() %>"></td>
                					<td>멍멍이야기</td>
                					<% switch(allCList.get(n).getTagNo()) { 
@@ -305,7 +305,7 @@
                					case 3 : %><td>자랑</td>
                					<% break;
                					} %>
-               					<td><%= com.getCommentContents() %></td>
+               					<td onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'"><%= com.getCommentContents() %></td>
                					<td><%= allCList.get(n).getComDate() %></td>
                				</tr>
                				<% } %>
