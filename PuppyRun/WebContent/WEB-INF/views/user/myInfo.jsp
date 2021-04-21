@@ -242,7 +242,7 @@
                					}
                				%>
                				<tr>
-               					<td><input type="checkbox" class="checkbox" value="<%= like.getComNo() %>"></td>
+               					<td><input type="checkbox" class="checkbox" value="userId=<%= user.getUserId() %>&comNo=<%= like.getComNo() %>&check=<%= like.getLikeStatus() %>"></td>
                					<td>멍멍이야기</td>
                					<% switch(allCList.get(n).getTagNo()) { 
                					case 0 :%> <td>자유</td>
@@ -254,7 +254,7 @@
                					case 3 : %><td>자랑</td>
                					<% break;
                					} %>
-               					<td onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>&userId=<%= user.getUserId() %>'"><%= allCList.get(n).getComTitle() %></td>
+               					<td onclick="location.href='/community/detail?comNo=<%= allCList.get(n).getComNo() %>'"><%= allCList.get(n).getComTitle() %></td>
                					<td><%= allCList.get(n).getComDate() %></td>
                				</tr>
                				<% } %>
@@ -262,7 +262,7 @@
 	               		<table id="post-list" class="table">
 	               			<% for(int i=0; i<cList.size(); i++) { %>
                				<tr>
-               					<td><input type="checkbox" class="checkbox" value="<%= cList.get(i).getComNo() %>"></td>
+               					<td><input type="checkbox" class="checkbox" value1="<%= cList.get(i).getComNo() %>" value2="C"></td>
                					<td>멍멍이야기</td>
                					<% switch(cList.get(i).getTagNo()) { 
                					case 0 :%> <td>자유</td>
@@ -274,7 +274,7 @@
                					case 3 : %><td>자랑</td>
                					<% break;
                					} %>
-               					<td onclick="location.href='/matching/detail?matNo=<%%>'"><%= cList.get(i).getComContent() %></td>
+               					<td onclick="location.href='/community/detail?comNo=<%= cList.get(i).getComNo() %>'"><%= cList.get(i).getComContent() %></td>
                					<td><%= cList.get(i).getComDate() %></td>
                				</tr>
                				<% } %>
@@ -282,10 +282,10 @@
                			<table id="post-list2" class="table">
 	               			<% for(Matching mat : mList) { %>
                				<tr>
-               					<td><input type="checkbox" class="checkbox" value="<%= mat.getMatNo() %>"></td>
+               					<td><input type="checkbox" class="checkbox" value1="<%= mat.getMatNo() %>" value2="M"></td>
                					<td>산책짝꿍</td>
                					<td></td>
-               					<td onclick="href.location='/matching/detail?matNo=<%= mat.getMatNo() %>'"><%= mat.getMatTitle() %></td>
+               					<td onclick="location.href='/matching/detail?matNo=<%= mat.getMatNo() %>'"><%= mat.getMatTitle() %></td>
                					<td><%= mat.getMatDate() %></td>
                				</tr>
                				<% } %>
@@ -301,7 +301,7 @@
                					}
                				%>
                				<tr>
-               					<td><input type="checkbox" class="checkbox" value="<%= allCList.get(n).getComNo() %>"></td>
+               					<td><input type="checkbox" class="checkbox" value="commentNo=<%=com.getCommentNo() %>&comNo=<%= com.getComNo() %>"></td>
                					<td>멍멍이야기</td>
                					<% switch(allCList.get(n).getTagNo()) { 
                					case 0 :%> <td>자유</td>
@@ -319,9 +319,21 @@
                				<% } %>
                			</table>
 	               	</div>
-	               	<div id="btns">
-	            		<input type="button" value="삭제" id="change">
-	            	</div>
+	               	<form method="get" id="like-form">
+		               	<div class="btns">
+		            		<input type="submit" value="삭제" class="change" id="like-btn">
+		            	</div>
+	            	</form>
+	            	<form method="get" id="post-form">
+		               	<div class="btns">
+		            		<input type="submit" value="삭제" class="change" id="post-btn">
+		            	</div>
+	            	</form>
+	            	<form method="get" id="comment-form">
+		               	<div class="btns">
+		            		<input type="submit" value="삭제" class="change" id="comment-btn">
+		            	</div>
+	            	</form>
 	            </div>
 	     	</div> <!-- main -->
             <!-- 메인 끝 ! ---------------------------------------------------------------------------------------------------------------------->

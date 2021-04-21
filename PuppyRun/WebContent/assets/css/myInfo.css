@@ -288,12 +288,12 @@
 			display : none;
 		}
 		
-	#btns {
+	.btns {
 		margin : 40px 20px;
 		float : right;
 	}
 	
-		#btns #change {
+		.btns .change {
 			background-color : #fdcc63;
 			text-align: center;
 		    width : 80px;
@@ -304,6 +304,19 @@
 		    line-height : 30px;
 		    border : none;
 		    font-size : 17px;
+		    cursor : pointer;
+		}
+		
+		#like-btn {
+			display : block;
+		}
+		
+		#post-btn {
+			display : none;
+		}
+		
+		#comment-btn {
+			display : none;
 		}
 		
 		
