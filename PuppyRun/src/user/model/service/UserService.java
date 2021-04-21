@@ -89,46 +89,46 @@ public class UserService {
 	}
 	
 	// 회원가입 (강아지 없음)
-	public int insertUser(User user) {
-		int result = 0; // 이 result는 DAO에서 나오는 결과 값을 받아서 servlet으로 보내기 위해 사용
-		Connection conn = null;
+		public int insertUser(User user) {
+			int result = 0; // 이 result는 DAO에서 나오는 결과 값을 받아서 servlet으로 보내기 위해 사용
+			Connection conn = null;
+			
+			try {
+				conn = factory.createConnection();
+				result = new UserDAO().insertUser(conn, user);
+				if(result > 0) {
+					JDBCTemplate.commit(conn);
+				} else {
+					JDBCTemplate.rollback(conn);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
+			}
+			return result;
+		}
 		
-		try {
-			conn = factory.createConnection();
-			result = new UserDAO().insertUser(conn, user);
-			if(result > 0) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
+		public int insertDog(Dog dog) {
+			int result = 0;
+			Connection conn = null;
+			try {
+				conn = factory.createConnection();
+				result = new UserDAO().insertDog(conn, dog);
+				if(result > 0) {
+					JDBCTemplate.commit(conn);
+				} else {
+					JDBCTemplate.rollback(conn);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(conn);
 			}
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
+			return result;
 		}
-		return result;
-	}
-	
-	public int insertDog(User user, Dog dog) {
-		int result = 0;
-		Connection conn = null;
-		try {
-			conn = factory.createConnection();
-			result = new UserDAO().insertDog(conn, user, dog);
-			if(result > 0) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(conn);
-		}
-		
-		return result;
-	}
 	
 	// 회원 탈퇴
 	public int deleteUser(String userId) {

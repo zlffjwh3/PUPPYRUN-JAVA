@@ -60,7 +60,7 @@ public class EnrollServlet extends HttpServlet {
 			
 			userResult = new UserService().insertUser(user);
 			dogResult = new UserService().insertDog(dog);
-			System.out.println("값이 나오나 테스트 : " + userResult);
+			System.out.println("값이 나오나 테스트2 : " + userResult);
 			
 			if(userResult > 0 && dogResult > 0) {
 				response.setContentType("text/html; charset=UTF-8");

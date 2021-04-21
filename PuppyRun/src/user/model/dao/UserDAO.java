@@ -237,69 +237,58 @@ public class UserDAO {
 	}
 	
 	// 회원가입 (강아지 없음)
-	public int insertUser(Connection conn, User user) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String query2 = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,'N', SYSDATE, 'N', null)";
-		try {
-			pstmt = conn.prepareStatement(query2);
-			pstmt.setString(1, user.getUserId());
-			pstmt.setString(2, user.getUserPw());
-			pstmt.setString(3, user.getUserName());
-			pstmt.setString(4, user.getUserNick());
-			pstmt.setString(5, user.getPhone());
-			pstmt.setString(6, user.getEmail());
-			pstmt.setString(7, user.getUserBirth());
-			pstmt.setString(8, user.getUserAddr());
-			result = pstmt.executeUpdate();
+		public int insertUser(Connection conn, User user) {
+			PreparedStatement pstmt = null;
+			int result = 0;
+			String query2 = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,?, SYSDATE, 'N', null)";
+			try {
+				pstmt = conn.prepareStatement(query2);
+				pstmt.setString(1, user.getUserId());
+				pstmt.setString(2, user.getUserPw());
+				pstmt.setString(3, user.getUserName());
+				pstmt.setString(4, user.getUserNick());
+				pstmt.setString(5, user.getPhone());
+				pstmt.setString(6, user.getEmail());
+				pstmt.setString(7, user.getUserBirth());
+				pstmt.setString(8, user.getUserAddr());
+				pstmt.setString(9, user.getDogCheck() + "");
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(pstmt);
+			}
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(pstmt);
+			return result;
 		}
 		
-		return result;
-	}
-	
-	// 회원가입 (강아지 있음)
-	public int insertDog(Connection conn, User user, Dog dog) {
-		PreparedStatement pstmt1 = null;
-		PreparedStatement pstmt2 = null;
-		int result = 0;
-		char dogCheck = 0;
-		String query1 = "INSERT INTO USERTBL VALUES(?,?,?,?,?,?,?,?,'Y', SYSDATE, 'N', null)";
-		String query2 = "INSERT INTO DOG VALUES(SEQ_DOGCODE.NEXTVAL, ?, ?, ?, ?, ?, ?)";
-		
-		try {
-			pstmt1 = conn.prepareStatement(query1);
-			pstmt1.setString(1, user.getUserId());
-			pstmt1.setString(2, user.getUserPw());
-			pstmt1.setString(3, user.getUserName());
-			pstmt1.setString(4, user.getUserNick());
-			pstmt1.setString(5, user.getPhone());
-			pstmt1.setString(6, user.getEmail());
-			pstmt1.setString(7, user.getUserBirth());
-			pstmt1.setString(8, user.getUserAddr());
+		// 회원가입 (강아지 있음)
+		public int insertDog(Connection conn, Dog dog) {
+			PreparedStatement pstmt = null;
+			int result = 0;
+			char dogCheck = 0;
+			String query = "INSERT INTO DOG VALUES(SEQ_DOGCODE.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 			
-			pstmt2 = conn.prepareStatement(query2);
-			pstmt2.setString(1, dog.getDogName());
-			pstmt2.setString(2, dog.getDogBreed());
-			pstmt2.setString(3, dog.getDogGender()+ "");
-			pstmt2.setInt(4, dog.getDogAge());
-			pstmt2.setFloat(5, dog.getDogWeight());
-			pstmt2.setString(6, dog.getDogId());
-			result = pstmt1.executeUpdate();
-			result = pstmt2.executeUpdate();
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(pstmt1);
+			try {
+				
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, dog.getDogName());
+				pstmt.setString(2, dog.getDogBreed());
+				pstmt.setString(3, dog.getDogGender()+ "");
+				pstmt.setInt(4, dog.getDogAge());
+				pstmt.setFloat(5, dog.getDogWeight());
+				pstmt.setString(6, dog.getDogId());
+				result = pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(pstmt);
+			}
+			return result;
 		}
-		return result;
-	}
 	
  	// 회원 탈퇴
 	public int deleteUser(Connection conn, String userId) {
