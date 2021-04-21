@@ -293,7 +293,7 @@ public class MatchingDAO {
 	public ArrayList<MatchingChat> viewList(Connection conn, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT * FROM MESSAGE WHERE MAT_NO=? ORDER BY RCV_ID DESC";
+		String query = "SELECT * FROM MESSAGE WHERE RCV_ID=? ORDER BY MSG_NO DESC";
 		ArrayList<MatchingChat> matChatList = null;
 		
 		try {

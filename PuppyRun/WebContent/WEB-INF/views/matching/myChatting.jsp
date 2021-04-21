@@ -1,11 +1,12 @@
-<%@page import="matching.model.vo.Matching"%>
+<%@page import="matching.model.vo.MatchingChat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	User user = (User)session.getAttribute("user");
-	ArrayList<Matching> matChat = (ArrayList<Matching>)request.getAttribute("matChat");
+	ArrayList<MatchingChat> matChat = (ArrayList<MatchingChat>)request.getAttribute("matChat");
+	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,7 +20,7 @@
         <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>
         <!-- CSS 파일 가져오기 -->
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/index.css">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/slider.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/myChatting.css">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/scroll.css">
         <!-- 파비콘 이미지 가져오기 -->
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/assets/img/Favicon/favicon.ico">
@@ -128,21 +129,19 @@
 	               					<th>보낸사람</th>
 	               					<th>내용</th>
 	               				</tr>
-	               				
-	               				<<%-- % for( : matChat) { %>
-	               				<tr>
-	               					<td><input type="checkbox" value="<%= user.getUserId() %>"></td>
-	               					<td><%= user.getUserId() %></td>
-	               					<td><%= user.getUserName() %></td>
-	               					<td><%= user.getUserNick()  %></td>
-	               					<td><%= user.getPhone() %></td>
-	               					<td><%= user.getEmail() %></td>
-	               					<td><%= user.getUserBirth() %></td>
-	               					<td><%= user.getUserAddr() %></td>
-	               					<td><%= user.getDogCheck() %></td>
-	               					<td><%= user.getEnrollDate() %></td>
+	               				<% for(MatchingChat mChat : matChat) { %>
+	               				<tr onclick="location.href='/matching/detail?matNo=<%= mChat.getMatNo() %>'">
+	               					<td><%= mChat.getMsgNo() %></td>
+	               					<% int n = 0; 
+	               					for(int i=0; i<uList.size(); i++) { 
+	               						if(uList.get(i).getUserId().equals(mChat.getSendId())) {
+	               							n = i;
+	               						}
+	               					} %>
+	               					<td><%= uList.get(n).getUserNick() %></td>
+	               					<td><%= mChat.getContent() %></td>
 	               				</tr>
-	               				<% } %> --%>
+	               				<% } %>
 	               			</table>
                			</div>
 	               	</div>
