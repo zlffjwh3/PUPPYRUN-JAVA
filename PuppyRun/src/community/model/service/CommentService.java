@@ -26,7 +26,7 @@ public class CommentService {
 			
 			if(cList != null) {
 				JDBCTemplate.commit(conn);
-			}else {
+			}else { 
 				JDBCTemplate.rollback(conn);
 			}
 		} catch (SQLException e) {
