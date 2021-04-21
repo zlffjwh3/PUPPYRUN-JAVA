@@ -413,11 +413,12 @@ public class UserDAO {
 	public int updatePhoto(Connection conn, User user) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "UPDATE USERTBL SET PHOTO_NAME = ? WHERE USER_ID= ?";
+		String query = "UPDATE USERTBL SET USER_PHOTO = ? WHERE USER_ID= ?";
 		
 			try {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, user.getUserPhoto());
+				pstmt.setString(2, user.getUserId());
 				result = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

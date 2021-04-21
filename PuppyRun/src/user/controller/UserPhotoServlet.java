@@ -40,7 +40,7 @@ public class UserPhotoServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user"); // 유저를 받아옴
 		User beforeUser = new UserService().selectOneUserIdOnly(user.getUserId()); // 기존정보
-		
+		 
 		
 		
 		if(beforeUser.getUserPhoto() != null) { // 기존 파일이 있는 경우 ... 기존 파일은 삭제한다
@@ -54,17 +54,21 @@ public class UserPhotoServlet extends HttpServlet {
 		int uploadFileSizeLimit = 5*1024*1024; // 5MB
 		String encType = "UTF-8";
 		MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, encType, new DefaultFileRenamePolicy());
-		
+		System.out.println("멀티에 문제가 있나 : " + multi);
 		int photoResult = 0;
 		
 		
 		
-		
 		// Photo DB에 저장
-		File uploadFile = multi.getFile("upFIle");
+		File uploadFile = multi.getFile("upFile");
+		System.out.println("파일을 받아왔나 : " + uploadFile); // 안받아짐******
 		
-		String photoName = multi.getFilesystemName("upFIle");
-		String photoPath = uploadFile.getPath();
+		String photoName = multi.getFilesystemName("upFile");
+		String photoPath = uploadFile.getPath(); 
+		
+		
+		System.out.println("주소 받아와지나 " + photoPath);
+		
 		long photoSize = uploadFile.length();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS"); // 날짜데이터를 내가 원하는 형태로 바꿈
 		Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
@@ -84,7 +88,7 @@ public class UserPhotoServlet extends HttpServlet {
 		}
 		
 		// 유저에서 USER_PHOTO 업데이트
-		String userPhoto = multi.getFilesystemName("upFIle");
+		String userPhoto = multi.getFilesystemName("upFile");
 		beforeUser.setUserPhoto(userPhoto);
 		
 		int userResult = new UserService().updatePhoto(beforeUser);
