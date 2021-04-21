@@ -115,4 +115,25 @@ public class MatchingService {
 		}
 		return result;
 	}
+	
+	// 채팅 했는지 여부 보여주기
+	public int changeCheck(int matchingNo) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection ();
+			result = new MatchingDAO().changeCheck(conn, matchingNo);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 }

@@ -236,5 +236,24 @@ public class MatchingDAO {
 		}
 		return result;
 	}
+	
+	// 채팅 했는지 여부 보여주기
+	public int changeCheck(Connection conn, int matNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE MATCHING SET MAT_CHECK=? WHERE MAT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "Y");
+			pstmt.setInt(2, matNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 }

@@ -192,6 +192,8 @@
 	                             <% } %>
 		                    </div>
 		                </div>
+		                <!-- 제3자 막기 -->
+		                <% if(matching.getMatCheck() == 'N' || (matching.getMatCheck() == 'Y' && (user.getUserId().equals(matching.getMatId()) || user.getUserId().equals(matChat.get(0).getSendId())))) { %>
 		                <div id="chat-box-right"> <!-- 오른쪽(채팅창) 부분 -->
 		                    <div id="chat-close">
 		                        <a href="/matching/list">
@@ -253,6 +255,18 @@
 		                        </form>
 		                    </div>
 		                </div>
+		                <% } else { %>
+		                <div id="chat-box-right">
+		                	<div id="chat-close">
+		                        <a href="/matching/list">
+		                            <img src="/assets/img/x_mark.png" alt="창 제거 이미지">
+		                        </a>
+		                    </div>
+		                    <div id="chat-area2">
+		                    	<p>이미 매칭된 게시물입니다!</p>
+		                    </div>
+		                </div>
+		                <% } %>
 		            </div>
 		            <!-- 채팅창 끝 -->
                     

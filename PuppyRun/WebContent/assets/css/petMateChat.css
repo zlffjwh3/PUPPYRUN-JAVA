@@ -220,6 +220,21 @@ div#chat-box {
     overflow: auto;
 }
 
+#chat-box-right > #chat-area2 {
+    width: 80%;
+    height: 70%;
+    background-color: white;
+    border : 1px solid silver;
+	border-radius : 40px;
+    margin : 40px auto 0 auto;
+}
+
+#chat-box-right > #chat-area2 p{
+    text-align : center;
+	margin-top : 220px;
+	color : silver;
+}
+
 /* 상대 말풍선 */
 #chat-box-right > #chat-area > .other-user {
     width: 100%;

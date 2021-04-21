@@ -56,6 +56,7 @@ public class MatchingDetailServlet extends HttpServlet {
 	   String rcvId = request.getParameter("rcv-id");
 	   String matchingContent = request.getParameter("chat-content");
 	   
+	   // 채팅 새로 등록
 	   MatchingChat matChat = new MatchingChat();
 	   
 	   matChat.setMatNo(matchingNo);
@@ -63,10 +64,22 @@ public class MatchingDetailServlet extends HttpServlet {
 	   matChat.setRcvId(rcvId);
 	   matChat.setContent(matchingContent);
 	   
+	   // 채팅 등록되었다고 알리기
+	   Matching matching = new MatchingService().printOneMatching(matchingNo);
+	   int matResult = 0;
+	   if(matching.getMatCheck() == 'N') {
+		   matResult = new MatchingService().changeCheck(matchingNo);
+	   } else {
+		   matResult = 1;
+	   }
+	   
 	   int result = new MatchingChatService().sendMsg(matChat);
 	   
 	   
-	   if(result > 0) {
+	   System.out.println(result);///////////////////////////
+	   System.out.println(matResult);///////////////////
+	   
+	   if(result > 0 && matResult > 0) {
 		   response.sendRedirect("/matching/detail?matNo=" + matchingNo);
 	   } else {
 		   System.out.println("오류다 피해 !!!!!!!!!!!!!!!!!!!!!!!!!!");
