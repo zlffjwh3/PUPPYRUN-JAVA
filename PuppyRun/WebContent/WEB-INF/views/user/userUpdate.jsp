@@ -41,9 +41,9 @@
                         <span class="id-error-msg error-msg"></span>
                     </div>
                     <div id="pwd-area" class="area-div">
-                        <p class="subtitle">비밀번호</p>
+                        <p class="subtitle">수정할 비밀번호</p>
                         <div id="pwd-input" class="input-div">
-                            <input type="password" name="user-pwd" id="user-pwd" placeholder="비밀번호 (숫자, 영문, 특수문자 조합 최소 8글자)">
+                            <input type="password" name="user-pwd" id="user-pwd" placeholder="비밀번호 (숫자, 영문, 특수문자 조합 최소 8글자)" pattern="/^[a-zA-Z0-9|!@#&]{8,}$/">
                         </div>
                         <span class="pwd-error-msg error-msg"></span>
                        <!--  <div id="pwd-re-input" class="input-div">
@@ -81,13 +81,13 @@
                     <div id="birth-area" class="area-div">
                         <p class="subtitle">생년월일</p>
                         <div id="year-input" class="input-div">
-                            <input value="<%= user.getUserBirth().substring(0,4) %>" type="text" name="user-birth-year" id="user-birth-year" placeholder="년(4자)">
+                            <input value="<%= user.getUserBirth().substring(0,4) %>" type="text" name="user-birth-year" id="user-birth-year" placeholder="년(4자)" readonly>
                         </div>
                         <div id="month-input" class="input-div">
-                        <select name="user-birth-month" id="user-birth-month">
+                        <select name="user-birth-month" id="user-birth-month"  readonly>
                                 <option value="" disabled>월</option>
                         <% for(int i = 1; i < 13; i++) { %>
-                                <option value="0<%= i%>"><%= i%>월</option>
+                                <option value="0<%= i%>" disabled><%= i%>월</option>
                                 <% if(Integer.parseInt(user.getUserBirth().substring(4,6)) == i) { %>
                                 	<option value="0<%= i%>" selected ><%= i%>월</option>
                                 <% } %>
@@ -95,7 +95,7 @@
                             </select>
                         </div>
                         <div id="day-input" class="input-div">
-                            <input value="<%= user.getUserBirth().substring(6,8) %>" type="text" name="user-birth-day" id="user-birth-day" placeholder="일">
+                            <input value="<%= user.getUserBirth().substring(6,8) %>" type="text" name="user-birth-day" id="user-birth-day" placeholder="일"  readonly>
                         </div>
                     </div>
 					

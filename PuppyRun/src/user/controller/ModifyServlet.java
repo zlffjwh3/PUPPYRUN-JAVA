@@ -95,7 +95,7 @@ public class ModifyServlet extends HttpServlet {
 				System.out.println("유저값" + userResult);
 				System.out.println("도그리저트" + dogResult);
 				
-			} else if(userBefore.getDogCheck() == 'N') { // 반려견이 없었는데 나타났어요!!
+			} else if(userBefore.getDogCheck() == 'N') { // 반려견이 없었는데 이젠 있어요!!
 				String dogName = request.getParameter("dog-name");
 				String dogBreed = request.getParameter("dog-kind");
 				char dogGender = request.getParameter("dog-gender").charAt(0);

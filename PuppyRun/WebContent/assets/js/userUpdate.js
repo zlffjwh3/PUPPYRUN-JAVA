@@ -242,13 +242,12 @@ $(document).ready(function() {
         if(mode== "01") { // 반려견 없음
 			/*if(userIdCheckFlag == false) {
                 return;
-            }
+            }*/
             if(userPwdCheckFlag == false) {
+				alert("수정할 비밀번호를 입력해주세요");
                 return;
             }
-            if(userPwdReCheckFlag == false) {
-                return;
-            }
+            /*
             if(userNicknameCheckFlag == false) {
                 return;
             }
@@ -279,29 +278,33 @@ $(document).ready(function() {
 		}   else if (mode == "02") {
 				/*if(userIdCheckFlag == false) {
                 	return;
-	            }
+	            }*/
 	            if(userPwdCheckFlag == false) {
+					alert("수정할 비밀번호를 입력해주세요");
 	                return;
 	            }
-	            if(userPwdReCheckFlag == false) {
-	                return;
-	            }
+	            /*
 	            if(userNicknameCheckFlag == false) {
 	                return;
 	            }
 	            if(userNameCheckFlag == false) {
 	                return;
-	            }
-	            if(userPhoneCheckFlag == false) {
+	            }*/
+
+
+	          /*  if(userPhone.val() == null) {
+					alert("핸드폰 번호를 입력해주세요");
 	                return;
-	            }
-	            if(userEamilCheckFlag == false) {
+	            }*/
+
+
+	           /* if(userEamilCheckFlag == false) {
 	                return;
 	            }
 	            if(userYearCheckFlag == false) {
 	                return;
-	            }
-	            if($('#user-birth-month').val() == null) {
+	            }*/
+	           /* if($('#user-birth-month').val() == null) {
 	                return;
 	            }
 	            if(userDayCheckFlag == false) {
