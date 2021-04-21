@@ -28,16 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="community.model.vo.CommunityPage" project="PuppyRun" 
-    file="/PuppyRun/src/community/model/vo/CommunityPage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="185" y="612"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="community.model.dao.CommunityDAO" project="PuppyRun" 
+  <class id="4" language="java" name="community.model.dao.CommunityDAO" project="PuppyRun" 
     file="/PuppyRun/src/community/model/dao/CommunityDAO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="528" y="67"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="community.model.controller.CommunityDeleteServlet" project="PuppyRun" 
+  <class id="5" language="java" name="community.model.controller.CommunityDeleteServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommunityDeleteServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1534" y="-112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="community.model.controller.CommunityDetailServlet" project="PuppyRun" 
+  <class id="6" language="java" name="community.model.controller.CommunityDetailServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommunityDetailServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1537" y="52"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="community.model.controller.CommunityListServlet" project="PuppyRun" 
+  <class id="7" language="java" name="community.model.controller.CommunityListServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommunityListServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1537" y="216"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="community.model.controller.CommunitySearchServlet" project="PuppyRun" 
+  <class id="8" language="java" name="community.model.controller.CommunitySearchServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommunitySearchServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1846" y="-112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="community.model.controller.CommunityUpdateServlet" project="PuppyRun" 
+  <class id="9" language="java" name="community.model.controller.CommunityUpdateServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommunityUpdateServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1846" y="52"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="community.model.controller.CommunityWriteServlet" project="PuppyRun" 
+  <class id="10" language="java" name="community.model.controller.CommunityWriteServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommunityWriteServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1848" y="216"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="community.model.vo.Comment" project="PuppyRun" 
+  <class id="11" language="java" name="community.model.vo.Comment" project="PuppyRun" 
     file="/PuppyRun/src/community/model/vo/Comment.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-19" y="108"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,7 +100,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="community.model.vo.Like" project="PuppyRun" 
+  <class id="12" language="java" name="community.model.vo.Like" project="PuppyRun" 
     file="/PuppyRun/src/community/model/vo/Like.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-210" y="27"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -118,7 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="community.model.dao.CommentDAO" project="PuppyRun" 
+  <class id="13" language="java" name="community.model.dao.CommentDAO" project="PuppyRun" 
     file="/PuppyRun/src/community/model/dao/CommentDAO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="522" y="354"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -127,7 +118,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="community.model.dao.LikeDAO" project="PuppyRun" 
+  <class id="14" language="java" name="community.model.dao.LikeDAO" project="PuppyRun" 
     file="/PuppyRun/src/community/model/dao/LikeDAO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="517" y="555"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -136,7 +127,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="community.model.service.CommentService" project="PuppyRun" 
+  <class id="15" language="java" name="community.model.service.CommentService" project="PuppyRun" 
     file="/PuppyRun/src/community/model/service/CommentService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1211" y="458"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -145,7 +136,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="community.model.service.LikeService" project="PuppyRun" 
+  <class id="16" language="java" name="community.model.service.LikeService" project="PuppyRun" 
     file="/PuppyRun/src/community/model/service/LikeService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1079" y="783"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -154,7 +145,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="community.model.controller.CommentDeleteServlet" project="PuppyRun" 
+  <class id="17" language="java" name="community.model.controller.CommentDeleteServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommentDeleteServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1535" y="467"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -163,7 +154,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="community.model.controller.CommentWriteServlet" project="PuppyRun" 
+  <class id="18" language="java" name="community.model.controller.CommentWriteServlet" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/CommentWriteServlet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1849" y="466"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -172,7 +163,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="community.model.controller.LikeChange" project="PuppyRun" 
+  <class id="19" language="java" name="community.model.controller.LikeChange" project="PuppyRun" 
     file="/PuppyRun/src/community/model/controller/LikeChange.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1532" y="796"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -181,20 +172,33 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <class id="20" language="java" name="community.model.vo.CommunityPage" project="PuppyRun" 
+    file="/PuppyRun/src/community/model/vo/CommunityPage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="184" y="613"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <association id="21">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="22" name="factory"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="22" name="instance">        
+        <position height="0" width="0" x="-102" y="296"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-102" y="296"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="24">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="25" name="factory"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="25" name="cList"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="27">    
@@ -210,20 +214,24 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="30">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="31" name="cList"/>      
-      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="31" name="factory">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="33">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="34" name="instance">        
-        <position height="0" width="0" x="-102" y="296"/>      
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="34" name="factory">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="35" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-102" y="296"/>      
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
