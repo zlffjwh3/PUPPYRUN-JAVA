@@ -395,7 +395,6 @@ public class CommunityDAO {
 		int end = currentPage * recordCountPerPage;
 		
 		try {
-			System.out.println(search);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%" + search + "%");
 			pstmt.setInt(2, start);
@@ -404,7 +403,6 @@ public class CommunityDAO {
 			cList = new ArrayList<Community>();
 			
 			if(rset != null) {
-				System.out.println("rest 있음");
 				while(rset.next()) {
 					Community community = new Community();
 					community.setComNo(rset.getInt("COM_NO"));
