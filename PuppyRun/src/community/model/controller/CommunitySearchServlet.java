@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.tagext.PageData;
 
 import community.model.service.CommentService;
 import community.model.service.CommunityService;
@@ -62,7 +61,7 @@ public class CommunitySearchServlet extends HttpServlet {
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('검색어가 존재하지 않습니다!'); location.href='/community/list';</script>");
+			out.println("<script>alert('검색어가 존재하지 않습니다!'); history.back();</script>");
 			out.flush();
 		}
 	}
