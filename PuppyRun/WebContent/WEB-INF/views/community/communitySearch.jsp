@@ -51,8 +51,8 @@
                 <div id="header">
                     <div id="tleft">
 	                    <div id="search">
-	                    	 <form action="/community/search" method>
-                                <input class="search-input" id="" type="text" placeholder="search">
+	                    	 <form action="/community/search" method="get">
+                                <input class="search-input" id="" type="text" placeholder="search" name="searchKeyword">
                                 <input id="search-btn" type="submit" value="">
                             </form>
 	                    </div>
@@ -168,7 +168,11 @@
                                 <% 
                                 	for(int i=0; i<cList.size(); i++) {
                                 %>
+                                <% if(user != null) { %>
                                 <li class="post" onclick="location.href='/community/detail?comNo=<%= cList.get(i).getComNo() %>&userId=<%= user.getUserId() %>'">
+                                <% } else %> <% { %>
+                                <li class="post" onclick="location.href='/community/detail?comNo=<%= cList.get(i).getComNo() %>">
+                                <% } %>
                                     <div class="img-area">
                                 	<% if(cList.get(i).getComPhoto() != null) {%>
                                     	<img src="/upload/<%=cList.get(i).getComPhoto()%>">
@@ -200,13 +204,9 @@
                                         <!-- 제목 -->
                                         <% if(user != null)  { %>
                                         	<a class="title" href="/community/detail?comNo=<%= cList.get(i).getComNo() %>&userId=<%= user.getUserId() %>"><%= cList.get(i).getComTitle() %></a>
-                                       	<% 
-                      					} else {
-                                        %>
-                                        	<a class="title" href="/community/detail?comNo=<%= cList.get(i).getComNo() %>"><%= cList.get(i).getComTitle() %></a>
-                                     	<%
-                      					}
-                                     	%>
+                                       	<% } else %> <% { %>
+                                       		<a class="title" href="/community/detail?comNo=<%= cList.get(i).getComNo() %>"><%= cList.get(i).getComTitle() %></a>
+                                       	<% } %>
                                         <!-- 내용 -->
                                         <div class="post-content"><p><%= cList.get(i).getComContent() %></p></div>
                                         <div class="post-info">
