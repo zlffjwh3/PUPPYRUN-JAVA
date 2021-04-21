@@ -23,23 +23,31 @@ public class SearchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int currentPage = 0;
-		if(request.getParameter("currentPage") == null) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
+		/*
+		 * int currentPage = 0; if(request.getParameter("currentPage") == null) {
+		 * currentPage = 1; } else { currentPage =
+		 * Integer.parseInt(request.getParameter("currentPage")); }
+		 */
 		
 		String search = request.getParameter("searchKeyword");
-		UserPage userPage = new UserService().selectSearchUserList(search, currentPage);
+		String userChoice = request.getParameter("userChoice");
+		System.out.println(userChoice);
+		
+		if(userChoice.equals("userId")) {
+			userChoice = "USER_ID";
+		}else {
+			userChoice = "USER_NAME";
+		}
+		
+		UserPage userPage = new UserService().selectSearchUserList(search, userChoice);
 		ArrayList<User> userList = userPage.getuList();
-		String pageNavi = userPage.getPageNavi();
+		/* String pageNavi = userPage.getPageNavi(); */
 		if(!userList.isEmpty()) {
-			request.setAttribute("userList", userList);
-			request.setAttribute("pageNavi", pageNavi);
-			request.getRequestDispatcher("/WEB-INF/views/user/myInfo-m.jsp").forward(request, response);
+			request.setAttribute("uList", userList);
+			/* request.setAttribute("pageNavi", pageNavi); */
+			request.getRequestDispatcher("/WEB-INF/views/user/myinfo-m-search.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
+			System.out.println("검색 에러다..쉬불..");
 		}
 	}
 

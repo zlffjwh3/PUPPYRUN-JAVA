@@ -49,5 +49,13 @@ $(document).ready(function() {
 		
 	});
 	
+		$('.user-search-btn1').click(function() {
+			if($('#user-search').val() == null || $('#user-search').val() == "") {
+			alert('제목을 입력해주세요!');
+			$('#user-search').focus();
+		} else {
+			$('.user-search-btn1').submit();
+		}
+	});
 	
 });

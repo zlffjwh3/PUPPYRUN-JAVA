@@ -527,6 +527,47 @@ public class UserDAO {
 		return userList;
 	}
 
+	public ArrayList<User> selectSearchJUserList(Connection conn, String search, String userChoice) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<User> uList = null;
+		String query = "SELECT USER_ID, USER_NAME, USER_NICK, PHONE, EMAIL, USER_BIRTH, USER_ADDR, DOG_CHECK, ENROLL_DATE FROM USERTBL WHERE " + userChoice + " LIKE '%" + search + "%' ORDER BY ENROLL_DATE DESC";
+		
+		try {
+			System.out.println(userChoice);
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+		
+			if(rset != null) {
+				System.out.println("rset 있음");
+				uList = new ArrayList<User>();
+				
+				while(rset.next()) {
+					User user = new User();
+					user.setUserId(rset.getString("USER_ID"));
+					user.setUserName(rset.getString("USER_NAME"));
+					user.setUserNick(rset.getString("USER_NICK"));
+					user.setPhone(rset.getString("PHONE"));
+					user.setEmail(rset.getString("EMAIL"));
+					user.setUserBirth(rset.getString("USER_BIRTH"));
+					user.setUserAddr(rset.getString("USER_ADDR"));
+					user.setDogCheck(rset.getString("DOG_CHECK").charAt(0));
+					user.setEnrollDate(rset.getDate("ENROLL_DATE"));
+
+					uList.add(user);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		
+		return uList;
+	}
+
 	
 
 }

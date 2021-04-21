@@ -258,6 +258,27 @@ public class UserService {
 		}
 		return userPage;
 	}
+	
+	// 이부분 작업중
+	public UserPage selectSearchUserList(String search, String userChoice) {
+		Connection conn = null;
+		UserPage userPage = new UserPage();
+		
+		try {
+			conn = factory.createConnection();
+			userPage.setuList(new UserDAO().selectSearchJUserList(conn, search, userChoice));
+			System.out.println("서비스 user 체크 중 : " + userPage.getuList().size());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return userPage;
+	}
+	
+	
 
 	public ArrayList<User> adminDogCheckList(String dogCheck) {
 		Connection conn = null;
@@ -272,6 +293,8 @@ public class UserService {
 		}
 		return allUser;
 	}
+
+	
 
 	
 	

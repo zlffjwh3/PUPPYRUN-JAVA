@@ -7,10 +7,6 @@
 	pageEncoding="UTF-8"%>
 <%
 	ArrayList<User> uList = (ArrayList<User>)request.getAttribute("uList");
-	ArrayList<User> allUser = (ArrayList<User>)request.getAttribute("allUser");
-	String pageNavi = (String)request.getAttribute("pageNavi");
-	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
-	ArrayList<Matching> mList = (ArrayList<Matching>)request.getAttribute("mList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -149,7 +145,8 @@
 	               					<th>반려견 유무</th>
 	               					<th>등록일</th>
 	               				</tr>
-	               				<% for(User user : uList) { %>
+	               				<% for(User user : uList) { 
+	               				%>
 	               				<tr>   
 	               					<td><input type="checkbox" value="<%= user.getUserId() %>"></td>
 	               					<td><%= user.getUserId() %></td>
@@ -166,7 +163,7 @@
 	               			</table>
                			</div>
             			<div class="page-navi">
-            				<td><%= pageNavi %></td>
+            				
             			</div>
 	               	</div>
 	               	<div class="list-btn">
@@ -175,121 +172,12 @@
 	               	</div>
 	            </div>
 	            <!-- 퍼피런 게시글 ----------------------------------------------------->
-	            <div class="list" id="prun-story-list">
-               		<div class="list-top">
-               			게시판 목록
-               		</div>
-               		<div class="list-bottom">
-               			<div class="list-bottom-top">
-               				<div class="select">
-		               			<!-- 게시글 종류 -->
-		               			<select id="content-kind" class="content-kind-puppy">
-		               				<option value="puppy-story" class="puppy1">퍼피런 이야기</option>
-		               				<option value="puppy-mate" class="puppy2">산책짝꿍</option>
-		               			</select>
-	               			</div>
-	               			<div class="search">
-	               				<form action="/admin/search" method="get">
-	               					<select id="user-choice" name="contentChoice">
-	               						<option value="title">제목</option>
-	               						<option value="content">주소</option>
-	               					</select>
-               						<input type="text" id="user-search" name="searchKeyword">
-	               					<input type="button" value="검색" id="user-search-btn">
-	               				</form>
-	               			</div>
-               			</div>
-               			<div class="list-bottom-bottom">
-               				<table>
-	               				<tr>
-	               					<th>선택</th>
-	               					<th>게시글번호</th>
-	               					<th>제목</th>
-	               					<th>내용</th>
-	               					<th>조회수</th>
-	               					<th>작성일자</th>
-	               				</tr>
-	               				<% for(Notice notice : nList) { %>
-	               				<tr>
-	               					<td><input type="checkbox" value=""></td>
-	               					<td><%= notice.getNoticeNo() %></td>
-	               					<td><%= notice.getNoticeTitle() %></td>
-	               					<td><%= notice.getNoticeContent()  %></td>
-	               					<td><%= notice.getNoticeView()  %></td>
-	               					<td><%= notice.getNoticeDate()  %></td>
-	               				</tr>
-	               				<% } %>
-	               			</table>
-               			</div>
-            			<div class="page-navi">
-            				<td><%= pageNavi %></td>
-            			</div>
-	               	</div>
-	               	<div class="list-btn">
-	               		<a href="">삭제</a>
-	               	</div>
-	            </div>
-	             <!-- 퍼피런 게시글 끝 ----------------------------------------------------->
+	           
+	            <!-- 퍼피런 게시글 끝 ----------------------------------------------------->
 	             
-	             <!-- 산책짝꿍 게시글 ----------------------------------------------------->
-	             <div class="list" id="matching-list" style="display:none;">
-               		<div class="list-top">
-               			게시판 목록
-               		</div>
-               		<div class="list-bottom">
-               			<div class="list-bottom-top">
-               				<div class="select">
-		               			<!-- 게시글 종류 -->
-		               			<select id="content-kind" class="content-kind-match">
-		               				<option value="puppy-story" class="match1">퍼피런 이야기</option>
-		               				<option value="puppy-mate" class="match2">산책짝꿍</option>
-		               			</select>
-	               			</div>
-	               			<div class="search">
-	               				<form action="/admin/search" method="get">
-	               					<select id="user-choice" name="contentChoice">
-	               						<option value="title">제목</option>
-	               						<option value="content">내용</option>
-	               					</select>
-               						<input type="text" id="user-search" name="searchKeyword">
-	               					<input type="button" value="검색" id="user-search-btn">
-	               				</form>
-	               			</div>
-               			</div>
-               			<div class="list-bottom-bottom">
-               				<table>
-	               				<tr>
-	               					<th>선택</th>
-	               					<th>게시글번호</th>
-	               					<th>제목</th>
-	               					<th>작성자ID</th>
-	               					<th>내용</th>
-	               					<th>주소</th>
-	               					<th>작성일자</th>
-	               				</tr>
-	               				<% for(Matching matching : mList) { %>
-	               				<tr>
-	               					<td><input type="checkbox" value=""></td>
-	               					<td><%= matching.getMatNo() %></td>
-	               					<td><%= matching.getMatTitle() %></td>
-	               					<td><%= matching.getMatId()  %></td>
-	               					<td><%= matching.getMatContent()  %></td>
-	               					<td><%= matching.getMatAddr()  %></td>
-	               					<td><%= matching.getMatDate()  %></td>
-	               				</tr>
-	               				<% } %>
-	               			</table>
-               			</div>
-            			<div class="page-navi">
-            				<%= pageNavi %></td>
-            			</div>
-	               	</div>
-	               	<div class="list-btn">
-	               		<a href="">삭제</a>
-	               	</div>
-	            </div>
+	            <!-- 산책짝꿍 게시글 ----------------------------------------------------->
 	             
-	           <!-- 산책짝꿍 게시글 끝 ----------------------------------------------------->
+	           	<!-- 산책짝꿍 게시글 끝 ----------------------------------------------------->
 	             
             <!-- 메인 끝 ! ---------------------------------------------------------------------------------------------------------------------->
 	            <footer>
