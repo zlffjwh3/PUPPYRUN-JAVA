@@ -160,7 +160,7 @@
                                 <div id="content">
                                     <p class="write-p-tag">내 용</p>
                                     <div class="input-box" id="textarea-box">
-                                        <textarea id="content" name="content" value="<%= matching.getMatContent() %>"></textarea>
+                                        <textarea id="content" name="content"><%= matching.getMatContent() %></textarea>
                                     </div>
                                 </div>
                                 <div id="file">
