@@ -130,7 +130,7 @@
                 <% if( user != null) { %>
                 <a href="/mychatting/list" class="message"><div><i class="far fa-comment-alt"></i></div>메시지</a>
                 <% } else { %>
-                <a href="#" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
+                <a href="login.jsp" class="message" onclick="return alert('로그인이 필요합니다.')"><div><i class="far fa-comment-alt"></i></div>메시지</a>
                 <% } %>
             </div>
             <!-- 메인 -->
