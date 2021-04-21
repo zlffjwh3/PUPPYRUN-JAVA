@@ -125,7 +125,7 @@ public class CommunityService {
 		
 		try {
 			conn = factory.createConnection();
-			result = new CommunityDAO().deleteNotice(conn, communityNo);
+			result = new CommunityDAO().deleteCommunity(conn, communityNo);
 			
 			if(result > 0) {
 				JDBCTemplate.commit(conn);

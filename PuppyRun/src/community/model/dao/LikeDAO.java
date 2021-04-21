@@ -14,6 +14,7 @@ import community.model.vo.Like;
 public class LikeDAO {
 	public LikeDAO() {}
 
+	// 특정 유저의 좋아요 정보 가져오는 메소드
 	public Like likeStatus(Connection conn, int comNo, String userId) {
 		// select해서 좋아요 상태 가져오기
 		PreparedStatement pstmt = null;
@@ -67,23 +68,7 @@ public class LikeDAO {
 		return eroll;
 	}
 
-	public void countLike(Connection conn, int comNo, String after) {
-		// select count(*)써서 개수 가져오기
-		// 알아서 저장
-		
-		if(after == "Y") {
-			// +
-		} else {
-			// -
-		}
-	}
-	
-	// 좋아요 수 가져오는 메소드 추가
-
-	public ArrayList<Community> likeList(Connection conn, String userId) {
-		return null;
-	}
-
+	// 좋아요 상태 변경(좋아요 취소)
 	public int deleteStatus(Connection conn, int comNo, String userId) {
 		PreparedStatement pstmt = null;
 		int eroll = 0;
@@ -102,6 +87,7 @@ public class LikeDAO {
 		return eroll;
 	}
 
+	// 게시물 내에서 좋아요 총 갯수 보여주는 메소드
 	public int countStatus(Connection conn, int comNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -125,11 +111,10 @@ public class LikeDAO {
 			
 			JDBCTemplate.close(pstmt);
 		}
-		
 		return count;
 	}
-
-	// 좋아요 갯수
+	
+	// 커뮤니티 리스트에서 좋아요 갯수 보여주는 메소드
 	public ArrayList<int[]> addReadCount(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;

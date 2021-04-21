@@ -78,6 +78,7 @@ public class LikeService {
 		return eroll;
 	}
 	
+	// 게시물 내에서 좋아요 수 출력해주는 메소드
 	public int countLike(int comNo) {
 		Connection conn = null;
 		int result = 0;
@@ -95,6 +96,7 @@ public class LikeService {
 		return result;
 	}
 
+	// 게시물 리스트에서 좋아요 수 출력해주는 메소드
 	public ArrayList<int[]> cnt() {
 		Connection conn = null;
 		ArrayList<int[]> cnt = null;

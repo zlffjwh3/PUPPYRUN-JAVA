@@ -42,9 +42,6 @@ public class CommunityDeleteServlet extends HttpServlet {
 			file.delete(); //위에 가져온 파일 경로와 동일한 파일 삭제
 		}
 		
-		System.out.println(result);
-		System.out.println(commentResult);
-		
 		if(result > 0 && photoResult > 0 && commentResult > 0) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

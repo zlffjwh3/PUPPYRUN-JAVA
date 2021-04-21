@@ -13,6 +13,7 @@ import community.model.vo.Comment;
 public class CommentDAO {
 	public CommentDAO() {}
 	
+	// 모든 댓글 가져오는 메소드
 	public ArrayList<Comment> selectAllCommunity(Connection conn, int comNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -50,6 +51,7 @@ public class CommentDAO {
 		return cList;
 	}
 	
+	// 댓글 등록하는 메소드
 	public int insertComment(Connection conn, Comment comment) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -72,7 +74,7 @@ public class CommentDAO {
 		return result;
 	}
 	
-	// 댓글 삭제
+	// 댓글 삭제하는 메소드
 	public int deleteComment(Connection conn, int commentNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -92,6 +94,7 @@ public class CommentDAO {
 		return result;
 	}
 	
+	// 게시물 삭제하면 댓글도 삭제되도록하는 메소드
 	public int deleteComment2(Connection conn, int communityNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -111,7 +114,7 @@ public class CommentDAO {
 		return result;
 	}
 	
-	// 댓글 수
+	// 댓글 수 구해주는 메소드
 	public ArrayList<int[]> addReadCount(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -143,7 +146,5 @@ public class CommentDAO {
 		
 		return cnt;
 	}
-	
-	
 	
 }

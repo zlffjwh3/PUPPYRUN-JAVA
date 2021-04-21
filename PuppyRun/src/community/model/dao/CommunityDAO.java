@@ -343,7 +343,8 @@ public class CommunityDAO {
 		return result;
 	}
 	
-	public int deleteNotice(Connection conn, int comNo) {
+	// 게시물 삭제
+	public int deleteCommunity(Connection conn, int comNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = " DELETE FROM COMMUNITY WHERE COM_NO = ?";
@@ -362,6 +363,7 @@ public class CommunityDAO {
 		return result;
 	}
 	
+	// 조회수 추가
 	public int addReadCount(Connection conn, int comNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -425,6 +427,7 @@ public class CommunityDAO {
 		
 		return cList;
 	}
+	
 	// 검색된 게시물의 페이지 네비
 	public String getSearchPageNavi(Connection conn, String search, int currentPage) {
 		int recordCountPerPage = 10; // 한 페이지에 출력되는 게시물의 수
