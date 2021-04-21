@@ -125,7 +125,8 @@
 		               				<a href="/user/list?dogCheck=all" id="all">전체</a>
 	               			</div>
 	               			<div class="search">
-	               				<form action="/admin/search" method="get">
+	               				<!-- <form action="/admin/search" method="get"> -->
+	               				<form action="/user/list" method="get"> 
 	               					<select id="user-choice" name="userChoice">
 	               						<option value="userId">아이디</option>
 	               						<option value="userName">이름</option>

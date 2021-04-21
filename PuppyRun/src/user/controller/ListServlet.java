@@ -31,6 +31,11 @@ public class ListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 유저 검색하기
+		String userChoice = request.getParameter("userChoice");
+		String search = request.getParameter("searchKeyword");
+		
+		System.out.println(userChoice);
 		// 회원 전체정보 가져오기
 		int currentPage = 0;
 		if(request.getParameter("currentPage") == null) {
@@ -40,14 +45,29 @@ public class ListServlet extends HttpServlet {
 		}
 		String dogCheck = request.getParameter("dogCheck");
 		UserPage up = new UserService().selectAllUserList(currentPage);
+		
+		
+		if(userChoice == null) {
 		// 전체 보기일 경우
-		if(dogCheck.equals("all")) {
-			ArrayList<User> uList = up.getuList();
-			System.out.println(dogCheck);
-			request.setAttribute("uList", uList);
-		} else {
-			ArrayList<User> uList = new UserService().adminDogCheckList(dogCheck);
-			request.setAttribute("uList", uList);
+			if(dogCheck.equals("all")) {
+				ArrayList<User> uList = up.getuList();
+				request.setAttribute("uList", uList);
+			} else {
+				ArrayList<User> uList = new UserService().adminDogCheckList(dogCheck);
+				request.setAttribute("uList", uList);
+			}
+		}else {
+			if(userChoice.equals("userId")) {
+				userChoice = "USER_ID";
+			}else {
+				userChoice = "USER_NAME";
+			}
+			UserPage userPage = new UserService().selectSearchUserList(search, userChoice);
+			ArrayList<User> userList = userPage.getuList();
+			
+			if(!userList.isEmpty()) {
+				request.setAttribute("uList", userList);
+			}
 		}
 		
 		
