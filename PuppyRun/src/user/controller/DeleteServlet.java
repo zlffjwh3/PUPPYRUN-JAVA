@@ -125,6 +125,7 @@ public class DeleteServlet extends HttpServlet {
 					response.sendRedirect("/user/list?dogCheck=all");
 				}else {
 					System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck == Y)");
+					
 				}
 			}else {
 				System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck 값 가져올 수 없음");
