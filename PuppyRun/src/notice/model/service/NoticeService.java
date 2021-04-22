@@ -8,6 +8,7 @@ import common.JDBCTemplate;
 import notice.model.dao.NoticeDAO;
 import notice.model.vo.Notice;
 import notice.model.vo.NoticePage;
+import petdiary.model.dao.GoalDAO;
 
 public class NoticeService {
 	private JDBCTemplate factory;
@@ -159,7 +160,7 @@ public class NoticeService {
 		}
 		return noticePage;
 	}
-	
+
 	
 	
 }

@@ -9,6 +9,7 @@ import common.JDBCTemplate;
 import matching.model.dao.MatchingDAO;
 import matching.model.vo.Matching;
 import matching.model.vo.MatchingPage;
+import petdiary.model.dao.GoalDAO;
 
 public class MatchingService {
 	private JDBCTemplate factory;
@@ -167,5 +168,28 @@ public class MatchingService {
 		}
 		
 		return mList;
+	}
+
+	public int deleteMatching(String userId) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = factory.createConnection();
+			result = new MatchingDAO().deleteMatching(conn, userId);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
 	}
 }

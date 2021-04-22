@@ -167,6 +167,12 @@ public class CommentService {
 		try {
 			conn = factory.createConnection();
 			result = new CommentDAO().deleteComment(conn, userId);
+			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -226,6 +226,11 @@ public class CommunityService {
 			conn = factory.createConnection();
 			result = new CommunityDAO().deleteCommunity(conn, userId);
 			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

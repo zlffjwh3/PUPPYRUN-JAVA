@@ -13,7 +13,11 @@ import javax.servlet.http.HttpSession;
 import community.model.service.CommentService;
 import community.model.service.CommunityService;
 import community.model.service.LikeService;
+import matching.model.service.MatchingChatService;
+import matching.model.service.MatchingService;
 import notice.model.service.NoticeService;
+import petdiary.model.service.GoalService;
+import petdiary.model.service.PetDiaryService;
 import user.model.service.UserService;
 import user.model.vo.User;
 
@@ -79,6 +83,11 @@ public class DeleteServlet extends HttpServlet {
 		int communityResult = 0;
 		int commentResult = 0;
 		int likeResult = 0;
+		int goalResult = 0;
+		int petDiaryResult = 0;
+		int matchingResult = 0;
+		int messageResult = 0;
+		int noticeResult = 0;
 		
 		System.out.println(noticeNo);
 		if(noticeNo != null) {
@@ -98,11 +107,16 @@ public class DeleteServlet extends HttpServlet {
 		if(noticeNo == null && userId != null) {
 			if(user.getDogCheck() == 'N') {
 				// 회원 삭제할 때, 게시물과 댓글, 좋아요도 삭제
-				/*
-				 * likeResult = new LikeService().deleteLike(userId); commentResult = new
-				 * CommentService().deleteCommunity(userId); communityResult = new
-				 * CommunityService().deleteCommunity(userId);
-				 */
+				
+				
+				dogResult = new UserService().deleteDog(userId);
+				goalResult = new GoalService().deleteGoal(userId);
+				petDiaryResult = new PetDiaryService().deleteDiary(userId);
+				messageResult = new MatchingChatService().deleteChat(userId);
+				matchingResult = new MatchingService().deleteMatching(userId);
+				likeResult = new LikeService().deleteLike(userId);
+				commentResult = new CommentService().deleteCommunity(userId); 
+				communityResult = new CommunityService().deleteCommunity(userId);
 				userResult = new UserService().deleteUser(userId);
 			
 				if(userResult > 0 ) {
@@ -110,14 +124,17 @@ public class DeleteServlet extends HttpServlet {
 				}else {
 					System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck == N)");
 				}
-			// 아래 부분 오류 있음 (자식 레코드)
+			
 			}else if(user.getDogCheck() == 'Y'){
-				/*
-				 * likeResult = new LikeService().deleteLike(userId); commentResult = new
-				 * CommentService().deleteCommunity(userId); communityResult = new
-				 * CommunityService().deleteCommunity(userId);
-				 */
+				
 				dogResult = new UserService().deleteDog(userId);
+				goalResult = new GoalService().deleteGoal(userId);
+				petDiaryResult = new PetDiaryService().deleteDiary(userId);
+				messageResult = new MatchingChatService().deleteChat(userId);
+				matchingResult = new MatchingService().deleteMatching(userId);
+				likeResult = new LikeService().deleteLike(userId);
+				commentResult = new CommentService().deleteCommunity(userId); 
+				communityResult = new CommunityService().deleteCommunity(userId);
 				userResult = new UserService().deleteUser(userId);
 			
 			
