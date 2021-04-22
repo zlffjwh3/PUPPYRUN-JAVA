@@ -38,11 +38,29 @@ public class DeleteServlet extends HttpServlet {
 		String userId = user.getUserId();
 		int userResult = 0;
 		int dogResult = 0;
+		int communityResult = 0;
+		int commentResult = 0;
+		int likeResult = 0;
+		int goalResult = 0;
+		int petDiaryResult = 0;
+		int matchingResult = 0;
+		int messageResult = 0;
+		int noticeResult = 0;
 		
 		System.out.println("유저아이디 : " + userId);
 		
 		if(user.getDogCheck() == 'N') { // 나는 반려견이 없습니다
+			
+			goalResult = new GoalService().deleteGoal(userId);
+			petDiaryResult = new PetDiaryService().deleteDiary(userId);
+			messageResult = new MatchingChatService().deleteChat(userId);
+			matchingResult = new MatchingService().deleteMatching(userId);
+			likeResult = new LikeService().deleteLike(userId);
+			commentResult = new CommentService().deleteCommunity(userId); 
+			communityResult = new CommunityService().deleteCommunity(userId);
+			dogResult = new UserService().deleteDog(userId);
 			userResult = new UserService().deleteUser(userId);
+			
 			if(userResult > 0) {
 				session.invalidate(); // session 파괴
 				
@@ -55,6 +73,14 @@ public class DeleteServlet extends HttpServlet {
 			}
 			
 		} else if(user.getDogCheck() == 'Y') { // 나는 반려견이 있습니다
+			
+			goalResult = new GoalService().deleteGoal(userId);
+			petDiaryResult = new PetDiaryService().deleteDiary(userId);
+			messageResult = new MatchingChatService().deleteChat(userId);
+			matchingResult = new MatchingService().deleteMatching(userId);
+			likeResult = new LikeService().deleteLike(userId);
+			commentResult = new CommentService().deleteCommunity(userId); 
+			communityResult = new CommunityService().deleteCommunity(userId);
 			dogResult = new UserService().deleteDog(userId);
 			userResult = new UserService().deleteUser(userId);
 			
@@ -109,7 +135,6 @@ public class DeleteServlet extends HttpServlet {
 				// 회원 삭제할 때, 게시물과 댓글, 좋아요도 삭제
 				
 				
-				dogResult = new UserService().deleteDog(userId);
 				goalResult = new GoalService().deleteGoal(userId);
 				petDiaryResult = new PetDiaryService().deleteDiary(userId);
 				messageResult = new MatchingChatService().deleteChat(userId);
@@ -117,6 +142,7 @@ public class DeleteServlet extends HttpServlet {
 				likeResult = new LikeService().deleteLike(userId);
 				commentResult = new CommentService().deleteCommunity(userId); 
 				communityResult = new CommunityService().deleteCommunity(userId);
+				dogResult = new UserService().deleteDog(userId);
 				userResult = new UserService().deleteUser(userId);
 			
 				if(userResult > 0 ) {
