@@ -86,7 +86,7 @@ public class DeleteServlet extends HttpServlet {
 			int result = new NoticeService().deleteNotice(noticeNo1);
 			
 			if(result > 0) {
-				response.sendRedirect("/WEB-INF/views/user/myinfo-m.jsp");
+				response.sendRedirect("/user/list?dogCheck=all");
 			}
 			
 			// 여기서 삭제 하나 더 해줘야함
@@ -128,7 +128,7 @@ public class DeleteServlet extends HttpServlet {
 					
 				}
 			}else {
-				System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck 값 가져올 수 없음");
+				System.out.println("관리자 메뉴에서 회원 삭제 오류 발생 (DogCheck 값 가져올 수 없음!!");
 			}
 		}
 
