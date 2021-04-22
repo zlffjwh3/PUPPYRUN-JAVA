@@ -319,19 +319,19 @@
                				<% } %>
                			</table>
 	               	</div>
-	               	<form method="get" id="like-form">
+	               	<form method="post" id="like-form">
 		               	<div class="btns">
-		            		<input type="submit" value="삭제" class="change" id="like-btn">
+		            		<input type="button" value="삭제" class="change" id="like-btn">
 		            	</div>
 	            	</form>
-	            	<form method="get" id="post-form">
+	            	<form method="post" id="post-form">
 		               	<div class="btns">
-		            		<input type="submit" value="삭제" class="change" id="post-btn">
+		            		<input type="button" value="삭제" class="change" id="post-btn">
 		            	</div>
 	            	</form>
-	            	<form method="get" id="comment-form">
+	            	<form method="post" id="comment-form">
 		               	<div class="btns">
-		            		<input type="submit" value="삭제" class="change" id="comment-btn">
+		            		<input type="button" value="삭제" class="change" id="comment-btn">
 		            	</div>
 	            	</form>
 	            </div>

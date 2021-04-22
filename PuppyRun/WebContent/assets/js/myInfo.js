@@ -16,7 +16,7 @@ $(document).ready(function() {
 		$('#post-list2').css('display', 'none');
 		$('#comment-list').css('display', 'none');
 		
-		$('#list-btn').css('display', 'block');
+		$('#like-btn').css('display', 'block');
 		$('#post-btn').css('display', 'none');
 		$('#comment-btn').css('display', 'none');
 	});
@@ -54,10 +54,8 @@ $(document).ready(function() {
 	$('#like-btn').click(function() {
       var change = $('input[type=checkbox]:checked').val();
       var url = "/like/change?" + change;
-	  alert(url);    
 
-      $('#like-form').attr('action', url);
-      $('#like-btn').submit();
+      $('#like-form').attr('action', url).submit();
    });
 
 	$('#post-btn').click(function() {
@@ -69,18 +67,14 @@ $(document).ready(function() {
       } else {
         url = "/matching/delete?matNo=" + change;
       }
-	  alert(url);
       
-      $('#post-form').attr('action', url);
-      $('#post-btn').submit();
+      $('#post-form').attr('action', url).submit();
    });
 
 	$('#comment-btn').click(function() {
       var change = $('input[type=checkbox]:checked').val();
-      var url = "/comment/delete?" + change;
-	  alert(url);
+      var url = "/comment/delete?" + change + "";
 
-      $('#comment-form').attr('action', url);
-      $('#comment-btn').submit();
+      $('#comment-form').attr('action', url).submit();
    })
 });
