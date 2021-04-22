@@ -127,7 +127,6 @@ public class DeleteServlet extends HttpServlet {
 			
 			}else if(user.getDogCheck() == 'Y'){
 				
-				dogResult = new UserService().deleteDog(userId);
 				goalResult = new GoalService().deleteGoal(userId);
 				petDiaryResult = new PetDiaryService().deleteDiary(userId);
 				messageResult = new MatchingChatService().deleteChat(userId);
@@ -135,6 +134,7 @@ public class DeleteServlet extends HttpServlet {
 				likeResult = new LikeService().deleteLike(userId);
 				commentResult = new CommentService().deleteCommunity(userId); 
 				communityResult = new CommunityService().deleteCommunity(userId);
+				dogResult = new UserService().deleteDog(userId);
 				userResult = new UserService().deleteUser(userId);
 			
 			
