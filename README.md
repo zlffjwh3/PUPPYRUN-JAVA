@@ -33,3 +33,10 @@
 
 ------------
 ## Document
+### 1. 유스케이스
+![유스케이스](https://user-images.githubusercontent.com/81937349/118353075-c71e2080-b59f-11eb-85b5-9db49f2ff080.png)
+
+### 2. ERD
+![ERD_통합](https://user-images.githubusercontent.com/81937349/118353105-df8e3b00-b59f-11eb-9a3a-d53fd93c04d7.png)
+
+
