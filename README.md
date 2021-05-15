@@ -77,12 +77,23 @@
 ## 주요기능
 ![0001](https://user-images.githubusercontent.com/81956425/118356077-7eba2f00-b5ae-11eb-9761-4fded70ee718.jpg)
 
+![0002](https://user-images.githubusercontent.com/81956425/118356091-91346880-b5ae-11eb-9249-78f5580a3b09.jpg)
 
+![0003](https://user-images.githubusercontent.com/81956425/118356093-95608600-b5ae-11eb-9b80-c9cacdb52b19.jpg)
 
+![0004](https://user-images.githubusercontent.com/81956425/118356094-95f91c80-b5ae-11eb-9917-3691f3b385bc.jpg)
 
+![0005](https://user-images.githubusercontent.com/81956425/118356095-95f91c80-b5ae-11eb-8d3e-097644c3f3ad.jpg)
 
+![0006](https://user-images.githubusercontent.com/81956425/118356096-9691b300-b5ae-11eb-945f-8d4e2183c23f.jpg)
 
+![0007](https://user-images.githubusercontent.com/81956425/118356097-972a4980-b5ae-11eb-93cf-00e8c5d5efe1.jpg)
 
+![0008](https://user-images.githubusercontent.com/81956425/118356098-97c2e000-b5ae-11eb-8435-aac78a024ce7.jpg)
+
+![0009](https://user-images.githubusercontent.com/81956425/118356099-985b7680-b5ae-11eb-9752-4e068cb7047f.jpg)
+
+![0010](https://user-images.githubusercontent.com/81956425/118356100-98f40d00-b5ae-11eb-812e-17e51b27520f.jpg)
 ------------
 ## Document
 ### 1. 유스케이스
