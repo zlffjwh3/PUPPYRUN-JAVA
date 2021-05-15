@@ -113,4 +113,5 @@
 ### 2. ERD
 ![ERD_통합](https://user-images.githubusercontent.com/81937349/118353105-df8e3b00-b59f-11eb-9a3a-d53fd93c04d7.png)
 
+![0007](https://user-images.githubusercontent.com/81956425/118357002-c6db5080-b5b2-11eb-932a-0aa22f1d0b3b.jpg)
 
