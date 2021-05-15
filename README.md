@@ -89,7 +89,7 @@
 5. 산책짝꿍
 ![0008](https://user-images.githubusercontent.com/81956425/118356098-97c2e000-b5ae-11eb-8435-aac78a024ce7.jpg)
 ![0009](https://user-images.githubusercontent.com/81956425/118356099-985b7680-b5ae-11eb-9752-4e068cb7047f.jpg)
-6. 
+6. 관리자
 ![0010](https://user-images.githubusercontent.com/81956425/118356100-98f40d00-b5ae-11eb-812e-17e51b27520f.jpg)
 ------------
 ## Document
