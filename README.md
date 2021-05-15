@@ -84,7 +84,8 @@
 ------------
 ## 주요 기능
 1. 회원가입
-![0001](https://user-images.githubusercontent.com/81956425/118356838-14a38900-b5b2-11eb-9c34-e217a9087b57.jpg)
+![0001](https://user-images.githubusercontent.com/81956425/118357017-d8bcf380-b5b2-11eb-8bc1-57e70f51a482.jpg)
+
 2. 마이페이지
 ![0002](https://user-images.githubusercontent.com/81956425/118356858-2553ff00-b5b2-11eb-9a61-109ae974c15f.jpg)
 ![0003](https://user-images.githubusercontent.com/81956425/118356816-048ba980-b5b2-11eb-9593-bca20d9adc97.jpg)
@@ -112,6 +113,4 @@
 
 ### 2. ERD
 ![ERD_통합](https://user-images.githubusercontent.com/81937349/118353105-df8e3b00-b59f-11eb-9a3a-d53fd93c04d7.png)
-
-![0007](https://user-images.githubusercontent.com/81956425/118357002-c6db5080-b5b2-11eb-932a-0aa22f1d0b3b.jpg)
 
